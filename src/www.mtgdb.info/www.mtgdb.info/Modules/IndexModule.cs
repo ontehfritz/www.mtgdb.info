@@ -8,8 +8,8 @@ namespace mtgdb.info
         public IndexModule ()
         {
             Get ["/"] = parameters => {
-
-                return View["Index"];
+                IndexModel model = new IndexModel();
+                return View["Index", model];
             };
         }
     }

@@ -81,16 +81,24 @@
     <Folder Include="Content\css\" />
     <Folder Include="Views\Login\" />
     <Folder Include="Models\Views\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Modules\IndexModule.cs" />
-    <Compile Include="Modules\LoginModule.cs" />
     <Compile Include="Models\NancyUser.cs" />
     <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Modules\LogonModule.cs" />
+    <Compile Include="Models\Views\PageModel.cs" />
+    <Compile Include="Models\Views\LogonModel.cs" />
+    <Compile Include="Models\Views\SignUpModel.cs" />
+    <Compile Include="Helpers\ErrorUtility.cs" />
+    <Compile Include="Models\Views\IndexModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
     <None Include="Views\_Layout.cshtml" />
+    <None Include="Views\Login\Logon.cshtml" />
+    <None Include="Views\Login\Signup.cshtml" />
   </ItemGroup>
 </Project>

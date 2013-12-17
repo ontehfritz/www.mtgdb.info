@@ -11,7 +11,8 @@ namespace mtgdb.info
     {
         SuperSimpleAuth ssa; 
 
-        public NancyUserMapper(SuperSimpleAuth ssa){
+        public NancyUserMapper(SuperSimpleAuth ssa)
+        {
             this.ssa = ssa;
         }
 
@@ -20,7 +21,8 @@ namespace mtgdb.info
             User ssaUser = ssa.Validate (identifier,
                 context.Request.UserHostAddress);
 
-            NancyUserIdentity user = new NancyUserIdentity {
+            NancyUserIdentity user = new NancyUserIdentity 
+            {
                 UserName = ssaUser.UserName,
                 AuthToken = ssaUser.AuthToken,
                 Email = ssaUser.Email,
