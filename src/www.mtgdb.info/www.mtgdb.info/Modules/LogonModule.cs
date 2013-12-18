@@ -21,7 +21,7 @@ namespace mtgdb.info
             Get["/logon"] = parameters => {
                 LogonModel model = new LogonModel();
 
-                return View["Logon",model];
+                return View["Logon/logon",model];
             };
 
             Post["/logon"] = parameters => {
@@ -32,7 +32,7 @@ namespace mtgdb.info
 
                 try
                 {
-                    user = ssa.Authenticate(model.UserName,model.Password,
+                    user = ssa.Authenticate(model.UserName, model.Secret,
                         this.Context.Request.UserHostAddress);
                 }
                 catch(Exception e)
@@ -41,7 +41,7 @@ namespace mtgdb.info
 
                     if(user == null)
                     {
-                        return View["logon", model];
+                        return View["Logon/logon", model];
                     }
                 }
 
@@ -80,7 +80,10 @@ namespace mtgdb.info
                     return View["Signup", model];
                 }
 
-                return this.Response.AsRedirect("/");
+                LogonModel logon = new LogonModel();
+                logon.Messages.Add("You have successfully created an account. Please Sign In.");
+                return View["Logon", logon];
+
             };
         }
     }

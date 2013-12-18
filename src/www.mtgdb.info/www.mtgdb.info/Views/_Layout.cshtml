@@ -15,7 +15,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script >
 
     <!-- Custom styles for this template -->
-    <link href="http://getbootstrap.com/examples/offcanvas/offcanvas.css" rel="stylesheet" />
+    <link href="~/content/css/mtgdb.css" rel="stylesheet" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -51,7 +51,7 @@
                     <li class="divider"></li>
                 </ul>
                 </li>
-                <li><a href="#">Sign In</a></li>
+                <li><a href="~/logon">Sign In</a></li>
             </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
@@ -77,26 +77,24 @@
             <div class="alert alert-danger alert-dismissable">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <ul>
-            @foreach(var e in @Model.Errors){
+            @foreach(var error in @Model.Errors){
                 <li>
-                @e.Message
+                @error
                 </li>
             }
             </ul>
             </div>
         }
+
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; SuperSimpleSuperRad (Triple S Rad) 2013</p>
         </footer>
-    </div><!--/.container-->s
+    </div><!--/.container-->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="offcanvas.js"></script>
   </body>
 </html>
 

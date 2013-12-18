@@ -1,52 +1,54 @@
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IndexModel>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<mtgdb.info.IndexModel>
 @{
   Layout = "_Layout.cshtml";
 }
 
 <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
-          <div class="jumbotron">
-            <h1>M:TG DB <small>[ALPHA]</small></h1>
-            <p>
-                Magic: the gathering open database project 
-            </p>
-          </div>
-          <div class="row">
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>Open Database</h2>
-              <p>
-                The database is open, meaning that the community can add and edit the information for cards and sets.
-                You can submit a change, the change will be reviewed, you will be notfie
-              </p>
-              <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-            </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-              <h2>The API</h2>
-              <p><a href="http://api.mtgdb.info">api.mtgdb.info</a></p>
-              <p>
-              No screen scraping nessecary, all information that is on M:TG DB is available through the easy to use 
-              API. You can use the API directly or use one our wrappers.
-              </p>
-              <p><a class="btn btn-default" href="http://api.mtgdb.info" role="button">View API &raquo;</a></p>
-            </div><!--/span-->
-          </div><!--/row-->
-        </div><!--/span-->
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+      </p>
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-          </div>
+      @if(Model.Cards != null)
+      {
+        <div class="row">
+
+        @Html.Partial("_Cards", Model.Cards)
+
+        </div>
+      }
+      else
+      {
+        <div class="jumbotron">
+        <h1>M:TG DB <small>[ALPHA]</small></h1>
+        <p>
+            Magic: the gathering open database project 
+        </p>
+        </div>
+        <div class="row">
+            <div class="col-6 col-sm-6 col-lg-4">
+            <h2>Open Database</h2>
+            <p>
+            The database is open, meaning that the community can add and edit the information for cards and sets.
+            You can submit a change, the change will be reviewed, you will be notfie
+            </p>
+            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div><!--/span-->
+            <div class="col-6 col-sm-6 col-lg-4">
+                <h2>The API</h2>
+                <p><a href="http://api.mtgdb.info">api.mtgdb.info</a></p>
+                <p>
+                No screen scraping nessecary, all information that is on M:TG DB is available through the easy to use 
+                API. You can use the API directly or use one our wrappers.
+                </p>
+                <p><a class="btn btn-default" href="http://api.mtgdb.info" role="button">View API &raquo;</a></p>
+            </div><!--/span-->
+        </div><!--/row-->
+    
+        }
+    </div><!--/span-->
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+         @Html.Partial("_Sets", Model.Sets)
     </div><!--/span-->
 </div><!--/row-->

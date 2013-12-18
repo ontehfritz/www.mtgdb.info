@@ -1,0 +1,8 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Mtgdb.Info.CardSet[]>
+<div class="list-group">
+<a href="~/set/FULL" class="list-group-item">All Cards</a>
+@foreach(var set in Model)
+{
+    <a href="~/set/@set.Id" class="list-group-item">@set.Name</a>
+}
+</div>
