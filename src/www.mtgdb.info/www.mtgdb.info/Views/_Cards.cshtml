@@ -1,8 +1,9 @@
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<Mtgdb.Info.Card[]>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.Card[]>
 <div>
 @foreach(var card in Model)
 {
     <div class="col-6 col-sm-6 col-lg-4">
+        <div>@card.SetNumber</div>
         <img src="@card.CardImage" />
     </div>
 }

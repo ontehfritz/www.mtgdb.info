@@ -1,6 +1,6 @@
 using System;
-using Mtgdb.Info.Wrapper;
-using Mtgdb.Info;
+using MtgDb.Info.Driver;
+using MtgDb.Info;
 
 namespace mtgdb.info
 {
@@ -8,23 +8,25 @@ namespace mtgdb.info
     {
         public CardSet[] Sets { set; get; }
         public Card[] Cards { set; get; }
+        public Db magicdb = new Db ("http://127.0.0.1:8082/");
+
 
         public IndexModel () : base()
         {
-            Db magicdb = new Db ();
+
             Sets = magicdb.GetSets ();
 
         }
 
         public void SetCards(string setId)
         {
-            Db magicdb = new Db();
-            Cards = magicdb.GetSetCards(setId);
+
+            Cards = magicdb.GetSetCards(setId,1,9);
         }
 
         public void SetAllCards()
         {
-            Db magicdb = new Db();
+
             Cards = magicdb.GetCards();
         }
     }
