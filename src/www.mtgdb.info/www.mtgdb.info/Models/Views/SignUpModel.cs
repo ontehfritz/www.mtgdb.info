@@ -1,6 +1,6 @@
 using System;
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class SignupModel : PageModel
     {

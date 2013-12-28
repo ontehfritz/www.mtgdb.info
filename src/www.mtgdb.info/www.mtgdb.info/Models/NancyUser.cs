@@ -5,7 +5,7 @@ using Nancy;
 using System.Collections.Generic;
 using SuperSimple.Auth;
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class NancyUserMapper: IUserMapper
     {

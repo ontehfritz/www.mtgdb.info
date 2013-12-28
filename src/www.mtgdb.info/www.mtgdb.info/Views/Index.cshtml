@@ -1,4 +1,4 @@
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<mtgdb.info.IndexModel>
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.IndexModel>
 @{
   Layout = "_Layout.cshtml";
 }
@@ -49,6 +49,6 @@
     </div><!--/span-->
 
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-         @Html.Partial("_Sets", Model.Sets)
+         @Html.Partial("_Sets", Model.SetList)
     </div><!--/span-->
 </div><!--/row-->

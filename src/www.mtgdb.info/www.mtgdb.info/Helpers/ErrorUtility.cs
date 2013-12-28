@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Nancy.Validation;
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class ErrorUtility
     {

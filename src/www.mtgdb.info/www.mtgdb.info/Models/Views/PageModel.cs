@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class PageModel
     {

@@ -4,6 +4,7 @@ using Nancy.TinyIoc;
 using Nancy.Bootstrapper;
 using Nancy.Authentication.Forms;
 using SuperSimple.Auth;
+using MtgDb.Info;
 
 namespace mtgdb.info
 {

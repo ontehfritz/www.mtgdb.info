@@ -1,6 +1,6 @@
 using System;
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class LogonModel : PageModel
     {

@@ -6,7 +6,7 @@ using Nancy.ModelBinding;
 using Nancy.Validation;
 
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class LogonModule : NancyModule
     {
