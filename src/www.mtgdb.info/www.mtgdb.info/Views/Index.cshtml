@@ -3,18 +3,30 @@
   Layout = "_Layout.cshtml";
 }
 
-<div class="row row-offcanvas row-offcanvas-right">
-    <div class="col-xs-12 col-sm-9">
-      <p class="pull-right visible-xs">
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-      </p>
-
+<div class="row">
+    <div id="test" class="">
       @if(Model.Cards != null)
       {
         <div class="row">
-
-        @Html.Partial("_Cards", Model.Cards)
-
+            <div class="panel panel-default">
+            <div class="panel-heading">
+            <ul class="pager">
+                <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
+                <li>Page @Model.Page</li>
+                <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
+            </ul>
+            </div>
+            <div class="panel-body">
+            @Html.Partial("_Cards", Model.Cards)
+            </div>
+            <div class="panel-footer">
+            <ul class="pager">
+                <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
+                <li>Page @Model.Page</li>
+                <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
+            </ul>
+            </div>
+            </div>
         </div>
       }
       else
@@ -48,7 +60,21 @@
         }
     </div><!--/span-->
 
-    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-         @Html.Partial("_Sets", Model.SetList)
+    <div id="sidebar">
+        @Html.Partial("_Sets", Model.SetList)
+        <div id="arrow_container" class="isDown"><div class="arrow" id="down"></div></div>
     </div><!--/span-->
 </div><!--/row-->
+<script>
+    $("#arrow_container").click( function(event){
+    event.preventDefault();
+    if ($(this).hasClass("isDown") ) {
+        $("#sidebar").animate({marginTop:"4985px"}, 200);          
+        $(this).removeClass("isDown");
+    } else {
+        $("#sidebar").animate({marginTop:"-100px"}, 200);   
+        $(this).addClass("isDown");
+    }
+    return false;
+    });
+</script>
