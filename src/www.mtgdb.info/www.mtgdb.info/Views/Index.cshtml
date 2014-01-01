@@ -2,17 +2,19 @@
 @{
   Layout = "_Layout.cshtml";
 }
-
 <div class="row">
     <div id="test" class="">
       @if(Model.Cards != null)
       {
         <div class="row">
+            <div style="width:100%;text-align:center;padding:5px;">
+
+            </div>
             <div class="panel panel-default">
-            <div class="panel-heading">
-            <ul class="pager">
+            <div class="panel-heading" style="height:50px;">
+            <ul class="pager" style="height:30px;margin:0px;">
                 <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
-                <li>Page @Model.Page</li>
+                <li>@Html.Partial("_SetsDropDown", Model.SetList)</li>
                 <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
             </ul>
             </div>
@@ -61,20 +63,5 @@
     </div><!--/span-->
 
     <div id="sidebar">
-        @Html.Partial("_Sets", Model.SetList)
-        <div id="arrow_container" class="isDown"><div class="arrow" id="down"></div></div>
     </div><!--/span-->
 </div><!--/row-->
-<script>
-    $("#arrow_container").click( function(event){
-    event.preventDefault();
-    if ($(this).hasClass("isDown") ) {
-        $("#sidebar").animate({marginTop:"4985px"}, 200);          
-        $(this).removeClass("isDown");
-    } else {
-        $("#sidebar").animate({marginTop:"-100px"}, 200);   
-        $(this).addClass("isDown");
-    }
-    return false;
-    });
-</script>

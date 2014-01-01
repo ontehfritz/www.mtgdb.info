@@ -81,6 +81,9 @@
     <Content Include="web.config" />
     <Content Include="Content\css\mtgdb.css" />
     <Content Include="Content\images\wood.jpg" />
+    <Content Include="Content\javascript\select2.min.js" />
+    <Content Include="Content\css\select2-bootstrap.css" />
+    <Content Include="Content\css\select2.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -92,6 +95,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Views\Logon\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Content\javascript\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
@@ -115,5 +119,6 @@
     <None Include="Views\Logon\Signup.cshtml" />
     <None Include="Views\_Sets.cshtml" />
     <None Include="Views\_Cards.cshtml" />
+    <None Include="Views\_SetsDropDown.cshtml" />
   </ItemGroup>
 </Project>
