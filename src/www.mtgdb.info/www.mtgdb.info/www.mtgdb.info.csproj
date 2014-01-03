@@ -111,6 +111,7 @@
     <Compile Include="Models\Views\HomeModel.cs" />
     <Compile Include="Models\UserCard.cs" />
     <Compile Include="Models\UserData.cs" />
+    <Compile Include="Models\Views\SetsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -120,5 +121,6 @@
     <None Include="Views\_Sets.cshtml" />
     <None Include="Views\_Cards.cshtml" />
     <None Include="Views\_SetsDropDown.cshtml" />
+    <None Include="Views\Sets.cshtml" />
   </ItemGroup>
 </Project>

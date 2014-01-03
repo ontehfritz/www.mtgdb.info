@@ -1,20 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Content/css/mtgdb.css">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Sets.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="13" Column="2" />
-      <File FileName="www.mtgdb.info/web.config" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/IndexModel.cs" Line="12" Column="41" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="3" Column="19" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="70" Column="28" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="51" Column="40" />
-      <File FileName="www.mtgdb.info/Models/Views/LogonModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/PageModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/HomeModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Bootstrapper.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="10" Column="33" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="23" Column="7" />
+      <File FileName="www.mtgdb.info/Views/Sets.cshtml" Line="35" Column="11" />
+      <File FileName="www.mtgdb.info/Models/Views/SetsModel.cs" Line="17" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

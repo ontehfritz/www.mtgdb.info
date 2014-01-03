@@ -1,0 +1,249 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.SetsModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+<h2>Magic: the gathering sets</h2>
+
+<div style="float:left;">
+    <div>
+    <h4>Core</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Core"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Non-Block</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock(null))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+    <div>
+    <h4>Duel Decks</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Duel Decks"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+</div>
+<div style="float:left;">
+    <h3>Expansions</h3>
+   
+    <div>
+    <h4>Ice Age</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Ice Age"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Mirage</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Mirage"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Rath</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Rath"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Artifacts</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Artifacts"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Masquerade</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Masquerade"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Invasion</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Invasion"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Odyssey</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Odyssey"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Onslaught</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Onslaught"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Mirrodin</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Mirrodin"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Kamigawa</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Kamigawa"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Ravnica</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Ravnica"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Time Spiral</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Time Spiral"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Lorwyn</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Lorwyn"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Shadowmoor</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Shadowmoor"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Alara</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Shards of Alara"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Zendikar</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Zendikar"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Scars of Mirrodin</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Scars of Mirrodin"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Innistrad</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Scars of Mirrodin"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Return to Ravnica</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Return to Ravnica"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Theros</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Theros"))
+    {
+        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+</div>
+<div style="float:left;">
+</div>
+
+<br style="clear:both;" />
+
+
+
+
+

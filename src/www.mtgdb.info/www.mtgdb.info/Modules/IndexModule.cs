@@ -18,7 +18,15 @@ namespace MtgDb.Info
                 return View["Index", model];
             };
          
-            Get ["/set/{id}"] = parameters => {
+            Get ["/sets/"] = parameters => {
+                SetsModel model = new SetsModel();
+                model.Sets = magicdb.GetSets();
+                
+
+                return View["Sets", model];
+            };
+
+            Get ["/sets/{id}"] = parameters => {
                 IndexModel model = new IndexModel();
                 string setId = (string)parameters.id;
 
