@@ -33,7 +33,73 @@
     }
     </ul>
     </div>
+    <div>
+    <h4>From the Vault</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("From the vault"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+    <div>
+    <h4>Premium Deck Series</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Premium Deck Series"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+    <div>
+    <h4>Planechase</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Planechase"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
 
+    <div>
+    <h4>Commander</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Commander"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Portal</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Portal"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Starter</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Starter"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
+
+    <div>
+    <h4>Un-sets</h4>
+    <ul>
+    @foreach(var set in Model.GetBlock("Un-sets"))
+    {
+            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+    }
+    </ul>
+    </div>
 </div>
 <div style="float:left;">
     <h3>Expansions</h3>

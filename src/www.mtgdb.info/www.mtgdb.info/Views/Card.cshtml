@@ -1,0 +1,6 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+<h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId">@Model.Card.CardSetName</a>)</small></h1>
+<img src="@Model.Card.CardImage" />
