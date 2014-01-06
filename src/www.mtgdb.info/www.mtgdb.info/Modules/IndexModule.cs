@@ -29,6 +29,7 @@ namespace MtgDb.Info
             Get ["/cards/{id}"] = parameters => {
                 CardModel model = new CardModel();
                 model.Card = magicdb.GetCard((int)parameters.id);
+                model.Prints = magicdb.GetCards(model.Card.Name);
 
                 return View["Card", model];
             };
