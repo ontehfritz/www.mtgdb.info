@@ -21,8 +21,7 @@ namespace MtgDb.Info
             Get ["/sets/"] = parameters => {
                 SetsModel model = new SetsModel();
                 model.Sets = magicdb.GetSets();
-                
-
+          
                 return View["Sets", model];
             };
 

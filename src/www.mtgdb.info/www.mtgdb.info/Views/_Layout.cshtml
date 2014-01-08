@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>M:tg[Db].Info</title>
+    <title>M:tgDb.Info</title>
     <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" />
@@ -24,36 +24,33 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
   </head>
-
   <body>
-    <div class="navbar navbar-fixed-top navbar-default" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><img src="~/content/images/logo.png" style="width:25px; height:25px;" /> <small>[ALPHA]</small></a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Toolbox <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="~/sets/ARB">Search</a></li>
-                    <li class="divider"></li>
-                    <li><a href="~/sets/">Sets</a></li>
-                </ul>
-                </li>
-                <li><a href="~/logon">Sign In</a></li>
-            </ul>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </div><!-- /.navbar -->
-
-    <div class="container">
+  <div class="navbar-xs">
+   <div class="navbar-primary">
+       <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-8">
+                 <span class="sr-only">Toggle navigation</span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+                 <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">M:tgDb 
+              <img src="/content/images/logo.png" style="width:17px;height:17px;"/></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+              <ul class="nav navbar-nav">
+                  <li class="active"><a href="~/sets">Sets</a></li>
+                  <li><a href="#">Link</a></li>
+                   <li><a href="#">Link</a></li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+      </nav>
+  </div>
+</div>
+<div class="container">
         @if(@Model.Messages != null && @Model.Messages.Count > 0)
         {
             <div class="alert alert-success alert-dismissable">
@@ -81,7 +78,6 @@
             </ul>
             </div>
         }
-
         @RenderBody()
         <hr />
         <footer>

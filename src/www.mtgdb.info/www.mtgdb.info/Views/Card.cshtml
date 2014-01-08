@@ -3,22 +3,29 @@
   Layout = "_Layout.cshtml";
 }
 <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId">@Model.Card.CardSetName</a>)</small></h1>
+@if(Model.Card.Flavor != null && Model.Card.Flavor != "")
+{
+  <blockquote><p>@Model.Card.Flavor</p></blockquote>
+}
 <div style="width:1200px;">
-    <div style="float:left;width:300px;">
-        <img src="@Model.Card.CardImage" />
+    <div style="float:left;width:300px;text-align:center;">
+        <img src="@Model.Card.CardImage" /><br /><br />
+        <button type="button" class="btn btn-danger">-</button>
+        <input type="text" style="width:30px;" placeholder="0" />
+        <button type="button" class="btn btn-success">+</button>
     </div>
     <div style="float:left;margin-left:10px;width:700px;">
-    <table>
+    <table class="table-hover">
     <tr>
-        <td>Multiverse Id:</td>
+        <td><b>Multiverse #:</b></td>
         <td>@Model.Card.Id</td>
     </tr>
     <tr>
-        <td>Set Number:</td>
+        <td><b>Set #:</b></td>
         <td>@Model.Card.SetNumber</td>
     </tr>
     <tr>
-        <td>Color(s):</td>
+        <td><b>Color(s):</b></td>
         <td>
         @foreach(string color in @Model.Card.Colors){
                 @color <br />
@@ -26,40 +33,36 @@
         </td>
     </tr>
     <tr>
-        <td>Mana Cost:</td>
+        <td><b>Mana Cost:</b></td>
         <td>@Model.Card.ManaCost</td>
     </tr>
     <tr>
-        <td>Converted Cost:</td>
+        <td><b>Converted Cost:</b></td>
         <td>@Model.Card.ConvertedManaCost</td>
     </tr>
     <tr>
-        <td>Type:</td>
+        <td><b>Type:</b></td>
         <td>@Model.Card.Type - @Model.Card.SubType</td>
     </tr>
     <tr>
-        <td>Text:</td>
+        <td><b>Text:</b></td>
         <td>@Model.Card.Description</td>
     </tr>
     <tr>
-        <td>Flavor:</td>
-        <td>@Model.Card.Flavor</td>
-    </tr>
-    <tr>
-        <td>Power:</td>
+        <td><b>Power:</b></td>
         <td>@Model.Card.Power</td>
     </tr>
     <tr>
-        <td>Toughness:</td>
+        <td><b>Toughness:</b></td>
         <td>@Model.Card.Toughness</td>
     </tr>
     <tr>
-        <td>Artist:</td>
+        <td><b>Artist:</b></td>
         <td>@Model.Card.Artist</td>
     </tr>
 
      <tr>
-        <td>Prints:</td>
+        <td><b>Prints:</b></td>
         <td>
         @foreach(Card card in @Model.Prints){
             <a href="~/cards/@card.Id">@card.CardSetName</a><br />
@@ -69,4 +72,28 @@
     </table>
     </div>
     <br style="clear:both;" />
+</div>
+<div>
+    <h4>Rulings</h4>
+    @if(Model.Card.Rulings != null && Model.Card.Rulings.Length > 0)
+    {
+        <table class="table table-condensed table-hover">
+        @foreach(var rule in Model.Card.Rulings)
+        {
+            <tr>
+                <td>
+                @rule.ReleasedAt.ToShortDateString()
+                </td>
+                <td>
+                @rule.Rule
+                </td>
+            </tr>
+        }
+        </table>
+    }
+    else
+    {
+        <p>This card has no rulings.</p>
+
+    }
 </div>

@@ -4,10 +4,15 @@
 @foreach(var card in Model)
 {
     <div class="col-6 col-sm-6 col-lg-4">
-        <div>@card.SetNumber</div>
+        <div style="text-align:center;">
         <a href="~/cards/@card.Id" class="thumbnail">
-        <img src="@card.CardImage" />
+            <img src="@card.CardImage" />
         </a>
+        <button type="button" class="btn btn-danger">-</button>
+        <input type="text" style="width:30px;" placeholder="0" />
+        <button type="button" class="btn btn-success">+</button>
+        </div>
+
     </div>
 }
 <br style="clear:both;"/>
