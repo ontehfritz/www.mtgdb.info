@@ -113,6 +113,7 @@
     <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\Views\SetsModel.cs" />
     <Compile Include="Models\Views\CardModel.cs" />
+    <Compile Include="Modules\CardModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

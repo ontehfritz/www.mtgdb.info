@@ -20,6 +20,7 @@ namespace MtgDb.Info
 
             Get["/logon"] = parameters => {
                 LogonModel model = new LogonModel();
+                model.UrlRedirect = (string)Request.Query.Url;
 
                 return View["Logon/logon",model];
             };
@@ -45,14 +46,8 @@ namespace MtgDb.Info
                     }
                 }
 
-                return this.LoginAndRedirect(user.AuthToken, fallbackRedirectUrl: "/");
-            };
-
-            Get["/logoff"] = parameters => {
-                NancyUserIdentity nuser = (NancyUserIdentity)Context.CurrentUser;
-                ssa.End(nuser.AuthToken);
-             
-                return this.LogoutAndRedirect("/");
+                return this.LoginAndRedirect(user.AuthToken, 
+                    fallbackRedirectUrl: model.UrlRedirect);
             };
 
             Get ["/signup"] = parameters => {
@@ -84,6 +79,13 @@ namespace MtgDb.Info
                 logon.Messages.Add("You have successfully created an account. Please Sign In.");
                 return View["Logon", logon];
 
+            };
+
+            Get["/logout"] = parameters => {
+                NancyUserIdentity nuser = (NancyUserIdentity)Context.CurrentUser;
+                ssa.End(nuser.AuthToken);
+
+                return this.LogoutAndRedirect((string)Request.Query.Url);
             };
         }
     }

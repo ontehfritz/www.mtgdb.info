@@ -6,6 +6,7 @@ namespace MtgDb.Info
     {
         public string UserName { get; set; }
         public string Secret { get; set; }
+        public string UrlRedirect { get; set; }
 
         public LogonModel () : base()
         {

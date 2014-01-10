@@ -8,11 +8,13 @@
         <a href="~/cards/@card.Id" class="thumbnail">
             <img src="@card.CardImage" />
         </a>
-        <button type="button" class="btn btn-danger">-</button>
-        <input type="text" style="width:30px;" placeholder="0" />
-        <button type="button" class="btn btn-success">+</button>
+        @if(@Html.CurrentUser != null)
+        {
+            <button type="button" class="btn btn-danger">-</button>
+            <input type="text" style="width:30px;" placeholder="0" />
+            <button type="button" class="btn btn-success">+</button>
+        }
         </div>
-
     </div>
 }
 <br style="clear:both;"/>

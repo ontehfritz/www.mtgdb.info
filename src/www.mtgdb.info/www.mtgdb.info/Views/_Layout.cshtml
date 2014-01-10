@@ -41,11 +41,28 @@
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
-              <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                   <li class="active"><a href="~/sets">Sets</a></li>
-                  <li><a href="#">Link</a></li>
-                   <li><a href="#">Link</a></li>
-              </ul>
+                  <li><a href="#">Search</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
+                @if(@Model.User != null)
+                {
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Model.User.Email <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/sets/ARB">My Cards</a></li>
+                        <li class="divider"></li>
+                        <li><a href="~/sets/">Settings</a></li>
+                        <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
+                    </ul>
+                    </li>
+                }
+                else
+                {
+                  <li><a href="~/logon?url=@Html.RenderContext.Context.Request.Path">Sign In</a></li>
+                }
+                </ul>
           </div><!-- /.navbar-collapse -->
       </nav>
   </div>
