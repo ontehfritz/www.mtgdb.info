@@ -66,6 +66,12 @@
     <Reference Include="MtgDb.Info.Driver">
       <HintPath>bin\MtgDb.Info.Driver.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -114,6 +120,8 @@
     <Compile Include="Models\Views\SetsModel.cs" />
     <Compile Include="Models\Views\CardModel.cs" />
     <Compile Include="Modules\CardModule.cs" />
+    <Compile Include="Models\Views\Planeswalker.cs" />
+    <Compile Include="Models\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

@@ -12,13 +12,13 @@ namespace MtgDb.Info
         {
             this.RequiresAuthentication ();
 
-            Post ["/cards/{id}/add"] = parameters => {
-
-            };
-
-            Post ["/cards/{id}/remove"] = parameters => {
-
-            };
+//            Post ["/cards/{id}/add"] = parameters => {
+//
+//            };
+//
+//            Post ["/cards/{id}/remove"] = parameters => {
+//
+//            };
         }
     }
 }
