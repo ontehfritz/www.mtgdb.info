@@ -67,7 +67,7 @@ namespace MtgDb.Info
 
                 try
                 {
-                    ssa.CreateUser(model.UserName, model.Secret, model.UserName);
+                    ssa.CreateUser(model.UserName, model.Secret, model.Email);
                 }
                 catch(Exception e)
                 {

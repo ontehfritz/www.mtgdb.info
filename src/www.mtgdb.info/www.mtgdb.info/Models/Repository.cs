@@ -15,8 +15,19 @@ namespace MtgDb.Info
             Connection = connection;
             client = new MongoClient(connection);
             server = client.GetServer();
-            database = server.GetDatabase("mtgdb");
+            database = server.GetDatabase("mtgdb.info");
         }
+
+        public void AddPlaneswalker(Planeswalker planeswalker)
+        {
+            var collection = database.GetCollection<Planeswalker>("planeswalkers");
+
+
+            //return role;
+
+        }
+
+
     }
 }
 

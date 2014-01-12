@@ -1,10 +1,24 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Models/UserCard.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Index.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="9" Column="10" />
+      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="21" Column="17" />
+      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="11" Column="73" />
       <File FileName="www.mtgdb.info/Models/UserCard.cs" Line="19" Column="1" />
+      <File FileName="www.mtgdb.info/Models/NancyUser.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="70" Column="72" />
+      <File FileName="www.mtgdb.info/Models/Repository.cs" Line="28" Column="10" />
+      <File FileName="www.mtgdb.info/Models/UserData.cs" Line="10" Column="6" />
+      <File FileName="www.mtgdb.info/Helpers/ErrorUtility.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/Planeswalker.cs" Line="14" Column="10" />
+      <File FileName="Test_MtgDb.Info/Test.cs" Line="12" Column="13" />
+      <File FileName="www.mtgdb.info/Models/Views/LogonModel.cs" Line="8" Column="41" />
+      <File FileName="www.mtgdb.info/Models/Views/SignUpModel.cs" Line="8" Column="41" />
+      <File FileName="www.mtgdb.info/Views/Logon/Signup.cshtml" Line="8" Column="37" />
+      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="15" Column="7" />
+      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="51" Column="42" />
+      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="55" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
