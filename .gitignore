@@ -2,3 +2,4 @@ packages
 bin
 .DS_Store
 packages.config
+obj
