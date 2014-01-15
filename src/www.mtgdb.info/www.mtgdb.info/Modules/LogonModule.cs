@@ -13,6 +13,7 @@ namespace MtgDb.Info
         //take advantage of nancy's IoC
         //see bootstrapper.cs this is where SSA gets intialized
         SuperSimpleAuth ssa; 
+        IRepository repository = new MongoRepository ("mongodb://localhost");
 
         public LogonModule (SuperSimpleAuth ssa)
         {
@@ -67,7 +68,7 @@ namespace MtgDb.Info
 
                 try
                 {
-                    ssa.CreateUser(model.UserName, model.Secret, model.Email);
+                    repository.AddPlaneswalker(model.UserName, model.Secret, model.Email);
                 }
                 catch(Exception e)
                 {
@@ -82,7 +83,7 @@ namespace MtgDb.Info
             };
 
             Get["/logout"] = parameters => {
-                NancyUserIdentity nuser = (NancyUserIdentity)Context.CurrentUser;
+                Planeswalker nuser = (Planeswalker)Context.CurrentUser;
                 ssa.End(nuser.AuthToken);
 
                 return this.LogoutAndRedirect((string)Request.Query.Url);

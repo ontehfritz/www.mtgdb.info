@@ -4,7 +4,7 @@ namespace MtgDb.Info
 {
     public class HomeModel : PageModel
     {
-        public NancyUserIdentity User { get; set; } 
+        public Planeswalker User { get; set; } 
 
         public HomeModel ()
         {

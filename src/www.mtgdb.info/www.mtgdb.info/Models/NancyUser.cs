@@ -10,6 +10,7 @@ namespace MtgDb.Info
     public class NancyUserMapper: IUserMapper
     {
         SuperSimpleAuth ssa; 
+        IRepository repository = new MongoRepository ("mongodb://localhost");
 
         public NancyUserMapper(SuperSimpleAuth ssa)
         {
@@ -21,21 +22,23 @@ namespace MtgDb.Info
             User ssaUser = ssa.Validate (identifier,
                 context.Request.UserHostAddress);
 
-            NancyUserIdentity user = new NancyUserIdentity 
+            Planeswalker user = new Planeswalker 
             {
                 UserName = ssaUser.UserName,
                 AuthToken = ssaUser.AuthToken,
                 Email = ssaUser.Email,
                 Id = ssaUser.Id,
                 Claims = ssaUser.Claims,
-                Roles = ssaUser.Roles
+                Roles = ssaUser.Roles,
+                Profile = repository.GetProfile(ssaUser.Id)
             };
 
+            
             return user;
         }
     }
 
-    public class NancyUserIdentity : IUserIdentity
+    public class Planeswalker : IUserIdentity
     {
         public Guid Id { get; set; }
         public Guid AuthToken { get; set; }
@@ -43,5 +46,6 @@ namespace MtgDb.Info
         public string Email { get; set; }
         public IEnumerable<string> Claims { get; set; }
         public IEnumerable<string> Roles { get; set; }
+        public Profile Profile { get; set; }
     }
 }

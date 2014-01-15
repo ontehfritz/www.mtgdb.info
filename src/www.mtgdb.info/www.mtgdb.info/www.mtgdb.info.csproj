@@ -120,8 +120,8 @@
     <Compile Include="Models\Views\SetsModel.cs" />
     <Compile Include="Models\Views\CardModel.cs" />
     <Compile Include="Modules\CardModule.cs" />
-    <Compile Include="Models\Planeswalker.cs" />
     <Compile Include="Models\MongoRepository.cs" />
+    <Compile Include="Models\Profile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

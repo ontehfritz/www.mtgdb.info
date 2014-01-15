@@ -53,6 +53,23 @@ namespace Test_MtgDb.Info
             //Clean up
             repository.RemovePlaneswalker (planeswalker.Id);
         }
+
+        [Test ()]
+        public void Update_Planeswalker ()
+        {
+            Planeswalker planeswalker = new Planeswalker ();
+            planeswalker.Id = Guid.NewGuid ();
+            planeswalker.Email = "test@test.com";
+            planeswalker.Name = "testwalker";
+
+            planeswalker = repository.AddPlaneswalker (planeswalker);
+            planeswalker = repository.GetPlaneswalker (planeswalker.Id);
+
+            Assert.IsNotNull(planeswalker);
+            //Clean up
+            repository.RemovePlaneswalker (planeswalker.Id);
+        }
+
     }
 }
 

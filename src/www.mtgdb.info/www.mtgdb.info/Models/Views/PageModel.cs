@@ -8,7 +8,7 @@ namespace MtgDb.Info
         public List<string> Messages { get; set; }
         public List<string> Errors { get; set; }
         public string Title { get; set; }
-        public NancyUserIdentity User { get; set; }
+        public Planeswalker User { get; set; }
 
         public PageModel ()
         {

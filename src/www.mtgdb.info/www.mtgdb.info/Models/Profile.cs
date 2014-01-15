@@ -2,7 +2,7 @@ using System;
 
 namespace MtgDb.Info
 {
-    public class Planeswalker 
+    public class Profile
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
@@ -10,8 +10,7 @@ namespace MtgDb.Info
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
 
-        public Planeswalker()
-        {
+        public Profile(){
 
         }
     }
