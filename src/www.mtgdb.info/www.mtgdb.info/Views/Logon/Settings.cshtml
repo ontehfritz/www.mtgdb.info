@@ -1,0 +1,30 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.SettingsModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<div>
+    <h4>Settings for: @Model.Planeswalker.Profile.Name</h4>
+    <form action="/settings" method="post">
+        <div>
+            <label for="Name">Planeswalker:</label>
+            <p><input type="text" name="Name" value="@Model.Planeswalker.Profile.Name"/></p>
+            <label for="Name">Email:</label>
+            <p><input type="text" name="Email" value="@Model.Planeswalker.Profile.Email" /></p>
+            <button class="btn btn-primary" name="Save" value="Save" type="submit">Save</button>
+        </div>
+        <hr />
+        <h4>Change password:</h4>
+        <div>
+            <p><input type="password" name="NewPassword" placeholder="New Password" /></p>
+            <p><input type="password" name="ConfirmPassword" placeholder="Confirm Password" /></p>
+            <button class="btn btn-primary" name="ChangePassword" type="submit">New Password</button>
+        </div>
+        <hr />
+        <h4>Delete account:</h4>
+        <div>
+            <button class="btn btn-danger" name="Delete" type="submit">Delete Account</button>
+        </div>
+    </form>
+</div>
+

@@ -24,9 +24,9 @@ namespace MtgDb.Info
             database = server.GetDatabase("mtgdb_info");
         }
 
-        public void AddPlaneswalker(string userName, string password, string email)
+        public Guid AddPlaneswalker(string userName, string password, string email)
         {
-            var collection = database.GetCollection<Profile>("planeswalkers");
+            var collection = database.GetCollection<Profile>("profiles");
           
             User user = ssa.CreateUser (userName, password, email);
 
@@ -37,11 +37,13 @@ namespace MtgDb.Info
             profile.Name = user.UserName;
 
             WriteConcernResult result = collection.Insert(profile);
+
+            return user.Id;
         }
 
-        public void RemovePlanswalker(Guid id)
+        public void RemovePlaneswalker(Guid id)
         {
-            var collection = database.GetCollection<Profile> ("planeswalkers");
+            var collection = database.GetCollection<Profile> ("profiles");
 
             Dictionary<string, object> query = new Dictionary<string, object> ();
             query.Add ("_id", id);
@@ -51,7 +53,7 @@ namespace MtgDb.Info
 
         public Profile GetProfile(Guid id)
         {
-            var collection = database.GetCollection<Profile> ("planeswalkers");
+            var collection = database.GetCollection<Profile> ("profiles");
             var query = Query<Profile>.EQ (e => e.Id, id);
             Profile p = collection.FindOne (query);
 
@@ -63,33 +65,45 @@ namespace MtgDb.Info
 
         public Planeswalker UpdatePlaneswalker(Planeswalker planeswalker)
         {
-            MongoCollection<Profile> walkers = database.GetCollection<Profile> ("planeswalker");
+            MongoCollection<Profile> walkers = database.GetCollection<Profile> ("profiles");
             var query = Query<Profile>.EQ (e => e.Id, planeswalker.Id);
 
             Profile updateWalker = walkers.FindOne(query);
+            Planeswalker user = null;
 
             if (updateWalker != null) 
             {
-                if(updateWalker.Email.ToLower() != planeswalker.Email.ToLower())
+                if(updateWalker.Email.ToLower() != planeswalker.Profile.Email.ToLower())
                 {
-                    ssa.ChangeEmail (planeswalker.AuthToken, planeswalker.Email);
+                    ssa.ChangeEmail (planeswalker.AuthToken, planeswalker.Profile.Email);
                 }
 
-                if(updateWalker.Name.ToLower() != planeswalker.UserName.ToLower())
+                if(updateWalker.Name.ToLower() != planeswalker.Profile.Name.ToLower())
                 {
-                    ssa.ChangeUserName (planeswalker.AuthToken, planeswalker.UserName);
+                    ssa.ChangeUserName (planeswalker.AuthToken, planeswalker.Profile.Name);
                 }
 
-
-                updateWalker.Email = planeswalker.Email;
+                updateWalker.Email = planeswalker.Profile.Email;
                 updateWalker.ModifiedAt = DateTime.Now;
-                updateWalker.Name = pla.Name;
+                updateWalker.Name = planeswalker.Profile.Name;
 
                 walkers.Save(updateWalker);
+
+                User ssaUser = ssa.Validate (planeswalker.AuthToken);
+
+                user = new Planeswalker 
+                {
+                    UserName = ssaUser.UserName,
+                    AuthToken = ssaUser.AuthToken,
+                    Email = ssaUser.Email,
+                    Id = ssaUser.Id,
+                    Claims = ssaUser.Claims,
+                    Roles = ssaUser.Roles,
+                    Profile = GetProfile(ssaUser.Id)
+                };
             }
-
-            return GetPlaneswalker(planeswalker.Id);
-
+           
+            return user;
         }
     }
 }

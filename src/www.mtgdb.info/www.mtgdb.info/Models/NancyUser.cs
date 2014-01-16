@@ -33,7 +33,6 @@ namespace MtgDb.Info
                 Profile = repository.GetProfile(ssaUser.Id)
             };
 
-            
             return user;
         }
     }

@@ -13,7 +13,7 @@ namespace MtgDb.Info
         {
             Get ["/"] = parameters => {
                 IndexModel model = new IndexModel();
-                model.User = (Planeswalker)this.Context.CurrentUser;
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.SetList.Sets = magicdb.GetSets();
 
                 return View["Index", model];
@@ -21,7 +21,7 @@ namespace MtgDb.Info
          
             Get ["/sets/"] = parameters => {
                 SetsModel model = new SetsModel();
-                model.User = (Planeswalker)this.Context.CurrentUser;
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Sets = magicdb.GetSets();
           
                 return View["Sets", model];
@@ -29,7 +29,7 @@ namespace MtgDb.Info
 
             Get ["/cards/{id}"] = parameters => {
                 CardModel model = new CardModel();
-                model.User = (Planeswalker)this.Context.CurrentUser;
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Card = magicdb.GetCard((int)parameters.id);
                 model.Prints = magicdb.GetCards(model.Card.Name);
 
@@ -38,7 +38,7 @@ namespace MtgDb.Info
           
             Get ["/sets/{id}"] = parameters => {
                 IndexModel model = new IndexModel();
-                model.User = (Planeswalker)this.Context.CurrentUser;
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 string setId = (string)parameters.id;
 
                 int page = 1; 
@@ -75,7 +75,7 @@ namespace MtgDb.Info
 
             Get ["/home"] = parameters => {
                 IndexModel model = new IndexModel();
-                model.User = (Planeswalker)this.Context.CurrentUser;
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
                 return View["Index", model];
             };

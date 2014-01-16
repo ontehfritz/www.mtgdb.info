@@ -13,63 +13,45 @@ namespace Test_MtgDb.Info
         [Test ()]
         public void Add_Planeswalker ()
         {
-            Planeswalker planeswalker = new Planeswalker ();
-            planeswalker.Id = Guid.NewGuid ();
-            planeswalker.Email = "test@test.com";
-            planeswalker.Name = "testwalker";
-        
-            planeswalker = repository.AddPlaneswalker (planeswalker);
-            Assert.AreEqual ("testwalker", planeswalker.Name);
+            string user = Guid.NewGuid ().ToString ();
+            Guid id = repository.AddPlaneswalker (user,"test12345", user + "@test.com");
+            Assert.IsNotNull (id);
+
             //Clean up
-            repository.RemovePlaneswalker (planeswalker.Id);
+            repository.RemovePlaneswalker (id);
         }
 
         [Test ()]
         public void Remove_Planeswalker ()
         {
-            Planeswalker planeswalker = new Planeswalker ();
-            planeswalker.Id = Guid.NewGuid ();
-            planeswalker.Email = "test@test.com";
-            planeswalker.Name = "testwalker";
-
-            planeswalker = repository.AddPlaneswalker (planeswalker);
-            Assert.AreEqual ("testwalker", planeswalker.Name);
+            string user = Guid.NewGuid ().ToString ();
+            Guid id = repository.AddPlaneswalker (user,"test12345", user + "@test.com");
+            Assert.IsNotNull (id);
             //Clean up
-            repository.RemovePlaneswalker (planeswalker.Id);
+            repository.RemovePlaneswalker (id);
+
+            Assert.IsNull(repository.GetProfile (id));
         }
 
         [Test ()]
         public void Get_Planeswalker ()
         {
-            Planeswalker planeswalker = new Planeswalker ();
-            planeswalker.Id = Guid.NewGuid ();
-            planeswalker.Email = "test@test.com";
-            planeswalker.Name = "testwalker";
-
-            planeswalker = repository.AddPlaneswalker (planeswalker);
-            planeswalker = repository.GetPlaneswalker (planeswalker.Id);
-
-            Assert.IsNotNull(planeswalker);
-            //Clean up
-            repository.RemovePlaneswalker (planeswalker.Id);
+            string user = Guid.NewGuid ().ToString ();
+            Guid id = repository.AddPlaneswalker (user,"test12345", user + "@test.com");
+            Assert.IsNotNull (id);
+            Assert.IsNotNull(repository.GetProfile (id));
+            repository.RemovePlaneswalker (id);
         }
 
         [Test ()]
         public void Update_Planeswalker ()
         {
-            Planeswalker planeswalker = new Planeswalker ();
-            planeswalker.Id = Guid.NewGuid ();
-            planeswalker.Email = "test@test.com";
-            planeswalker.Name = "testwalker";
-
-            planeswalker = repository.AddPlaneswalker (planeswalker);
-            planeswalker = repository.GetPlaneswalker (planeswalker.Id);
-
-            Assert.IsNotNull(planeswalker);
-            //Clean up
-            repository.RemovePlaneswalker (planeswalker.Id);
+            string user = Guid.NewGuid ().ToString ();
+            Guid id = repository.AddPlaneswalker (user,"test12345", user + "@test.com");
+            Assert.IsNotNull (id);
+            Assert.IsNotNull(repository.GetProfile (id));
+            repository.RemovePlaneswalker (id);
         }
-
     }
 }
 

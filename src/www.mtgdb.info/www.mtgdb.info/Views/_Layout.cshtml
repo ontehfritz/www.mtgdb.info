@@ -46,14 +46,14 @@
                   <li><a href="#">Search</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-                @if(@Model.User != null)
+                @if(@Model.Planeswalker != null)
                 {
                     <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Model.User.UserName <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Model.Planeswalker.UserName <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="~/sets/ARB">My Cards</a></li>
                         <li class="divider"></li>
-                        <li><a href="~/sets/">Settings</a></li>
+                        <li><a href="~/settings/">Settings</a></li>
                         <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
                     </ul>
                     </li>

@@ -19,6 +19,27 @@ namespace MtgDb.Info
         {
             this.ssa = ssa;
 
+            Get["/settings"] = parameters => {
+                SettingsModel model = new SettingsModel();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+               
+                return View["Logon/Settings",model];
+            };
+
+            Post["/settings"] = parameters => {
+                SettingsModel model = this.Bind<SettingsModel>();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+               
+                if(Request.Form.Save != null)
+                {
+                    model.Planeswalker.Profile.Email = model.Email;
+                    model.Planeswalker.Profile.Name = model.Name;
+                    model.Planeswalker = repository.UpdatePlaneswalker(model.Planeswalker);
+                }
+
+                return View["Logon/Settings",model];
+            };
+           
             Get["/logon"] = parameters => {
                 LogonModel model = new LogonModel();
                 model.UrlRedirect = (string)Request.Query.Url;

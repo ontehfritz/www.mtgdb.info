@@ -4,7 +4,7 @@ namespace MtgDb.Info
 {
     public interface IRepository
     {
-        void AddPlaneswalker(string userName, string password, string email);
+        Guid AddPlaneswalker(string userName, string password, string email);
         void RemovePlaneswalker(Guid Id);
         Profile GetProfile(Guid Id);
         Planeswalker UpdatePlaneswalker(Planeswalker planeswalker);

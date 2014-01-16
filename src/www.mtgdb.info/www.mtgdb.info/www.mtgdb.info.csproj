@@ -122,6 +122,7 @@
     <Compile Include="Modules\CardModule.cs" />
     <Compile Include="Models\MongoRepository.cs" />
     <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\Views\SettingsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -133,5 +134,6 @@
     <None Include="Views\_SetsDropDown.cshtml" />
     <None Include="Views\Sets.cshtml" />
     <None Include="Views\Card.cshtml" />
+    <None Include="Views\Logon\Settings.cshtml" />
   </ItemGroup>
 </Project>
