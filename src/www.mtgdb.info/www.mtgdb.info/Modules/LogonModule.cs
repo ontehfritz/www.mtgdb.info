@@ -37,6 +37,12 @@ namespace MtgDb.Info
                     model.Planeswalker = repository.UpdatePlaneswalker(model.Planeswalker);
                 }
 
+                if(Request.Form.Delete != null)
+                {
+                    ssa.Disable(model.Planeswalker.AuthToken);
+                    repository.RemovePlaneswalker(model.Planeswalker.Id);
+                }
+
                 return View["Logon/Settings",model];
             };
            

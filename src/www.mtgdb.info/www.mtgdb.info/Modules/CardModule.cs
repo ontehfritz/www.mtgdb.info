@@ -7,18 +7,17 @@ namespace MtgDb.Info
 {
     public class CardModule : NancyModule
     {
-
         public CardModule ()
         {
             this.RequiresAuthentication ();
 
-//            Post ["/cards/{id}/add"] = parameters => {
-//
-//            };
-//
-//            Post ["/cards/{id}/remove"] = parameters => {
-//
-//            };
+            Post ["/cards/{id}/amount/"] = parameters => {
+                int multiverseId = (int)parameters.id;
+
+
+
+                return "test";
+            };
         }
     }
 }

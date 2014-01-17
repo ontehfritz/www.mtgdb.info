@@ -1,36 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Models/Views/SettingsModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Bootstrapper.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="75" Column="14" />
-      <File FileName="Test_MtgDb.Info/Test.cs" Line="54" Column="10" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="18" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="78" Column="35" />
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="39" Column="17" />
-      <File FileName="www.mtgdb.info/Models/Views/SettingsModel.cs" Line="19" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/IndexModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/LogonModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Logon/Settings.cshtml" Line="23" Column="9" />
-      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Profile.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="59" Column="26" />
-      <File FileName="www.mtgdb.info/Models/NancyUser.cs" Line="35" Column="13" />
-      <File FileName="www.mtgdb.info/Models/Views/PageModel.cs" Line="11" Column="41" />
+      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="95" Column="57" />
+      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/UserCard.cs" Line="1" Column="1" />
+      <File FileName="Test_MtgDb.Info/Test.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Bootstrapper.cs" Line="28" Column="13" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True">
-          <Node name="Test_MtgDb.Info" expanded="True">
-            <Node name="Test_MtgDb" expanded="True">
-              <Node name="Info" expanded="True">
-                <Node name="Test" expanded="True">
-                  <Node name="Add_Planeswalker" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" selected="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

@@ -10,6 +10,23 @@ namespace Test_MtgDb.Info
         private MtgDb.Info.IRepository repository = 
             new MongoRepository ("mongodb://localhost");
 
+
+        [Test ()]
+        public void Add_UserCard ()
+        {
+            string user = Guid.NewGuid ().ToString ();
+            Guid id = repository.AddPlaneswalker (user,"test12345", user + "@test.com");
+            Assert.IsNotNull (id);
+
+
+            repository.AddUserCard(id, 1, 1);
+
+            //Clean up
+            repository.RemovePlaneswalker (id);
+        }
+
+
+
         [Test ()]
         public void Add_Planeswalker ()
         {

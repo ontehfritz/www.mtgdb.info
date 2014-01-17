@@ -25,6 +25,7 @@ namespace mtgdb.info
                 new SuperSimpleAuth ("mtgdb.info", 
                     "4e5844a9-6444-415d-b06d-6f29f52fbd0e");
 
+
             container.Register<SuperSimpleAuth>(ssa);
         }
 

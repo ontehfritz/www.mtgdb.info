@@ -56,9 +56,6 @@
     <Reference Include="Nancy.Validation.FluentValidation">
       <HintPath>..\packages\Nancy.Validation.FluentValidation.0.21.1\lib\net40\Nancy.Validation.FluentValidation.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSimpleAuthCSharp">
-      <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -71,6 +68,9 @@
     </Reference>
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSimpleAuthCSharp">
+      <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -116,7 +116,6 @@
     <Compile Include="Models\Views\IndexModel.cs" />
     <Compile Include="Models\Views\HomeModel.cs" />
     <Compile Include="Models\UserCard.cs" />
-    <Compile Include="Models\UserData.cs" />
     <Compile Include="Models\Views\SetsModel.cs" />
     <Compile Include="Models\Views\CardModel.cs" />
     <Compile Include="Modules\CardModule.cs" />

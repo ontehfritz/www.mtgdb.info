@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using SuperSimple.Auth;
+using MongoDB.Bson;
 
 namespace MtgDb.Info
 {
@@ -22,6 +23,49 @@ namespace MtgDb.Info
             client = new MongoClient(connection);
             server = client.GetServer();
             database = server.GetDatabase("mtgdb_info");
+            CreateUserCardIndexes ();
+        }
+
+
+        public UserCard[] GetUserCards(Guid walkerId, int[] multiverseIds)
+        {
+            var collection = database.GetCollection<UserCard>("user_cards");
+            List<UserCard> userCards = new List<UserCard> ();
+
+            var query = Query.In ("MultiverseId", new BsonArray(multiverseIds));
+            var cards = collection.Find (query);
+
+            foreach(UserCard c in cards)
+            {
+                userCards.Add (c);
+            }
+
+            return userCards.ToArray ();
+        }
+
+        public UserCard AddUserCard(Guid walkerId, int multiverseId, int amount)
+        {
+            var collection = database.GetCollection<UserCard>("user_cards");
+            UserCard newCard = new UserCard ();
+            newCard.Id = Guid.NewGuid ();
+            newCard.Amount = amount;
+            newCard.MultiverseId = multiverseId;
+            newCard.PlaneswalkerId = walkerId;
+
+            collection.Insert (newCard);
+
+            return newCard;
+        }
+
+        public void UpdateUserCard(Guid id, int amount)
+        {
+            MongoCollection<UserCard> cards = database.GetCollection<UserCard> ("user_cards");
+            var query = Query<Profile>.EQ (e => e.Id, id);
+
+            UserCard card = cards.FindOne(query);
+            card.Amount = amount;
+
+            cards.Save(card);
         }
 
         public Guid AddPlaneswalker(string userName, string password, string email)
@@ -47,7 +91,7 @@ namespace MtgDb.Info
 
             Dictionary<string, object> query = new Dictionary<string, object> ();
             query.Add ("_id", id);
-
+           
             collection.Remove(new QueryDocument(query));
         }
 
@@ -104,6 +148,21 @@ namespace MtgDb.Info
             }
            
             return user;
+        }
+
+        private void CreateUserCardIndexes()
+        {
+            var keys = new IndexKeysBuilder();
+
+            keys.Ascending("PlaneswalkerId","MultiverseId");
+
+            var options = new IndexOptionsBuilder();
+            options.SetSparse(true);
+            options.SetUnique(true);
+
+            var collection = database.GetCollection<UserCard>("user_cards");
+
+            collection.EnsureIndex(keys, options);
         }
     }
 }
