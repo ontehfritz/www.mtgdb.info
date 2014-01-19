@@ -34,6 +34,12 @@
     <Reference Include="nunit.framework">
       <Private>False</Private>
     </Reference>
+    <Reference Include="SuperSimpleAuthCSharp">
+      <HintPath>..\www.mtgdb.info\bin\SuperSimpleAuthCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.21.1\lib\net40\Nancy.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test.cs" />
@@ -44,5 +50,8 @@
       <Project>{3AFBB083-78B6-43C0-A052-DE4CF87396F1}</Project>
       <Name>www.mtgdb.info</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

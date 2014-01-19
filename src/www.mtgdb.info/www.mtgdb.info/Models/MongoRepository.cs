@@ -45,28 +45,34 @@ namespace MtgDb.Info
 
         public UserCard AddUserCard(Guid walkerId, int multiverseId, int amount)
         {
-            var collection = database.GetCollection<UserCard>("user_cards");
-            UserCard newCard = new UserCard ();
-            newCard.Id = Guid.NewGuid ();
-            newCard.Amount = amount;
-            newCard.MultiverseId = multiverseId;
-            newCard.PlaneswalkerId = walkerId;
-
-            collection.Insert (newCard);
-
-            return newCard;
-        }
-
-        public void UpdateUserCard(Guid id, int amount)
-        {
             MongoCollection<UserCard> cards = database.GetCollection<UserCard> ("user_cards");
-            var query = Query<Profile>.EQ (e => e.Id, id);
+            var query = Query.And(Query<UserCard>.EQ (e => e.MultiverseId, multiverseId),
+                Query<UserCard>.EQ (e => e.PlaneswalkerId, walkerId));
 
             UserCard card = cards.FindOne(query);
-            card.Amount = amount;
 
-            cards.Save(card);
+            if(card == null)
+            {
+                UserCard newCard = new UserCard ();
+                newCard.Id = Guid.NewGuid ();
+                newCard.Amount = amount;
+                newCard.MultiverseId = multiverseId;
+                newCard.PlaneswalkerId = walkerId;
+
+                cards.Insert (newCard);
+
+                card = newCard;
+
+            }
+            else
+            {
+                card.Amount = amount;
+                cards.Save (card);
+            }
+
+            return card;
         }
+
 
         public Guid AddPlaneswalker(string userName, string password, string email)
         {

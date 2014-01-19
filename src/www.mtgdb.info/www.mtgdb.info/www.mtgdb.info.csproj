@@ -60,9 +60,6 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MtgDb.Info.Driver">
-      <HintPath>bin\MtgDb.Info.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -71,6 +68,9 @@
     </Reference>
     <Reference Include="SuperSimpleAuthCSharp">
       <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MtgDb.Info.Driver">
+      <HintPath>bin\MtgDb.Info.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

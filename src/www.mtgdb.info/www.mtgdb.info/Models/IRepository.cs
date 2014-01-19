@@ -10,7 +10,7 @@ namespace MtgDb.Info
         Planeswalker UpdatePlaneswalker(Planeswalker planeswalker);
 
         UserCard AddUserCard(Guid walkerId, int multiverseId, int amount);
-        void UpdateUserCard(Guid id, int amount);
+        UserCard[] GetUserCards(Guid walkerId, int[] multiverseIds);
 //        void UpdatePlaneswalker(Planeswalker planeswalker);
 //
 //        void SetCardAmount(Guid userId, int multiverseId, int amount);

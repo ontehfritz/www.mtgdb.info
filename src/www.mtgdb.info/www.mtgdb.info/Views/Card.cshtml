@@ -10,7 +10,7 @@
 <div style="width:1200px;">
     <div style="float:left;width:300px;text-align:center;">
         <img src="@Model.Card.CardImage" /><br /><br />
-        @if(@Model.User != null)
+        @if(@Model.Planeswalker != null)
         {
             <button type="button" class="btn btn-danger">-</button>
             <input type="text" style="width:30px;" placeholder="0" />
@@ -75,6 +75,30 @@
     </table>
     </div>
     <br style="clear:both;" />
+</div>
+<div>
+    <h4>Formats</h4>
+    @if(Model.Card.Formats != null && Model.Card.Formats.Length > 0)
+    {
+        <table class="table table-condensed table-hover">
+        @foreach(var format in Model.Card.Formats)
+        {
+            <tr>
+                <td>
+                @format
+                </td>
+                <td> 
+                legal
+                </td>
+            </tr>
+        }
+        </table>
+    }
+    else
+    {
+        <p>This card has no rulings.</p>
+
+    }
 </div>
 <div>
     <h4>Rulings</h4>

@@ -7,13 +7,15 @@ namespace MtgDb.Info
 {
     public class CardModule : NancyModule
     {
+        public IRepository repository = new MongoRepository ("mongodb://localhost");
+
         public CardModule ()
         {
             this.RequiresAuthentication ();
 
             Post ["/cards/{id}/amount/"] = parameters => {
                 int multiverseId = (int)parameters.id;
-
+                //repository.AddUserCard();
 
 
                 return "test";
