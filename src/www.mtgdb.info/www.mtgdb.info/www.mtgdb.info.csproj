@@ -90,6 +90,7 @@
     <Content Include="Content\javascript\select2.min.js" />
     <Content Include="Content\css\select2-bootstrap.css" />
     <Content Include="Content\css\select2.css" />
+    <Content Include="Content\javascript\mtgdb.info.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -122,6 +123,7 @@
     <Compile Include="Models\MongoRepository.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Views\SettingsModel.cs" />
+    <Compile Include="Models\CardInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

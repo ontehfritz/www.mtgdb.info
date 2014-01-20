@@ -1,12 +1,13 @@
 using System;
 using MtgDb.Info.Driver;
+using System.Collections.Generic;
 
 namespace MtgDb.Info
 {
     public class IndexModel : PageModel
     {
         public CardSetList SetList { get; set; }
-        public Card[] Cards { set; get; }
+        public List<CardInfo> Cards { set; get; }
         public int Page { set; get; }
         public int NextPage { set; get; }
         public int PrevPage { set; get; }
@@ -14,6 +15,7 @@ namespace MtgDb.Info
         public IndexModel () : base()
         {
             SetList = new CardSetList ();
+            Cards = new List<CardInfo> ();
         }
 
     }

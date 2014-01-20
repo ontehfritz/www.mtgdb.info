@@ -1,12 +1,16 @@
 using System;
 using Nancy;
 using MtgDb.Info.Driver;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MtgDb.Info
 {
     public class IndexModule : NancyModule
     {
-        public Db magicdb = new Db ("http://127.0.0.1:8082/");
+        public Db magicdb = new Db ();
+        //public Db magicdb = new Db ("http://127.0.0.1:8082/");
+        public IRepository repository = new MongoRepository ("mongodb://localhost");
         private const int _pageSize = 9;
 
         public IndexModule ()
@@ -31,8 +35,23 @@ namespace MtgDb.Info
                 CardModel model = new CardModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Card = magicdb.GetCard((int)parameters.id);
-                model.Prints = magicdb.GetCards(model.Card.Name);
+                //model.Prints = magicdb.GetCards(model.Card.Name);
 
+                if(model.Planeswalker != null)
+                {
+                    UserCard uCard = repository.GetUserCards(model.Planeswalker.Id,
+                        new int[]{model.Card.Id}).FirstOrDefault();
+
+                    if(uCard != null)
+                    {
+                        model.Amount = uCard.Amount;
+                    }
+                    else
+                    {
+                        model.Amount = 0;
+                    }
+                }
+                    
                 return View["Card", model];
             };
           
@@ -54,16 +73,37 @@ namespace MtgDb.Info
                     }
                 }
 
-                if(setId == "FULL")
+               
+                int end = page * _pageSize;
+                int start = page > 1 ? end - _pageSize : page;
+                Card[] cards = magicdb.GetSetCards(setId, start, 
+                    page > 1 ? end - 1 : end);
+
+                UserCard [] walkerCards = null;
+
+                if(model.Planeswalker != null)
                 {
-                    model.Cards = magicdb.GetCards();
+                    int [] cardIds = cards.AsEnumerable().Select(c => c.Id).ToArray();
+                    walkerCards = repository.GetUserCards(model.Planeswalker.Id,cardIds);
                 }
-                else
+
+                foreach(var c in cards)
                 {
-                    int end = page * _pageSize;
-                    int start = page > 1 ? end - _pageSize : page;
-                    model.Cards = magicdb.GetSetCards(setId, start, 
-                        page > 1 ? end - 1 : end);
+                    CardInfo cardInfo = new CardInfo();
+                    if(walkerCards != null && walkerCards.Length > 0)
+                    {
+                        cardInfo.Amount = walkerCards.AsEnumerable()
+                            .Where(info => info.MultiverseId == c.Id)
+                            .Select(info => info.Amount).FirstOrDefault();
+
+                    }
+                    else
+                    {
+                        cardInfo.Amount = 0;
+                    }
+
+                    cardInfo.Card = c;
+                    model.Cards.Add(cardInfo);
                 }
 
                 model.Page = page;

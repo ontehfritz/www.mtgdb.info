@@ -12,9 +12,9 @@
         <img src="@Model.Card.CardImage" /><br /><br />
         @if(@Model.Planeswalker != null)
         {
-            <button type="button" class="btn btn-danger">-</button>
-            <input type="text" style="width:30px;" placeholder="0" />
-            <button type="button" class="btn btn-success">+</button>
+            <button type="button" class="btn btn-danger" onclick="minusCard(@Model.Card.Id);">-</button>
+            <input id="@Model.Card.Id" type="text" style="width:30px;" placeholder="0" value="@Model.Amount"/>
+            <button type="button" class="btn btn-success" onclick="addCard(@Model.Card.Id);">+</button>
         }
     </div>
     <div style="float:left;margin-left:10px;width:700px;">
@@ -63,12 +63,15 @@
         <td><b>Artist:</b></td>
         <td>@Model.Card.Artist</td>
     </tr>
-
+    
      <tr>
         <td><b>Prints:</b></td>
         <td>
-        @foreach(Card card in @Model.Prints){
-            <a href="~/cards/@card.Id">@card.CardSetName</a><br />
+        @if(@Model.Prints != null && @Model.Prints.Length > 0)
+        {
+            foreach(Card card in @Model.Prints){
+                <a href="~/cards/@card.Id">@card.CardSetName</a><br />
+            }
         }
         </td>
     </tr>

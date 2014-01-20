@@ -13,12 +13,15 @@ namespace MtgDb.Info
         {
             this.RequiresAuthentication ();
 
-            Post ["/cards/{id}/amount/"] = parameters => {
+            Post ["/cards/{id}/amount/{count}"] = parameters => {
                 int multiverseId = (int)parameters.id;
-                //repository.AddUserCard();
+                int count = (int)parameters.count;
+                Guid walkerId = ((Planeswalker)this.Context.CurrentUser).Id;
+
+                repository.AddUserCard(walkerId,multiverseId,count);
 
 
-                return "test";
+                return count.ToString();
             };
         }
     }
