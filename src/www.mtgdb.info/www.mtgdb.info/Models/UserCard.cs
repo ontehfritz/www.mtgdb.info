@@ -11,6 +11,8 @@ namespace MtgDb.Info
         [BsonElement]
         public int MultiverseId { get; set; }
         [BsonElement]
+        public string SetId { get; set; }
+        [BsonElement]
         public Guid PlaneswalkerId { get; set; }
         [BsonElement]
         public int Amount { get; set; }

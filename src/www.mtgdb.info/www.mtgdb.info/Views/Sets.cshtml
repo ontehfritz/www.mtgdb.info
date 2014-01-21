@@ -9,7 +9,10 @@
     <ul>
     @foreach(var set in Model.GetBlock("Core"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li>
+        <a href="~/sets/@set.Id">@set.Name</a>
+        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        Released:  @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -19,7 +22,10 @@
     <ul>
     @foreach(var set in Model.GetBlock(null))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        Released: @set.ReleasedAt.ToShortDateString()</li>
+
     }
     </ul>
     </div>
@@ -28,7 +34,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Duel Decks"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+            <li><a href="~/sets/@set.Id">@set.Name</a> 
+            <b>@Model.GetSetCount(@set.Id).ToString()</b>
+            Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -37,7 +45,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("From the vault"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+            <li><a href="~/sets/@set.Id">@set.Name</a> 
+            <b>@Model.GetSetCount(@set.Id).ToString()</b>
+            Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -46,7 +56,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Premium Deck Series"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+            <li><a href="~/sets/@set.Id">@set.Name</a> 
+            <b>@Model.GetSetCount(@set.Id).ToString()</b>
+            Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -65,7 +77,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Commander"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+            <li><a href="~/sets/@set.Id">@set.Name</a> 
+            <b>@Model.GetSetCount(@set.Id).ToString()</b>
+            Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>

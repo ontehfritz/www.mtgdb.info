@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace MtgDb.Info
 {
@@ -11,6 +12,7 @@ namespace MtgDb.Info
 
         UserCard AddUserCard(Guid walkerId, int multiverseId, int amount);
         UserCard[] GetUserCards(Guid walkerId, int[] multiverseIds);
+        Dictionary<string, int> GetSetCardCounts(Guid walkerId);
 //        void UpdatePlaneswalker(Planeswalker planeswalker);
 //
 //        void SetCardAmount(Guid userId, int multiverseId, int amount);

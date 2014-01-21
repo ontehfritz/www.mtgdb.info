@@ -20,6 +20,7 @@ namespace MtgDb.Info
 
             return errors;
         }
+
     }
 }
 

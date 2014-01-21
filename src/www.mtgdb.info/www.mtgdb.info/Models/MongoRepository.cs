@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using SuperSimple.Auth;
 using MongoDB.Bson;
+using MtgDb.Info.Driver;
 
 namespace MtgDb.Info
 {
@@ -16,7 +17,8 @@ namespace MtgDb.Info
         private SuperSimpleAuth ssa = new SuperSimpleAuth ("mtgdb.info", 
             "4e5844a9-6444-415d-b06d-6f29f52fbd0e"); 
 
-     
+        public Db magicdb = new Db ();
+
         public MongoRepository (string connection)
         {
             Connection = connection;
@@ -26,6 +28,26 @@ namespace MtgDb.Info
             CreateUserCardIndexes ();
         }
 
+
+        public Dictionary<string, int> GetSetCardCounts(Guid walkerId)
+        {
+            Dictionary<string, int> userSets = new Dictionary<string, int> ();
+
+            CardSet[] sets = magicdb.GetSets();
+            UserCard[] users = null;
+
+            foreach(CardSet s in sets)
+            {
+                users = GetUserCards (walkerId, s.CardIds);
+
+                if(users != null && users.Length > 0)
+                {
+                    userSets.Add (s.Id, users.Length);
+                }
+            }
+
+            return userSets;
+        }
 
         public UserCard[] GetUserCards(Guid walkerId, int[] multiverseIds)
         {
@@ -60,9 +82,7 @@ namespace MtgDb.Info
                 newCard.PlaneswalkerId = walkerId;
 
                 cards.Insert (newCard);
-
                 card = newCard;
-
             }
             else
             {

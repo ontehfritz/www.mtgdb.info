@@ -1,25 +1,26 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/IndexModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Sets.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="38" Column="19" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="67" Column="10" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="35" Column="17" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Models/Views/CardModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="18" Column="51" />
       <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Content/javascript/mtgdb.info.js" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Content/javascript/select2.min.js" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Bootstrapper.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="32" Column="71" />
       <File FileName="www.mtgdb.info/Models/CardInfo.cs" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/UserCard.cs" Line="22" Column="1" />
+      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="15" Column="13" />
+      <File FileName="www.mtgdb.info/Views/Sets.cshtml" Line="81" Column="58" />
+      <File FileName="www.mtgdb.info/Models/Views/SetsModel.cs" Line="36" Column="9" />
+      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/ErrorUtility.cs" Line="23" Column="9" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

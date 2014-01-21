@@ -27,7 +27,12 @@ namespace MtgDb.Info
                 SetsModel model = new SetsModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Sets = magicdb.GetSets();
-          
+
+                if(model.Planeswalker != null)
+                {
+                    model.UserCards = repository.GetSetCardCounts(model.Planeswalker.Id);
+                }
+
                 return View["Sets", model];
             };
 
@@ -35,7 +40,7 @@ namespace MtgDb.Info
                 CardModel model = new CardModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Card = magicdb.GetCard((int)parameters.id);
-                //model.Prints = magicdb.GetCards(model.Card.Name);
+                model.Prints = magicdb.GetCards(model.Card.Name);
 
                 if(model.Planeswalker != null)
                 {
