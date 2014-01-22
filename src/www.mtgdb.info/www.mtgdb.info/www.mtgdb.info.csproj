@@ -124,6 +124,7 @@
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Views\SettingsModel.cs" />
     <Compile Include="Models\CardInfo.cs" />
+    <Compile Include="Modules\SearchModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
