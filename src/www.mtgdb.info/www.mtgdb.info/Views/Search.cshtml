@@ -1,0 +1,31 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.SearchModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<div class="row">
+  <div class="col-lg-6">
+  <form action="/search" method="post">
+  <h2>Card Search:</h2>
+    <div class="input-group">
+      <input type="text" name="Term" class="form-control" placeholder="card name"  />
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Search</button>
+      </span>
+    </div><!-- /input-group -->
+  </form>
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+@if(Model.Cards != null && Model.Cards.Length > 0)
+{
+<h4>Searched for: @Model.Term</h4>
+<hr />
+    foreach(Card card in Model.Cards)
+    {
+        <img src="@card.CardImage" style="width:111px;height:155px;"/>
+    }
+
+}
+
+

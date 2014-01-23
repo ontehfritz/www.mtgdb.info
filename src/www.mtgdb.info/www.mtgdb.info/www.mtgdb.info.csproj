@@ -124,7 +124,8 @@
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Views\SettingsModel.cs" />
     <Compile Include="Models\CardInfo.cs" />
-    <Compile Include="Modules\SearchModel.cs" />
+    <Compile Include="Models\Views\SearchModel.cs" />
+    <Compile Include="Modules\SearchModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -137,5 +138,6 @@
     <None Include="Views\Sets.cshtml" />
     <None Include="Views\Card.cshtml" />
     <None Include="Views\Logon\Settings.cshtml" />
+    <None Include="Views\Search.cshtml" />
   </ItemGroup>
 </Project>
