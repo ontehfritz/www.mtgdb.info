@@ -49,6 +49,19 @@ color: #999999;
 background: RGBa(99, 159, 217, 0.4);
 }
 
+.results{
+  float:left;
+  width:125px;
+  height:300px;
+  margin: 5px;
+  padding: 5px;
+  border:1px solid black;text-align:center;
+  background-color:white;
+}
+.results:hover{
+  background-color:#FFFBCC;
+}
+
 .scroll {
 height: 20px;
 margin: 0px 5px;
