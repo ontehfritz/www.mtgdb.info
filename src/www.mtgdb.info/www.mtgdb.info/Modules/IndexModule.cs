@@ -41,6 +41,7 @@ namespace MtgDb.Info
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Card = magicdb.GetCard((int)parameters.id);
                 model.Prints = magicdb.GetCards(model.Card.Name);
+                model.Page = (model.Card.SetNumber / _pageSize) + 1;
 
                 if(model.Planeswalker != null)
                 {

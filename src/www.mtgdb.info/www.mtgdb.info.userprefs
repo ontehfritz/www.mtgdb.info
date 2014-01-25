@@ -1,17 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Search.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Content/css/mtgdb.css">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/SearchModule.cs" Line="21" Column="62" />
-      <File FileName="www.mtgdb.info/Views/Search.cshtml" Line="26" Column="68" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/SearchModule.cs" Line="27" Column="56" />
+      <File FileName="www.mtgdb.info/Views/Search.cshtml" Line="27" Column="29" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="5" Column="69" />
       <File FileName="www.mtgdb.info/Views/Sets.cshtml" Line="351" Column="10" />
       <File FileName="www.mtgdb.info/Models/Views/SearchModel.cs" Line="8" Column="19" />
       <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="47" Column="40" />
       <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="5" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="8" Column="61" />
+      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="10" Column="115" />
       <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="8" Column="42" />
       <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="11" Column="39" />
+      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="8" Column="62" />
+      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="62" Column="27" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">

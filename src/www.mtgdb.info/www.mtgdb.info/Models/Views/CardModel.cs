@@ -6,6 +6,7 @@ namespace MtgDb.Info
     {
         public Card Card { get; set; }
         public int Amount { get; set; } 
+        public int Page { get; set; }
         public Card[] Prints { get; set; }
 
         public CardModel (){

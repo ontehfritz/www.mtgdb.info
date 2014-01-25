@@ -17,19 +17,21 @@
   </div><!-- /.col-lg-6 -->
 </div><!-- /.row -->
 
-@if(Model.Cards != null && Model.Cards.Length > 0)
+@if(Model.Cards != null && Model.Cards.Count > 0)
 {
-    <h4><small>Searched for:</small> @Model.Term <small>Results:</small> @Model.Cards.Length</h4>
+    <h4><small>Searched for:</small> @Model.Term <small>Results:</small> @Model.Cards.Count</h4>
     <hr />
 
-    foreach(Card card in Model.Cards)
+    foreach(CardInfo card in Model.Cards)
     {
+        string color = card.Amount > 0 ? "#02F717" : "white";
+
         <div class="results">
-        <div style="height:50px;text-align:center;"><b>@card.Name</b></div>
-        <a href="~cards/@card.Id" class="thumbnail">
-            <img src="@card.CardImage" style="width:111px;height:155px;"/>
+        <div style="height:50px;text-align:center;"><b>@card.Card.Name</b></div>
+        <a href="~cards/@card.Card.Id" class="thumbnail" style="background-color: @color;">
+            <img src="@card.Card.CardImage" style="width:111px;height:155px;"/>
         </a>
-        @card.CardSetName
+        @card.Card.Name
         </div>
     }
 
