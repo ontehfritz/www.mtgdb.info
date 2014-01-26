@@ -33,7 +33,6 @@ namespace MtgDb.Info
            
             return 0;
         }
-
     }
 }
 

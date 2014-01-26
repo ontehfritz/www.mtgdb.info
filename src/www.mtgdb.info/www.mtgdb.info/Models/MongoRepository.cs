@@ -49,12 +49,32 @@ namespace MtgDb.Info
             return userSets;
         }
 
+        public UserCard[] GetUserCards(Guid walkerId)
+        {
+            var collection = database.GetCollection<UserCard>("user_cards");
+            List<UserCard> userCards = new List<UserCard> ();
+
+            var query =
+                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId);
+
+            var cards = collection.Find (query);
+
+            foreach(UserCard c in cards)
+            {
+                userCards.Add (c);
+            }
+
+            return userCards.ToArray ();
+        }
+
         public UserCard[] GetUserCards(Guid walkerId, int[] multiverseIds)
         {
             var collection = database.GetCollection<UserCard>("user_cards");
             List<UserCard> userCards = new List<UserCard> ();
 
-            var query = Query.In ("MultiverseId", new BsonArray(multiverseIds));
+            var query = Query.And(Query.In ("MultiverseId", new BsonArray(multiverseIds)),
+                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId));
+
             var cards = collection.Find (query);
 
             foreach(UserCard c in cards)
@@ -130,6 +150,18 @@ namespace MtgDb.Info
             if (p != null)
                 return p;
       
+            return null;
+        }
+
+        public Profile GetProfile(string name)
+        {
+            var collection = database.GetCollection<Profile> ("profiles");
+            var query = Query<Profile>.EQ (e => e.Name, name);
+            Profile p = collection.FindOne (query);
+
+            if (p != null)
+                return p;
+
             return null;
         }
 

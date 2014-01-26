@@ -126,6 +126,7 @@
     <Compile Include="Models\CardInfo.cs" />
     <Compile Include="Models\Views\SearchModel.cs" />
     <Compile Include="Modules\SearchModule.cs" />
+    <Compile Include="Models\Views\PlaneswalkerModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -139,5 +140,7 @@
     <None Include="Views\Card.cshtml" />
     <None Include="Views\Logon\Settings.cshtml" />
     <None Include="Views\Search.cshtml" />
+    <None Include="Views\Planeswalker.cshtml" />
+    <None Include="Views\MyCards.cshtml" />
   </ItemGroup>
 </Project>

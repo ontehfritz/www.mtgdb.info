@@ -1,0 +1,18 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.PlaneswalkerModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+@if(Model.Profile != null)
+{
+  <div>
+    <h1>@Model.Profile.Name <small>Joined: @Model.Profile.CreatedAt.ToShortDateString()</small></h1>
+  </div>
+
+  if(@Model.Cards != null && @Model.Cards.Length > 0)
+  {
+    <h3>Card Catalog: @Model.Cards.Length</h3>
+  }
+}
+
+

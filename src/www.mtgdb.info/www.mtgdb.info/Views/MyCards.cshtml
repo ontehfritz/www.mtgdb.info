@@ -1,0 +1,14 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.PlaneswalkerModel>
+@using System.Collections.Generic;
+@using  MtgDb.Info;
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<h1>@Model.Planeswalker.Profile.Name 's cards</h1>
+
+@foreach(KeyValuePair<string ,CardInfo[]> k in Model.UserCards)
+{   
+    <b>@k.Key</b> @k.Value.Length 
+}
+
