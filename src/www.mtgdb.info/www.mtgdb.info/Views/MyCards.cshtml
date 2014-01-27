@@ -4,11 +4,24 @@
 @{
   Layout = "_Layout.cshtml";
 }
+<div class="row">
+    <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked">
+            @foreach(KeyValuePair<string int> k in Model.Sets)
+            {
+                <li>
+                    <a href="#">
+                    <span class="badge pull-right">@k.Value</span>
+                    @k.Key
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
 
-<h1>@Model.Planeswalker.Profile.Name 's cards</h1>
+    <div class="col-md-8">
 
-@foreach(KeyValuePair<string ,CardInfo[]> k in Model.UserCards)
-{   
-    <b>@k.Key</b> @k.Value.Length 
-}
+    </div><!--/span-->
 
+
+</div>

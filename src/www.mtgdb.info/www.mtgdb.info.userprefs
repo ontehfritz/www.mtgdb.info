@@ -1,30 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/IndexModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/SearchModule.cs" Line="43" Column="21" />
-      <File FileName="www.mtgdb.info/Views/Search.cshtml" Line="27" Column="44" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="4" Column="2" />
-      <File FileName="www.mtgdb.info/Views/Sets.cshtml" Line="351" Column="10" />
-      <File FileName="www.mtgdb.info/Models/Views/SearchModel.cs" Line="17" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="95" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="27" Column="13" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="162" Column="25" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="7" Column="50" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="37" Column="61" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="62" Column="27" />
-      <File FileName="www.mtgdb.info/Models/Views/CardModel.cs" Line="9" Column="37" />
-      <File FileName="www.mtgdb.info/Models/Views/PlaneswalkerModel.cs" Line="9" Column="22" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="49" Column="14" />
-      <File FileName="www.mtgdb.info/Models/Profile.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="16" Column="46" />
-      <File FileName="www.mtgdb.info/Views/Planeswalker.cshtml" Line="4" Column="2" />
-      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="13" Column="30" />
-      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/SetsModel.cs" Line="11" Column="63" />
       <File FileName="www.mtgdb.info/Models/UserCard.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/CardInfo.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="189" Column="26" />
+      <File FileName="www.mtgdb.info/Models/Views/PlaneswalkerModel.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Planeswalker.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="103" Column="73" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">

@@ -173,29 +173,34 @@ namespace MtgDb.Info
                 CardSet[] sets = magicdb.GetSets();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Cards = repository.GetUserCards(model.Planeswalker.Id);
-                model.UserCards = new Dictionary<string, CardInfo[]>();
+                model.Sets = new Dictionary<string, int>();
 
-                Dictionary<string, int> counts = repository.GetSetCardCounts(model.Planeswalker.Id);
-            
-                foreach(CardSet set in sets)
-                {
-                    if(counts.ContainsKey(set.Id))
-                    {
-                        List<CardInfo> cardInfos = new List<CardInfo>();
-                        UserCard[] us = model.Cards.AsEnumerable().Where(x => x.SetId == set.Id).ToArray();
-                        int[] ids = us.AsEnumerable().Select(x => x.MultiverseId).ToArray();
-                        //Card[] cs = magicdb.GetCards();
-//                        foreach(UserCard u in us)
+                model.Sets = repository.GetSetCardCounts(model.Planeswalker.Id)
+                    .AsEnumerable().Where(x => x.Value > 0);
+//            
+//                foreach(CardSet set in sets)
+//                {
+//                    if(counts.ContainsKey(set.Id))
+//                    {
+//                        List<CardInfo> cardInfos = new List<CardInfo>();
+//                        UserCard[] us = model.Cards.AsEnumerable().Where(x => x.SetId == set.Id).ToArray();
+//                        int[] ids = us.AsEnumerable().Select(x => x.MultiverseId).ToArray();
+//                        Card[] cs = null;
+//                        if(ids.Length > 0)
 //                        {
-//                            CardInfo ci = new CardInfo();
-//                            ci.Amount = u.Amount;
-//                            ci.Card = cs.AsEnumerable().Where(x => x.Id == u.MultiverseId).FirstOrDefault();
-//                            cardInfos.Add(ci);
-//                        }
+//                            cs = magicdb.GetCards(ids);
+//                            foreach(UserCard u in us)
+//                            {
+//                                CardInfo ci = new CardInfo();
+//                                ci.Amount = u.Amount;
+//                                ci.Card = cs.AsEnumerable().Where(x => x.Id == u.MultiverseId).FirstOrDefault();
+//                                cardInfos.Add(ci);
+//                            }
 //
-//                        model.UserCards.Add(set.Name,cardInfos.ToArray());
-                    }
-                }
+//                            model.UserCards.Add(set.Name,cardInfos.ToArray());
+//                        }
+//                    }
+//                }
  
                 return View["MyCards", model];
             };

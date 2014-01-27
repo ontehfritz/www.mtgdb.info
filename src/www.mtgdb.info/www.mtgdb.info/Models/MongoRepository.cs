@@ -100,6 +100,7 @@ namespace MtgDb.Info
                 newCard.Amount = amount;
                 newCard.MultiverseId = multiverseId;
                 newCard.PlaneswalkerId = walkerId;
+                newCard.SetId = magicdb.GetCard (multiverseId).CardSetId;
 
                 cards.Insert (newCard);
                 card = newCard;

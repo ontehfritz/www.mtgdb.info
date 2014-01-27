@@ -5,8 +5,8 @@ namespace MtgDb.Info
 {
     public class PlaneswalkerModel : PageModel
     {
-        public UserCard[] Cards { get; set; }
-        public Dictionary<string, CardInfo[]> UserCards { get; set; }
+        public CardInfo[] Cards { get; set; }
+        public Dictionary<string, int> Sets { get; set; }
         public Profile Profile { get; set; }
 
         public PlaneswalkerModel ()
