@@ -12,15 +12,11 @@ namespace MtgDb.Info
 
             foreach(var e in result.Errors)
             {
-                foreach(var member in e.MemberNames)
-                {
-                    errors.Add(e.GetMessage(member));
-                }
+                errors.Add(e.ToString());
             }
 
             return errors;
         }
-
     }
 }
 

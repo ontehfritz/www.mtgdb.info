@@ -9,9 +9,9 @@
     <h1>@Model.Profile.Name <small>Joined: @Model.Profile.CreatedAt.ToShortDateString()</small></h1>
   </div>
 
-  if(@Model.Cards != null && @Model.Cards.Length > 0)
+  if(@Model.UserCards != null && @Model.UserCards.Length > 0)
   {
-    <h3>Card Catalog: @Model.Cards.Length</h3>
+    <h3>Card Catalog: @Model.UserCards.Length</h3>
   }
 }
 

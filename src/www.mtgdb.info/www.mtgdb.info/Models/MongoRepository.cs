@@ -85,6 +85,24 @@ namespace MtgDb.Info
             return userCards.ToArray ();
         }
 
+        public UserCard[] GetUserCards(Guid walkerId, string setId)
+        {
+            var collection = database.GetCollection<UserCard>("user_cards");
+            List<UserCard> userCards = new List<UserCard> ();
+
+            var query = Query.And(Query<UserCard>.EQ(c => c.SetId, setId.ToUpper()),
+                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId));
+
+            var cards = collection.Find (query);
+
+            foreach(UserCard c in cards)
+            {
+                userCards.Add (c);
+            }
+
+            return userCards.ToArray ();
+        }
+
         public UserCard AddUserCard(Guid walkerId, int multiverseId, int amount)
         {
             MongoCollection<UserCard> cards = database.GetCollection<UserCard> ("user_cards");

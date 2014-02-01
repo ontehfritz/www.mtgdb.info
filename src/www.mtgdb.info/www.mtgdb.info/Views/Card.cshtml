@@ -2,6 +2,7 @@
 @{
   Layout = "_Layout.cshtml";
 }
+
 <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId?Page=@Model.Page">@Model.Card.CardSetName</a>)</small></h1>
 @if(Model.Card.Flavor != null && Model.Card.Flavor != "")
 {

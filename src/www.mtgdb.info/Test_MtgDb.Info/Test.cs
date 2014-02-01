@@ -51,6 +51,18 @@ namespace Test_MtgDb.Info
         }
 
 
+
+        [Test ()]
+        public void Get_UserCards_by_setId ()
+        {
+            repository.AddUserCard(mtgdbUser.Id, 1, 1);
+            repository.AddUserCard(mtgdbUser.Id, 2, 3);
+
+            UserCard [] userCards = repository.GetUserCards(mtgdbUser.Id, "LEA");
+
+            Assert.AreEqual (2, userCards.Length);
+        }
+
         [Test ()]
         public void Get_UserCards ()
         {

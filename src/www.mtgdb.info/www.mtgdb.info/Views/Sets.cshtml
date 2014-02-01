@@ -20,7 +20,7 @@
     <div>
     <h4>Non-Block</h4>
     <ul>
-    @foreach(var set in Model.GetBlock(null))
+    @foreach(var set in Model.GetBlock("Non-Block"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
         <b>@Model.GetSetCount(@set.Id).ToString()</b>

@@ -1,27 +1,60 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.PlaneswalkerModel>
 @using System.Collections.Generic;
+@using System.Linq;
 @using  MtgDb.Info;
+
 @{
   Layout = "_Layout.cshtml";
 }
-<div class="row">
-    <div class="col-md-4">
-        <ul class="nav nav-pills nav-stacked">
-            @foreach(KeyValuePair<string int> k in Model.Sets)
-            {
-                <li>
-                    <a href="#">
-                    <span class="badge pull-right">@k.Value</span>
+<h4>Your Library</h4>
+<div class="tab-container" id="outer-container">
+    <ul class='etabs'>
+        @foreach(KeyValuePair<string, int> k in Model.Blocks)
+        {
+            string c = k.Key == Model.Block ? "active" : "";
+            <li class='tab @c'>
+                <a href="~/@Model.Planeswalker.UserName/blocks/@k.Key/cards/">
                     @k.Key
-                    </a>
-                </li>
-            }
-        </ul>
+                    <span class="badge">@k.Value</span>
+                </a>
+            </li>
+        }
+    </ul>
+     <div class="panel-container">
+        <div id="nested-tab-1">
+            <div class="tab-container" id="outer-container">
+    <ul class='etabs'>
+    @foreach(CardSet set in Model.Sets)
+    {
+        string c = set.Id == Model.SetId ? "active" : "";
+        <li class='tab @c'>
+            <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id">
+                @set.Name
+                <span class="badge">@Model.Counts[set.Id]</span>
+            </a>
+        </li>
+    }
+    </ul>
+    <div class="panel-container">
+        <div id="nested-tab-1">
+        @foreach(var cardInfo in Model.Cards)
+        {
+            <div style="float:left;">
+            <div style="text-align:center;">
+            <a href="~/cards/@cardInfo.Card.Id" class="thumbnail">
+                <img src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
+            </a>
+           </div>
+           </div><!--/span-->
+        }
+        </div>
+    <br style="clear:both;" />
     </div>
-
-    <div class="col-md-8">
-
-    </div><!--/span-->
+</div> 
 
 
+        </div>
+     </div>
 </div>
+
+<br style="clear:both;" />

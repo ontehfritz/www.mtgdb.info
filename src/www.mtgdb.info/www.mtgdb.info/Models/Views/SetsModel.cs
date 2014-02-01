@@ -15,8 +15,8 @@ namespace MtgDb.Info
 
         }
 
-        public CardSet[] GetBlock(string cardSet){
-
+        public CardSet[] GetBlock(string cardSet)
+        {
             return 
                 (Sets.Where (n => n.Block == cardSet)).ToArray();
         }

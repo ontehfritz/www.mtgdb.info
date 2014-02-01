@@ -14,6 +14,7 @@ namespace MtgDb.Info
         UserCard AddUserCard(Guid walkerId, int multiverseId, int amount);
         UserCard[] GetUserCards(Guid walkerId, int[] multiverseIds);
         UserCard[] GetUserCards(Guid walkerId);
+        UserCard[] GetUserCards (Guid walkerId, string setId);
         Dictionary<string, int> GetSetCardCounts(Guid walkerId);
 //        void UpdatePlaneswalker(Planeswalker planeswalker);
 //
