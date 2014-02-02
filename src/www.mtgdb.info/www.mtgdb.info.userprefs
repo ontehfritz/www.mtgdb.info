@@ -1,22 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/MyCards.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="185" Column="41" />
-      <File FileName="www.mtgdb.info/Models/UserCard.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/PlaneswalkerModel.cs" Line="12" Column="41" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="88" Column="68" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="17" Column="63" />
-      <File FileName="Test_MtgDb.Info/Test.cs" Line="61" Column="79" />
-      <File FileName="www.mtgdb.info/Helpers/ErrorUtility.cs" Line="19" Column="10" />
-      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="17" Column="27" />
-      <File FileName="www.mtgdb.info/Views/Planeswalker.cshtml" Line="14" Column="34" />
+      <File FileName="www.mtgdb.info/Models/Views/ForgotModel.cs" Line="6" Column="6" />
+      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="138" Column="62" />
+      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="15" Column="7" />
+      <File FileName="www.mtgdb.info/Views/Logon/Forgot.cshtml" Line="10" Column="114" />
+      <File FileName="www.mtgdb.info/Models/Views/LogonModel.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/Email.cs" Line="14" Column="71" />
+      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="84" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="19" Column="63" />
+      <File FileName="www.mtgdb.info/Content/javascript/mtgdb.info.js" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="11" Column="39" />
+      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="45" Column="45" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

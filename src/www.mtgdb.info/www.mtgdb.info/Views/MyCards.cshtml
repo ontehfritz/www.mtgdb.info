@@ -41,7 +41,8 @@
         {
             <div style="float:left;">
             <div style="text-align:center;">
-            <a href="~/cards/@cardInfo.Card.Id" class="thumbnail">
+            <a href="~/cards/@cardInfo.Card.Id" class="thumbnail tool" data-toggle="tooltip" data-placement="top" 
+            title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber<br /> @cardInfo.Card.Description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><b>You have:</b> <span class='badge'>@cardInfo.Amount</span><br />" data-html="true">
                 <img src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
             </a>
            </div>
@@ -51,10 +52,10 @@
     <br style="clear:both;" />
     </div>
 </div> 
-
-
         </div>
      </div>
 </div>
-
+<script>
+    $('.tool').tooltip();
+</script>
 <br style="clear:both;" />

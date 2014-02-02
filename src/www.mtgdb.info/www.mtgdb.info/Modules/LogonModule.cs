@@ -115,6 +115,38 @@ namespace MtgDb.Info
 
                 return this.LogoutAndRedirect((string)Request.Query.Url);
             };
+
+            Get ["/signup"] = parameters => {
+                SignupModel model = new SignupModel();
+                return View["signup", model];
+            };
+
+            Get ["/forgot"] = parameters => {
+                ForgotModel model = new ForgotModel();
+                return View["Forgot", model];
+            };
+
+            Post ["/forgot"] = parameters => {
+                ForgotModel model = this.Bind<ForgotModel>();
+
+                string subject = "MtgDb.info: Password reset request.";
+                string body = "You have requested a password reset. You new password is: {0}";
+
+
+                try
+                {
+                    string newPass = ssa.Forgot(model.Email);
+                    Email.send(model.Email, subject,string.Format(body,newPass));
+                    model.Messages.Add("Your new password has been successfully sent to your email.");
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
+
+
+                return View["Forgot", model];
+            };
         }
     }
 }

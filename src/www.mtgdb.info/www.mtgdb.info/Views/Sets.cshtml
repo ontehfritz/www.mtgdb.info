@@ -11,7 +11,7 @@
     {
         <li>
         <a href="~/sets/@set.Id">@set.Name</a>
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released:  @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -23,7 +23,7 @@
     @foreach(var set in Model.GetBlock("Non-Block"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
 
     }
@@ -34,9 +34,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Duel Decks"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -45,9 +45,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("From the vault"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -56,9 +56,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Premium Deck Series"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -67,7 +67,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Planechase"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -77,9 +79,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Commander"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -89,9 +91,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Portal"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -101,9 +103,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Starter"))
     {
-           <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+       <li><a href="~/sets/@set.Id">@set.Name</a> 
+       @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+       Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -113,9 +115,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Un-sets"))
     {
-            <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -128,9 +130,9 @@
     <ul>
     @foreach(var set in Model.GetBlock("Ice Age"))
     {
-       <li><a href="~/sets/@set.Id">@set.Name</a> 
-            <b>@Model.GetSetCount(@set.Id).ToString()</b>
-            Released: @set.ReleasedAt.ToShortDateString()</li>
+        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
+        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
@@ -141,7 +143,7 @@
     @foreach(var set in Model.GetBlock("Mirage"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -153,7 +155,7 @@
     @foreach(var set in Model.GetBlock("Rath"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>    
     }
     </ul>
@@ -165,7 +167,7 @@
     @foreach(var set in Model.GetBlock("Artifacts"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -177,7 +179,7 @@
     @foreach(var set in Model.GetBlock("Masquerade"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -189,7 +191,7 @@
     @foreach(var set in Model.GetBlock("Invasion"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -201,7 +203,7 @@
     @foreach(var set in Model.GetBlock("Odyssey"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -213,7 +215,7 @@
     @foreach(var set in Model.GetBlock("Onslaught"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -225,7 +227,7 @@
     @foreach(var set in Model.GetBlock("Mirrodin"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -237,7 +239,7 @@
     @foreach(var set in Model.GetBlock("Kamigawa"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -249,7 +251,7 @@
     @foreach(var set in Model.GetBlock("Ravnica"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -261,7 +263,7 @@
     @foreach(var set in Model.GetBlock("Time Spiral"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -273,7 +275,7 @@
     @foreach(var set in Model.GetBlock("Lorwyn"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -285,7 +287,7 @@
     @foreach(var set in Model.GetBlock("Shadowmoor"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -297,7 +299,7 @@
     @foreach(var set in Model.GetBlock("Shards of Alara"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -309,7 +311,7 @@
     @foreach(var set in Model.GetBlock("Zendikar"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -321,7 +323,7 @@
     @foreach(var set in Model.GetBlock("Scars of Mirrodin"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -333,7 +335,7 @@
     @foreach(var set in Model.GetBlock("Scars of Mirrodin"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -345,7 +347,7 @@
     @foreach(var set in Model.GetBlock("Return to Ravnica"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
@@ -357,15 +359,12 @@
     @foreach(var set in Model.GetBlock("Theros"))
     {
         <li><a href="~/sets/@set.Id">@set.Name</a> 
-        <b>@Model.GetSetCount(@set.Id).ToString()</b>
+        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
     </ul>
     </div>
 </div>
-<div style="float:left;">
-</div>
-
 <br style="clear:both;" />
 
 

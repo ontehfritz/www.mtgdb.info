@@ -38,3 +38,4 @@ function set_amount(cardId, amount)
         
     }); 
 };
+

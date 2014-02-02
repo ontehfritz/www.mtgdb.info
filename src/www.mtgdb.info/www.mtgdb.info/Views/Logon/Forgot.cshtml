@@ -1,0 +1,14 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<ForgotModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+<form action="/forgot" method="post">
+<h3>Reset Password</h3>
+<div class="form-group">
+    <label for="Email">Email address</label>
+    <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter email" autofocus required/>
+</div>
+<button type="submit" class="btn btn-default">Reset</button>
+</form>
+

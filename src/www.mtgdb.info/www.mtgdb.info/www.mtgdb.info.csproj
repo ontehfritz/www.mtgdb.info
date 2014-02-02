@@ -91,6 +91,7 @@
     <Content Include="Content\css\select2-bootstrap.css" />
     <Content Include="Content\css\select2.css" />
     <Content Include="Content\javascript\mtgdb.info.js" />
+    <Content Include="Content\javascript\jquery.easytabs.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -127,6 +128,8 @@
     <Compile Include="Models\Views\SearchModel.cs" />
     <Compile Include="Modules\SearchModule.cs" />
     <Compile Include="Models\Views\PlaneswalkerModel.cs" />
+    <Compile Include="Models\Views\ForgotModel.cs" />
+    <Compile Include="Helpers\Email.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -143,5 +146,6 @@
     <None Include="Views\Planeswalker.cshtml" />
     <None Include="Views\MyCards.cshtml" />
     <None Include="Views\NoCards.cshtml" />
+    <None Include="Views\Logon\Forgot.cshtml" />
   </ItemGroup>
 </Project>
