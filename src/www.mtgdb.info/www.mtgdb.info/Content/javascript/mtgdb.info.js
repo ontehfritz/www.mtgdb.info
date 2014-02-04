@@ -30,6 +30,7 @@ function set_amount(cardId, amount)
     var jqxhr = $.post( "/cards/" + cardId + "/amount/" + amount) 
     .done(function( data ) {
         $('#' + cardId).val(data);
+        $('#img_' + cardId).attr('class', 'owned');
     })
     .fail(function() {
         alert( "Could not update card amount. Please try again later." );

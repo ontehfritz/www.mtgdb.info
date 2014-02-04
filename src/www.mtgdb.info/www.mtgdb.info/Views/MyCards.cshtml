@@ -2,11 +2,12 @@
 @using System.Collections.Generic;
 @using System.Linq;
 @using  MtgDb.Info;
-
 @{
   Layout = "_Layout.cshtml";
 }
+
 <h4>Your Library</h4>
+You own @Model.TotalCards of 22000. Total amount of cards owned: @Model.TotalAmount 
 <div class="tab-container" id="outer-container">
     <ul class='etabs'>
         @foreach(KeyValuePair<string, int> k in Model.Blocks)
@@ -27,8 +28,11 @@
     @foreach(CardSet set in Model.Sets)
     {
         string c = set.Id == Model.SetId ? "active" : "";
+        string show = Model.Show && set.Id == Model.SetId ? "" : 
+        !Model.Show && set.Id == Model.SetId ? "?show=true" : "";
+
         <li class='tab @c'>
-            <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id">
+            <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
                 @set.Name
                 <span class="badge">@Model.Counts[set.Id]</span>
             </a>
@@ -42,8 +46,15 @@
             <div style="float:left;">
             <div style="text-align:center;">
             <a href="~/cards/@cardInfo.Card.Id" class="thumbnail tool" data-toggle="tooltip" data-placement="top" 
-            title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber<br /> @cardInfo.Card.Description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><b>You have:</b> <span class='badge'>@cardInfo.Amount</span><br />" data-html="true">
+            title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber<br /> @cardInfo.Card.Description.Replace("\"","'") <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><b>You have:</b> <span class='badge'>@cardInfo.Amount</span><br />" data-html="true">
+            @if(cardInfo.Amount > 0)
+            {
                 <img src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
+            }
+            else
+            {
+                <img src="@cardInfo.Card.CardImage" class="dontown" style="width:111px;height:155px;" />
+            }
             </a>
            </div>
            </div><!--/span-->

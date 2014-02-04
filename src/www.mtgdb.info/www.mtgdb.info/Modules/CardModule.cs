@@ -37,11 +37,12 @@ namespace MtgDb.Info
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
+                model.TotalCards = model.Counts.Sum(x => x.Value);
+                model.TotalAmount = repository.GetUserCards(model.Planeswalker.Id).Sum(x => x.Amount);
                 string[] blocks;
 
                 if(model.Counts.Count > 0)
                 {
-
                     model.Sets = magicdb.GetSets(model.Counts
                         .AsEnumerable().Select(x => x.Key)
                         .ToArray());
@@ -76,19 +77,36 @@ namespace MtgDb.Info
                     model.UserCards = repository.GetUserCards(model.Planeswalker.Id, setId);
 
 
-                    Card[] dbcards = magicdb.GetCards(model.UserCards
-                        .AsEnumerable()
-                        .Select(x => x.MultiverseId)
-                        .ToArray());
+                    Card[] dbcards = null;
+                    if(Request.Query.Show != null)
+                    {
+                        dbcards = magicdb.GetSetCards(model.SetId);
+                        model.Show = true;
+                    }
+                    else
+                    {
+                        dbcards = magicdb.GetCards(model.UserCards
+                            .AsEnumerable()
+                            .Select(x => x.MultiverseId)
+                            .ToArray());
+
+                        model.Show = false;
+                    }
+
 
                     List<CardInfo> cards = new List<CardInfo>();
 
                     CardInfo card = null;
-                    foreach(UserCard c in model.UserCards)
+                    foreach(Card c in dbcards)
                     {
                         card = new CardInfo();
-                        card.Amount = c.Amount;
-                        card.Card = dbcards.AsEnumerable().Where(x => x.Id == c.MultiverseId).FirstOrDefault();
+                        card.Amount = model.UserCards
+                            .AsEnumerable()
+                            .Where(x => x.MultiverseId == c.Id)
+                            .Select(x => x.Amount)
+                            .FirstOrDefault();
+
+                        card.Card = c;
 
                         cards.Add(card);
                     }
@@ -122,8 +140,6 @@ namespace MtgDb.Info
 
                 return View["NoCards", model];
             };
-
-
         }
     }
 }

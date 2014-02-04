@@ -3,14 +3,19 @@
 <div class="well" style="width:800px;margin-left: auto; margin-right: auto ;">
 @foreach(var cardInfo in Model)
 {
-    
-    string color = cardInfo.Amount > 0 ? "#02F717" : "white";
+    string color = cardInfo.Amount > 0 ? "" : "dontown";
 
+    if(this.Html.CurrentUser == null)
+    {
+        color = "";
+    }
 
     <div class="col-6 col-sm-6 col-lg-4">
         <div style="text-align:center;">
-        <a href="~/cards/@cardInfo.Card.Id" class="thumbnail" style="background-color: @color;">
-            <img src="@cardInfo.Card.CardImage" />
+        <a href="~/cards/@cardInfo.Card.Id" class="thumbnail">
+            <img id="img_@cardInfo.Card.Id" class="tool @color" src="@cardInfo.Card.CardImage" 
+            data-toggle="tooltip" data-placement="left" title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber<br /> @cardInfo.Card.Description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
+            data-html="true" />
         </a>
         @if(@Html.CurrentUser != null)
         {
@@ -24,5 +29,8 @@
 }
 <br style="clear:both;"/>
 </div>
+<script>
+    $('.tool').tooltip();
+</script>
 
 

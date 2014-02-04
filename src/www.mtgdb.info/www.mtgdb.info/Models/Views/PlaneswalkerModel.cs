@@ -6,7 +6,10 @@ namespace MtgDb.Info
     public class PlaneswalkerModel : PageModel
     {
         public CardInfo[] Cards { get; set; }
+        public bool Show { get; set; }
         public UserCard[] UserCards { get; set; }
+        public int TotalAmount { get; set; }
+        public int TotalCards { get; set; }
         public CardSet[]  Sets { get; set; }
         public Dictionary<string, int> Counts { get; set; }
         public Profile Profile { get; set; }
@@ -21,7 +24,5 @@ namespace MtgDb.Info
             //this.Planeswalker
         }
     }
-
-
 }
 

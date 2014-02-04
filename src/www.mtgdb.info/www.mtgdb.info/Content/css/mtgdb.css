@@ -79,6 +79,14 @@ margin: 5px 0px 0px -webkit-calc(50% - 5px);
 position: relative;
 }
 
+.dontown {
+    -webkit-filter: grayscale(100%);
+       -moz-filter: grayscale(100%);
+         -o-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+            filter: grayscale(100%); 
+}
+
 /* navbar */
 .navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}
