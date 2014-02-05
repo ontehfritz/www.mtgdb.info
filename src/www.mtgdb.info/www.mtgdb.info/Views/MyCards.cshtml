@@ -5,9 +5,13 @@
 @{
   Layout = "_Layout.cshtml";
 }
-
-<h4>Your Library</h4>
-You own @Model.TotalCards of 22000. Total amount of cards owned: @Model.TotalAmount 
+@section Top
+{
+    <div style="color:white;margin-left:50px;">
+    <h4>Your Library</h4>
+    Unique cards owned <b>@Model.TotalCards</b> of 22000. Total number of cards (including duplicates) owned: <b>@Model.TotalAmount</b>
+    </div>
+}
 <div class="tab-container" id="outer-container">
     <ul class='etabs'>
         @foreach(KeyValuePair<string, int> k in Model.Blocks)
@@ -31,9 +35,10 @@ You own @Model.TotalCards of 22000. Total amount of cards owned: @Model.TotalAmo
         string show = Model.Show && set.Id == Model.SetId ? "" : 
         !Model.Show && set.Id == Model.SetId ? "?show=true" : "";
 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
         <li class='tab @c'>
             <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
-                @set.Name
+                <img src="@imgUrl" /> @set.Name
                 <span class="badge">@Model.Counts[set.Id]</span>
             </a>
         </li>

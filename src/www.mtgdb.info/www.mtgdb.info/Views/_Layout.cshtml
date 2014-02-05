@@ -12,7 +12,6 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" />
-
     <link href="~/content/css/select2.css" rel="stylesheet"/>
     <script src="~/content/javascript/select2.min.js"></script>
     <script src="~/content/javascript/jquery.easytabs.js"></script>
@@ -72,7 +71,7 @@
       </nav>
   </div>
 </div>
-<div class="container">
+<div class="container" style="background-color:black;width:100%;margin-top:-20px;">
         @if(@Model.Messages != null && @Model.Messages.Count > 0)
         {
             <div class="alert alert-success alert-dismissable">
@@ -100,6 +99,11 @@
             </ul>
             </div>
         }
+
+        @RenderSection("Top", required: false)
+</div>
+<br />
+<div class="container">
         @RenderBody()
         <hr />
         <footer>

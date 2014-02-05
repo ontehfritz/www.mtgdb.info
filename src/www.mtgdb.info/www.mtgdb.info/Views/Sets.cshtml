@@ -2,14 +2,18 @@
 @{
   Layout = "_Layout.cshtml";
 }
-<h2>Magic: the gathering sets</h2>
+@section Top{
+<h2 style="color:white;margin-left:50px;">Magic: the gathering sets</h2>
+}
 <div style="float:left;">
     <div>
     <h4>Core</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Core"))
     {
-        <li>
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
         <a href="~/sets/@set.Id">@set.Name</a>
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released:  @set.ReleasedAt.ToShortDateString()</li>
@@ -19,10 +23,13 @@
 
     <div>
     <h4>Non-Block</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Non-Block"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
 
@@ -31,10 +38,13 @@
     </div>
     <div>
     <h4>Duel Decks</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Duel Decks"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -42,10 +52,13 @@
     </div>
     <div>
     <h4>From the Vault</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("From the vault"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -53,10 +66,13 @@
     </div>
     <div>
     <h4>Premium Deck Series</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Premium Deck Series"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -64,10 +80,13 @@
     </div>
     <div>
     <h4>Planechase</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Planechase"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -76,10 +95,13 @@
 
     <div>
     <h4>Commander</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Commander"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -88,10 +110,13 @@
 
     <div>
     <h4>Portal</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Portal"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -100,10 +125,13 @@
 
     <div>
     <h4>Starter</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Starter"))
     {
-       <li><a href="~/sets/@set.Id">@set.Name</a> 
+       string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+       <li><img src="@imgUrl" />
+       <a href="~/sets/@set.Id">@set.Name</a> 
        @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
        Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -112,10 +140,13 @@
 
     <div>
     <h4>Un-sets</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Un-sets"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -127,10 +158,13 @@
    
     <div>
     <h4>Ice Age</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Ice Age"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -139,10 +173,13 @@
 
     <div>
     <h4>Mirage</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Mirage"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -151,10 +188,13 @@
 
     <div>
     <h4>Rath</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Rath"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>    
     }
@@ -163,10 +203,13 @@
 
     <div>
     <h4>Artifacts</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Artifacts"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -175,10 +218,13 @@
 
     <div>
     <h4>Masquerade</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Masquerade"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -187,10 +233,13 @@
 
     <div>
     <h4>Invasion</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Invasion"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -199,10 +248,13 @@
 
     <div>
     <h4>Odyssey</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Odyssey"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -211,10 +263,13 @@
 
     <div>
     <h4>Onslaught</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Onslaught"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -223,10 +278,13 @@
 
     <div>
     <h4>Mirrodin</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Mirrodin"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -235,10 +293,13 @@
 
     <div>
     <h4>Kamigawa</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Kamigawa"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -247,10 +308,13 @@
 
     <div>
     <h4>Ravnica</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Ravnica"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -259,10 +323,13 @@
 
     <div>
     <h4>Time Spiral</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Time Spiral"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -271,10 +338,13 @@
 
     <div>
     <h4>Lorwyn</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Lorwyn"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -283,10 +353,13 @@
 
     <div>
     <h4>Shadowmoor</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Shadowmoor"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -295,10 +368,13 @@
 
     <div>
     <h4>Alara</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Shards of Alara"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -307,10 +383,13 @@
 
     <div>
     <h4>Zendikar</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Zendikar"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -319,10 +398,13 @@
 
     <div>
     <h4>Scars of Mirrodin</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Scars of Mirrodin"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -331,10 +413,13 @@
 
     <div>
     <h4>Innistrad</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Scars of Mirrodin"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -343,10 +428,13 @@
 
     <div>
     <h4>Return to Ravnica</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Return to Ravnica"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }
@@ -355,10 +443,13 @@
 
     <div>
     <h4>Theros</h4>
-    <ul>
+    <ul class="setlist">
     @foreach(var set in Model.GetBlock("Theros"))
     {
-        <li><a href="~/sets/@set.Id">@set.Name</a> 
+        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+
+        <li><img src="@imgUrl" />
+        <a href="~/sets/@set.Id">@set.Name</a> 
         @if(Model.Planeswalker != null){<b>@Model.GetSetCount(@set.Id).ToString()</b>}
         Released: @set.ReleasedAt.ToShortDateString()</li>
     }

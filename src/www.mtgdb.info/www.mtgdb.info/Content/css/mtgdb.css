@@ -87,6 +87,10 @@ position: relative;
             filter: grayscale(100%); 
 }
 
+.setlist{
+    list-style:none;
+}
+
 /* navbar */
 .navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}
@@ -101,10 +105,8 @@ position: relative;
 .navbar-primary .navbar .nav.pull-right {margin-left: 10px;margin-right: 0;}
 .navbar-xs .navbar-primary .navbar { min-height:28px; } 
 .navbar-xs .navbar-primary .navbar .navbar-brand{ padding: 8px 8px;font-size: 16px;line-height: 18px; } 
-.navbar-xs .navbar-primary .navbar .navbar-nav > li > a {  padding-top: 7px; padding-bottom: 7px; line-height: 20px; } 
-.navbar-sm .navbar-primary .navbar { min-height:40px; } 
-.navbar-sm .navbar-primary .navbar .navbar-brand{ padding: 12px 12px;font-size: 16px;line-height: 18px; } 
-.navbar-sm .navbar-primary .navbar .navbar-nav > li > a {  padding-top: 12px; padding-bottom: 12px; line-height: 20px; }
+.navbar-xs .navbar-primary .navbar .navbar-nav > li > a {  padding-top: 7px; padding-bottom: 8px; line-height: 20px; } 
+
 
 /* Example Styles for Demo */
 .etabs { margin: 0; padding: 0; }
