@@ -13,6 +13,11 @@ function addCard(cardId)
     var amount = parseInt($('#' + cardId).val());
     amount = amount + 1;
     set_amount(cardId, amount);
+
+    if($('#value_' + cardId).length != 0)
+    {
+        $('#value_' + cardId).text(amount);
+    }
 };
 
 function changeAmount(cardId)
