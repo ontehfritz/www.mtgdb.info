@@ -39,6 +39,7 @@ namespace MtgDb.Info
                 model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
                 model.TotalCards = model.Counts.Sum(x => x.Value);
                 model.TotalAmount = repository.GetUserCards(model.Planeswalker.Id).Sum(x => x.Amount);
+                
                 string[] blocks;
 
                 if(model.Counts.Count > 0)
@@ -70,7 +71,6 @@ namespace MtgDb.Info
                     if(setId == null)
                     {
                         setId = model.Sets.FirstOrDefault().Id;
-
                     }
 
                     model.SetId = setId;
@@ -107,7 +107,7 @@ namespace MtgDb.Info
                             .FirstOrDefault();
 
                         card.Card = c;
-
+                    
                         cards.Add(card);
                     }
 
@@ -126,19 +126,28 @@ namespace MtgDb.Info
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
+                if(model.Planeswalker.UserName.ToLower() != ((string)parameters.planeswalker).ToLower())
+                {
+                    model.Errors.Add(string.Format("Tsk Tsk! {0}, this profile is not yours.",
+                        model.Planeswalker.UserName));
+
+                    return View["Page", model];
+                }
+
                 string setId = repository.GetSetCardCounts(model.Planeswalker.Id)
                     .Select(x => x.Key)
                     .OrderBy(x => x).FirstOrDefault();
 
-                CardSet s = magicdb.GetSet(setId);
-
                 if(setId != null)
                 {
+                    CardSet s = magicdb.GetSet(setId);
+
                     return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
                         "/blocks/" + s.Block + "/cards");
                 }
 
-                return View["NoCards", model];
+                model.Information.Add("You have no cards yet in your library. Browse the sets and start adding cards Planeswalker!");
+                return View["Page", model];
             };
         }
     }

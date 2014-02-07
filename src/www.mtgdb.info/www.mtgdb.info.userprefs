@@ -1,18 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/MyCards.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/_Layout.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Models/Views/ForgotModel.cs" Line="6" Column="6" />
-      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="138" Column="62" />
-      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="15" Column="7" />
-      <File FileName="www.mtgdb.info/Views/Logon/Forgot.cshtml" Line="10" Column="114" />
-      <File FileName="www.mtgdb.info/Models/Views/LogonModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/Email.cs" Line="14" Column="71" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="84" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="19" Column="63" />
-      <File FileName="www.mtgdb.info/Content/javascript/mtgdb.info.js" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="11" Column="39" />
-      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="45" Column="45" />
+      <File FileName="www.mtgdb.info/Views/Page.cshtml" Line="7" Column="92" />
+      <File FileName="www.mtgdb.info/Models/Views/PageModel.cs" Line="23" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="109" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

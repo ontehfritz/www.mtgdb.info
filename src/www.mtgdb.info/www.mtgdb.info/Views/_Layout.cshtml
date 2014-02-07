@@ -71,36 +71,67 @@
       </nav>
   </div>
 </div>
+<div class="container">
+@if(@Model.Information != null && @Model.Information.Count > 0)
+{
+    <div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <ul>
+    @foreach(var info in @Model.Information){
+        <li>
+        @info
+        </li>
+    }
+    </ul>
+    </div>
+}
+
+@if(@Model.Messages != null && @Model.Messages.Count > 0)
+{
+    <div class="alert alert-success alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <ul>
+    @foreach(var message in @Model.Messages){
+        <li>
+        @message
+        </li>
+    }
+    </ul>
+    </div>
+}
+
+@if(@Model.Warnings != null && @Model.Warnings.Count > 0)
+{
+    <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <ul>
+    @foreach(var warning in @Model.Warnings)
+    {
+        <li>
+        @warning
+        </li>
+    }
+    </ul>
+    </div>
+}
+
+@if(@Model.Errors != null && @Model.Errors.Count > 0)
+{
+    <div class="alert alert-danger alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <ul>
+    @foreach(var error in @Model.Errors){
+        <li>
+        @error
+        </li>
+    }
+    </ul>
+    </div>
+}
+</div>
+
 <div class="container" style="background-color:black;width:100%;margin-top:-20px;">
-        @if(@Model.Messages != null && @Model.Messages.Count > 0)
-        {
-            <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <ul>
-            @foreach(var message in @Model.Messages){
-                <li>
-                @message
-                </li>
-            }
-            </ul>
-            </div>
-        }
-
-        @if(@Model.Errors != null && @Model.Errors.Count > 0)
-        {
-            <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <ul>
-            @foreach(var error in @Model.Errors){
-                <li>
-                @error
-                </li>
-            }
-            </ul>
-            </div>
-        }
-
-        @RenderSection("Top", required: false)
+    @RenderSection("Top", required: false)
 </div>
 <br />
 <div class="container">

@@ -9,18 +9,23 @@
 {
     <div style="color:white;margin-left:50px;">
     <h4>Your Library</h4>
-    Unique cards owned <b>@Model.TotalCards</b> of 22000. Total number of cards (including duplicates) owned: <b>@Model.TotalAmount</b>
+    Unique cards owned <b><span id="unique">@Model.TotalCards</span></b> of 22000. Total number of cards (including duplicates) owned: <b><span id="total">@Model.TotalAmount</span></b>
     </div>
 }
+<input type="hidden" id="active_set" value="@Model.SetId" />
+<input type="hidden" id="active_block" value="@Model.Block.Replace(" ",string.Empty)" />
+
 <div class="tab-container" id="outer-container">
     <ul class='etabs'>
         @foreach(KeyValuePair<string, int> k in Model.Blocks)
         {
             string c = k.Key == Model.Block ? "active" : "";
+            string blockId = k.Key.Replace(" ",string.Empty);
+
             <li class='tab @c'>
                 <a href="~/@Model.Planeswalker.UserName/blocks/@k.Key/cards/">
                     @k.Key
-                    <span class="badge">@k.Value</span>
+                    <span id="@blockId" class="badge">@k.Value</span>
                 </a>
             </li>
         }
@@ -39,7 +44,7 @@
         <li class='tab @c'>
             <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
                 <img src="@imgUrl" /> @set.Name
-                <span class="badge">@Model.Counts[set.Id]</span>
+                <span id="@set.Id" class="badge">@Model.Counts[set.Id]</span>
             </a>
         </li>
     }
@@ -50,10 +55,13 @@
         {
             string id = string.Format("card_{0}", cardInfo.Card.Id);
             string valueId = string.Format("value_{0}", cardInfo.Card.Id);
+            string blockId = Model.Block.Replace(" ", string.Empty);
+            string description = @cardInfo.Card.Description.Replace("\"","'");
+
             <input type="hidden" id="@cardInfo.Card.Id" value="@cardInfo.Amount" />
-            <div class="tool" id="@id" title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber <span id='@valueId' class='badge'><script>$('#@cardInfo.Card.Id').val()</script></span>" data-container="#@id" 
+            <div class="tool" id="@id" title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber <br />You have: <span id='@valueId' class='badge'><script>$('#@valueId').html($('#@cardInfo.Card.Id').val());</script></span>" data-container="#@id" 
             data-content=
-             "@cardInfo.Card.Description.Replace("\"","'") <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><b>You have:</b> <br /><button type='button' class='btn btn-danger btn-xs' onclick='minusCard(@cardInfo.Card.Id);'>-</button><button type='button' class='btn btn-success btn-xs' onclick='addCard(@cardInfo.Card.Id);'>+</button>" 
+             "@description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><br /><button type='button' class='btn btn-danger btn-xs' onclick='minusCard(@cardInfo.Card.Id);'>-</button><button type='button' class='btn btn-success btn-xs' onclick='addCard(@cardInfo.Card.Id);'>+</button>" 
              style="float:left;">
                 
                 <a  rel="popover" href="~/cards/@cardInfo.Card.Id" class="thumbnail">

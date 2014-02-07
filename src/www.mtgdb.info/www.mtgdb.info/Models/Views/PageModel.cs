@@ -7,6 +7,8 @@ namespace MtgDb.Info
     {
         public List<string> Messages { get; set; }
         public List<string> Errors { get; set; }
+        public List<string> Information { get; set; }
+        public List<string> Warnings { get; set; }
         public string Title { get; set; }
         public Planeswalker Planeswalker { get; set; }
 
@@ -14,6 +16,7 @@ namespace MtgDb.Info
         {
             Messages = new List<string> ();
             Errors = new List<string> ();
+            Information = new List<string> ();
         }
     }
 }
