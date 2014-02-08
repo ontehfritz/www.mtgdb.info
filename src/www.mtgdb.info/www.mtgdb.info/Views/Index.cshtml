@@ -4,35 +4,6 @@
 }
 <div class="row">
     <div id="test" class="">
-      @if(Model.Cards != null && Model.Cards.Count > 0)
-      {
-        <div class="row">
-            <div style="width:100%;text-align:center;padding:5px;">
-
-            </div>
-            <div class="panel panel-default">
-            <div class="panel-heading" style="height:50px;">
-            <ul class="pager" style="height:30px;margin:0px;">
-                <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
-                <li>@Html.Partial("_SetsDropDown", Model.SetList)</li>
-                <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
-            </ul>
-            </div>
-            <div class="panel-body">
-            @Html.Partial("_Cards", Model.Cards.ToArray())
-            </div>
-            <div class="panel-footer">
-            <ul class="pager">
-                <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
-                <li>Page @Model.Page</li>
-                <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
-            </ul>
-            </div>
-            </div>
-        </div>
-      }
-      else
-      {
         <div class="jumbotron" 
         style="background-image:url('content/images/main.png');background-repeat:no-repeat;background-size: cover;border: 1px solid black;">
         <h1>M:tgDb <small>[ALPHA]</small></h1>
@@ -69,8 +40,6 @@
                 <p><a class="btn btn-default" href="http://api.mtgdb.info" role="button">View API &raquo;</a></p>
             </div><!--/span-->
         </div><!--/row-->
-    
-        }
     </div><!--/span-->
 
     <div id="sidebar">

@@ -19,10 +19,12 @@
         </a>
         @if(@Html.CurrentUser != null)
         {
-            <button type="button" class="btn btn-danger" onclick="minusCard(@cardInfo.Card.Id);">-</button>
-            <input id="@cardInfo.Card.Id" type="text" style="width:30px;" onkeyup="changeAmount(@cardInfo.Card.Id);"
-            placeholder="0" value="@cardInfo.Amount"/>
-            <button type="button" class="btn btn-success" onclick="addCard(@cardInfo.Card.Id);">+</button>
+            <div style="margin-top:-15px;padding-bottom:5px;">
+                <button type="button" class="btn btn-danger" onclick="minusCard(@cardInfo.Card.Id);">-</button>
+                <input id="@cardInfo.Card.Id" type="text" style="width:30px;" onkeyup="changeAmount(@cardInfo.Card.Id);"
+                placeholder="0" value="@cardInfo.Amount"/>
+                <button type="button" class="btn btn-success" onclick="addCard(@cardInfo.Card.Id);">+</button>
+            </div>
         }
         </div>
     </div>

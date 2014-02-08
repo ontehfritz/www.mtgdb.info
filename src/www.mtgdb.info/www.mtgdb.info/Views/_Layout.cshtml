@@ -84,6 +84,8 @@
     }
     </ul>
     </div>
+    <br />
+    <br />
 }
 
 @if(@Model.Messages != null && @Model.Messages.Count > 0)
@@ -98,6 +100,8 @@
     }
     </ul>
     </div>
+    <br />
+    <br />
 }
 
 @if(@Model.Warnings != null && @Model.Warnings.Count > 0)
@@ -113,6 +117,8 @@
     }
     </ul>
     </div>
+    <br />
+    <br />
 }
 
 @if(@Model.Errors != null && @Model.Errors.Count > 0)
@@ -129,7 +135,6 @@
     </div>
 }
 </div>
-
 <div class="container" style="background-color:black;width:100%;margin-top:-20px;">
     @RenderSection("Top", required: false)
 </div>

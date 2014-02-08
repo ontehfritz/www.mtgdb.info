@@ -116,7 +116,7 @@ namespace MtgDb.Info
                 model.NextPage = page + 1;
                 model.PrevPage = page > 1 ? page - 1 : page;
 
-                return View["Index", model];
+                return View["Book", model];
             };
 
             Get ["/home"] = parameters => {

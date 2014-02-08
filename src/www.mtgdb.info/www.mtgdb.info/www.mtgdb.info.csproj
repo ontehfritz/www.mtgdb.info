@@ -147,5 +147,6 @@
     <None Include="Views\MyCards.cshtml" />
     <None Include="Views\Logon\Forgot.cshtml" />
     <None Include="Views\Page.cshtml" />
+    <None Include="Views\Book.cshtml" />
   </ItemGroup>
 </Project>
