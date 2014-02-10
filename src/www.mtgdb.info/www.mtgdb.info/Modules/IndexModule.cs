@@ -27,6 +27,7 @@ namespace MtgDb.Info
                 SetsModel model = new SetsModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Sets = magicdb.GetSets();
+                model.ActiveMenu = "sets";
 
                 if(model.Planeswalker != null)
                 {
@@ -42,6 +43,7 @@ namespace MtgDb.Info
                 model.Card = magicdb.GetCard((int)parameters.id);
                 model.Prints = magicdb.GetCards(model.Card.Name);
                 model.Page = (model.Card.SetNumber / _pageSize) + 1;
+                model.ActiveMenu = "sets";
 
                 if(model.Planeswalker != null)
                 {
@@ -65,6 +67,7 @@ namespace MtgDb.Info
                 IndexModel model = new IndexModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 string setId = (string)parameters.id;
+                model.ActiveMenu = "sets";
 
                 int page = 1; 
 

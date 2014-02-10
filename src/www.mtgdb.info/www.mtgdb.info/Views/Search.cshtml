@@ -30,11 +30,15 @@ else
 {
     foreach(CardInfo card in Model.Cards)
     {
-        string color = card.Amount > 0 ? "#02F717" : "white";
-
+        string color = card.Amount > 0 ? "" : "dontown";
+        if(Model.Planeswalker == null)
+        {
+            color = "";
+        }
+       
         <div class="results">
         <div style="height:50px;text-align:center;"><b>@card.Card.Name</b></div>
-        <a href="~cards/@card.Card.Id" class="thumbnail" style="background-color: @color;">
+        <a href="~cards/@card.Card.Id" class="thumbnail @color">
             <img src="@card.Card.CardImage" style="width:111px;height:155px;"/>
         </a>
         @card.Card.CardSetName

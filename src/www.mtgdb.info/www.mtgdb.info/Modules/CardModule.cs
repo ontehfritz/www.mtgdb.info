@@ -31,6 +31,7 @@ namespace MtgDb.Info
 
             Get ["/{planeswalker}/blocks/{block}/cards/{setId?}"] = parameters => {
                 PlaneswalkerModel model = new PlaneswalkerModel();
+                model.ActiveMenu = "mycards";
 
                 string setId = (string)parameters.setId;
                 model.Block = (string)parameters.block;
@@ -123,6 +124,7 @@ namespace MtgDb.Info
 
             Get ["/{planeswalker}/cards"] = parameters => {
                 PageModel model = new PageModel();
+                model.ActiveMenu = "mycards";
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 

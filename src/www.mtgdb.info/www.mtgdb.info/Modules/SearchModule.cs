@@ -16,6 +16,7 @@ namespace MtgDb.Info
             Get ["/search"] = parameters => {
                 SearchModel model = new SearchModel();
                 model.Planeswalker = ((Planeswalker)this.Context.CurrentUser);
+                model.ActiveMenu = "search";
 
                 return View["Search", model];
             };
@@ -25,6 +26,7 @@ namespace MtgDb.Info
                 model.Planeswalker = ((Planeswalker)this.Context.CurrentUser);
                 UserCard [] walkerCards = null;
                 Card[] cards = magicdb.Search(model.Term);
+                model.ActiveMenu = "search";
 
                 cards = cards
                     .AsEnumerable()

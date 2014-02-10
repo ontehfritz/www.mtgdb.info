@@ -11,6 +11,7 @@ namespace MtgDb.Info
         public List<string> Warnings { get; set; }
         public string Title { get; set; }
         public Planeswalker Planeswalker { get; set; }
+        public string ActiveMenu { get; set; }
 
         public PageModel ()
         {
