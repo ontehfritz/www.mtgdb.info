@@ -43,6 +43,21 @@ namespace MtgDb.Info
                     repository.RemovePlaneswalker(model.Planeswalker.Id);
                 }
 
+                if(Request.Form.ChangePassword != null)
+                {
+                    if(model.Password != null && model.ConfirmPassword != null)
+                    {
+                        if(model.Password != model.ConfirmPassword)
+                        {
+                            ssa.ChangePassword(model.Planeswalker.AuthToken, model.Password);
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+
                 return View["Logon/Settings",model];
             };
            
@@ -55,6 +70,14 @@ namespace MtgDb.Info
 
             Post["/logon"] = parameters => {
                 LogonModel model = this.Bind<LogonModel>();
+                var results = this.Validate(model);
+
+                if(!results.IsValid)
+                {
+                    model.Errors = ErrorUtility.GetValidationErrors(results);
+                    return View["Logon/Logon", model];
+                }
+
                 model.Errors.Add("Password or/and Username is incorrect.");
 
                 User user = null;

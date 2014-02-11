@@ -1,4 +1,5 @@
 using System;
+using FluentValidation;
 
 namespace MtgDb.Info
 {
@@ -12,6 +13,16 @@ namespace MtgDb.Info
         public LogonModel () : base()
         {
 
+        }
+    }
+
+    public class LogonValidator : AbstractValidator<LogonModel>
+    {
+        public LogonValidator()
+        {
+            RuleFor(logon => logon.Email).NotEmpty();
+            RuleFor(logon => logon.Email).EmailAddress();
+            RuleFor(logon => logon.Secret).NotEmpty();
         }
     }
 }

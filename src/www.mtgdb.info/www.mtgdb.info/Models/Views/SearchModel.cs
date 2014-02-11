@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using FluentValidation;
 
 namespace MtgDb.Info
 {
@@ -10,6 +11,14 @@ namespace MtgDb.Info
 
         public SearchModel(){
             Cards = new List<CardInfo> ();
+        }
+    }
+
+    public class SearchValidator : AbstractValidator<SearchModel>
+    {
+        public SearchValidator()
+        {
+            RuleFor(search => search.Term).NotEmpty();
         }
     }
 }
