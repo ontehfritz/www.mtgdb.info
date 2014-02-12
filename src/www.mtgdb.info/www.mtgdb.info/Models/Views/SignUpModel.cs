@@ -20,6 +20,7 @@ namespace MtgDb.Info
     {
         public SignUpValidator()
         {
+            RuleFor(signup => signup.UserName).NotEmpty();
             RuleFor(signup => signup.Email).NotEmpty();
             RuleFor(signup => signup.Email).EmailAddress();
             RuleFor(signup => signup.Secret).NotEmpty();

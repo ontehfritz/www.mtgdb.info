@@ -20,8 +20,7 @@ namespace MtgDb.Info
     {
         public LogonValidator()
         {
-            RuleFor(logon => logon.Email).NotEmpty();
-            RuleFor(logon => logon.Email).EmailAddress();
+            RuleFor(logon => logon.UserName).NotEmpty();
             RuleFor(logon => logon.Secret).NotEmpty();
         }
     }

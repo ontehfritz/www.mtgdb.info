@@ -4,6 +4,7 @@
 @foreach(var cardInfo in Model)
 {
     string color = cardInfo.Amount > 0 ? "" : "dontown";
+    string description = cardInfo.Card.Description.Replace("\"","'");
 
     if(this.Html.CurrentUser == null)
     {
@@ -14,7 +15,7 @@
         <div style="text-align:center;">
         <a href="~/cards/@cardInfo.Card.Id" class="thumbnail">
             <img id="img_@cardInfo.Card.Id" class="tool @color" src="@cardInfo.Card.CardImage" 
-            data-toggle="tooltip" data-placement="left" title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber<br /> @cardInfo.Card.Description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
+            data-toggle="tooltip" data-placement="left" title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber<br /> @description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
             data-html="true" />
         </a>
         @if(@Html.CurrentUser != null)

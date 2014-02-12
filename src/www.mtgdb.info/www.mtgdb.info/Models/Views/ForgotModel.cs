@@ -1,4 +1,5 @@
 using System;
+using FluentValidation;
 
 namespace MtgDb.Info
 {
@@ -8,6 +9,15 @@ namespace MtgDb.Info
 
         public ForgotModel (): base()
         {
+        }
+    }
+
+    public class ForgotValidator : AbstractValidator<SignupModel>
+    {
+        public ForgotValidator()
+        {
+            RuleFor(signup => signup.Email).NotEmpty();
+            RuleFor(signup => signup.Email).EmailAddress();
         }
     }
 }

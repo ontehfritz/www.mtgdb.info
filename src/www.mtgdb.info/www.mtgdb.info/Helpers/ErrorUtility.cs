@@ -12,7 +12,10 @@ namespace MtgDb.Info
 
             foreach(var e in result.Errors)
             {
-                errors.Add (e.Value);
+                foreach(var message in e.Value)
+                {
+                    errors.Add (message.ErrorMessage);
+                }
             }
 
             return errors;

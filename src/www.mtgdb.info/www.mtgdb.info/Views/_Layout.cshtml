@@ -95,7 +95,7 @@
       </nav>
   </div>
 </div>
-<div class="container">
+<div class="container" style="background-color:black;width:100%;margin-top:-20px;">
 @if(@Model.Information != null && @Model.Information.Count > 0)
 {
     <div class="alert alert-info alert-dismissable">
@@ -158,9 +158,7 @@
     </ul>
     </div>
 }
-</div>
-<div class="container" style="background-color:black;width:100%;margin-top:-20px;">
-    @RenderSection("Top", required: false)
+@RenderSection("Top", required: false)
 </div>
 <br />
 <div class="container">

@@ -130,6 +130,7 @@
     <Compile Include="Models\Views\PlaneswalkerModel.cs" />
     <Compile Include="Models\Views\ForgotModel.cs" />
     <Compile Include="Helpers\Email.cs" />
+    <Compile Include="Models\Views\BookModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

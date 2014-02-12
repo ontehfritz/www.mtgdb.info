@@ -64,7 +64,7 @@ namespace MtgDb.Info
             };
           
             Get ["/sets/{id}"] = parameters => {
-                IndexModel model = new IndexModel();
+                BookModel model = new BookModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 string setId = (string)parameters.id;
                 model.ActiveMenu = "sets";
@@ -129,8 +129,7 @@ namespace MtgDb.Info
                 return View["Index", model];
             };
 
-           
-
+          
             Get ["/{planeswalker}"] = parameters => {
                 PlaneswalkerModel model = new PlaneswalkerModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
