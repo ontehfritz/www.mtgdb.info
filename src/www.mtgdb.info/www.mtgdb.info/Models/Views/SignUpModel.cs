@@ -16,16 +16,16 @@ namespace MtgDb.Info
         }
     }
 
-    public class SignUpValidator : AbstractValidator<SignupModel>
+    public class SignupValidator : AbstractValidator<SignupModel>
     {
-        public SignUpValidator()
+        public SignupValidator()
         {
             RuleFor(signup => signup.UserName).NotEmpty();
             RuleFor(signup => signup.Email).NotEmpty();
             RuleFor(signup => signup.Email).EmailAddress();
             RuleFor(signup => signup.Secret).NotEmpty();
             RuleFor(signup => signup.ConfirmSecret).Must((signup, confirmSecret) => 
-                confirmSecret == signup.Secret).WithMessage("Passwords do not match.");
+                confirmSecret == signup.Secret).WithMessage("Password and Confirmation password do not match.");
         }
     }
 }

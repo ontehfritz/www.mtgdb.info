@@ -17,7 +17,6 @@ namespace MtgDb.Info
             SetList = new CardSetList ();
             Cards = new List<CardInfo> ();
         }
-
     }
 
     public class CardSetList

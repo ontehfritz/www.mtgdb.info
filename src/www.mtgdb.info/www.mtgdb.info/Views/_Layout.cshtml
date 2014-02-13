@@ -108,8 +108,6 @@
     }
     </ul>
     </div>
-    <br />
-    <br />
 }
 
 @if(@Model.Messages != null && @Model.Messages.Count > 0)
@@ -124,8 +122,6 @@
     }
     </ul>
     </div>
-    <br />
-    <br />
 }
 
 @if(@Model.Warnings != null && @Model.Warnings.Count > 0)
@@ -141,8 +137,6 @@
     }
     </ul>
     </div>
-    <br />
-    <br />
 }
 
 @if(@Model.Errors != null && @Model.Errors.Count > 0)
@@ -165,7 +159,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; SuperSimpleSuperRad (Triple S Rad) 2013</p>
+            <p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/about">About</a></p>
         </footer>
     </div><!--/.container-->
     <!-- Bootstrap core JavaScript

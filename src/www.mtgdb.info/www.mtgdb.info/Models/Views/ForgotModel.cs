@@ -12,12 +12,12 @@ namespace MtgDb.Info
         }
     }
 
-    public class ForgotValidator : AbstractValidator<SignupModel>
+    public class ForgotValidator : AbstractValidator<ForgotModel>
     {
         public ForgotValidator()
         {
-            RuleFor(signup => signup.Email).NotEmpty();
-            RuleFor(signup => signup.Email).EmailAddress();
+            RuleFor(f => f.Email).NotEmpty();
+            RuleFor(f => f.Email).EmailAddress();
         }
     }
 }

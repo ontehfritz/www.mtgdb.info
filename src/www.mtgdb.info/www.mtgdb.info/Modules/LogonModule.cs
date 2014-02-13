@@ -34,27 +34,66 @@ namespace MtgDb.Info
                 {
                     model.Planeswalker.Profile.Email = model.Email;
                     model.Planeswalker.Profile.Name = model.Name;
-                    model.Planeswalker = repository.UpdatePlaneswalker(model.Planeswalker);
+
+                    try
+                    {
+                        model.Planeswalker = repository.UpdatePlaneswalker(model.Planeswalker);
+                    }
+                    catch(Exception e)
+                    {
+                        model.Errors.Add("Could not update account");
+                        model.Errors.Add(e.Message);
+                    }
                 }
 
                 if(Request.Form.Delete != null)
                 {
-                    ssa.Disable(model.Planeswalker.AuthToken);
-                    repository.RemovePlaneswalker(model.Planeswalker.Id);
+                    try
+                    {
+                        if(model.Yes)
+                        {
+                            ssa.Disable(model.Planeswalker.AuthToken);
+                            repository.RemovePlaneswalker(model.Planeswalker.Id);
+                            return this.LogoutAndRedirect("/");
+                        }
+                        else
+                        {
+                            model.Errors.Add("You must check, 'Yes, I know'. To delete.");
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        model.Errors.Add("Account could not be deleted");
+                        model.Errors.Add(e.Message);
+                    }
+
                 }
 
                 if(Request.Form.ChangePassword != null)
                 {
                     if(model.Password != null && model.ConfirmPassword != null)
                     {
-                        if(model.Password != model.ConfirmPassword)
+                        if(model.Password == model.ConfirmPassword)
                         {
-                            ssa.ChangePassword(model.Planeswalker.AuthToken, model.Password);
+                            try
+                            {
+                                ssa.ChangePassword(model.Planeswalker.AuthToken, model.Password);
+                                model.Messages.Add("Password successfully changed.");
+                            }
+                            catch(Exception e)
+                            {
+                                model.Errors.Add("Password cannot be changed.");
+                                model.Errors.Add(e.Message);
+                            }  
+                        }
+                        else
+                        {
+                            model.Errors.Add("Password and Confirmation Password do not match.");
                         }
                     }
                     else
                     {
-
+                        model.Errors.Add("Password and Confirmation Password must not be blank.");
                     }
                 }
 
@@ -139,11 +178,6 @@ namespace MtgDb.Info
                 return this.LogoutAndRedirect((string)Request.Query.Url);
             };
 
-            Get ["/signup"] = parameters => {
-                SignupModel model = new SignupModel();
-                return View["signup", model];
-            };
-
             Get ["/forgot"] = parameters => {
                 ForgotModel model = new ForgotModel();
                 return View["Forgot", model];
@@ -154,7 +188,6 @@ namespace MtgDb.Info
 
                 string subject = "MtgDb.info: Password reset request.";
                 string body = "You have requested a password reset. You new password is: {0}";
-
 
                 try
                 {

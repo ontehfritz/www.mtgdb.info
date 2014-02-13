@@ -15,6 +15,18 @@ namespace MtgDb.Info
 
         public IndexModule ()
         {
+            Get ["/about"] = parameters => {
+                PageModel model = new PageModel();
+
+                return View["about", model];
+            };
+
+            Get ["/terms"] = parameters => {
+                PageModel model = new PageModel();
+              
+                return View["Terms", model];
+            };
+
             Get ["/"] = parameters => {
                 IndexModel model = new IndexModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;

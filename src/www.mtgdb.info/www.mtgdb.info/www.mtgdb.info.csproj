@@ -149,5 +149,7 @@
     <None Include="Views\Logon\Forgot.cshtml" />
     <None Include="Views\Page.cshtml" />
     <None Include="Views\Book.cshtml" />
+    <None Include="Views\Terms.cshtml" />
+    <None Include="Views\About.cshtml" />
   </ItemGroup>
 </Project>
