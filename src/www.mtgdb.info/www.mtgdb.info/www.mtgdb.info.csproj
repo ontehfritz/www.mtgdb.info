@@ -51,12 +51,6 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSimpleAuthCSharp">
-      <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="MtgDb.Info.Driver">
-      <HintPath>bin\MtgDb.Info.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.22.0\lib\net40\Nancy.dll</HintPath>
     </Reference>
@@ -71,6 +65,12 @@
     </Reference>
     <Reference Include="Nancy.ViewEngines.Razor">
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.22.0\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSimpleAuthCSharp">
+      <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MtgDb.Info.Driver">
+      <HintPath>bin\MtgDb.Info.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -131,6 +131,7 @@
     <Compile Include="Models\Views\ForgotModel.cs" />
     <Compile Include="Helpers\Email.cs" />
     <Compile Include="Models\Views\BookModel.cs" />
+    <Compile Include="Helpers\Render.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

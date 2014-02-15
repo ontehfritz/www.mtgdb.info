@@ -24,7 +24,7 @@
     </div>
     <div style="float:left;margin-left:10px;width:700px;">
     <table class="table-hover">
-    <tr>
+    <tr style="padding:10px;">
         <td><b>Multiverse #:</b></td>
         <td>@Model.Card.Id</td>
     </tr>
@@ -36,17 +36,17 @@
         <td><b>Color(s):</b></td>
         <td>
         @foreach(string color in @Model.Card.Colors){
-                @color <br />
+            @Html.Raw(RenderHtml.Color(color))
         }
         </td>
     </tr>
     <tr>
         <td><b>Mana Cost:</b></td>
-        <td>@Model.Card.ManaCost</td>
+        <td>@Html.Raw(RenderHtml.Mana(Model.Card.ManaCost))</td>
     </tr>
     <tr>
         <td><b>Converted Cost:</b></td>
-        <td>@Model.Card.ConvertedManaCost</td>
+        <td><span class="badge">@Model.Card.ConvertedManaCost</span></td>
     </tr>
     <tr>
         <td><b>Type:</b></td>
@@ -58,11 +58,11 @@
     </tr>
     <tr>
         <td><b>Power:</b></td>
-        <td>@Model.Card.Power</td>
+        <td><span class="label label-success">@Model.Card.Power</span></td>
     </tr>
     <tr>
         <td><b>Toughness:</b></td>
-        <td>@Model.Card.Toughness</td>
+        <td><span class="label label-primary">@Model.Card.Toughness</span></td>
     </tr>
     <tr>
         <td><b>Artist:</b></td>

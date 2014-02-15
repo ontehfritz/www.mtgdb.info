@@ -8,7 +8,7 @@ namespace MtgDb.Info
 {
     public class IndexModule : NancyModule
     {
-        public Db magicdb = new Db ();
+        public Db magicdb = new Db (true);
         //public Db magicdb = new Db ("http://127.0.0.1:8082/");
         public IRepository repository = new MongoRepository ("mongodb://localhost");
         private const int _pageSize = 9;

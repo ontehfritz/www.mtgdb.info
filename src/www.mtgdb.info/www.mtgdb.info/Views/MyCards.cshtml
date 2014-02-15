@@ -9,7 +9,7 @@
 {
     <div style="color:white;margin-left:50px;">
     <h4>Your Library</h4>
-    Unique cards owned <b><span id="unique">@Model.TotalCards</span></b> of 22000. Total number of cards (including duplicates) owned: <b><span id="total">@Model.TotalAmount</span></b>
+    Unique cards owned <b><span id="unique">@Model.TotalCards</span></b> of 22200. Total number of cards (including duplicates) owned: <b><span id="total">@Model.TotalAmount</span></b>
     </div>
 }
 <input type="hidden" id="active_set" value="@Model.SetId" />
@@ -40,7 +40,7 @@
         string show = Model.Show && set.Id == Model.SetId ? "" : 
         !Model.Show && set.Id == Model.SetId ? "?show=true" : "";
 
-        string imgUrl = string.Format("http://api.mtgdb.info/content/set_images/symbols/{0}_sym.gif",set.Id.ToLower());
+        string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
         <li class='tab @c'>
             <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
                 <img src="@imgUrl" /> @set.Name

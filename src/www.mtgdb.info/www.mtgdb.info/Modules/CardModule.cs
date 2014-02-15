@@ -11,7 +11,7 @@ namespace MtgDb.Info
     public class CardModule : NancyModule
     {
         public IRepository repository = new MongoRepository ("mongodb://localhost");
-        public Db magicdb = new Db ();
+        public Db magicdb = new Db (true);
 
 
         public CardModule ()

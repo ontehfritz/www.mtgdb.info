@@ -156,8 +156,12 @@ namespace MtgDb.Info
 
             Dictionary<string, object> query = new Dictionary<string, object> ();
             query.Add ("_id", id);
-           
+
+            MongoCollection<UserCard> cards = database.GetCollection<UserCard> ("user_cards");
+            var rmCards = Query<UserCard>.EQ (e => e.PlaneswalkerId, id);
+
             collection.Remove(new QueryDocument(query));
+            cards.Remove (rmCards);
         }
 
         public Profile GetProfile(Guid id)

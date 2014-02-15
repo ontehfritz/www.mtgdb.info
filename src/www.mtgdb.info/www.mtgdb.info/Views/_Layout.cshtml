@@ -156,12 +156,18 @@
 </div>
 <br />
 <div class="container">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/about">About</a></p>
-        </footer>
-    </div><!--/.container-->
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/about">About</a>
+        - Version: 0.1a
+        </p>
+        <p><small>All card text and images provided are copyrighted by  
+        <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>. 
+        The api and/or web applications on this domain are not in anyway affiliated with 
+        <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>. Thank you for creating such an awesome game!</small></p>
+    </footer>
+</div><!--/.container-->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

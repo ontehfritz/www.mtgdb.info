@@ -91,6 +91,12 @@ position: relative;
     list-style:none;
 }
 
+.symbol {
+    width:  20px;
+    height: 20px;
+}
+
+
 /* navbar */
 .navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}

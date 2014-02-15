@@ -1,23 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Models/Views/IndexModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/_Layout.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Page.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/PageModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="97" Column="7" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="71" Column="17" />
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/IndexModel.cs" Line="17" Column="41" />
-      <File FileName="www.mtgdb.info/Models/Views/ForgotModel.cs" Line="25" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_SetsDropDown.cshtml" Line="24" Column="27" />
-      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="59" Column="79" />
-      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="74" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="11" Column="20" />
-      <File FileName="www.mtgdb.info/Models/CardInfo.cs" Line="8" Column="40" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/BookModel.cs" Line="22" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Terms.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/About.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="144" Column="55" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
