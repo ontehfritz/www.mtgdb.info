@@ -40,8 +40,10 @@
         string show = Model.Show && set.Id == Model.SetId ? "" : 
         !Model.Show && set.Id == Model.SetId ? "?show=true" : "";
 
+        string style = Model.Show && set.Id == Model.SetId ? "style='background-color:#E5FAE3;'" : "";
+
         string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-        <li class='tab @c'>
+        <li class='tab @c' @style >
             <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
                 <img src="@imgUrl" /> @set.Name
                 <span id="@set.Id" class="badge">@Model.Counts[set.Id]</span>
@@ -57,9 +59,10 @@
             string valueId = string.Format("value_{0}", cardInfo.Card.Id);
             string blockId = Model.Block.Replace(" ", string.Empty);
             string description = @cardInfo.Card.Description.Replace("\"","'");
+            string name = @cardInfo.Card.Name.Replace("\"","'");
 
             <input type="hidden" id="@cardInfo.Card.Id" value="@cardInfo.Amount" />
-            <div class="tool" id="@id" title="<b>@cardInfo.Card.Name</b> #@cardInfo.Card.SetNumber <br />You have: <span id='@valueId' class='badge'><script>$('#@valueId').html($('#@cardInfo.Card.Id').val());</script></span>" data-container="#@id" 
+            <div class="tool" id="@id" title="<b>@name</b> #@cardInfo.Card.SetNumber <br />You have: <span id='@valueId' class='badge'><script>$('#@valueId').html($('#@cardInfo.Card.Id').val());</script></span>" data-container="#@id" 
             data-content=
              "@description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><br /><button type='button' class='btn btn-danger btn-xs' onclick='minusCard(@cardInfo.Card.Id);'>-</button><button type='button' class='btn btn-success btn-xs' onclick='addCard(@cardInfo.Card.Id);'>+</button>" 
              style="float:left;">
@@ -67,11 +70,11 @@
                 <a  rel="popover" href="~/cards/@cardInfo.Card.Id" class="thumbnail">
                 @if(cardInfo.Amount > 0)
                 {
-                    <img src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
+                    <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
                 }
                 else
                 {
-                    <img src="@cardInfo.Card.CardImage" class="dontown" style="width:111px;height:155px;" />
+                    <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" class="dontown" style="width:111px;height:155px;" />
                 }
                 </a>
            

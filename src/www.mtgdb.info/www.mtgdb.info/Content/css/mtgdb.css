@@ -6,6 +6,7 @@
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+  background-image:url('../images/bg.png');
 }
 body {
   padding-top: 0px;
@@ -31,10 +32,6 @@ height: 15px;
 margin: -5px 0px 0px 0px;
 position: absolute;
 cursor: pointer;
-}
-
-#down {
-background: url(http://i.imgur.com/JTxva6m.png) no-repeat 0px -45px;
 }
 
 #button {
@@ -96,7 +93,20 @@ position: relative;
     height: 20px;
 }
 
+.t_section{
+    background-image:url('../images/dark_fish_skin.png');
+}
 
+.book{
+    background-image:url('../images/vertical_cloth.png');
+}
+
+#top_section {
+    background-color:black;
+    width:100%;
+    margin-top:-20px;
+    background-image:url('../images/dark_fish_skin.png');
+}
 /* navbar */
 .navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}

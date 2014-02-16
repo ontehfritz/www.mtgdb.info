@@ -3,27 +3,28 @@
   Layout = "_Layout.cshtml";
 }
 @section Top{
-<div class="row container" style="color:white;margin-left:20px;">
-  <div class="col-lg-6">
-  <form action="/search" method="post">
-    <h3>Card Search:</h3>
-    <div class="input-group">
-      <input type="text" name="Term" class="form-control" placeholder="Enter name of card or part of card name" required autofocus/>
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Search</button>
-      </span>
-    </div><!-- /input-group -->
-  </form>
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-@if(Model.Cards != null && Model.Cards.Count > 0)
-{
-    <h4 style="color:white;margin-left:50px;"><small>Searched for:</small> @Model.Term <small>Results:</small> @Model.Cards.Count</h4>
-}
-else
-{
-    <br />
-}
+    <div class="row container" style="color:white;margin-left:20px;">
+      <div class="col-lg-6">
+      <form action="/search" method="post">
+        <h3><span class="glyphicon glyphicon-search">
+                        </span> Card Search:</h3>
+        <div class="input-group">
+          <input type="text" name="Term" class="form-control" placeholder="Enter name of card or part of card name" required autofocus/>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Search</button>
+          </span>
+        </div><!-- /input-group -->
+      </form>
+      </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+    @if(Model.Cards != null && Model.Cards.Count > 0)
+    {
+        <h4 style="color:white;margin-left:50px;"><small>Searched for:</small> @Model.Term <small>Results:</small> @Model.Cards.Count</h4>
+    }
+    else
+    {
+        <br />
+    }
 }
 
 @if(Model.Cards != null && Model.Cards.Count > 0)

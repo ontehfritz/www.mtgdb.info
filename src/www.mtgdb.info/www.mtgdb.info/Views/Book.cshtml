@@ -5,40 +5,50 @@
 
 <div class="row">
     <div id="test" class="">
-      @if(Model.Cards != null && Model.Cards.Count > 0)
-      {
+      
         <div class="row">
-            <div class="panel panel-default" style="background-color:black;">
+            <div class="panel panel-default book" style="background-color:black;">
             <div class="panel-heading" style="height:50px;">
             <ul class="pager" style="height:30px;margin:0px;">
                 <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
                 <li>@Html.Partial("_SetsDropDown", Model.SetList)</li>
-                <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
+                @if(Model.Cards != null && Model.Cards.Count > 0)
+                {
+                    <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
+                }
+                else
+                {
+                    <li class="next"><a href="#">End</a></li>
+                }
             </ul>
             </div>
             <div class="panel-body">
-            @Html.Partial("_Cards", Model.Cards.ToArray())
+            @if(Model.Cards != null && Model.Cards.Count > 0)
+            {
+                @Html.Partial("_Cards", Model.Cards.ToArray())
+            }
+            else
+            {
+                <div class="alert alert-info alert-dismissable">
+                    End of set or there are no cards available for this set.
+                </div>
+            }
             </div>
             <div class="panel-footer">
             <ul class="pager">
                 <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
                 <li>Page @Model.Page</li>
-                <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
+                @if(Model.Cards != null && Model.Cards.Count > 0)
+                {
+                    <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
+                }
+                else
+                {
+                    <li class="next"><a href="#">End</a></li>
+                }
             </ul>
             </div>
             </div>
         </div>
-      }
-      else
-      {
-        <div class="alert alert-info alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <ul>
-            <li>
-            There are no cards available for this set. 
-            </li>
-        </ul>
-        </div>
-      }
     </div><!--/span-->
 </div><!--/row-->

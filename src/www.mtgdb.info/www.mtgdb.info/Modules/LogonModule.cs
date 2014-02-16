@@ -66,7 +66,6 @@ namespace MtgDb.Info
                         model.Errors.Add("Account could not be deleted");
                         model.Errors.Add(e.Message);
                     }
-
                 }
 
                 if(Request.Form.ChangePassword != null)
@@ -102,6 +101,7 @@ namespace MtgDb.Info
            
             Get["/logon"] = parameters => {
                 LogonModel model = new LogonModel();
+                model.ActiveMenu = "signin";
                 model.UrlRedirect = (string)Request.Query.Url;
 
                 return View["Logon/logon",model];
@@ -109,6 +109,7 @@ namespace MtgDb.Info
 
             Post["/logon"] = parameters => {
                 LogonModel model = this.Bind<LogonModel>();
+                model.ActiveMenu = "signin";
                 var results = this.Validate(model);
 
                 if(!results.IsValid)
@@ -142,12 +143,14 @@ namespace MtgDb.Info
 
             Get ["/signup"] = parameters => {
                 SignupModel model = new SignupModel();
+                model.ActiveMenu = "signin";
                 return View["signup", model];
             };
 
             Post ["/signup"] = parameters => {
                 SignupModel model = this.Bind<SignupModel>();
                 var result = this.Validate(model);
+                model.ActiveMenu = "signin";
 
                 if (!result.IsValid)
                 {
@@ -180,11 +183,13 @@ namespace MtgDb.Info
 
             Get ["/forgot"] = parameters => {
                 ForgotModel model = new ForgotModel();
+                model.ActiveMenu = "signin";
                 return View["Forgot", model];
             };
 
             Post ["/forgot"] = parameters => {
                 ForgotModel model = this.Bind<ForgotModel>();
+                model.ActiveMenu = "signin";
 
                 string subject = "MtgDb.info: Password reset request.";
                 string body = "You have requested a password reset. You new password is: {0}";

@@ -3,7 +3,7 @@
   Layout = "_Layout.cshtml";
 }
 @section Top{
-    <div style="background-color:black;width:100%;color:white;">
+    <div class="t_section" style="background-color:black;width:100%;color:white;">
     <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId?Page=@Model.Page">@Model.Card.CardSetName</a>)</small></h1>
     @if(Model.Card.Flavor != null && Model.Card.Flavor != "")
     {
@@ -54,7 +54,7 @@
     </tr>
     <tr>
         <td><b>Text:</b></td>
-        <td>@Model.Card.Description</td>
+        <td>@Html.Raw(RenderHtml.Text(@Model.Card.Description))</td>
     </tr>
     <tr>
         <td><b>Power:</b></td>

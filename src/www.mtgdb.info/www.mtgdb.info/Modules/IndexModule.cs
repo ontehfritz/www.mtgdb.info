@@ -17,12 +17,22 @@ namespace MtgDb.Info
         {
             Get ["/about"] = parameters => {
                 PageModel model = new PageModel();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
                 return View["about", model];
             };
 
+            Get ["/help"] = parameters => {
+                PageModel model = new PageModel();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.ActiveMenu = "help";
+
+                return View["help", model];
+            };
+
             Get ["/terms"] = parameters => {
                 PageModel model = new PageModel();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
               
                 return View["Terms", model];
             };
@@ -183,8 +193,6 @@ namespace MtgDb.Info
 
                 return View["Planeswalker", model];
             };
-
-
         }
     }
 }

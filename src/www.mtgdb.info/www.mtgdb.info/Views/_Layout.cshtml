@@ -38,28 +38,32 @@
                  <span class="icon-bar"></span>
                  <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">M:tgDb 
-              <img src="/content/images/logo.png" style="width:17px;height:17px;"/></a>
+              <a class="navbar-brand" href="/"> <img src="/content/images/logo.png" style="width:17px;height:17px;"/> M:tgDb 
+              </a>
           </div>
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
                 <ul class="nav navbar-nav">
                     @if(Model.ActiveMenu == "sets")
                     {
-                        <li class="active"><a href="~/sets">Sets</a></li>
+                        <li class="active"><a href="~/sets"><span class="glyphicon glyphicon-book">
+                        </span> Set Binders</a></li>
                     }
                     else
                     {
-                        <li><a href="~/sets">Sets</a></li>
+                        <li><a href="~/sets"><span class="glyphicon glyphicon-book">
+                        </span> Set Binders</a></li>
                     }
 
                     @if(Model.ActiveMenu == "search")
                     {
-                        <li class="active"><a href="~/search">Search</a></li>
+                        <li class="active"><a href="~/search"><span class="glyphicon glyphicon-search">
+                        </span> Search</a></li>
                     }
                     else
                     {
-                        <li><a href="~/search">Search</a></li>
+                        <li><a href="~/search"><span class="glyphicon glyphicon-search">
+                        </span> Search</a></li>
                     }
 
                     @if(Model.Planeswalker != null && Model.ActiveMenu == "mycards")
@@ -88,14 +92,31 @@
                 }
                 else
                 {
-                  <li><a href="~/logon?url=@Html.RenderContext.Context.Request.Path">Sign In</a></li>
+                    if(Model.ActiveMenu == "signin")
+                    {
+                        <li  class="active"><a href="~/logon?url=@Html.RenderContext.Context.Request.Path">Sign In</a></li>
+                    }
+                    else
+                    {
+                        <li><a href="~/logon?url=@Html.RenderContext.Context.Request.Path">Sign In</a></li>
+                    }
                 }
+
+                @if(Model.ActiveMenu == "help")
+                {
+                    <li class="active"><a href="~/help"><span class="glyphicon glyphicon-question-sign"></span></a></li>
+                }
+                else
+                {
+                    <li><a href="~/help"><span class="glyphicon glyphicon-question-sign"></span></a></li>
+                }
+
                 </ul>
           </div><!-- /.navbar-collapse -->
       </nav>
   </div>
 </div>
-<div class="container" style="background-color:black;width:100%;margin-top:-20px;">
+<div class="container" id="top_section">
 @if(@Model.Information != null && @Model.Information.Count > 0)
 {
     <div class="alert alert-info alert-dismissable">

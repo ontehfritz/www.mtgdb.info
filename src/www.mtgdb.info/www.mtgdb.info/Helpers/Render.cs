@@ -7,6 +7,36 @@ namespace MtgDb.Info
     public class RenderHtml
     {
        
+
+        public static string Text(string text)
+        {
+            string html = text;
+            html = html.Replace("{Tap}", "<img src='/content/images/mana/tap.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{White}", "<img src='/content/images/mana/w.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Green}", "<img src='/content/images/mana/g.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Blue}", "<img src='/content/images/mana/u.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Black}", "<img src='/content/images/mana/b.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Red}", "<img src='/content/images/mana/r.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Red or White}", "<img src='/content/images/mana/rw.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Black or Green}", "<img src='/content/images/mana/bg.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Blue or Black}", "<img src='/content/images/mana/ub.png' style='width:20px;height:20px;'/>");
+            html = html.Replace("{Green or White}", "<img src='/content/images/mana/gw.png' style='width:20px;height:20px;'/>");
+
+
+            html = html.Replace("{1}", "<span class='badge'>1</span>");
+            html = html.Replace("{2}", "<span class='badge'>2</span>");
+            html = html.Replace("{3}", "<span class='badge'>3</span>");
+            html = html.Replace("{4}", "<span class='badge'>4</span>");
+            html = html.Replace("{5}", "<span class='badge'>5</span>");
+            html = html.Replace("{6}", "<span class='badge'>6</span>");
+            html = html.Replace("{7}", "<span class='badge'>7</span>");
+            html = html.Replace("{8}", "<span class='badge'>8</span>");
+            html = html.Replace("{9}", "<span class='badge'>9</span>");
+            html = html.Replace("{Variable Colorless}", "<span class='badge'>X</span>");
+
+            return html;
+        }
+
         public static string Color(string text)
         {
             string html = text.ToLower();
@@ -47,16 +77,29 @@ namespace MtgDb.Info
             syntax.Add ("{bp}", "<img src='/content/images/mana/pb.png' class='symbol' />");
             syntax.Add ("{rp}", "<img src='/content/images/mana/pr.png' class='symbol' />");
             syntax.Add ("{gp}", "<img src='/content/images/mana/pg.png' class='symbol' />");
+            syntax.Add("{b/u}", "<img src='/content/images/mana/ub.png' class='symbol' />");
 
             string key = "";
+            string number = "";
             Stack<string> stack = new Stack<string> ();
             foreach (char c in text) 
             {
                 if (stack.Count == 0) 
                 {
-                    if (Char.IsNumber (c) || c == 'x') 
+                    if (Char.IsNumber (c)) 
                     {
-                        //todo: 89096 double digit mana cost
+                        //done: 89096 double digit mana cost
+                        number += c.ToString ();
+                        continue;
+                    }
+                    else if(number != "")
+                    {
+                        html.Append (string.Format (syntax ["#"], number));
+                        number = "";
+                    }
+
+                    if(c == 'X')
+                    {
                         html.Append (string.Format (syntax ["#"], c.ToString ().ToUpper()));
                         continue;
                     }
