@@ -19,21 +19,29 @@ namespace MtgDb.Info
 
         public IUserIdentity GetUserFromIdentifier(Guid identifier, NancyContext context)
         {
-            User ssaUser = ssa.Validate (identifier,
-                context.Request.UserHostAddress);
-
-            Planeswalker user = new Planeswalker 
+            try
             {
-                UserName = ssaUser.UserName,
-                AuthToken = ssaUser.AuthToken,
-                Email = ssaUser.Email,
-                Id = ssaUser.Id,
-                Claims = ssaUser.Claims,
-                Roles = ssaUser.Roles,
-                Profile = repository.GetProfile(ssaUser.Id)
-            };
+                User ssaUser = ssa.Validate (identifier,
+                    context.Request.UserHostAddress);
 
-            return user;
+                Planeswalker user = new Planeswalker 
+                {
+                    UserName = ssaUser.UserName,
+                    AuthToken = ssaUser.AuthToken,
+                    Email = ssaUser.Email,
+                    Id = ssaUser.Id,
+                    Claims = ssaUser.Claims,
+                    Roles = ssaUser.Roles,
+                    Profile = repository.GetProfile(ssaUser.Id)
+                };
+                return user;
+            }
+            catch(Exception e)
+            {
+                throw new Exception ("Guid: " + identifier.ToString() + " " + e.Message, e);
+            }
+                
+            return null;
         }
     }
 

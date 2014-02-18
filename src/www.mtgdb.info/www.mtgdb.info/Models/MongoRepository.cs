@@ -15,9 +15,9 @@ namespace MtgDb.Info
         private MongoClient client;
         private MongoServer server;
         private SuperSimpleAuth ssa = new SuperSimpleAuth ("mtgdb.info", 
-            "4e5844a9-6444-415d-b06d-6f29f52fbd0e"); 
+            "5e61fe35-1f96-4cf8-8f4b-54ba43e79903"); 
 
-        public Db magicdb = new Db ();
+        public Db magicdb = new Db (true);
 
         public MongoRepository (string connection)
         {

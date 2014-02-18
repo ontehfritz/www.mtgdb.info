@@ -21,9 +21,10 @@ namespace mtgdb.info
         {
             base.ConfigureApplicationContainer(container);
 
+            //this must be the same key also in MonoRepository.cs
             SuperSimpleAuth ssa = 
                 new SuperSimpleAuth ("mtgdb.info", 
-                    "4e5844a9-6444-415d-b06d-6f29f52fbd0e");
+                    "5e61fe35-1f96-4cf8-8f4b-54ba43e79903");
 
 
             container.Register<SuperSimpleAuth>(ssa);

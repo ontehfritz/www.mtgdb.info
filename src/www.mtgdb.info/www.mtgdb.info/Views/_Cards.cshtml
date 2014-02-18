@@ -1,6 +1,6 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardInfo[]>
 
-<div class="well" style="width:800px;margin-left: auto; margin-right: auto ;">
+<div class="well" id="binder" style="width:800px;margin-left: auto; margin-right: auto ;">
 @foreach(var cardInfo in Model)
 {
     string color = cardInfo.Amount > 0 ? "" : "dontown";
@@ -12,7 +12,7 @@
     }
 
     <div class="col-6 col-sm-6 col-lg-4">
-        <div style="text-align:center;">
+        <div id="card_@cardInfo.Card.Id" style="text-align:center;">
         <a href="~/cards/@cardInfo.Card.Id" class="thumbnail">
             <img id="img_@cardInfo.Card.Id" class="tool @color" src="@cardInfo.Card.CardImage" 
             data-toggle="tooltip" data-placement="left" title="<b>@name</b> #@cardInfo.Card.SetNumber<br /> @description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
