@@ -5,13 +5,16 @@
 @{
   Layout = "_Layout.cshtml";
 }
+
 @section Top
 {
     <div style="color:white;margin-left:50px;">
     <h4>Your Library</h4>
-    Unique cards owned <b><span id="unique">@Model.TotalCards</span></b> of 22200. Total number of cards (including duplicates) owned: <b><span id="total">@Model.TotalAmount</span></b>
+    Unique cards owned <b><span id="unique">@Model.TotalCards</span></b> of 22200. 
+    Total number of cards (including duplicates) owned: <b><span id="total">@Model.TotalAmount</span></b>
     </div>
 }
+
 <input type="hidden" id="active_set" value="@Model.SetId" />
 <input type="hidden" id="active_block" value="@Model.Block.Replace(" ",string.Empty)" />
 
@@ -62,20 +65,21 @@
             string name = @cardInfo.Card.Name.Replace("\"","'");
 
             <input type="hidden" id="@cardInfo.Card.Id" value="@cardInfo.Amount" />
-            <div class="tool" id="@id" title="<b>@name</b> #@cardInfo.Card.SetNumber <br />You have: <span id='@valueId' class='badge'><script>$('#@valueId').html($('#@cardInfo.Card.Id').val());</script></span>" data-container="#@id" 
+            <div class="popit" id="@id" title="<b>@name</b> #@cardInfo.Card.SetNumber <br />You have: <span id='@valueId' class='badge'><script>$('#@valueId').html($('#@cardInfo.Card.Id').val());</script></span>" data-container="#@id" 
             data-content=
              "@description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><br /><button type='button' class='btn btn-danger btn-xs' onclick='minusCard(@cardInfo.Card.Id);'>-</button><button type='button' class='btn btn-success btn-xs' onclick='addCard(@cardInfo.Card.Id);'>+</button>" 
              style="float:left;">
                 
                 <a  rel="popover" href="~/cards/@cardInfo.Card.Id" class="thumbnail">
-                @if(cardInfo.Amount > 0)
-                {
-                    <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
-                }
-                else
-                {
-                    <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" class="dontown" style="width:111px;height:155px;" />
-                }
+                    @if(cardInfo.Amount > 0)
+                    {
+                        <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
+                    }
+                    else
+                    {
+                        <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" class="dontown" 
+                                            style="width:111px;height:155px;" />
+                    }
                 </a>
            
             </div><!--/span-->
@@ -88,7 +92,7 @@
      </div>
 </div>
 <script>
-$('.tool').popover({
+$('.popit').popover({
     html: true,
     trigger: 'hover',
     placement: 'top',
@@ -139,7 +143,7 @@ $('.tool').popover({
 
         // Stop default behavior
         return false;
-    });
-   
+});
+
 </script>
 <br style="clear:both;" />

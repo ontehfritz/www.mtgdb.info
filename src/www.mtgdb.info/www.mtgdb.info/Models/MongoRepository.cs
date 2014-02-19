@@ -5,6 +5,7 @@ using MongoDB.Driver.Builders;
 using SuperSimple.Auth;
 using MongoDB.Bson;
 using MtgDb.Info.Driver;
+using System.Configuration;
 
 namespace MtgDb.Info
 {
@@ -14,8 +15,9 @@ namespace MtgDb.Info
         private MongoDatabase database;
         private MongoClient client;
         private MongoServer server;
-        private SuperSimpleAuth ssa = new SuperSimpleAuth ("mtgdb.info", 
-            "5e61fe35-1f96-4cf8-8f4b-54ba43e79903"); 
+        private SuperSimpleAuth ssa = new SuperSimpleAuth (
+            ConfigurationManager.AppSettings.Get("domain"), 
+            ConfigurationManager.AppSettings.Get("domain_key")); 
 
         public Db magicdb = new Db (true);
 

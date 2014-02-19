@@ -7,43 +7,21 @@ html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
   background-image:url('../images/bg.png');
-}
-body {
   padding-top: 0px;
+}
 
- }
 footer {
   padding: 30px 0;
 }
 
 #sidebar {
-width: 250px;
-height: 200px;
-margin: -100px 0px 0px -webkit-calc(100% - 280px);
-position: absolute;
-top: -4975px;
-background: RGBa(99, 159, 217, 0.1);
-display: block;
-}
-
-#arrow_container {
-width: 250px;
-height: 15px;
-margin: -5px 0px 0px 0px;
-position: absolute;
-cursor: pointer;
-}
-
-#button {
-width: 240px;
-margin: 5px;
-cursor: pointer;
-text-decoration: none;
-color: #999999;
-}
-
-#button:hover {
-background: RGBa(99, 159, 217, 0.4);
+    width: 250px;
+    height: 200px;
+    margin: -100px 0px 0px -webkit-calc(100% - 280px);
+    position: absolute;
+    top: -4975px;
+    background: RGBa(99, 159, 217, 0.1);
+    display: block;
 }
 
 .results{
@@ -59,21 +37,28 @@ background: RGBa(99, 159, 217, 0.4);
   background-color:#FFFBCC;
 }
 
+.binder{
+  width:800px;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+
 .scroll {
-height: 20px;
-margin: 0px 5px;
-font-family: 'Open Sans', sans-serif;
-font-weight: 400;
-font-size: 15px;
-color: #999999;
-text-align: left;
+    height: 20px;
+    margin: 0px 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #999999;
+    text-align: left;
 }
 
 .arrow {
-width: 10px;
-height: 5px;
-margin: 5px 0px 0px -webkit-calc(50% - 5px);
-position: relative;
+    width: 10px;
+    height: 5px;
+    margin: 5px 0px 0px -webkit-calc(50% - 5px);
+    position: relative;
 }
 
 .dontown {
@@ -100,6 +85,9 @@ position: relative;
 
 .t_section{
     background-image:url('../images/dark_fish_skin.png');
+    background-color:black;
+    width:100%;
+    color:white;
 }
 
 .book{
@@ -112,6 +100,31 @@ position: relative;
     margin-top:-20px;
     background-image:url('../images/dark_fish_skin.png');
 }
+
+.signin{
+    width: 325px;
+    margin-left: auto;
+    margin-right: auto ;
+    color:white;
+}
+
+.card{
+    float:left;
+    width:300px;
+    text-align:center;
+}
+
+.card_info{
+    float:left;
+    margin-left:10px;
+    width:700px;
+}
+
+.card_amount{
+    margin-top:-15px;
+    padding-bottom:5px;
+}
+
 /* navbar */
 .navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}

@@ -4,6 +4,7 @@ using SuperSimple.Auth;
 using Nancy.Authentication.Forms;
 using Nancy.ModelBinding;
 using Nancy.Validation;
+using System.Configuration;
 
 
 namespace MtgDb.Info
@@ -13,7 +14,8 @@ namespace MtgDb.Info
         //take advantage of nancy's IoC
         //see bootstrapper.cs this is where SSA gets intialized
         SuperSimpleAuth ssa; 
-        IRepository repository = new MongoRepository ("mongodb://localhost");
+        IRepository repository = 
+            new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 
         public LogonModule (SuperSimpleAuth ssa)
         {

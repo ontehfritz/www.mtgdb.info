@@ -3,6 +3,7 @@ using Nancy;
 using MtgDb.Info.Driver;
 using System.Linq;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace MtgDb.Info
 {
@@ -10,7 +11,9 @@ namespace MtgDb.Info
     {
         public Db magicdb = new Db (true);
         //public Db magicdb = new Db ("http://127.0.0.1:8082/");
-        public IRepository repository = new MongoRepository ("mongodb://localhost");
+        public IRepository repository = 
+            new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
+
         private const int _pageSize = 9;
 
         public IndexModule ()

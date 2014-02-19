@@ -3,7 +3,7 @@
   Layout = "_Layout.cshtml";
 }
 @section Top{
-    <div class="t_section" style="background-color:black;width:100%;color:white;">
+    <div class="t_section">
     <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId?Page=@Model.Page">@Model.Card.CardSetName</a>)</small></h1>
     @if(Model.Card.Flavor != null && Model.Card.Flavor != "")
     {
@@ -13,7 +13,7 @@
 }
  
 <div style="width:1200px;">
-    <div id="card_@Model.Card.Id" style="float:left;width:300px;text-align:center;">
+    <div id="card_@Model.Card.Id" class="card">
         <img src="@Model.Card.CardImage" /><br /><br />
         @if(@Model.Planeswalker != null)
         {
@@ -22,7 +22,7 @@
             <button type="button" class="btn btn-success" onclick="addCard(@Model.Card.Id);">+</button>
         }
     </div>
-    <div style="float:left;margin-left:10px;width:700px;">
+    <div class="card_info">
     <table class="table-hover">
     <tr style="padding:10px;">
         <td><b>Multiverse #:</b></td>

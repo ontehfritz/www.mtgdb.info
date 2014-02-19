@@ -34,6 +34,7 @@ namespace MtgDb.Info
                     Roles = ssaUser.Roles,
                     Profile = repository.GetProfile(ssaUser.Id)
                 };
+
                 return user;
             }
             catch(Exception e)

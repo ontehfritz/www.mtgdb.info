@@ -1,18 +1,4 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardSetList>
-<script>
-    $("#arrow_container").click( function(event){
-    event.preventDefault();
-    if ($(this).hasClass("isDown") ) {
-        $("#sidebar").animate({marginTop:"4985px"}, 200);          
-        $(this).removeClass("isDown");
-    } else {
-        $("#sidebar").animate({marginTop:"-100px"}, 200);   
-        $(this).addClass("isDown");
-    }
-    return false;
-    });
-</script>
-
 <div class="list-group">
 @foreach(var set in Model.Sets)
 {

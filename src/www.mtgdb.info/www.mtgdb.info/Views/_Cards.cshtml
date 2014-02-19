@@ -1,6 +1,6 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardInfo[]>
 
-<div class="well" id="binder" style="width:800px;margin-left: auto; margin-right: auto ;">
+<div class="well binder" id="binder">
 @foreach(var cardInfo in Model)
 {
     string color = cardInfo.Amount > 0 ? "" : "dontown";
@@ -20,7 +20,7 @@
         </a>
         @if(@Html.CurrentUser != null)
         {
-            <div style="margin-top:-15px;padding-bottom:5px;">
+            <div class="card_amount">
                 <button type="button" class="btn btn-danger" onclick="minusCard(@cardInfo.Card.Id);">-</button>
                 <input id="@cardInfo.Card.Id" type="text" style="width:30px;" onkeyup="changeAmount(@cardInfo.Card.Id);"
                 placeholder="0" value="@cardInfo.Amount"/>
@@ -33,7 +33,7 @@
 <br style="clear:both;"/>
 </div>
 <script>
-    $('.tool').tooltip();
+$('.tool').tooltip();
 </script>
 
 

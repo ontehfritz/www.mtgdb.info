@@ -116,8 +116,16 @@ function set_amount(cardId, amount)
     var jqxhr = $.post( "/cards/" + cardId + "/amount/" + amount) 
     .done(function( data ) {
         $('#' + cardId).val(data);
-        $('#img_' + cardId).attr('class', 'owned');
 
+        if(amount > 0)
+        {
+            $('#img_' + cardId).attr('class', 'owned');
+        }
+        else
+        {
+            $('#img_' + cardId).attr('class', 'dontown');
+        }
+            
         if($('#value_' + cardId).length != 0)
         {
             $('#value_' + cardId).text(amount);
@@ -130,4 +138,24 @@ function set_amount(cardId, amount)
         spinner.stop();
     }); 
 };
+
+function format(set) {
+    if (!set.id) return set.text; // optgroup
+    return "<img class='flag' src='http://api.mtgdb.info/content/set_images/symbols/" + set.id.toLowerCase() + 
+                                                                "_sym.png'/>" + " " + set.text;
+}
+
+$(document).ready(function() { $("#set_list").select2({
+    matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },
+    formatResult: format,
+    formatSelection: format,
+    escapeMarkup: function(m) { return m; }
+});});
+
+function go()
+{
+    window.location="/sets/" + document.getElementById("set_list").value
+}
+
+   
 

@@ -3,13 +3,15 @@ using Nancy;
 using Nancy.ModelBinding;
 using MtgDb.Info.Driver;
 using System.Linq;
+using System.Configuration;
 
 namespace MtgDb.Info
 {
     public class SearchModule : NancyModule
     {
         public Db magicdb = new Db (true);
-        public IRepository repository = new MongoRepository ("mongodb://localhost");
+        public IRepository repository = 
+            new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 
         public SearchModule () 
         {

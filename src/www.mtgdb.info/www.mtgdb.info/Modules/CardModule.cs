@@ -5,14 +5,16 @@ using Nancy.Security;
 using System.Linq;
 using MtgDb.Info.Driver;
 using System.Collections.Generic;
+using System.Configuration;
 
 namespace MtgDb.Info
 {
     public class CardModule : NancyModule
     {
-        public IRepository repository = new MongoRepository ("mongodb://localhost");
-        public Db magicdb = new Db (true);
+        public IRepository repository = 
+            new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 
+        public Db magicdb = new Db (true);
 
         public CardModule ()
         {
@@ -22,10 +24,9 @@ namespace MtgDb.Info
                 int multiverseId = (int)parameters.id;
                 int count = (int)parameters.count;
                 Guid walkerId = ((Planeswalker)this.Context.CurrentUser).Id;
-
+      
                 repository.AddUserCard(walkerId,multiverseId,count);
-
-
+               
                 return count.ToString();
             };
 
@@ -88,6 +89,7 @@ namespace MtgDb.Info
                     {
                         dbcards = magicdb.GetCards(model.UserCards
                             .AsEnumerable()
+                            .Where(x => x.Amount > 0)
                             .Select(x => x.MultiverseId)
                             .ToArray());
 
@@ -148,7 +150,8 @@ namespace MtgDb.Info
                         "/blocks/" + s.Block + "/cards");
                 }
 
-                model.Information.Add("You have no cards yet in your library. Browse the sets and start adding cards Planeswalker!");
+                model.Information.Add("You have no cards yet in your library. " +
+                    "Browse the sets and start adding cards Planeswalker!");
                 return View["Page", model];
             };
         }

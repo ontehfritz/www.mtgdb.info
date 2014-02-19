@@ -12,21 +12,3 @@
     }
 }
 </select>
-<script type="text/javascript">
-function format(set) {
-    if (!set.id) return set.text; // optgroup
-    return "<img class='flag' src='http://api.mtgdb.info/content/set_images/symbols/" + set.id.toLowerCase() + "_sym.png'/>" + " " + set.text;
-}
-
-$(document).ready(function() { $("#set_list").select2({
-    matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },
-    formatResult: format,
-    formatSelection: format,
-    escapeMarkup: function(m) { return m; }
-});});
-
-function go()
-{
-    window.location="/sets/" + document.getElementById("set_list").value
-}
-</script>

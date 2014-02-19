@@ -5,17 +5,17 @@
 
 @section Top
 {
-<div style="width: 325px;margin-left: auto;margin-right: auto ;color:white;">
-<h4>Planeswalker Sign up</h4>
-<form class="form-signin" action="~/signup" method="post">
-    <input type="text" name="UserName" class="form-control" placeholder="Planeswalker name" required autofocus />
-    <input type="text" name="Email" class="form-control" placeholder="Email address" required />
-    <input type="password" name="Secret" class="form-control" placeholder="Password" required />
-    <input type="password"  name="ConfirmSecret" class="form-control" placeholder="Confirm Password" required />
-    <button class="btn btn-lg btn-primary btn-block" name="Signup" type="submit">Sign Up</button>
-</form>
-<a href="~/logon">Sign In</a> | <a href="~/forgot">Forgot your password?</a>
-</div>
-<br />
-<br />
+    <div class="signin">
+    <h4>Planeswalker Sign up</h4>
+    <form class="form-signin" action="~/signup" method="post">
+        <input type="text" name="UserName" class="form-control" placeholder="Planeswalker name" required autofocus />
+        <input type="text" name="Email" class="form-control" placeholder="Email address" required />
+        <input type="password" name="Secret" class="form-control" placeholder="Password" required />
+        <input type="password"  name="ConfirmSecret" class="form-control" placeholder="Confirm Password" required />
+        <button class="btn btn-lg btn-primary btn-block" name="Signup" type="submit">Sign Up</button>
+    </form>
+    <a href="~/logon">Sign In</a> | <a href="~/forgot">Forgot your password?</a>
+    </div>
+    <br />
+    <br />
 }

@@ -5,6 +5,7 @@ using Nancy.Bootstrapper;
 using Nancy.Authentication.Forms;
 using SuperSimple.Auth;
 using MtgDb.Info;
+using System.Configuration;
 
 namespace mtgdb.info
 {
@@ -23,8 +24,8 @@ namespace mtgdb.info
 
             //this must be the same key also in MonoRepository.cs
             SuperSimpleAuth ssa = 
-                new SuperSimpleAuth ("mtgdb.info", 
-                    "5e61fe35-1f96-4cf8-8f4b-54ba43e79903");
+                new SuperSimpleAuth (ConfigurationManager.AppSettings.Get("domain"), 
+                    ConfigurationManager.AppSettings.Get("domain_key"));
 
 
             container.Register<SuperSimpleAuth>(ssa);
