@@ -6,8 +6,10 @@ namespace MtgDb.Info
 {
     public class RenderHtml
     {
-       
-
+        /// <summary>
+        /// Text the specified text.
+        /// </summary>
+        /// <param name="text">Text.</param>
         public static string Text(string text)
         {
             string html = text;
@@ -36,7 +38,10 @@ namespace MtgDb.Info
 
             return html;
         }
-
+        /// <summary>
+        /// Color the specified text.
+        /// </summary>
+        /// <param name="text">Text.</param>
         public static string Color(string text)
         {
             string html = text.ToLower();
@@ -48,7 +53,10 @@ namespace MtgDb.Info
             
             return html;
         }
-
+        /// <summary>
+        /// Mana the specified text.
+        /// </summary>
+        /// <param name="text">Text.</param>
         public static string Mana(string text)
         {
             if (text == null || text == "")
@@ -143,16 +151,6 @@ namespace MtgDb.Info
 
             html.Append (key);
             return html.ToString();
-        }
-
-        private static string ReplaceFirst(string text, string search, string replace)
-        {
-            int pos = text.IndexOf(search);
-            if (pos < 0)
-            {
-                return text;
-            }
-            return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
         }
     }
 }

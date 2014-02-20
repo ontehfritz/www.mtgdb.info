@@ -1,9 +1,9 @@
 using System;
+using System.Configuration;
+using System.Linq;
+using MtgDb.Info.Driver;
 using Nancy;
 using Nancy.ModelBinding;
-using MtgDb.Info.Driver;
-using System.Linq;
-using System.Configuration;
 
 namespace MtgDb.Info
 {
@@ -27,38 +27,46 @@ namespace MtgDb.Info
                 SearchModel model = this.Bind<SearchModel>();
                 model.Planeswalker = ((Planeswalker)this.Context.CurrentUser);
                 UserCard [] walkerCards = null;
-                Card[] cards = magicdb.Search(model.Term);
-                model.ActiveMenu = "search";
 
-                cards = cards
-                    .AsEnumerable()
-                    .OrderBy(x => x.Name)
-                    .ThenByDescending(x => x.ReleasedAt).ToArray();
-
-                if(model.Planeswalker != null)
+                try
                 {
-                    int [] cardIds = cards.AsEnumerable().Select(c => c.Id).ToArray();
-                    walkerCards = repository.GetUserCards(model.Planeswalker.Id,cardIds);
+                    Card[] cards = magicdb.Search(model.Term);
+                    model.ActiveMenu = "search";
+
+                    cards = cards
+                        .AsEnumerable()
+                        .OrderBy(x => x.Name)
+                        .ThenByDescending(x => x.ReleasedAt).ToArray();
+
+                    if(model.Planeswalker != null)
+                    {
+                        int [] cardIds = cards.AsEnumerable().Select(c => c.Id).ToArray();
+                        walkerCards = repository.GetUserCards(model.Planeswalker.Id,cardIds);
+                    }
+
+                    foreach(var c in cards)
+                    {
+                        CardInfo cardInfo = new CardInfo();
+
+                        if(walkerCards != null && walkerCards.Length > 0)
+                        {
+                            cardInfo.Amount = walkerCards.AsEnumerable()
+                                .Where(info => info.MultiverseId == c.Id)
+                                .Select(info => info.Amount).FirstOrDefault();
+
+                        }
+                        else
+                        {
+                            cardInfo.Amount = 0;
+                        }
+
+                        cardInfo.Card = c;
+                        model.Cards.Add(cardInfo);
+                    }
                 }
-
-                foreach(var c in cards)
+                catch(Exception e)
                 {
-                    CardInfo cardInfo = new CardInfo();
-
-                    if(walkerCards != null && walkerCards.Length > 0)
-                    {
-                        cardInfo.Amount = walkerCards.AsEnumerable()
-                            .Where(info => info.MultiverseId == c.Id)
-                            .Select(info => info.Amount).FirstOrDefault();
-
-                    }
-                    else
-                    {
-                        cardInfo.Amount = 0;
-                    }
-
-                    cardInfo.Card = c;
-                    model.Cards.Add(cardInfo);
+                    model.Errors.Add(e.Message);
                 }
                
                 return View["Search", model];

@@ -43,7 +43,16 @@ namespace MtgDb.Info
             Get ["/"] = parameters => {
                 IndexModel model = new IndexModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.SetList.Sets = magicdb.GetSets();
+
+                try
+                {
+                    model.SetList.Sets = magicdb.GetSets();
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
+
 
                 return View["Index", model];
             };
@@ -51,12 +60,20 @@ namespace MtgDb.Info
             Get ["/sets/"] = parameters => {
                 SetsModel model = new SetsModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Sets = magicdb.GetSets();
-                model.ActiveMenu = "sets";
 
-                if(model.Planeswalker != null)
+                try
                 {
-                    model.UserCards = repository.GetSetCardCounts(model.Planeswalker.Id);
+                    model.Sets = magicdb.GetSets();
+                    model.ActiveMenu = "sets";
+
+                    if(model.Planeswalker != null)
+                    {
+                        model.UserCards = repository.GetSetCardCounts(model.Planeswalker.Id);
+                    }
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
                 }
 
                 return View["Sets", model];
@@ -65,24 +82,32 @@ namespace MtgDb.Info
             Get ["/cards/{id}"] = parameters => {
                 CardModel model = new CardModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Card = magicdb.GetCard((int)parameters.id);
-                model.Prints = magicdb.GetCards(model.Card.Name);
-                model.Page = (model.Card.SetNumber / _pageSize) + 1;
-                model.ActiveMenu = "sets";
 
-                if(model.Planeswalker != null)
+                try
                 {
-                    UserCard uCard = repository.GetUserCards(model.Planeswalker.Id,
-                        new int[]{model.Card.Id}).FirstOrDefault();
+                    model.Card = magicdb.GetCard((int)parameters.id);
+                    model.Prints = magicdb.GetCards(model.Card.Name);
+                    model.Page = (model.Card.SetNumber / _pageSize) + 1;
+                    model.ActiveMenu = "sets";
 
-                    if(uCard != null)
+                    if(model.Planeswalker != null)
                     {
-                        model.Amount = uCard.Amount;
+                        UserCard uCard = repository.GetUserCards(model.Planeswalker.Id,
+                            new int[]{model.Card.Id}).FirstOrDefault();
+
+                        if(uCard != null)
+                        {
+                            model.Amount = uCard.Amount;
+                        }
+                        else
+                        {
+                            model.Amount = 0;
+                        }
                     }
-                    else
-                    {
-                        model.Amount = 0;
-                    }
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
                 }
                     
                 return View["Card", model];
@@ -95,54 +120,60 @@ namespace MtgDb.Info
                 model.ActiveMenu = "sets";
 
                 int page = 1; 
-
-                model.SetList.Sets = magicdb.GetSets();
-                model.SetList.ActiveSet = setId;
-
-                if(Request.Query.Page != null)
+                try
                 {
-                    if(int.TryParse((string)Request.Query.Page, out page))
+                    model.SetList.Sets = magicdb.GetSets();
+                    model.SetList.ActiveSet = setId;
+
+                    if(Request.Query.Page != null)
                     {
-                        if(page < 1){ page = 1; }
-                    }
-                }
-
-               
-                int end = page * _pageSize;
-                int start = page > 1 ? end - _pageSize : page;
-                Card[] cards = magicdb.GetSetCards(setId, start, 
-                    page > 1 ? end - 1 : end);
-
-                UserCard [] walkerCards = null;
-
-                if(model.Planeswalker != null)
-                {
-                    int [] cardIds = cards.AsEnumerable().Select(c => c.Id).ToArray();
-                    walkerCards = repository.GetUserCards(model.Planeswalker.Id,cardIds);
-                }
-
-                foreach(var c in cards)
-                {
-                    CardInfo cardInfo = new CardInfo();
-                    if(walkerCards != null && walkerCards.Length > 0)
-                    {
-                        cardInfo.Amount = walkerCards.AsEnumerable()
-                            .Where(info => info.MultiverseId == c.Id)
-                            .Select(info => info.Amount).FirstOrDefault();
-
-                    }
-                    else
-                    {
-                        cardInfo.Amount = 0;
+                        if(int.TryParse((string)Request.Query.Page, out page))
+                        {
+                            if(page < 1){ page = 1; }
+                        }
                     }
 
-                    cardInfo.Card = c;
-                    model.Cards.Add(cardInfo);
-                }
+                   
+                    int end = page * _pageSize;
+                    int start = page > 1 ? end - _pageSize : page;
+                    Card[] cards = magicdb.GetSetCards(setId, start, 
+                        page > 1 ? end - 1 : end);
 
-                model.Page = page;
-                model.NextPage = page + 1;
-                model.PrevPage = page > 1 ? page - 1 : page;
+                    UserCard [] walkerCards = null;
+
+                    if(model.Planeswalker != null)
+                    {
+                        int [] cardIds = cards.AsEnumerable().Select(c => c.Id).ToArray();
+                        walkerCards = repository.GetUserCards(model.Planeswalker.Id,cardIds);
+                    }
+
+                    foreach(var c in cards)
+                    {
+                        CardInfo cardInfo = new CardInfo();
+                        if(walkerCards != null && walkerCards.Length > 0)
+                        {
+                            cardInfo.Amount = walkerCards.AsEnumerable()
+                                .Where(info => info.MultiverseId == c.Id)
+                                .Select(info => info.Amount).FirstOrDefault();
+
+                        }
+                        else
+                        {
+                            cardInfo.Amount = 0;
+                        }
+
+                        cardInfo.Card = c;
+                        model.Cards.Add(cardInfo);
+                    }
+
+                    model.Page = page;
+                    model.NextPage = page + 1;
+                    model.PrevPage = page > 1 ? page - 1 : page;
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
 
                 return View["Book", model];
             };
@@ -161,37 +192,44 @@ namespace MtgDb.Info
 
                 string planeswalker = ((string)parameters.planeswalker).ToLower();
 
-                if(model.Planeswalker != null && 
-                    model.Planeswalker.Profile.Name.ToLower() != planeswalker)
+                try
                 {
-                    model.Profile = repository.GetProfile(planeswalker);
-
-                    if(model.Profile == null)
+                    if(model.Planeswalker != null && 
+                        model.Planeswalker.Profile.Name.ToLower() != planeswalker)
                     {
-                        model.Messages.Add("Planeswalker does not exist or is private profile.");
+                        model.Profile = repository.GetProfile(planeswalker);
+
+                        if(model.Profile == null)
+                        {
+                            model.Messages.Add("Planeswalker does not exist or is private profile.");
+                        }
+                        else
+                        {
+                            model.UserCards = repository.GetUserCards(model.Profile.Id);
+                        }
+                    }
+                    else if(model.Planeswalker != null)
+                    {
+                        model.Profile = model.Planeswalker.Profile;
+                        model.UserCards = repository.GetUserCards(model.Profile.Id);
                     }
                     else
                     {
-                        model.UserCards = repository.GetUserCards(model.Profile.Id);
-                    }
-                }
-                else if(model.Planeswalker != null)
-                {
-                    model.Profile = model.Planeswalker.Profile;
-                    model.UserCards = repository.GetUserCards(model.Profile.Id);
-                }
-                else
-                {
-                    model.Profile = repository.GetProfile(planeswalker);
+                        model.Profile = repository.GetProfile(planeswalker);
 
-                    if(model.Profile == null)
-                    {
-                        model.Messages.Add("Planeswalker does not exist or is private profile.");
+                        if(model.Profile == null)
+                        {
+                            model.Messages.Add("Planeswalker does not exist or is private profile.");
+                        }
+                        else
+                        {
+                            model.UserCards = repository.GetUserCards(model.Profile.Id);
+                        }
                     }
-                    else
-                    {
-                        model.UserCards = repository.GetUserCards(model.Profile.Id);
-                    }
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
                 }
 
                 return View["Planeswalker", model];

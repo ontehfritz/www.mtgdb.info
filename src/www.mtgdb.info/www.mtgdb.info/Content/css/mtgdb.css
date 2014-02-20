@@ -14,16 +14,6 @@ footer {
   padding: 30px 0;
 }
 
-#sidebar {
-    width: 250px;
-    height: 200px;
-    margin: -100px 0px 0px -webkit-calc(100% - 280px);
-    position: absolute;
-    top: -4975px;
-    background: RGBa(99, 159, 217, 0.1);
-    display: block;
-}
-
 .results{
   float:left;
   width:125px;

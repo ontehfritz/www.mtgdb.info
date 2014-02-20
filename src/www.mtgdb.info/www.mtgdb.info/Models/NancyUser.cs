@@ -39,7 +39,7 @@ namespace MtgDb.Info
             }
             catch(Exception e)
             {
-                throw new Exception ("Guid: " + identifier.ToString() + " " + e.Message, e);
+                return null;
             }
                 
             return null;

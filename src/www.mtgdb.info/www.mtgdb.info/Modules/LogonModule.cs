@@ -23,6 +23,12 @@ namespace MtgDb.Info
 
             Get["/settings"] = parameters => {
                 SettingsModel model = new SettingsModel();
+
+                if(this.Context.CurrentUser == null)
+                {
+                    return this.LogoutAndRedirect("/");
+                }
+
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                
                 return View["Logon/Settings",model];
@@ -30,8 +36,15 @@ namespace MtgDb.Info
 
             Post["/settings"] = parameters => {
                 SettingsModel model = this.Bind<SettingsModel>();
+
+                if(this.Context.CurrentUser == null)
+                {
+                    return this.LogoutAndRedirect("/");
+                }
+
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                
+
                 if(Request.Form.Save != null)
                 {
                     model.Planeswalker.Profile.Email = model.Email;
@@ -172,6 +185,17 @@ namespace MtgDb.Info
 
                 LogonModel logon = new LogonModel();
                 logon.Messages.Add("You have successfully created an account. Please Sign In.");
+
+                try
+                {
+                    Email.send("planeswalker@mtgdb.info", 
+                        "New Planeswalker alert", model.UserName);
+                }
+                catch(Exception e)
+                {
+                    //swallow this for now
+                }
+
                 return View["Logon", logon];
 
             };
@@ -206,8 +230,7 @@ namespace MtgDb.Info
                 {
                     model.Errors.Add(e.Message);
                 }
-
-
+                    
                 return View["Forgot", model];
             };
         }

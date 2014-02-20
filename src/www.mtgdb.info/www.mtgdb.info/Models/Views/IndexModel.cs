@@ -8,9 +8,6 @@ namespace MtgDb.Info
     {
         public CardSetList SetList { get; set; }
         public List<CardInfo> Cards { set; get; }
-        public int Page { set; get; }
-        public int NextPage { set; get; }
-        public int PrevPage { set; get; }
        
         public IndexModel () : base()
         {

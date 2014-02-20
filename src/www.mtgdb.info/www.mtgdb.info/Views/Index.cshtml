@@ -6,20 +6,37 @@
     <div id="test" class="">
         <div class="jumbotron" 
         style="background-image:url('content/images/main.jpg');background-repeat:no-repeat;background-size: cover;background-position:center; border: 1px solid black;">
-        <div style="border:1px solid black;width:500px;padding:20px; background:rgba(255, 255, 255, .5);">
-            <h1>M:tgDb <small>[ALPHA]</small></h1>
-            <p>
-                <b>Magic: the gathering open database project</b>
-            </p>
+            <div style="border:1px solid black;width:500px;padding:20px; background:rgba(255, 255, 255, .5);">
+                <h1>M:tgDb <small>[ALPHA]</small></h1>
+                <p>
+                    <b>Magic: the gathering open database project</b>
+                </p>
+            </div>
         </div>
-        </div>
-        <div class="row">
+        <div class="row" style="margin-top:-30px;">
             <div class="col-6 col-sm-6 col-lg-4">
-            <h2><img src="/content/images/logo.png"/> Open Db</h2>
-            <b>(Coming soon)</b>
-            <p>
-            The database is open, meaning that the community can add and edit the information for cards and sets.
-            </p>
+                <h2><img src="/content/images/logo.png"/> Open Db</h2>
+                <b>(Coming soon)</b>
+                <p>
+                The database is open, meaning that the community can add and edit the information for cards and sets.
+                </p>
+                <p>
+                    <a href="~/cards/289213">
+                    <img src="https://api.mtgdb.info/content/card_images/289213.jpeg" style="width:55px;height:77px;" />
+                    </a>
+                    <a href="~/cards/1">
+                    <img src="https://api.mtgdb.info/content/card_images/1.jpeg" style="width:55px;height:77px;" />
+                    </a>
+                    <a href="~/cards/36119">
+                    <img src="https://api.mtgdb.info/content/card_images/36119.jpeg" style="width:55px;height:77px;" />
+                    </a>
+                    <a href="~/cards/189213">
+                    <img src="https://api.mtgdb.info/content/card_images/189213.jpeg" style="width:55px;height:77px;" />
+                    </a>
+                    <a href="~/cards/600">
+                    <img src="https://api.mtgdb.info/content/card_images/600.jpeg" style="width:55px;height:77px;" />
+                    </a>
+                </p>
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
                 <h2><img src="/content/images/hammer.png"/> Tools</h2>
@@ -33,16 +50,23 @@
             </div><!--/span-->
             <div class="col-6 col-sm-6 col-lg-4">
                 <h2><img src="/content/images/gears.jpg"/> API</h2>
-                <p><a href="http://api.mtgdb.info">api.mtgdb.info</a></p>
                 <p>
+                <a href="#"><span class="label label-default">C#</span></a>
+
+                </p>
+                <p>
+                <b>More Languages on the way!</b>
                 No screen scraping nessecary, all information that is on M:TG DB is available through the easy to use 
                 API. You can use the API directly or use one our wrappers.
                 </p>
                 <p><a class="btn btn-default" href="http://api.mtgdb.info" role="button">View API &raquo;</a></p>
             </div><!--/span-->
         </div><!--/row-->
-    </div><!--/span-->
-
-    <div id="sidebar">
+        <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            Please note this is an ALPHA pre-release. There maybe bugs and other issues. During this phase please submit 
+            any issues, bugs and errors to: <a href="mailto:planeswalker@mtgdb.info">planeswalker@mtgdb.info</a> 
+            or create an issue on: <a href="https://github.com/planeswalkers/www.mtgdb.info/issues">GitHub</a>
+        </div>
     </div><!--/span-->
 </div><!--/row-->

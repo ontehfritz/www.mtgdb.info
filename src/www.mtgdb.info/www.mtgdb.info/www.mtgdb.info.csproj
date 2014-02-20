@@ -118,7 +118,6 @@
     <Compile Include="Models\Views\SignUpModel.cs" />
     <Compile Include="Helpers\ErrorUtility.cs" />
     <Compile Include="Models\Views\IndexModel.cs" />
-    <Compile Include="Models\Views\HomeModel.cs" />
     <Compile Include="Models\UserCard.cs" />
     <Compile Include="Models\Views\SetsModel.cs" />
     <Compile Include="Models\Views\CardModel.cs" />

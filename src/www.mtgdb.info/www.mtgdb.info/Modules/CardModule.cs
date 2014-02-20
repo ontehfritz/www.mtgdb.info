@@ -38,87 +38,95 @@ namespace MtgDb.Info
                 model.Block = (string)parameters.block;
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
-                model.TotalCards = model.Counts.Sum(x => x.Value);
-                model.TotalAmount = repository.GetUserCards(model.Planeswalker.Id).Sum(x => x.Amount);
-                
-                string[] blocks;
 
-                if(model.Counts.Count > 0)
+                try
                 {
-                    model.Sets = magicdb.GetSets(model.Counts
-                        .AsEnumerable().Select(x => x.Key)
-                        .ToArray());
+                    model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
+                    model.TotalCards = model.Counts.Sum(x => x.Value);
+                    model.TotalAmount = repository.GetUserCards(model.Planeswalker.Id).Sum(x => x.Amount);
+                    
+                    string[] blocks;
 
-                    blocks = model.Sets.Select(x => x.Block).Distinct().OrderBy(x => x).ToArray();
-
-                    foreach(string block in blocks)
+                    if(model.Counts.Count > 0)
                     {
-                        CardSet[] sets = model.Sets.Where(x => x.Block == block).ToArray();
+                        model.Sets = magicdb.GetSets(model.Counts
+                            .AsEnumerable().Select(x => x.Key)
+                            .ToArray());
 
-                        int total = 0; 
-                        foreach(CardSet set in sets)
+                        blocks = model.Sets.Select(x => x.Block).Distinct().OrderBy(x => x).ToArray();
+
+                        foreach(string block in blocks)
                         {
-                            total += model.Counts[set.Id];
+                            CardSet[] sets = model.Sets.Where(x => x.Block == block).ToArray();
+
+                            int total = 0; 
+                            foreach(CardSet set in sets)
+                            {
+                                total += model.Counts[set.Id];
+                            }
+
+                            model.Blocks.Add(block,total);
                         }
 
-                        model.Blocks.Add(block,total);
-                    }
-
-                    model.Sets = model.Sets
-                        .Where(x => x.Block == model.Block)
-                        .OrderBy(x => x.Name).ToArray();
+                        model.Sets = model.Sets
+                            .Where(x => x.Block == model.Block)
+                            .OrderBy(x => x.Name).ToArray();
 
 
-                    if(setId == null)
-                    {
-                        setId = model.Sets.FirstOrDefault().Id;
-                    }
+                        if(setId == null)
+                        {
+                            setId = model.Sets.FirstOrDefault().Id;
+                        }
 
-                    model.SetId = setId;
-                    model.UserCards = repository.GetUserCards(model.Planeswalker.Id, setId);
+                        model.SetId = setId;
+                        model.UserCards = repository.GetUserCards(model.Planeswalker.Id, setId);
 
 
-                    Card[] dbcards = null;
-                    if(Request.Query.Show != null)
-                    {
-                        dbcards = magicdb.GetSetCards(model.SetId);
-                        model.Show = true;
+                        Card[] dbcards = null;
+                        if(Request.Query.Show != null)
+                        {
+                            dbcards = magicdb.GetSetCards(model.SetId);
+                            model.Show = true;
+                        }
+                        else
+                        {
+                            dbcards = magicdb.GetCards(model.UserCards
+                                .AsEnumerable()
+                                .Where(x => x.Amount > 0)
+                                .Select(x => x.MultiverseId)
+                                .ToArray());
+
+                            model.Show = false;
+                        }
+
+
+                        List<CardInfo> cards = new List<CardInfo>();
+
+                        CardInfo card = null;
+                        foreach(Card c in dbcards)
+                        {
+                            card = new CardInfo();
+                            card.Amount = model.UserCards
+                                .AsEnumerable()
+                                .Where(x => x.MultiverseId == c.Id)
+                                .Select(x => x.Amount)
+                                .FirstOrDefault();
+
+                            card.Card = c;
+                        
+                            cards.Add(card);
+                        }
+
+                        model.Cards = cards.OrderBy(x => x.Card.SetNumber).ToArray();
                     }
                     else
                     {
-                        dbcards = magicdb.GetCards(model.UserCards
-                            .AsEnumerable()
-                            .Where(x => x.Amount > 0)
-                            .Select(x => x.MultiverseId)
-                            .ToArray());
-
-                        model.Show = false;
+                        model.Messages.Add("You have no cards in your library.");
                     }
-
-
-                    List<CardInfo> cards = new List<CardInfo>();
-
-                    CardInfo card = null;
-                    foreach(Card c in dbcards)
-                    {
-                        card = new CardInfo();
-                        card.Amount = model.UserCards
-                            .AsEnumerable()
-                            .Where(x => x.MultiverseId == c.Id)
-                            .Select(x => x.Amount)
-                            .FirstOrDefault();
-
-                        card.Card = c;
-                    
-                        cards.Add(card);
-                    }
-
-                    model.Cards = cards.OrderBy(x => x.Card.SetNumber).ToArray();
                 }
-                else
+                catch(Exception e)
                 {
-                    model.Messages.Add("You have no cards in your library.");
+                    model.Errors.Add(e.Message);
                 }
 
                 return View["MyCards", model];
@@ -137,21 +145,28 @@ namespace MtgDb.Info
 
                     return View["Page", model];
                 }
-
-                string setId = repository.GetSetCardCounts(model.Planeswalker.Id)
-                    .Select(x => x.Key)
-                    .OrderBy(x => x).FirstOrDefault();
-
-                if(setId != null)
+                try
                 {
-                    CardSet s = magicdb.GetSet(setId);
+                    string setId = repository.GetSetCardCounts(model.Planeswalker.Id)
+                        .Select(x => x.Key)
+                        .OrderBy(x => x).FirstOrDefault();
 
-                    return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
-                        "/blocks/" + s.Block + "/cards");
+                    if(setId != null)
+                    {
+                        CardSet s = magicdb.GetSet(setId);
+
+                        return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
+                            "/blocks/" + s.Block + "/cards");
+                    }
+
+                    model.Information.Add("You have no cards yet in your library. " +
+                        "Browse the sets and start adding cards Planeswalker!");
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
                 }
 
-                model.Information.Add("You have no cards yet in your library. " +
-                    "Browse the sets and start adding cards Planeswalker!");
                 return View["Page", model];
             };
         }
