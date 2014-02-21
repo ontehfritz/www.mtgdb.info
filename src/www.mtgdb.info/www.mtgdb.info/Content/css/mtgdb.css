@@ -115,6 +115,22 @@ footer {
     padding-bottom:5px;
 }
 
+.jumbotron{
+    background-image:url('../images/main.jpg');
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position:center; 
+    border: 1px solid black;
+}
+
+.logo
+{
+    border:1px solid black;
+    width:500px;
+    padding:20px; 
+    background:rgba(255, 255, 255, .5);
+}
+
 /* navbar */
 .navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}

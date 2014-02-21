@@ -1,20 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Models/NancyUser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Content/css/mtgdb.css">
     <Files>
-      <File FileName="Test_MtgDb.Info/Test.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Bootstrapper.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="19" Column="9" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="87" Column="5" />
-      <File FileName="www.mtgdb.info/Content/javascript/spin.min.js" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="11" Column="66" />
-      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="67" Column="8" />
-      <File FileName="www.mtgdb.info/Content/javascript/mtgdb.info.js" Line="111" Column="7" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="15" Column="40" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="16" Column="35" />
-      <File FileName="www.mtgdb.info/Models/NancyUser.cs" Line="44" Column="17" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="232" Column="47" />
+      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="8" Column="29" />
+      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="54" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
