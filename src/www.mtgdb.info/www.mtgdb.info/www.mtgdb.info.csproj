@@ -106,6 +106,7 @@
     <Folder Include="Views\Logon\" />
     <Folder Include="Content\images\" />
     <Folder Include="Content\javascript\" />
+    <Folder Include="Content\download\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
