@@ -141,7 +141,7 @@ function set_amount(cardId, amount)
 
 function format(set) {
     if (!set.id) return set.text; // optgroup
-    return "<img class='flag' src='http://api.mtgdb.info/content/set_images/symbols/" + set.id.toLowerCase() + 
+    return "<img class='flag' src='https://api.mtgdb.info/content/set_images/symbols/" + set.id.toLowerCase() + 
                                                                 "_sym.png'/>" + " " + set.text;
 }
 
