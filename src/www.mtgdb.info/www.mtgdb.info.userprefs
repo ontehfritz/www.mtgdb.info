@@ -4,8 +4,15 @@
     <Files>
       <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="54" Column="11" />
-      <File FileName="www.mtgdb.info/web.config" Line="42" Column="27" />
+      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="19" Column="73" />
+      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_SetsDropDown.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/About.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/web.config" Line="47" Column="49" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

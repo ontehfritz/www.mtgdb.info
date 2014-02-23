@@ -56,8 +56,9 @@ namespace MtgDb.Info
             var collection = database.GetCollection<UserCard>("user_cards");
             List<UserCard> userCards = new List<UserCard> ();
 
-            var query =
-                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId);
+            var query = Query.And(
+                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId),
+                Query<UserCard>.GT(c => c.Amount, 0));
 
             var cards = collection.Find (query);
 
@@ -75,7 +76,8 @@ namespace MtgDb.Info
             List<UserCard> userCards = new List<UserCard> ();
 
             var query = Query.And(Query.In ("MultiverseId", new BsonArray(multiverseIds)),
-                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId));
+                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId),
+                Query<UserCard>.GT(c => c.Amount, 0));
 
             var cards = collection.Find (query);
 
@@ -93,7 +95,8 @@ namespace MtgDb.Info
             List<UserCard> userCards = new List<UserCard> ();
 
             var query = Query.And(Query<UserCard>.EQ(c => c.SetId, setId.ToUpper()),
-                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId));
+                Query<UserCard>.EQ(c => c.PlaneswalkerId, walkerId),
+                Query<UserCard>.GT(c => c.Amount, 0));
 
             var cards = collection.Find (query);
 

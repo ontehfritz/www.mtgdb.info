@@ -14,12 +14,19 @@
  
 <div style="width:1200px;">
     <div id="card_@Model.Card.Id" class="card">
-        <img src="@Model.Card.CardImage" /><br /><br />
+        @{
+            string hiRes = string.Format("https://api.mtgdb.info/content/hi_res_card_images/{0}.jpg", @Model.Card.Id);
+            <a href="@hiRes"><img src="@Model.Card.CardImage"/></a><br /><br style="clear:both"/>
+        }
+
         @if(@Model.Planeswalker != null)
         {
+            
             <button type="button" class="btn btn-danger" onclick="minusCard(@Model.Card.Id);">-</button>
-            <input id="@Model.Card.Id" type="text" style="width:30px;" placeholder="0" value="@Model.Amount"/>
+            <input id="@Model.Card.Id" type="text" style="width:30px;" placeholder="0" value="@Model.Amount" 
+                    onkeyup="changeAmount(@Model.Card.Id);" />
             <button type="button" class="btn btn-success" onclick="addCard(@Model.Card.Id);">+</button>
+            
         }
     </div>
     <div class="card_info">

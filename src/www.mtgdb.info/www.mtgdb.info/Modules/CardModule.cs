@@ -39,6 +39,14 @@ namespace MtgDb.Info
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
+                if(model.Planeswalker.UserName.ToLower() != ((string)parameters.planeswalker).ToLower())
+                {
+                    model.Errors.Add(string.Format("Tsk Tsk! {0}, this profile is not yours.",
+                        model.Planeswalker.UserName));
+
+                    return View["Page", model];
+                }
+
                 try
                 {
                     model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
@@ -145,6 +153,7 @@ namespace MtgDb.Info
 
                     return View["Page", model];
                 }
+
                 try
                 {
                     string setId = repository.GetSetCardCounts(model.Planeswalker.Id)
