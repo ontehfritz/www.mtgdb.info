@@ -39,7 +39,8 @@ namespace MtgDb.Info
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
-                if(model.Planeswalker.UserName.ToLower() != ((string)parameters.planeswalker).ToLower())
+                if(model.Planeswalker.UserName.ToLower() != 
+                    ((string)parameters.planeswalker).ToLower())
                 {
                     model.Errors.Add(string.Format("Tsk Tsk! {0}, this profile is not yours.",
                         model.Planeswalker.UserName));
@@ -50,6 +51,14 @@ namespace MtgDb.Info
                 try
                 {
                     model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
+
+                    if(model.Counts == null || 
+                        model.Counts.Count == 0)
+                    {
+                        return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
+                            "/cards");
+                    }
+
                     model.TotalCards = model.Counts.Sum(x => x.Value);
                     model.TotalAmount = repository.GetUserCards(model.Planeswalker.Id).Sum(x => x.Amount);
                     
@@ -66,7 +75,7 @@ namespace MtgDb.Info
                         foreach(string block in blocks)
                         {
                             CardSet[] sets = model.Sets.Where(x => x.Block == block).ToArray();
-
+                        
                             int total = 0; 
                             foreach(CardSet set in sets)
                             {
@@ -80,6 +89,12 @@ namespace MtgDb.Info
                             .Where(x => x.Block == model.Block)
                             .OrderBy(x => x.Name).ToArray();
 
+                        if(model.Sets == null || model.Sets.Length == 0)
+                        {
+                            return Response.AsRedirect(string.Format("~/{0}/cards", 
+                                model.Planeswalker.UserName));
+                        }
+                       
 
                         if(setId == null)
                         {
@@ -88,6 +103,13 @@ namespace MtgDb.Info
 
                         model.SetId = setId;
                         model.UserCards = repository.GetUserCards(model.Planeswalker.Id, setId);
+
+                        if(model.UserCards == null || 
+                            model.UserCards.Length  == 0)
+                        {
+                            return Response.AsRedirect(string.Format("~/{0}/cards", 
+                                model.Planeswalker.UserName));
+                        }
 
 
                         Card[] dbcards = null;
@@ -107,6 +129,12 @@ namespace MtgDb.Info
                             model.Show = false;
                         }
 
+                        if(dbcards == null || 
+                            dbcards.Length == 0)
+                        {
+                            return Response.AsRedirect(string.Format("~/{0}/cards", 
+                                model.Planeswalker.UserName));
+                        }
 
                         List<CardInfo> cards = new List<CardInfo>();
 
