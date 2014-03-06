@@ -14,7 +14,7 @@ namespace MtgDb.Info
         public IRepository repository = 
             new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 
-        public Db magicdb = new Db (true);
+        public Db magicdb = new Db ();
 
         public CardModule ()
         {

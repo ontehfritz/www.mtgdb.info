@@ -9,7 +9,7 @@ namespace MtgDb.Info
 {
     public class SearchModule : NancyModule
     {
-        public Db magicdb = new Db (true);
+        public Db magicdb = new Db ();
         public IRepository repository = 
             new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 

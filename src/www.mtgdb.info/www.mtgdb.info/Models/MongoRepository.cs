@@ -15,18 +15,34 @@ namespace MtgDb.Info
         private MongoDatabase database;
         private MongoClient client;
         private MongoServer server;
-        private SuperSimpleAuth ssa = new SuperSimpleAuth (
-            ConfigurationManager.AppSettings.Get("domain"), 
-            ConfigurationManager.AppSettings.Get("domain_key")); 
 
-        public Db magicdb = new Db (true);
+        private SuperSimpleAuth ssa;
+
+        public Db magicdb;
 
         public MongoRepository (string connection)
         {
+            ssa = new SuperSimpleAuth (
+                ConfigurationManager.AppSettings.Get("domain"), 
+                ConfigurationManager.AppSettings.Get("domain_key")); 
+
+            magicdb = new Db ();
+
             Connection = connection;
             client = new MongoClient(connection);
             server = client.GetServer();
             database = server.GetDatabase("mtgdb_info");
+            CreateUserCardIndexes ();
+        }
+
+        public MongoRepository (string connection, SuperSimpleAuth auth)
+        {
+            Connection = connection;
+            magicdb =  new Db ();
+            client = new MongoClient(connection);
+            server = client.GetServer();
+            database = server.GetDatabase("mtgdb_info");
+            ssa = auth;
             CreateUserCardIndexes ();
         }
 

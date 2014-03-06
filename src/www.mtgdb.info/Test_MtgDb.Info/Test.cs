@@ -8,29 +8,31 @@ namespace Test_MtgDb.Info
     [TestFixture ()]
     public class Test
     {
-        private MtgDb.Info.IRepository repository = 
-            new MongoRepository ("mongodb://localhost");
-
-        SuperSimpleAuth ssa = 
-            new SuperSimpleAuth ("mtgdb.info", 
-                "5e61fe35-1f96-4cf8-8f4b-54ba43e79903");
-
+        private SuperSimpleAuth ssa;
+        private IRepository repository;
         private Planeswalker mtgdbUser; 
 
         [SetUp()]
         public void Init()
         {
+            ssa =  new SuperSimpleAuth ("testing_mtgdb.info", 
+                "ae132e62-570f-4ffb-87cc-b9c087b09dfb");
+
+            repository =  new MongoRepository ("mongodb://localhost", ssa);
+
             //Super simple auth can't delete from here. 
             try
             {
-                Guid id = repository.AddPlaneswalker ("mtgdb_tester", "test123", "mtgdb_tester@test.com");
+                repository.AddPlaneswalker ("mtgdb_tester", 
+                    "test123", "mtgdb_tester@test.com");
             }
             catch(Exception e)
             {
                 System.Console.WriteLine (e.Message);
             }
 
-            User ssaUser = ssa.Authenticate ("mtgdb_tester", "test123", "127.0.0.1");
+            User ssaUser = ssa.Authenticate ("mtgdb_tester", 
+                "test123", "127.0.0.1");
 
             mtgdbUser = new Planeswalker 
             {
@@ -40,18 +42,10 @@ namespace Test_MtgDb.Info
                 Id = ssaUser.Id,
                 Claims = ssaUser.Claims,
                 Roles = ssaUser.Roles,
-                Profile = repository.GetProfile(ssaUser.Id)
+                Profile = repository.GetProfile (ssaUser.Id)
             };
         }
-
-        [TearDown] 
-        public void Dispose()
-        { 
-
-        }
-
-
-
+            
         [Test ()]
         public void Get_UserCards_by_setId ()
         {
@@ -72,7 +66,6 @@ namespace Test_MtgDb.Info
             UserCard [] userCards = repository.GetUserCards(mtgdbUser.Id,new int[]{1, 2});
 
             Assert.AreEqual (2, userCards.Length);
-
         }
 
         [Test ()]
