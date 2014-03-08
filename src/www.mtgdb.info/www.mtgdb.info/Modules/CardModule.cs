@@ -6,6 +6,7 @@ using System.Linq;
 using MtgDb.Info.Driver;
 using System.Collections.Generic;
 using System.Configuration;
+using Nancy.ModelBinding;
 
 namespace MtgDb.Info
 {
@@ -14,12 +15,69 @@ namespace MtgDb.Info
         public IRepository repository = 
             new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 
-        public Db magicdb = new Db ();
+        public Db magicdb = 
+            new Db (ConfigurationManager.AppSettings.Get("api"));
 
         public CardModule ()
         {
             this.RequiresAuthentication ();
 
+            Get ["/cards/{id}/change"] = parameters => {
+                CardChange model = new CardChange();
+                Card card; 
+
+                try
+                {
+                    card = magicdb.GetCard((int)parameters.id);
+                    model = CardChange.MapCard(card);
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+
+                model.ActiveMenu = "sets";
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+
+                return View["Change/Card", model];
+            };
+
+            Post ["/cards/{id}/change"] = parameters => {
+                CardChange model = this.Bind<CardChange>();
+                //Request.Form["Answers[" + i + "].AnswerString"] != null
+
+                var dictionary = Request.Form as IDictionary<string, object>;
+                string releasedAt = "{0}.ReleasedAt";
+                string rule = "{0}.Rule";
+
+                string[] keys = dictionary.Select(x => x.Key)
+                    .Where(x => x.StartsWith("Ruling"))
+                    .ToArray();
+
+                keys = keys.Select(x => x.Substring(0,x.IndexOf('.'))).Distinct().ToArray();
+
+                List<Ruling> rulings = new List<Ruling>();
+
+                if(keys != null && keys.Length > 0)
+                {
+                    keys = keys.OrderBy(x => x).ToArray();
+
+                    foreach(string key in keys)
+                    {
+                        rulings.Add(new Ruling(){
+                            ReleasedAt =  DateTime.Parse(dictionary[string.Format(releasedAt, key)].ToString()),
+                            Rule = dictionary[string.Format(rule, key)].ToString()
+                        });
+                    }
+                }
+
+                model.Rulings = rulings.ToArray();
+
+                //return Response.AsJson(rulings.ToArray());
+                return View["Change/Card", model];
+
+            };
+                
             Post ["/cards/{id}/amount/{count}"] = parameters => {
                 int multiverseId = (int)parameters.id;
                 int count = (int)parameters.count;
@@ -30,6 +88,7 @@ namespace MtgDb.Info
                 return count.ToString();
             };
 
+            //TODO: Refactor this, to long and confusing 
             Get ["/{planeswalker}/blocks/{block}/cards/{setId?}"] = parameters => {
                 PlaneswalkerModel model = new PlaneswalkerModel();
                 model.ActiveMenu = "mycards";

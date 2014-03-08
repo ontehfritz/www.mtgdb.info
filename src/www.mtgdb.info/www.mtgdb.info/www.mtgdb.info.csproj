@@ -48,9 +48,6 @@
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="MtgDb.Info.Driver">
-      <HintPath>bin\MtgDb.Info.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="SuperSimpleAuthCSharp">
       <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
@@ -73,13 +70,16 @@
     <Reference Include="Nancy.ViewEngines.Razor">
       <HintPath>..\packages\Nancy.Viewengines.Razor.0.22.2\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="MtgDb.Info.Driver">
+      <HintPath>..\..\..\..\CSharpMtgDb.Info\bin\Release\MtgDb.Info.Driver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
     <MonoDevelop>
       <Properties VerifyCodeBehindFields="True" VerifyCodeBehindEvents="True">
-        <XspParameters Port="8080" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
+        <XspParameters Port="0" Address="127.0.0.1" SslMode="None" SslProtocol="Default" KeyType="None" CertFile="" KeyFile="" PasswordOptions="None" Password="" Verbose="True" />
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
@@ -107,6 +107,7 @@
     <Folder Include="Content\images\" />
     <Folder Include="Content\javascript\" />
     <Folder Include="Content\download\" />
+    <Folder Include="Views\Change\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Helpers\Email.cs" />
     <Compile Include="Models\Views\BookModel.cs" />
     <Compile Include="Helpers\Render.cs" />
+    <Compile Include="Models\CardChange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -156,5 +158,6 @@
     <None Include="Views\About.cshtml" />
     <None Include="Views\Help.cshtml" />
     <None Include="Views\Logon\Loggedin.cshtml" />
+    <None Include="Views\Change\Card.cshtml" />
   </ItemGroup>
 </Project>

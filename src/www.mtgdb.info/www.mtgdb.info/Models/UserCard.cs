@@ -7,15 +7,15 @@ namespace MtgDb.Info
     public class UserCard
     {
         [BsonId]
-        public Guid Id { get; set; }
+        public Guid Id              { get; set; }
         [BsonElement]
-        public int MultiverseId { get; set; }
+        public int MultiverseId     { get; set; }
         [BsonElement]
-        public string SetId { get; set; }
+        public string SetId         { get; set; }
         [BsonElement]
-        public Guid PlaneswalkerId { get; set; }
+        public Guid PlaneswalkerId  { get; set; }
         [BsonElement]
-        public int Amount { get; set; }
+        public int Amount           { get; set; }
     }
 }
 

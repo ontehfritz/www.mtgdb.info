@@ -109,6 +109,11 @@ footer {
     margin-left:10px;
     width:700px;
 }
+.card_info_edit{
+    float:left;
+    margin-left:10px;
+    width:300px;
+}
 
 .card_amount{
     margin-top:-15px;

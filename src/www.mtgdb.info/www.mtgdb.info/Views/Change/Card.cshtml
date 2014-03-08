@@ -1,0 +1,121 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+
+@section Top{
+    <div class="t_section">
+    <h1>
+    Submit a card update <br /> 
+    <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
+    </h1>
+    </div>
+}
+
+<div style="width:1200px;">
+    <form action="/cards/@Model.Mvid/change" method="post">
+    <div id="card_@Model.Mvid" class="card">
+        <img src="@Model.Image" />
+        <br /><br />
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    </div>
+
+    <div class="card_info_edit">
+        <table class="table-hover">
+        <tr>
+            <td><b>Set #:</b></td>
+            <td><input type="text" name="SetNumber" value="@Model.SetNumber" /></td>
+        </tr>
+        <tr>
+            <td><b>Color(s):</b></td>
+            <td>
+                <input type="text" name="Colors" value='@String.Join(",", Model.Colors)' />
+            </td>
+        </tr>
+        <tr>
+            <td><b>Mana Cost:</b></td>
+            <td><input type="text" name="ManaCost" value="@Model.ManaCost" /></td>
+        </tr>
+        <tr>
+            <td><b>Converted Cost:</b></td>
+            <td><input type="text" name="ConvertedManaCost" value="@Model.ConvertedManaCost" /></td>
+        </tr>
+        <tr>
+            <td><b>Type:</b></td>
+            <td><input type="text" name="Type" value="@Model.Type" /></td>
+        </tr>
+        <tr>
+            <td><b>Sub Type:</b></td>
+            <td><input type="text" name="SubType" value="@Model.SubType" /></td>
+        </tr>
+        <tr>
+            <td><b>Text:</b></td>
+            <td><input type="text" name="Description" value="@Model.Description" /></td>
+        </tr>
+        <tr>
+            <td><b>Power:</b></td>
+            <td><input type="text" name="Power" value="@Model.Power" /></td>
+        </tr>
+        <tr>
+            <td><b>Toughness:</b></td>
+            <td><input type="text" name="Toughness" value="@Model.Toughness" /></td>
+        </tr>
+        <tr>
+            <td><b>Artist:</b></td>
+            <td><input type="text" name="Artist" value="@Model.Artist" /></td>
+        </tr>
+         <tr>
+            <td><b>Formats:</b></td>
+            <td><input type="text" name="Formats" value='@String.Join(",",@Model.Formats)' /></td>
+        </tr>
+        </table>
+    </div>
+    <div style="float:left;">
+        <h4>
+        Rulings <a href="" id="add_ruling"><span class="glyphicon glyphicon-plus-sign"></span></a>
+        </h4>
+
+        @if(Model.Rulings != null && Model.Rulings.Length > 0)
+        {
+            <input id="ruling_count" type="text" value="@Model.Rulings.Length" />
+            int i = 0;
+            <table id="rulings" class="table table-condensed table-hover">
+            <tbody>
+            @foreach(var rule in Model.Rulings)
+            {
+                <tr>
+                    <td>
+                        <input type="text" name="Rulings[@i].ReleasedAt" 
+                                value="@rule.ReleasedAt.ToShortDateString()" />
+                    </td>
+                    <td>
+                        <input type="text" name="Rulings[@i].Rule" 
+                                value="@rule.Rule" />
+                    </td>
+                </tr>
+                ++i;
+            }
+            </tbody>
+            </table>
+        }
+        else
+        {
+            <p>This card has no rulings.</p>
+        }
+    </div>
+    </form>
+    <br style="clear:both;" />
+</div>
+
+<script>
+    $("#add_ruling").click(function(){
+        var count = parseInt($("#ruling_count").val()) + 1;
+        $("#ruling_count").val(count);
+
+        $('#rulings > tbody:last').append('<tr><td><input type="text" name="Rulings[' +  count
+        + '].ReleasedAt" value="" /></td><td><input type="text" name="Rulings[' + count + 
+        '].Rule" value="" /></td></tr>');
+    }); 
+</script>
+

@@ -1,28 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/_Cards.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Change/Card.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/IRepository.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/About.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/SearchModule.cs" Line="1" Column="1" />
-      <File FileName="Test_MtgDb.Info/Test.cs" Line="1" Column="1" />
-      <File FileName="Test_MtgDb.Info/packages.config" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/web.config" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="24" Column="36" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="14" Column="25" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="6" Column="60" />
+      <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="108" Column="31" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

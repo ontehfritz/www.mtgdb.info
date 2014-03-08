@@ -119,6 +119,11 @@ namespace MtgDb.Info
                 model.ActiveMenu = "signin";
                 model.UrlRedirect = (string)Request.Query.Url;
 
+                if(Request.Query.returnUrl != null)
+                {
+                    model.UrlRedirect = (string)Request.Query.returnUrl;
+                }
+
                 return View["Logon/logon",model];
             };
 

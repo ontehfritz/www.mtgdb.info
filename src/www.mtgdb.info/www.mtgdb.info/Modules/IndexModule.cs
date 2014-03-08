@@ -9,8 +9,9 @@ namespace MtgDb.Info
 {
     public class IndexModule : NancyModule
     {
-        public Db magicdb = new Db ();
-        //public Db magicdb = new Db ("http://127.0.0.1:8082/");
+        public Db magicdb = 
+            new Db (ConfigurationManager.AppSettings.Get("api"));
+
         public IRepository repository = 
             new MongoRepository (ConfigurationManager.AppSettings.Get("db"));
 

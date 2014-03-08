@@ -6,15 +6,15 @@ namespace MtgDb.Info
     public class Profile
     {
         [BsonId]
-        public Guid Id { get; set; }
+        public Guid Id              { get; set; }
         [BsonElement]
-        public string Email { get; set; }
+        public string Email         { get; set; }
         [BsonElement]
-        public string Name { get; set; }
+        public string Name          { get; set; }
         [BsonElement]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt   { get; set; }
         [BsonElement]
-        public DateTime ModifiedAt { get; set; }
+        public DateTime ModifiedAt  { get; set; }
     }
 }
 
