@@ -17,8 +17,6 @@
     <form action="/cards/@Model.Mvid/change" method="post">
     <div id="card_@Model.Mvid" class="card">
         <img src="@Model.Image" />
-        <br /><br />
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     </div>
 
     <div class="card_info_edit">
@@ -65,15 +63,50 @@
             <td><b>Artist:</b></td>
             <td><input type="text" name="Artist" value="@Model.Artist" /></td>
         </tr>
-         <tr>
-            <td><b>Formats:</b></td>
-            <td><input type="text" name="Formats" value='@String.Join(",",@Model.Formats)' /></td>
-        </tr>
         </table>
+
     </div>
-    <div style="float:left;">
+    <br style="clear:both;" />
+    <div>
         <h4>
-        Rulings <a href="" id="add_ruling"><span class="glyphicon glyphicon-plus-sign"></span></a>
+            Formats <a href="#" id="add_format"><span class="glyphicon glyphicon-plus-sign"></span></a>
+        </h4>
+
+        @if(Model.Formats != null && Model.Formats.Length > 0)
+        {
+            <input id="format_count" type="text" value="@Model.Formats.Length" />
+            int i = 0;
+            <table id="formats" class="table table-condensed table-hover">
+            <tbody>
+            @foreach(var format in Model.Formats)
+            {
+                <tr id="format_@i">
+                    <td>
+                        <input type="text" name="Formats[@i].Name" 
+                                value="@format.Name" />
+                    </td>
+                    <td>
+                        <input type="text" name="Formats[@i].Legality" 
+                                value="@format.Legality" />
+                    </td>
+                    <td>
+                        <a href="#" onclick="removeFormat('format_@i');">
+                        <span class="glyphicon glyphicon-minus-sign"></span></a>
+                    </td>
+                </tr>
+                ++i;
+            }
+            </tbody>
+            </table>
+        }
+        else
+        {
+            <p>This card belongs to no format.</p>
+        }
+    </div>
+    <div>
+        <h4>
+        Rulings <a href="#" id="add_ruling"><span class="glyphicon glyphicon-plus-sign"></span></a>
         </h4>
 
         @if(Model.Rulings != null && Model.Rulings.Length > 0)
@@ -84,7 +117,7 @@
             <tbody>
             @foreach(var rule in Model.Rulings)
             {
-                <tr>
+                <tr id="ruling_@i">
                     <td>
                         <input type="text" name="Rulings[@i].ReleasedAt" 
                                 value="@rule.ReleasedAt.ToShortDateString()" />
@@ -92,6 +125,10 @@
                     <td>
                         <input type="text" name="Rulings[@i].Rule" 
                                 value="@rule.Rule" />
+                    </td>
+                    <td>
+                        <a href="#" onclick="removeRuling('ruling_@i');">
+                        <span class="glyphicon glyphicon-minus-sign"></span></a>
                     </td>
                 </tr>
                 ++i;
@@ -104,8 +141,9 @@
             <p>This card has no rulings.</p>
         }
     </div>
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     </form>
-    <br style="clear:both;" />
+
 </div>
 
 <script>
@@ -113,9 +151,33 @@
         var count = parseInt($("#ruling_count").val()) + 1;
         $("#ruling_count").val(count);
 
-        $('#rulings > tbody:last').append('<tr><td><input type="text" name="Rulings[' +  count
+        $('#rulings > tbody:last').append('<tr id="ruling_' + count + '"><td><input type="text" name="Rulings[' +  count
         + '].ReleasedAt" value="" /></td><td><input type="text" name="Rulings[' + count + 
-        '].Rule" value="" /></td></tr>');
+        '].Rule" value="" /></td> <td><a href="#" onclick="removeRuling(\'ruling_' + count + '\');"><span class="glyphicon glyphicon-minus-sign"></span></a></td></tr>');
     }); 
+
+    function removeRuling(id)
+    {
+        //alert(id);
+        $('#' + id).remove();
+        return false;
+    }
+
+     $("#add_format").click(function(){
+        var count = parseInt($("#format_count").val()) + 1;
+        $("#format_count").val(count);
+
+        $('#formats > tbody:last').append('<tr id="format_' + count + '"><td><input type="text" name="Formats[' +  count
+        + '].Name" value="" /></td><td><input type="text" name="Formats[' + count + 
+        '].Legality" value="" /></td> <td><a href="#" onclick="removeFormat(\'format_' + count + '\');"><span class="glyphicon glyphicon-minus-sign"></span></a></td></tr>');
+    }); 
+
+    function removeFormat(id)
+    {
+        //alert(id);
+        $('#' + id).remove();
+        return false;
+    }
+
 </script>
 

@@ -46,6 +46,68 @@ namespace MtgDb.Info
             CreateUserCardIndexes ();
         }
 
+        public CardChange[] GetCardChangeRequests(int mvid)
+        {
+            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+            List<CardChange> changes = new List<CardChange>(); 
+
+            var query = Query.And(Query<CardChange>.EQ (e => e.Mvid, mvid ));
+            var mongoResults = collection.Find(query);
+
+            foreach(CardChange c in mongoResults)
+            {
+                changes.Add(c);
+            }
+
+
+            return changes.ToArray();
+
+        }
+
+        public Guid AddCardChangeRequest(CardChange change)
+        {
+            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+            List<CardChange> changes = new List<CardChange>(); 
+           
+            Card card = magicdb.GetCard(change.Mvid);
+            var query = Query.And(Query<CardChange>.EQ (e => e.Mvid, change.Mvid ));
+            var mongoResults = collection.Find(query);
+
+            foreach(CardChange c in mongoResults)
+            {
+                changes.Add(c);
+            }
+
+            if(changes.Count == 0)
+            {
+                CardChange original = CardChange.MapCard(card);
+                original.Comment = "Original card info";
+                original.Id = Guid.NewGuid();
+                original.Version = 0;
+                original.CreatedAt = DateTime.Now;
+
+                collection.Save(original);
+            }
+
+            change.Id = Guid.NewGuid();
+            change.Version = changes.Count == 0 ? 1 : changes.Count + 1;
+            change.CreatedAt = DateTime.Now;
+            change.ModifiedAt = DateTime.Now;
+            change.FieldsUpdated  = CardChange.FieldsChanged(card, change);
+
+            try
+            {
+                collection.Save(change);
+
+            }
+            catch(Exception e)
+            {
+                change.Id = Guid.Empty;
+                throw e; 
+            }
+
+            return change.Id;
+        }
 
         public Dictionary<string, int> GetSetCardCounts(Guid walkerId)
         {

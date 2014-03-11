@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using MtgDb.Info;
 using SuperSimple.Auth;
+using MtgDb.Info.Driver;
 
 namespace Test_MtgDb.Info
 {
@@ -11,12 +12,15 @@ namespace Test_MtgDb.Info
         private SuperSimpleAuth ssa;
         private IRepository repository;
         private Planeswalker mtgdbUser; 
+        private Db mtgdb; 
 
         [SetUp()]
         public void Init()
         {
             ssa =  new SuperSimpleAuth ("testing_mtgdb.info", 
                 "ae132e62-570f-4ffb-87cc-b9c087b09dfb");
+
+            mtgdb = new Db();
 
             repository =  new MongoRepository ("mongodb://localhost", ssa);
 
@@ -44,6 +48,40 @@ namespace Test_MtgDb.Info
                 Roles = ssaUser.Roles,
                 Profile = repository.GetProfile (ssaUser.Id)
             };
+        }
+
+        [Test()]
+        public void Get_card_changes()
+        {
+            CardChange change = new CardChange();
+
+            Card card = mtgdb.GetCard(2);
+
+            change = CardChange.MapCard(card);
+            change.Comment = "test";
+            change.UserId = Guid.NewGuid();
+
+            repository.AddCardChangeRequest(change);
+
+            CardChange[] changes = repository.GetCardChangeRequests(2);
+
+            Assert.Greater(changes.Length, 0);
+        }
+
+        [Test()]
+        public void Add_card_change()
+        {
+            CardChange change = new CardChange();
+
+            Card card = mtgdb.GetCard(1);
+
+            change = CardChange.MapCard(card);
+            change.Comment = "test";
+            change.UserId = Guid.NewGuid();
+
+            Guid newId = repository.AddCardChangeRequest(change);
+
+            Assert.AreNotEqual(Guid.Empty,newId);
         }
             
         [Test ()]

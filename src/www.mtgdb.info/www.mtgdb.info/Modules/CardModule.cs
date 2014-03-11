@@ -22,6 +22,21 @@ namespace MtgDb.Info
         {
             this.RequiresAuthentication ();
 
+            Get["/cards/{id}/logs"] = parameters => {
+                CardLogsModel model = new CardLogsModel();
+
+                model.ActiveMenu = "sets";
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.Changes = repository.GetCardChangeRequests((int)parameters.id).ToList();
+
+                return View["Change/CardLogs", model];
+            };
+
+            Get["/cards/{id}/logs/{logid}"] = parameters => {
+
+                return "";
+            };
+
             Get ["/cards/{id}/change"] = parameters => {
                 CardChange model = new CardChange();
                 Card card; 
@@ -44,34 +59,11 @@ namespace MtgDb.Info
 
             Post ["/cards/{id}/change"] = parameters => {
                 CardChange model = this.Bind<CardChange>();
-                //Request.Form["Answers[" + i + "].AnswerString"] != null
+                model.Mvid = (int)parameters.id;
+                model.Rulings = Bind.Rulings(Request);
+                model.Formats = Bind.Formats(Request);
 
-                var dictionary = Request.Form as IDictionary<string, object>;
-                string releasedAt = "{0}.ReleasedAt";
-                string rule = "{0}.Rule";
-
-                string[] keys = dictionary.Select(x => x.Key)
-                    .Where(x => x.StartsWith("Ruling"))
-                    .ToArray();
-
-                keys = keys.Select(x => x.Substring(0,x.IndexOf('.'))).Distinct().ToArray();
-
-                List<Ruling> rulings = new List<Ruling>();
-
-                if(keys != null && keys.Length > 0)
-                {
-                    keys = keys.OrderBy(x => x).ToArray();
-
-                    foreach(string key in keys)
-                    {
-                        rulings.Add(new Ruling(){
-                            ReleasedAt =  DateTime.Parse(dictionary[string.Format(releasedAt, key)].ToString()),
-                            Rule = dictionary[string.Format(rule, key)].ToString()
-                        });
-                    }
-                }
-
-                model.Rulings = rulings.ToArray();
+                repository.AddCardChangeRequest(model);
 
                 //return Response.AsJson(rulings.ToArray());
                 return View["Change/Card", model];

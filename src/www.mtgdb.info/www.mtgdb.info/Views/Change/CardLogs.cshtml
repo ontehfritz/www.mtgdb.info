@@ -1,0 +1,23 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+
+@section Top{
+    <div class="t_section">
+    <h1>
+    Submit a card update <br /> 
+    <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
+    </h1>
+    </div>
+}
+
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+    </body>
+</html>

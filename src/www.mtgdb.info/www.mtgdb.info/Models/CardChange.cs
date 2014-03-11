@@ -1,39 +1,70 @@
 ﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace MtgDb.Info
 {
     public class CardChange : PageModel
     {
+        [BsonId]
         public Guid Id                  { get; set; }
+        [BsonElement]
         public Guid UserId              { get; set; }
-        public int Number               { get; set; } //0 - is the original 
+        [BsonElement]
+        public int Version              { get; set; } //0 - is the original 
+        [BsonElement]
         public DateTime ModifiedAt      { get; set; }
+        [BsonElement]
         public DateTime CreatedAt       { get; set; }
+        [BsonElement]
         public string Comment           { get; set; }
+        [BsonElement]
         public string Image             { get; set; }
+        [BsonElement]
         public string[] FieldsUpdated   { get; set; }
 
         /*Card fields*/
-        public int Mvid                 { get; set; }             
+        [BsonElement]
+        public int Mvid                 { get; set; }  
+        [BsonElement]
         public int SetNumber            { get; set; }
+        [BsonElement]
         public string Name              { get; set; }
-        public string SearchName        { get; set; }             
-        public string Description       { get; set; }          
-        public string Flavor            { get; set; }              
-        public string[] Colors          { get; set; }               
-        public string ManaCost          { get; set; }            
-        public int ConvertedManaCost    { get; set; }    
-        public string CardSetName       { get; set; }          
-        public string Type              { get; set; }                
-        public string SubType           { get; set; }              
-        public int Power                { get; set; }              
-        public int Toughness            { get; set; }            
-        public int Loyalty              { get; set; }             
-        public string Rarity            { get; set; }               
-        public string Artist            { get; set; }              
-        public string CardSetId         { get; set; }            
-        public Ruling[] Rulings         { get; set; }              
-        public string[] Formats         { get; set; }         
+        [BsonElement]
+        public string SearchName        { get; set; }  
+        [BsonElement]
+        public string Description       { get; set; }   
+        [BsonElement]
+        public string Flavor            { get; set; }   
+        [BsonElement]
+        public string[] Colors          { get; set; }   
+        [BsonElement]
+        public string ManaCost          { get; set; }    
+        [BsonElement]
+        public int ConvertedManaCost    { get; set; }   
+        [BsonElement]
+        public string CardSetName       { get; set; }  
+        [BsonElement]
+        public string Type              { get; set; }   
+        [BsonElement]
+        public string SubType           { get; set; }       
+        [BsonElement]
+        public int Power                { get; set; }      
+        [BsonElement]
+        public int Toughness            { get; set; }  
+        [BsonElement]
+        public int Loyalty              { get; set; }    
+        [BsonElement]
+        public string Rarity            { get; set; }  
+        [BsonElement]
+        public string Artist            { get; set; } 
+        [BsonElement]
+        public string CardSetId         { get; set; }     
+        [BsonElement]
+        public Ruling[] Rulings         { get; set; }    
+        [BsonElement]
+        public Format[] Formats         { get; set; }   
+        [BsonElement]
         public DateTime ReleasedAt      { get; set; } 
         /*end of card fields*/
 
@@ -65,6 +96,34 @@ namespace MtgDb.Info
             change.Image = card.CardImage;
 
             return change;
+        }
+
+        public static string[] FieldsChanged(Card card, CardChange change)
+        {
+            List<string> fields = new List<string> ();
+
+            if(change.Artist != card.Artist){ fields.Add("artist");}
+            if(change.CardSetId != card.CardSetId){ fields.Add("cardSetId");}
+            if(change.CardSetName != card.CardSetName){ fields.Add("cardSetName");}
+            if(change.Colors != card.Colors){ fields.Add("colors");}
+            if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
+            if(change.Description != card.Description){ fields.Add("description");}
+            if(change.Flavor != card.Flavor){ fields.Add("flavor");}
+            if(change.Formats != card.Formats){ fields.Add("formats");}
+            if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
+            if(change.ManaCost != card.ManaCost){ fields.Add("manaCost");}
+            if(change.Name != card.Name){ fields.Add("name");}
+            if(change.Power != card.Power){ fields.Add("power");}
+            if(change.Rarity != card.Rarity){ fields.Add("rarity");}
+            if(change.ReleasedAt != card.ReleasedAt){ fields.Add("releasedAt");}
+            if(change.Rulings != card.Rulings){ fields.Add("rulings");}
+            if(change.SetNumber != card.SetNumber){ fields.Add("setNumber");}
+            if(change.SubType != card.SubType){ fields.Add("subType");}
+            if(change.Toughness != card.Toughness){ fields.Add("toughness");}
+            if(change.Type != card.Type){ fields.Add("type");}
+            //change.Image = card.CardImage;
+
+            return fields.ToArray();
         }
     }
 }
