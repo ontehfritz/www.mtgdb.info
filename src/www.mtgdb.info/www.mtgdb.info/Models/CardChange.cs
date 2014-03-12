@@ -105,23 +105,23 @@ namespace MtgDb.Info
             if(change.Artist != card.Artist){ fields.Add("artist");}
             if(change.CardSetId != card.CardSetId){ fields.Add("cardSetId");}
             if(change.CardSetName != card.CardSetName){ fields.Add("cardSetName");}
-            if(change.Colors != card.Colors){ fields.Add("colors");}
-            if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
+            //if(change.Colors != card.Colors){ fields.Add("colors");}
+            //if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
             if(change.Description != card.Description){ fields.Add("description");}
             if(change.Flavor != card.Flavor){ fields.Add("flavor");}
-            if(change.Formats != card.Formats){ fields.Add("formats");}
+//          if(change.Formats != card.Formats){ fields.Add("formats");}
             if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
-            if(change.ManaCost != card.ManaCost){ fields.Add("manaCost");}
-            if(change.Name != card.Name){ fields.Add("name");}
+            if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
+            if(change.Name!= card.Name){ fields.Add("name");}
             if(change.Power != card.Power){ fields.Add("power");}
             if(change.Rarity != card.Rarity){ fields.Add("rarity");}
             if(change.ReleasedAt != card.ReleasedAt){ fields.Add("releasedAt");}
-            if(change.Rulings != card.Rulings){ fields.Add("rulings");}
+//           if(change.Rulings != card.Rulings){ fields.Add("rulings");}
             if(change.SetNumber != card.SetNumber){ fields.Add("setNumber");}
             if(change.SubType != card.SubType){ fields.Add("subType");}
             if(change.Toughness != card.Toughness){ fields.Add("toughness");}
             if(change.Type != card.Type){ fields.Add("type");}
-            //change.Image = card.CardImage;
+//          change.Image = card.CardImage;
 
             return fields.ToArray();
         }

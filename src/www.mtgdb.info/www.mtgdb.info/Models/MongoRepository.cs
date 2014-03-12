@@ -98,7 +98,6 @@ namespace MtgDb.Info
             try
             {
                 collection.Save(change);
-
             }
             catch(Exception e)
             {
