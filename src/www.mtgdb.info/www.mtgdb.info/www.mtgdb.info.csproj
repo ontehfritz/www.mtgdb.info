@@ -162,5 +162,6 @@
     <None Include="Views\Logon\Loggedin.cshtml" />
     <None Include="Views\Change\Card.cshtml" />
     <None Include="Views\Change\CardLogs.cshtml" />
+    <None Include="Views\Change\CardChange.cshtml" />
   </ItemGroup>
 </Project>

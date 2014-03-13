@@ -1,0 +1,128 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+
+@section Top{
+    <div class="t_section">
+        <h1>
+        Card Change Requet <br /> 
+        <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
+        </h1>
+    </div>
+}
+
+<h1>Version: @Model.Version</h1>
+
+<div style="width:1200px;">
+    <form action="" method="post">
+    <div>
+        <table class="table-hover">
+        <tr>
+            <td><b>Set #:</b></td>
+            <td>@Model.SetNumber</td>
+        </tr>
+        <tr>
+            <td><b>Color(s):</b></td>
+            <td>
+                @String.Join(",", Model.Colors)
+            </td>
+        </tr>
+        <tr>
+            <td><b>Mana Cost:</b></td>
+            <td>@Model.ManaCost</td>
+        </tr>
+        <tr>
+            <td><b>Converted Cost:</b></td>
+            <td>@Model.ConvertedManaCost</td>
+        </tr>
+        <tr>
+            <td><b>Type:</b></td>
+            <td>@Model.Type</td>
+        </tr>
+        <tr>
+            <td><b>Sub Type:</b></td>
+            <td>@Model.SubType</td>
+        </tr>
+        <tr>
+            <td><b>Text:</b></td>
+            <td>@Model.Description</td>
+        </tr>
+        <tr>
+            <td><b>Power:</b></td>
+            <td>@Model.Power</td>
+        </tr>
+        <tr>
+            <td><b>Toughness:</b></td>
+            <td>@Model.Toughness</td>
+        </tr>
+        <tr>
+            <td><b>Artist:</b></td>
+            <td>@Model.Artist</td>
+        </tr>
+        </table>
+
+    </div>
+    <br style="clear:both;" />
+    <div>
+        <h4>
+            Formats
+        </h4>
+
+        @if(Model.Formats != null && Model.Formats.Length > 0)
+        {
+            <table id="formats" class="table table-condensed table-hover">
+            <tbody>
+            @foreach(var format in Model.Formats)
+            {
+                <tr>
+                    <td>
+                         @format.Name
+                    </td>
+                    <td>
+                        @format.Legality
+                    </td>
+                </tr>
+            }
+            </tbody>
+            </table>
+        }
+        else
+        {
+            <p>This card belongs to no format.</p>
+        }
+    </div>
+    <div>
+        <h4>
+        Rulingss
+        </h4>
+
+        @if(Model.Rulings != null && Model.Rulings.Length > 0)
+        {
+            <table id="rulings" class="table table-condensed table-hover">
+            <tbody>
+            @foreach(var rule in Model.Rulings)
+            {
+                <tr id="ruling">
+                    <td>
+                        @rule.ReleasedAt.ToShortDateString()
+                    </td>
+                    <td>
+                        @rule.Rule
+                    </td>
+                </tr>
+            }
+            </tbody>
+            </table>
+        }
+        else
+        {
+            <p>This card has no rulings.</p>
+        }
+    </form>
+
+</div>
+
+
+

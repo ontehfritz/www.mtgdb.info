@@ -35,11 +35,11 @@
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSimpleAuthCSharp">
-      <HintPath>..\www.mtgdb.info\bin\SuperSimpleAuthCSharp.dll</HintPath>
-    </Reference>
     <Reference Include="MtgDb.Info.Driver">
-      <HintPath>..\www.mtgdb.info\bin\MtgDb.Info.Driver.dll</HintPath>
+      <HintPath>..\..\..\..\CSharpMtgDb.Info\bin\Release\MtgDb.Info.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSimpleAuthCSharp">
+      <HintPath>..\..\..\..\SuperSimpleAuth\SuperSimpleAuthCSharp\bin\Release\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

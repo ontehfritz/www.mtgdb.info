@@ -46,6 +46,17 @@ namespace MtgDb.Info
             CreateUserCardIndexes ();
         }
 
+
+        public CardChange GetCardChangeRequest(Guid id)
+        {
+            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+
+            var query = Query.And(Query<CardChange>.EQ (e => e.Id, id ));
+            CardChange change =  collection.FindOne(query);
+
+            return change;
+        }
+
         public CardChange[] GetCardChangeRequests(int mvid)
         {
             MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");

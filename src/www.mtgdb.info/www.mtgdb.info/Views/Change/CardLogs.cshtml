@@ -1,4 +1,4 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange[]>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardLogsModel>
 @{
   Layout = "_Layout.cshtml";
 }
@@ -11,4 +11,29 @@
             <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
         </h1>
     </div>
+}
+   
+@foreach(var change in Model.Changes)
+{
+    if(change.Version == 0)
+    {
+        <div>
+            <h4>Original</h4>
+        </div> 
+    }
+    else
+    {
+        <div>
+            <h4>Version: <a href="/cards/@Model.Mvid/logs/@change.Id"> @change.Version </a></h4>
+            <b>Changes:</b><br />
+            @foreach(var field in @change.FieldsUpdated )
+            {
+                <span class="badge">@field</span>
+            }
+            <br />
+            On
+            @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
+        </div>   
+    }
+
 }

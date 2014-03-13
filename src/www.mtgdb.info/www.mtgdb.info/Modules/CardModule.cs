@@ -27,16 +27,26 @@ namespace MtgDb.Info
 
                 model.ActiveMenu = "sets";
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Changes = repository.GetCardChangeRequests((int)parameters.id).ToList();
+                model.Changes = repository.GetCardChangeRequests((int)parameters.id)
+                    .OrderByDescending(x => x.Version) 
+                    .ToList();
+
+                model.Mvid = (int)parameters.id;
 
                 return View["Change/CardLogs", model];
             };
 
             Get["/cards/{id}/logs/{logid}"] = parameters => {
+                CardChange model = new CardChange();
 
-                return "";
+                model = repository.GetCardChangeRequest((Guid)parameters.logid);
+                model.ActiveMenu = "sets";
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.Mvid = (int)parameters.id;
+
+                return View["Change/CardChange", model];
             };
-
+                
             Get ["/cards/{id}/change"] = parameters => {
                 CardChange model = new CardChange();
                 Card card; 
@@ -62,6 +72,8 @@ namespace MtgDb.Info
                 model.Mvid = (int)parameters.id;
                 model.Rulings = Bind.Rulings(Request);
                 model.Formats = Bind.Formats(Request);
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.UserId = model.Planeswalker.Id;
 
                 repository.AddCardChangeRequest(model);
 

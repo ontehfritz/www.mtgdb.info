@@ -51,7 +51,7 @@ namespace Test_MtgDb.Info
         }
 
         [Test()]
-        public void Get_card_changes()
+        public void Get_card_change()
         {
             CardChange change = new CardChange();
 
@@ -60,6 +60,25 @@ namespace Test_MtgDb.Info
             change = CardChange.MapCard(card);
             change.Comment = "test";
             change.UserId = Guid.NewGuid();
+
+            Guid id = repository.AddCardChangeRequest(change);
+
+            change = repository.GetCardChangeRequest(id);
+
+            Assert.AreEqual(id, change.Id );
+        }
+
+
+        [Test()]
+        public void Get_card_changes()
+        {
+            CardChange change = new CardChange();
+
+            Card card = mtgdb.GetCard(2);
+
+            change = CardChange.MapCard(card);
+            change.Comment = "test";
+            //change.UserId = Guid.NewGuid();
 
             repository.AddCardChangeRequest(change);
 

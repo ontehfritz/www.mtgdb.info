@@ -1,11 +1,15 @@
 ﻿using System;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
+using MtgDb.Info.Driver;
+using System.Configuration;
 
 namespace MtgDb.Info
 {
     public class CardChange : PageModel
     {
+        private IRepository _repository; 
+
         [BsonId]
         public Guid Id                  { get; set; }
         [BsonElement]

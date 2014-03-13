@@ -1,17 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/web.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Change/CardChange.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="84" Column="11" />
-      <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="14" Column="2" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="125" Column="17" />
-      <File FileName="www.mtgdb.info/web.config" Line="39" Column="61" />
+      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="64" Column="43" />
+      <File FileName="www.mtgdb.info/Views/Change/CardChange.cshtml" Line="20" Column="9" />
+      <File FileName="www.mtgdb.info/Views/Change/CardLogs.cshtml" Line="27" Column="69" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
