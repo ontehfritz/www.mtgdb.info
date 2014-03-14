@@ -77,7 +77,7 @@ namespace MtgDb.Info
 
                 repository.AddCardChangeRequest(model);
 
-                //return Response.AsJson(rulings.ToArray());
+                //return model.Description;
                 return View["Change/Card", model];
 
             };

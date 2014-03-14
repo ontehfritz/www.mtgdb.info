@@ -3,7 +3,6 @@
   Layout = "_Layout.cshtml";
 }
 
-
 @section Top{
     <div class="t_section">
         <h1>
@@ -19,45 +18,108 @@
     <form action="" method="post">
     <div>
         <table class="table-hover">
-        <tr>
+        @{ string changed = "";}
+        @if(@Model.IsFieldChanged("setnumber"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Set #:</b></td>
             <td>@Model.SetNumber</td>
+            @if(@Model.Planeswalker.InRole("admin"))
+            {
+                <td><input type="Button" name="set" value="commit" /></td>
+            }
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("colors"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Color(s):</b></td>
             <td>
                 @String.Join(",", Model.Colors)
             </td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("manacost"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Mana Cost:</b></td>
             <td>@Model.ManaCost</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("convertedManaCost"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Converted Cost:</b></td>
             <td>@Model.ConvertedManaCost</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("type"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Type:</b></td>
             <td>@Model.Type</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("subtype"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Sub Type:</b></td>
             <td>@Model.SubType</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("flavor"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
+            <td><b>Flavor:</b></td>
+            <td>@Model.Flavor</td>
+        </tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("description"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Text:</b></td>
             <td>@Model.Description</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("power"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Power:</b></td>
             <td>@Model.Power</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("toughness"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Toughness:</b></td>
             <td>@Model.Toughness</td>
         </tr>
-        <tr>
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("artist"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
             <td><b>Artist:</b></td>
             <td>@Model.Artist</td>
         </tr>

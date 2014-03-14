@@ -101,7 +101,7 @@ namespace MtgDb.Info
             }
 
             change.Id = Guid.NewGuid();
-            change.Version = changes.Count == 0 ? 1 : changes.Count + 1;
+            change.Version = changes.Count == 0 ? 1 : changes.Count;
             change.CreatedAt = DateTime.Now;
             change.ModifiedAt = DateTime.Now;
             change.FieldsUpdated  = CardChange.FieldsChanged(card, change);

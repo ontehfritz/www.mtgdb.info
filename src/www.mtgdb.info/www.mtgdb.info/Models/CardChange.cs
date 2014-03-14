@@ -109,9 +109,13 @@ namespace MtgDb.Info
             if(change.Artist != card.Artist){ fields.Add("artist");}
             if(change.CardSetId != card.CardSetId){ fields.Add("cardSetId");}
             if(change.CardSetName != card.CardSetName){ fields.Add("cardSetName");}
-            //if(change.Colors != card.Colors){ fields.Add("colors");}
-            //if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
-            if(change.Description != card.Description){ fields.Add("description");}
+            if(change.Colors != card.Colors){ fields.Add("colors");}
+            if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
+
+            if(change.Description.Replace("\r",string.Empty).Length != card.Description.Length){ fields.Add("description");}
+//            if(string.Equals(card.Description ,change.Description,
+//                StringComparison.Ordinal)){ fields.Add("description");}
+
             if(change.Flavor != card.Flavor){ fields.Add("flavor");}
 //          if(change.Formats != card.Formats){ fields.Add("formats");}
             if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
@@ -125,9 +129,22 @@ namespace MtgDb.Info
             if(change.SubType != card.SubType){ fields.Add("subType");}
             if(change.Toughness != card.Toughness){ fields.Add("toughness");}
             if(change.Type != card.Type){ fields.Add("type");}
-//          change.Image = card.CardImage;
+////          change.Image = card.CardImage;
 
             return fields.ToArray();
+        }
+
+        public bool IsFieldChanged(string name)
+        {
+            name = name.ToLower();
+            foreach(string field in FieldsUpdated)
+            {
+                if(field.ToLower() == name)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

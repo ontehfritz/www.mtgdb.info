@@ -55,5 +55,20 @@ namespace MtgDb.Info
         public IEnumerable<string> Claims { get; set; }
         public IEnumerable<string> Roles { get; set; }
         public Profile Profile { get; set; }
+
+        public bool InRole(string role)
+        {
+            role = role.ToLower();
+
+            foreach(string r in Roles)
+            {
+                if(r.ToLower() == role)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
