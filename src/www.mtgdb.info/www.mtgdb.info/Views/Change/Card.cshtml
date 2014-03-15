@@ -2,8 +2,7 @@
 @{
   Layout = "_Layout.cshtml";
 }
-
-
+ 
 @section Top{
     <div class="t_section">
     <h1>
@@ -24,6 +23,10 @@
         <tr>
             <td><b>Set #:</b></td>
             <td><input type="text" name="SetNumber" value="@Model.SetNumber" /></td>
+        </tr>
+        <tr>
+            <td><b>Released:</b></td>
+            <td><input type="text" name="ReleasedAt" value="@Model.ReleasedAt.ToShortDateString()" /></td>
         </tr>
         <tr>
             <td><b>Color(s):</b></td>

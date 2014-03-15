@@ -6,7 +6,7 @@ namespace MtgDb.Info
 {
     public class IndexModel : PageModel
     {
-        public CardSetList SetList { get; set; }
+        public CardSetList SetList  { get; set; }
         public List<CardInfo> Cards { set; get; }
        
         public IndexModel () : base()
@@ -18,8 +18,8 @@ namespace MtgDb.Info
 
     public class CardSetList
     {
-        public MtgDb.Info.CardSet[] Sets { set; get; }
-        public string ActiveSet { get; set; }
+        public MtgDb.Info.CardSet[] Sets    { set; get; }
+        public string ActiveSet             { get; set; }
     }
 }
 

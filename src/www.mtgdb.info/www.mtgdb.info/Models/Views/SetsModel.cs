@@ -7,7 +7,7 @@ namespace MtgDb.Info
 {
     public class SetsModel : PageModel
     {
-        public CardSet[] Sets { get; set; }
+        public CardSet[] Sets                    { get; set; }
         public Dictionary<string, int> UserCards { get; set; }
 
         public SetsModel () : base()

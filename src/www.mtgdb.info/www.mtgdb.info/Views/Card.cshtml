@@ -4,7 +4,8 @@
 }
 @section Top{
     <div class="t_section">
-    <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId?Page=@Model.Page">@Model.Card.CardSetName</a>)</small></h1>
+    <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId?Page=@Model.Page">@Model.Card.CardSetName</a>)
+    </small></h1>
     @if(Model.Card.Flavor != null && Model.Card.Flavor != "")
     {
       <blockquote><p>@Model.Card.Flavor</p></blockquote>
@@ -38,6 +39,10 @@
     <tr>
         <td><b>Set #:</b></td>
         <td>@Model.Card.SetNumber</td>
+    </tr>
+    <tr>
+        <td><b>Released:</b></td>
+        <td>@Model.Card.ReleasedAt</td>
     </tr>
     <tr>
         <td><b>Color(s):</b></td>

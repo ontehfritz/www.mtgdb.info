@@ -7,19 +7,19 @@ namespace MtgDb.Info
     public class PageModel
     {
         [BsonIgnore]
-        public List<string> Messages { get; set; }
+        public List<string> Messages        { get; set; }
         [BsonIgnore]
-        public List<string> Errors { get; set; }
+        public List<string> Errors          { get; set; }
         [BsonIgnore]
-        public List<string> Information { get; set; }
+        public List<string> Information     { get; set; }
         [BsonIgnore]
-        public List<string> Warnings { get; set; }
+        public List<string> Warnings        { get; set; }
         [BsonIgnore]
-        public string Title { get; set; }
+        public string Title                 { get; set; }
         [BsonIgnore]
-        public Planeswalker Planeswalker { get; set; }
+        public Planeswalker Planeswalker    { get; set; }
         [BsonIgnore]
-        public string ActiveMenu { get; set; }
+        public string ActiveMenu            { get; set; }
 
         public PageModel ()
         {

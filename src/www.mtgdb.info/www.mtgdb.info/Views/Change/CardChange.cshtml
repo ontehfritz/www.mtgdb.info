@@ -31,6 +31,18 @@
                 <td><input type="Button" name="set" value="commit" /></td>
             }
         </tr>
+
+        @{changed = "";}
+        @if(@Model.IsFieldChanged("releasedat"))
+        {
+            changed = "changed";
+        }
+        <tr class="@changed">
+            <td><b>Released:</b></td>
+            <td>
+                @Model.ReleasedAt.ToShortDateString()
+            </td>
+        </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("colors"))
         {

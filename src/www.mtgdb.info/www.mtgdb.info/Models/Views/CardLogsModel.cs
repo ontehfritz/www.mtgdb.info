@@ -6,7 +6,7 @@ namespace MtgDb.Info
     public class CardLogsModel : PageModel
     {
         public List<CardChange> Changes { get; set; }
-        public int Mvid { get; set;}
+        public int Mvid                 { get; set;}
 
         public CardLogsModel () : base()
         {

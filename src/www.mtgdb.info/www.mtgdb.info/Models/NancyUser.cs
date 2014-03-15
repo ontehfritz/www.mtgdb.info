@@ -48,13 +48,13 @@ namespace MtgDb.Info
 
     public class Planeswalker : IUserIdentity
     {
-        public Guid Id { get; set; }
-        public Guid AuthToken { get; set; }
-        public string UserName { get; set; }
-        public string Email { get; set; }
-        public IEnumerable<string> Claims { get; set; }
-        public IEnumerable<string> Roles { get; set; }
-        public Profile Profile { get; set; }
+        public Guid Id                      { get; set; }
+        public Guid AuthToken               { get; set; }
+        public string UserName              { get; set; }
+        public string Email                 { get; set; }
+        public IEnumerable<string> Claims   { get; set; }
+        public IEnumerable<string> Roles    { get; set; }
+        public Profile Profile              { get; set; }
 
         public bool InRole(string role)
         {

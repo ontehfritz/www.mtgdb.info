@@ -77,7 +77,9 @@ namespace MtgDb.Info
 
         public Guid AddCardChangeRequest(CardChange change)
         {
-            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
+
             List<CardChange> changes = new List<CardChange>(); 
            
             Card card = magicdb.GetCard(change.Mvid);
@@ -105,6 +107,12 @@ namespace MtgDb.Info
             change.CreatedAt = DateTime.Now;
             change.ModifiedAt = DateTime.Now;
             change.FieldsUpdated  = CardChange.FieldsChanged(card, change);
+
+            if(change.FieldsUpdated == null ||
+                change.FieldsUpdated.Length == 0)
+            {
+                throw new ArgumentException("No fields have been updated.");
+            }
 
             try
             {
