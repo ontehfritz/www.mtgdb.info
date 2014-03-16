@@ -130,7 +130,10 @@ namespace MtgDb.Info
             if(change.ReleasedAt.ToShortDateString() != 
                 card.ReleasedAt.ToShortDateString()){ fields.Add("releasedAt"); }
              
-//          if(change.Rulings != card.Rulings){ fields.Add("rulings");}
+            //if(change.Rulings.Length != card.Rulings.Length){ }
+
+            if(IsRuleChange(card.Rulings, change.Rulings)){ fields.Add("rulings"); }
+
             if(change.SetNumber != card.SetNumber){ fields.Add("setNumber");}
             if(change.SubType != card.SubType){ fields.Add("subType");}
             if(change.Toughness != card.Toughness){ fields.Add("toughness");}
@@ -139,6 +142,42 @@ namespace MtgDb.Info
 
             return fields.ToArray();
         }
+
+        private static bool IsRuleChange(Ruling[] rulings1, 
+            Ruling[] rulings2)
+        {
+            bool changed = false;
+
+            if(rulings1.Length != rulings2.Length)
+            {
+                return true;
+            }
+
+            foreach(Ruling ruling in rulings1)
+            {
+                foreach(Ruling ruling2 in rulings2)
+                {
+                    if(ruling2.Rule == ruling.Rule
+                        && ruling2.ReleasedAt == ruling.ReleasedAt)
+                    {
+                        changed = false;
+                        break;
+                    }
+                    else
+                    {
+                        changed = true;
+                    }
+                }
+
+                if(changed)
+                {
+                    return true;
+                }
+            }
+
+            return changed;
+        }
+
 
         public bool IsFieldChanged(string name)
         {
