@@ -121,7 +121,8 @@ namespace MtgDb.Info
 
 //          if(change.Flavor.Replace("\r",string.Empty) != 
 //                card.Flavor.Replace("\r",string.Empty)){ fields.Add("flavor");}
-//          if(change.Formats != card.Formats){ fields.Add("formats");}
+
+            if(IsFormatChange(card.Formats,change.Formats)){ fields.Add("formats");}
             if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
             if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
             //if(change.Name!= card.Name){ fields.Add("name");}
@@ -129,9 +130,7 @@ namespace MtgDb.Info
             //if(change.Rarity != card.Rarity){ fields.Add("rarity");}
             if(change.ReleasedAt.ToShortDateString() != 
                 card.ReleasedAt.ToShortDateString()){ fields.Add("releasedAt"); }
-             
-            //if(change.Rulings.Length != card.Rulings.Length){ }
-
+           
             if(IsRuleChange(card.Rulings, change.Rulings)){ fields.Add("rulings"); }
 
             if(change.SetNumber != card.SetNumber){ fields.Add("setNumber");}
@@ -177,6 +176,42 @@ namespace MtgDb.Info
 
             return changed;
         }
+
+        private static bool IsFormatChange(Format[] formats1, 
+            Format[] formats2)
+        {
+            bool changed = false;
+
+            if(formats1.Length != formats2.Length)
+            {
+                return true;
+            }
+
+            foreach(Format format in formats1)
+            {
+                foreach(Format format2 in formats2)
+                {
+                    if(format2.Name == format.Name
+                        && format2.Legality == format.Legality)
+                    {
+                        changed = false;
+                        break;
+                    }
+                    else
+                    {
+                        changed = true;
+                    }
+                }
+
+                if(changed)
+                {
+                    return true;
+                }
+            }
+
+            return changed;
+        }
+
 
 
         public bool IsFieldChanged(string name)

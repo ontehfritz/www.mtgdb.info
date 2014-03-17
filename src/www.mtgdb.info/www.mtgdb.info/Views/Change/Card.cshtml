@@ -130,8 +130,7 @@
                                 value="@rule.ReleasedAt.ToShortDateString()" />
                     </td>
                     <td>
-                        <input type="text" name="Rulings[@i].Rule" 
-                                value="@rule.Rule" />
+                        <textarea rows="8" cols="100" name="Rulings[@i].Rule" >@rule.Rule.Trim()</textarea>
                     </td>
                     <td>
                         <a href="#" onclick="removeRuling('ruling_@i');">
@@ -170,7 +169,7 @@
         return false;
     }
 
-     $("#add_format").click(function(){
+    $("#add_format").click(function(){
         var count = parseInt($("#format_count").val()) + 1;
         $("#format_count").val(count);
 
