@@ -41,6 +41,9 @@
     <Reference Include="SuperSimpleAuthCSharp">
       <HintPath>..\..\..\..\SuperSimpleAuth\SuperSimpleAuthCSharp\bin\Release\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
+    <Reference Include="MtgDbAdminDriver">
+      <HintPath>..\..\..\dependencies\MtgDbAdminDriver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Test.cs" />

@@ -7,6 +7,7 @@ using MtgDb.Info.Driver;
 using System.Collections.Generic;
 using System.Configuration;
 using Nancy.ModelBinding;
+using System.Reflection;
 
 namespace MtgDb.Info
 {
@@ -45,6 +46,37 @@ namespace MtgDb.Info
                 model.Mvid = (int)parameters.id;
 
                 return View["Change/CardChange", model];
+            };
+
+            Post["/change/{id}/field/{field}"] = parameters => {
+                Admin admin = new Admin(ConfigurationManager.AppSettings.Get("api"));
+                Planeswalker planeswalker = (Planeswalker)this.Context.CurrentUser;
+                Guid changeId  = Guid.Parse((string)parameters.id);
+                string field = (string)parameters.field;
+
+                if(!planeswalker.InRole("admin"))
+                {
+                    return HttpStatusCode.Unauthorized;
+                }
+
+                try
+                {
+                    CardChange change = repository.GetCardChangeRequest(changeId);
+                   
+                    Type type = change.GetType();
+                    dynamic value = type.GetProperty(field, BindingFlags.IgnoreCase |  BindingFlags.Public |
+                        BindingFlags.Instance).GetValue(change, null);
+
+                    admin.UpdateCardField(planeswalker.AuthToken,
+                        change.Mvid, field, (string)value);
+
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+                    
+                return HttpStatusCode.OK;
             };
                 
             Get ["/cards/{id}/change"] = parameters => {

@@ -11,65 +11,68 @@ namespace MtgDb.Info
         private IRepository _repository; 
 
         [BsonId]
-        public Guid Id                  { get; set; }
+        public Guid Id                      { get; set; }
         [BsonElement]
-        public Guid UserId              { get; set; }
+        public Guid UserId                  { get; set; }
         [BsonElement]
-        public int Version              { get; set; } //0 - is the original 
-        [BsonElement]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime ModifiedAt      { get; set; }
+        public int Version                  { get; set; } //0 - is the original 
         [BsonElement]
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime CreatedAt       { get; set; }
+        public DateTime ModifiedAt          { get; set; }
         [BsonElement]
-        public string Comment           { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime CreatedAt           { get; set; }
         [BsonElement]
-        public string Image             { get; set; }
+        public string Comment               { get; set; }
         [BsonElement]
-        public string[] FieldsUpdated   { get; set; }
+        public string Image                 { get; set; }
+        [BsonElement]
+        public string[] FieldsUpdated       { get; set; }
+        [BsonElement]
+        public string[] ChangesCommitted    { get; set; }
+
 
         /*Card fields*/
         [BsonElement]
-        public int Mvid                 { get; set; }  
+        public int Mvid                     { get; set; }  
         [BsonElement]
-        public int SetNumber            { get; set; }
+        public int SetNumber                { get; set; }
         [BsonElement]
-        public string Name              { get; set; }
+        public string Name                  { get; set; }
         [BsonElement]
-        public string SearchName        { get; set; }  
+        public string SearchName            { get; set; }  
         [BsonElement]
-        public string Description       { get; set; }   
+        public string Description           { get; set; }   
         [BsonElement]
-        public string Flavor            { get; set; }   
+        public string Flavor                { get; set; }   
         [BsonElement]
-        public string[] Colors          { get; set; }   
+        public string[] Colors              { get; set; }   
         [BsonElement]
-        public string ManaCost          { get; set; }    
+        public string ManaCost              { get; set; }    
         [BsonElement]
-        public int ConvertedManaCost    { get; set; }   
+        public int ConvertedManaCost        { get; set; }   
         [BsonElement]
-        public string CardSetName       { get; set; }  
+        public string CardSetName           { get; set; }  
         [BsonElement]
-        public string Type              { get; set; }   
+        public string Type                  { get; set; }   
         [BsonElement]
-        public string SubType           { get; set; }       
+        public string SubType               { get; set; }       
         [BsonElement]
-        public int Power                { get; set; }      
+        public int Power                    { get; set; }      
         [BsonElement]
-        public int Toughness            { get; set; }  
+        public int Toughness                { get; set; }  
         [BsonElement]
-        public int Loyalty              { get; set; }    
+        public int Loyalty                  { get; set; }    
         [BsonElement]
-        public string Rarity            { get; set; }  
+        public string Rarity                { get; set; }  
         [BsonElement]
-        public string Artist            { get; set; } 
+        public string Artist                { get; set; } 
         [BsonElement]
-        public string CardSetId         { get; set; }     
+        public string CardSetId             { get; set; }     
         [BsonElement]
-        public Ruling[] Rulings         { get; set; }    
+        public Ruling[] Rulings             { get; set; }    
         [BsonElement]
-        public Format[] Formats         { get; set; }   
+        public Format[] Formats             { get; set; }   
         [BsonElement]
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
         public DateTime ReleasedAt      { get; set; } 
@@ -112,7 +115,7 @@ namespace MtgDb.Info
             if(change.Artist != card.Artist){ fields.Add("artist");}
             //if(change.CardSetId != card.CardSetId){ fields.Add("cardSetId");}
             //if(change.CardSetName != card.CardSetName){ fields.Add("cardSetName");}
-            //if(change.Colors != card.Colors){ fields.Add("colors");}
+            if(IsColorChanged(change.Colors, card.Colors)){ fields.Add("colors");}
             if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
 
             if(change.Description.Replace("\r",string.Empty) != 
@@ -141,6 +144,41 @@ namespace MtgDb.Info
 
             return fields.ToArray();
         }
+
+        private static bool IsColorChanged(string[] colors1, 
+            string[] colors2)
+        {
+            bool changed = false;
+
+            if(colors1.Length != colors2.Length)
+            {
+                return true;
+            }
+
+            foreach(string color in colors1)
+            {
+                foreach(string color2 in colors2)
+                {
+                    if(color2 == color)
+                    {
+                        changed = false;
+                        break;
+                    }
+                    else
+                    {
+                        changed = true;
+                    }
+                }
+
+                if(changed)
+                {
+                    return true;
+                }
+            }
+
+            return changed;
+        }
+
 
         private static bool IsRuleChange(Ruling[] rulings1, 
             Ruling[] rulings2)
