@@ -13,6 +13,7 @@ namespace Test_MtgDb.Info
         private IRepository repository;
         private Planeswalker mtgdbUser; 
         private Db mtgdb; 
+        private Admin admin; 
 
         [SetUp()]
         public void Init()
@@ -20,9 +21,10 @@ namespace Test_MtgDb.Info
             ssa =  new SuperSimpleAuth ("testing_mtgdb.info", 
                 "ae132e62-570f-4ffb-87cc-b9c087b09dfb");
 
-            mtgdb = new Db();
+            mtgdb = new Db("http://127.0.0.1:8082");
 
             repository =  new MongoRepository ("mongodb://localhost", ssa);
+            admin = new Admin("http://127.0.0.1:8082");
 
             //Super simple auth can't delete from here. 
             try
@@ -49,10 +51,32 @@ namespace Test_MtgDb.Info
                 Profile = repository.GetProfile (ssaUser.Id)
             };
         }
+            
+        [Test()]
+        public void Make_change_to_field()
+        {
+            CardChange change = new CardChange();
 
+            Card card = mtgdb.GetCard(2);
+
+            change = CardChange.MapCard(card);
+            change.Comment = "test";
+            change.Description = "lucky";
+            change.UserId = Guid.NewGuid();
+
+            Guid id = repository.AddCardChangeRequest(change);
+
+            string value = change.GetFieldValue("description");
+
+            admin.UpdateCardField(change.UserId, change.Mvid, "description",value);
+
+            card = mtgdb.GetCard(2);
+
+            Assert.AreEqual(card.Description, "lucky" );
+        }
 
         [Test()]
-        public void Make_card_change()
+        public void Get_change_value()
         {
             CardChange change = new CardChange();
 
@@ -65,10 +89,9 @@ namespace Test_MtgDb.Info
 
             Guid id = repository.AddCardChangeRequest(change);
 
+            string value = change.GetFieldValue("description");
 
-            change = repository.GetCardChangeRequest(id);
-
-            Assert.AreEqual(id, change.Id );
+            Assert.AreEqual(value, "test" );
         }
 
 

@@ -3,13 +3,12 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 using MtgDb.Info.Driver;
 using System.Configuration;
+using System.Reflection;
 
 namespace MtgDb.Info
 {
     public class CardChange : PageModel
     {
-        private IRepository _repository; 
-
         [BsonId]
         public Guid Id                      { get; set; }
         [BsonElement]
@@ -30,7 +29,10 @@ namespace MtgDb.Info
         public string[] FieldsUpdated       { get; set; }
         [BsonElement]
         public string[] ChangesCommitted    { get; set; }
-
+        //declined
+        //approved
+        [BsonElement]
+        public string Status                { get; set; }
 
         /*Card fields*/
         [BsonElement]
@@ -249,9 +251,7 @@ namespace MtgDb.Info
 
             return changed;
         }
-
-
-
+           
         public bool IsFieldChanged(string name)
         {
             name = name.ToLower();
@@ -263,6 +263,20 @@ namespace MtgDb.Info
                 }
             }
             return false;
+        }
+
+        public string GetFieldValue(string field)
+        {
+            Type type = this.GetType();
+            dynamic value = type.GetProperty(field, BindingFlags.IgnoreCase |  BindingFlags.Public |
+                BindingFlags.Instance).GetValue(this, null);
+
+            if(value == null)
+            {
+                return null;
+            }
+           
+            return (string)value;
         }
     }
 }

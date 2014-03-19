@@ -15,7 +15,6 @@
 <h1>Version: @Model.Version</h1>
 
 <div style="width:800px;">
-    <form action="" method="post">
     <div>
         <table class="table-hover">
         @{ string changed = "";}
@@ -29,9 +28,11 @@
 
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update set number" />
-                </td>
+                <form action="/change/@Model.Id/field/setnumber" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
 
@@ -47,9 +48,11 @@
             </td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update released date" />
-                </td>
+                <form action="/change/@Model.Id/field/releasedat" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -64,9 +67,11 @@
             </td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update colors" />
-                </td>
+                <form action="/change/@Model.Id/field/colors" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -79,9 +84,11 @@
             <td>@Model.ManaCost</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update mana costs" />
-                </td>
+                <form action="/change/@Model.Id/field/manacost" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -94,9 +101,11 @@
             <td>@Model.ConvertedManaCost</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update converted cost" />
-                </td>
+                <form action="/change/@Model.Id/field/convertedmanacost" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -109,9 +118,11 @@
             <td>@Model.Type</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update type" />
-                </td>
+                <form action="/change/@Model.Id/field/type" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -124,9 +135,11 @@
             <td>@Model.SubType</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update subtype" />
-                </td>
+                <form action="/change/@Model.Id/field/subtype" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -139,9 +152,11 @@
             <td>@Model.Flavor</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update flavor" />
-                </td>
+                <form action="/change/@Model.Id/field/flavor" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -154,9 +169,11 @@
             <td>@Model.Description</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update description" />
-                </td>
+                <form action="/change/@Model.Id/field/description" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -169,9 +186,11 @@
             <td>@Model.Power</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update power" />
-                </td>
+                <form action="/change/@Model.Id/field/power" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -184,9 +203,11 @@
             <td>@Model.Toughness</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update toughness" />
-                </td>
+                <form action="/change/@Model.Id/field/toughness" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         @{changed = "";}
@@ -199,9 +220,11 @@
             <td>@Model.Artist</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <td>
-                    <input type="submit" value="Update artist" />
-                </td>
+                <form action="/change/@Model.Id/field/artist" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
         </tr>
         </table>
@@ -222,7 +245,11 @@
         {
             if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <input type="submit" value="Update formats" />
+                <form action="/change/@Model.Id/field/formats" method="post">
+                    <td>
+                        <input type="submit" value="Update" />
+                    </td>
+                </form>
             }
             <table id="formats" class="table table-condensed table-hover">
             <tbody>
@@ -253,6 +280,9 @@
         @if(@Model.IsFieldChanged("rulings"))
         {
             changed = "changed";
+            <form action="/change/@Model.Id/field/rulings" method="post">
+                <input type="submit" value="Update" />
+            </form>
         }
 
         @if(Model.Rulings != null && Model.Rulings.Length > 0)
@@ -277,8 +307,7 @@
         {
             <p>This card has no rulings.</p>
         }
-    </form>
-
+    </div>
 </div>
 
 

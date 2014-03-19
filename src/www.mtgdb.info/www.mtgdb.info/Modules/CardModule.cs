@@ -63,9 +63,7 @@ namespace MtgDb.Info
                 {
                     CardChange change = repository.GetCardChangeRequest(changeId);
                    
-                    Type type = change.GetType();
-                    dynamic value = type.GetProperty(field, BindingFlags.IgnoreCase |  BindingFlags.Public |
-                        BindingFlags.Instance).GetValue(change, null);
+                    string value = change.GetFieldValue(field);
 
                     admin.UpdateCardField(planeswalker.AuthToken,
                         change.Mvid, field, (string)value);
