@@ -6,6 +6,7 @@ using SuperSimple.Auth;
 using MongoDB.Bson;
 using MtgDb.Info.Driver;
 using System.Configuration;
+using System.Linq;
 
 namespace MtgDb.Info
 {
@@ -47,6 +48,36 @@ namespace MtgDb.Info
         }
 
 
+        public CardChange UpdateCardChangeStatus(Guid id, string status, string field = null)
+        {
+            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+            var query = Query<CardChange>.EQ (e => e.Id, id);
+
+            CardChange change = collection.FindOne(query);
+
+            change.Status = status;
+            change.ModifiedAt = DateTime.Now;
+
+            List<string> committed  = new List<string>();
+
+
+            if(change.ChangesCommitted == null)
+            {
+                committed.Add(field);
+            }
+            else
+            {
+                committed = change.ChangesCommitted.ToList();
+                committed.Add(field);
+            }
+
+            change.ChangesCommitted = committed.ToArray();
+
+            collection.Save(change);
+
+            return change;
+        }
+            
         public CardChange GetCardChangeRequest(Guid id)
         {
             MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
@@ -330,6 +361,21 @@ namespace MtgDb.Info
             }
            
             return user;
+        }
+
+        private void CreateChangeRequestIndexes()
+        {
+            var keys = new IndexKeysBuilder();
+
+            keys.Ascending("Id");
+
+            var options = new IndexOptionsBuilder();
+            options.SetSparse(true);
+            options.SetUnique(true);
+
+            var collection = database.GetCollection<CardChange>("card_changes");
+
+            collection.EnsureIndex(keys, options);
         }
 
         private void CreateUserCardIndexes()
