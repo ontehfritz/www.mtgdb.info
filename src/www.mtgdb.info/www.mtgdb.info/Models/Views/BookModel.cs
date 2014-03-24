@@ -13,8 +13,8 @@ namespace MtgDb.Info
 
         public BookModel () : base()
         {
-            SetList = new CardSetList ();
-            Cards = new List<CardInfo> ();
+            SetList =   new CardSetList ();
+            Cards =     new List<CardInfo> ();
         }
     }
 }

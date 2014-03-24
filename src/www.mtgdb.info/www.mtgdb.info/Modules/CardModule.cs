@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using Nancy.ModelBinding;
 using System.Reflection;
+using Nancy.Validation;
 
 namespace MtgDb.Info
 {
@@ -24,57 +25,87 @@ namespace MtgDb.Info
             this.RequiresAuthentication ();
 
             Get["/cards/{id}/logs"] = parameters => {
-                CardLogsModel model = new CardLogsModel();
+                CardLogsModel model =   new CardLogsModel();
+                model.ActiveMenu =      "sets";
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.Mvid =            (int)parameters.id;
 
-                model.ActiveMenu = "sets";
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Changes = repository.GetCardChangeRequests((int)parameters.id)
+                try
+                {
+                    model.Changes = repository.GetCardChangeRequests((int)parameters.id)
                     .OrderByDescending(x => x.Version) 
                     .ToList();
-
-                model.Mvid = (int)parameters.id;
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
 
                 return View["Change/CardLogs", model];
             };
 
             Get["/cards/{id}/logs/{logid}"] = parameters => {
                 CardChange model = new CardChange();
+            
+                try
+                {
+                    model = repository.GetCardChangeRequest((Guid)parameters.logid);
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
 
-                model = repository.GetCardChangeRequest((Guid)parameters.logid);
-                model.ActiveMenu = "sets";
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Mvid = (int)parameters.id;
+                model.ActiveMenu =      "sets";
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.Mvid =            (int)parameters.id;
 
+               
                 return View["Change/CardChange", model];
             };
 
             Post["/change/{id}/field/{field}"] = parameters => {
-                Admin admin = new Admin(ConfigurationManager.AppSettings.Get("api"));
+                Admin admin =               new Admin(ConfigurationManager.AppSettings.Get("api"));
                 Planeswalker planeswalker = (Planeswalker)this.Context.CurrentUser;
-                Guid changeId  = Guid.Parse((string)parameters.id);
-                string field = (string)parameters.field;
+                Guid changeId  =            Guid.Parse((string)parameters.id);
+                string field =              (string)parameters.field;
+                CardChange change =         null;
 
                 if(!planeswalker.InRole("admin"))
                 {
                     return HttpStatusCode.Unauthorized;
                 }
-
+                    
                 try
                 {
-                    CardChange change = repository.GetCardChangeRequest(changeId);
-                   
-                    string value = change.GetFieldValue(field);
+                    change = repository.GetCardChangeRequest(changeId);
 
-                    admin.UpdateCardField(planeswalker.AuthToken,
-                        change.Mvid, field, (string)value);
+                    if(field == "formats")
+                    {
+                        admin.UpdateCardFormats(planeswalker.AuthToken,
+                            change.Mvid, change.Formats);
+                    }
+                    else if(field == "rulings")
+                    {
+                        admin.UpdateCardRulings(planeswalker.AuthToken,
+                            change.Mvid, change.Rulings);
+                    }
+                    else
+                    {
+                        string value = change.GetFieldValue(field);
+                        admin.UpdateCardField(planeswalker.AuthToken,
+                            change.Mvid, field, (string)value);
+                    }
 
+                    repository.UpdateCardChangeStatus(change.Id, "Accepted", field);
                 }
                 catch(Exception e)
                 {
                     throw e;
                 }
                     
-                return HttpStatusCode.OK;
+                return Response.AsRedirect(string.Format("/cards/{0}/logs/{1}",
+                    change.Mvid, change.Id));
             };
                 
             Get ["/cards/{id}/change"] = parameters => {
@@ -91,31 +122,55 @@ namespace MtgDb.Info
                     throw e;
                 }
 
-                model.ActiveMenu = "sets";
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
                 return View["Change/Card", model];
             };
 
             Post ["/cards/{id}/change"] = parameters => {
-                CardChange model = this.Bind<CardChange>();
-                model.Mvid = (int)parameters.id;
-                model.Rulings = Bind.Rulings(Request);
-                model.Formats = Bind.Formats(Request);
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.UserId = model.Planeswalker.Id;
+                CardChange model =      this.Bind<CardChange>();
+                Card current =          magicdb.GetCard((int)parameters.id);
+                model.CardSetId =       current.CardSetId;
+                model.CardSetName =     current.CardSetName;
+                model.Name =            current.Name;
+                model.Mvid =            (int)parameters.id;
+                model.Rulings =         Bind.Rulings(Request);
+                model.Formats =         Bind.Formats(Request);
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.UserId =          model.Planeswalker.Id;
+                CardChange card =       null;
 
-                repository.AddCardChangeRequest(model);
+                var result = this.Validate(model);
+
+                if (!result.IsValid)
+                {
+                    model.Errors = ErrorUtility.GetValidationErrors(result);
+                    return View["Change/Card", model];
+                }
+                    
+                try
+                {
+                    card = repository.GetCardChangeRequest(
+                        repository.AddCardChangeRequest(model)
+                    );
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                    return View["Change/Card", model];
+                }
+
+                return Response.AsRedirect(string.Format("/cards/{0}/logs?v={1}", 
+                    card.Mvid, card.Version));
 
                 //return model.Description;
-                return View["Change/Card", model];
+                //return View["Change/Card", model];
 
             };
                 
             Post ["/cards/{id}/amount/{count}"] = parameters => {
-                int multiverseId = (int)parameters.id;
-                int count = (int)parameters.count;
-                Guid walkerId = ((Planeswalker)this.Context.CurrentUser).Id;
+                int multiverseId =  (int)parameters.id;
+                int count =         (int)parameters.count;
+                Guid walkerId =     ((Planeswalker)this.Context.CurrentUser).Id;
       
                 repository.AddUserCard(walkerId,multiverseId,count);
                
@@ -124,13 +179,11 @@ namespace MtgDb.Info
 
             //TODO: Refactor this, to long and confusing 
             Get ["/{planeswalker}/blocks/{block}/cards/{setId?}"] = parameters => {
-                PlaneswalkerModel model = new PlaneswalkerModel();
-                model.ActiveMenu = "mycards";
-
-                string setId = (string)parameters.setId;
-                model.Block = (string)parameters.block;
-
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                PlaneswalkerModel model =   new PlaneswalkerModel();
+                model.ActiveMenu =          "mycards";
+                string setId =              (string)parameters.setId;
+                model.Block =               (string)parameters.block;
+                model.Planeswalker =        (Planeswalker)this.Context.CurrentUser;
 
                 if(model.Planeswalker.UserName.ToLower() != 
                     ((string)parameters.planeswalker).ToLower())
@@ -262,12 +315,12 @@ namespace MtgDb.Info
             };
 
             Get ["/{planeswalker}/cards"] = parameters => {
-                PageModel model = new PageModel();
-                model.ActiveMenu = "mycards";
+                PageModel model =       new PageModel();
+                model.ActiveMenu =      "mycards";
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
 
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-
-                if(model.Planeswalker.UserName.ToLower() != ((string)parameters.planeswalker).ToLower())
+                if(model.Planeswalker.UserName.ToLower() != 
+                    ((string)parameters.planeswalker).ToLower())
                 {
                     model.Errors.Add(string.Format("Tsk Tsk! {0}, this profile is not yours.",
                         model.Planeswalker.UserName));
@@ -284,7 +337,7 @@ namespace MtgDb.Info
                     if(setId != null)
                     {
                         CardSet s = magicdb.GetSet(setId);
-
+                      
                         return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
                             "/blocks/" + s.Block + "/cards");
                     }

@@ -7,9 +7,7 @@ namespace MtgDb.Info
     {
         public string Email { get; set; }
 
-        public ForgotModel (): base()
-        {
-        }
+        public ForgotModel (): base(){}
     }
 
     public class ForgotValidator : AbstractValidator<ForgotModel>

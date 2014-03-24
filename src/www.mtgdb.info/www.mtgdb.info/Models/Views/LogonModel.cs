@@ -10,10 +10,7 @@ namespace MtgDb.Info
         public string Secret        { get; set; }
         public string UrlRedirect   { get; set; }
 
-        public LogonModel () : base()
-        {
-
-        }
+        public LogonModel () : base(){}
     }
 
     public class LogonValidator : AbstractValidator<LogonModel>

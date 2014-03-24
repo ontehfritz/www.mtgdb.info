@@ -23,9 +23,9 @@ namespace MtgDb.Info
 
         public PageModel ()
         {
-            Messages = new List<string> ();
-            Errors = new List<string> ();
-            Information = new List<string> ();
+            Messages =      new List<string> ();
+            Errors =        new List<string> ();
+            Information =   new List<string> ();
         }
     }
 }

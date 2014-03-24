@@ -2,8 +2,7 @@
 @{
   Layout = "_Layout.cshtml";
 }
-
-
+ 
 @section Top{
     <div class="t_section">
         <h1>
@@ -23,17 +22,46 @@
     }
     else
     {
-        <div style="border: 1px dotted black;">
-            <h4>Version: <a href="/cards/@Model.Mvid/logs/@change.Id"> @change.Version </a></h4>
-            <b>Changes:</b><br />
-            @foreach(var field in @change.FieldsUpdated )
+        <div class="well">
+            <h4>Version: <a href="/cards/@Model.Mvid/logs/@change.Id"> @change.Version </a>
+            @if(@change.Status == "Accepted")
+            {
+                <span class="label label-success pull-right">Accepted</span>
+            }
+            else if(@change.Status == "")
+            {
+                <span class="label label-danger pull-right">Declined</span>
+            }
+            else
+            {
+                <span class="label label-warning pull-right">Pending</span>
+            }
+            </h4>
+            <div style="float:left;">
+            <b>Changes:</b>
+            @foreach(var field in @change.FieldsUpdated)
             {
                 <span class="badge">@field</span>
             }
             <br />
             On
             @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
+            </div>
+            <div style="float:right;">
+            <b>Committed Changes:</b><br />
+            @if(@change.ChangesCommitted != null && @change.ChangesCommitted.Length > 0)
+            {
+                foreach(var field in @change.ChangesCommitted)
+                {
+                    <span class="label label-success">@field</span>
+                }
+            }
+            else
+            {
+                <span>No changes committed.</span>
+            }
+            </div>
+            <br style="clear:both;"/>
         </div>   
     }
-
 }

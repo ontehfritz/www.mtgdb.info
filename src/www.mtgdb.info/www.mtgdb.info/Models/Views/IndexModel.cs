@@ -11,8 +11,8 @@ namespace MtgDb.Info
        
         public IndexModel () : base()
         {
-            SetList = new CardSetList ();
-            Cards = new List<CardInfo> ();
+            SetList =   new CardSetList ();
+            Cards =     new List<CardInfo> ();
         }
     }
 

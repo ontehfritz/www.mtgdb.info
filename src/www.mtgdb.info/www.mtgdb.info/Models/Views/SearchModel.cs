@@ -9,7 +9,8 @@ namespace MtgDb.Info
         public string Term          { get; set; }
         public List<CardInfo> Cards { get; set; }
 
-        public SearchModel(){
+        public SearchModel()
+        {
             Cards = new List<CardInfo> ();
         }
     }

@@ -23,7 +23,7 @@ namespace Test_MtgDb.Info
 
             mtgdb = new Db("http://127.0.0.1:8082");
 
-            repository =  new MongoRepository ("mongodb://localhost", ssa);
+            repository =  new MongoRepository ("mongodb://localhost", mtgdb, ssa);
             admin = new Admin("http://127.0.0.1:8082");
 
             //Super simple auth can't delete from here. 
@@ -51,6 +51,33 @@ namespace Test_MtgDb.Info
                 Profile = repository.GetProfile (ssaUser.Id)
             };
         }
+
+
+        [Test()]
+        public void Update_change_status()
+        {
+            CardChange change = new CardChange();
+
+            Card card = mtgdb.GetCard(2);
+
+            change = CardChange.MapCard(card);
+            change.Comment = "test";
+            change.Description = "lucky";
+            change.UserId = Guid.NewGuid();
+
+            Guid id = repository.AddCardChangeRequest(change);
+
+            string value = change.GetFieldValue("description");
+
+            admin.UpdateCardField(change.UserId, change.Mvid, "description",value);
+            repository.UpdateCardChangeStatus(id, "Accepted", "description");
+
+            change = repository.GetCardChangeRequest(id);
+
+            Assert.AreEqual(change.Status, "Accepted" );
+            Assert.Greater(change.ChangesCommitted.Length, 0);
+        }
+
             
         [Test()]
         public void Make_change_to_field()
@@ -103,6 +130,7 @@ namespace Test_MtgDb.Info
             Card card = mtgdb.GetCard(2);
 
             change = CardChange.MapCard(card);
+            change.Description = "1";
             change.Comment = "test";
             change.UserId = Guid.NewGuid();
 
@@ -123,6 +151,7 @@ namespace Test_MtgDb.Info
 
             change = CardChange.MapCard(card);
             change.Comment = "test";
+            change.Description = "1";
             //change.UserId = Guid.NewGuid();
 
             repository.AddCardChangeRequest(change);
@@ -140,6 +169,7 @@ namespace Test_MtgDb.Info
             Card card = mtgdb.GetCard(1);
 
             change = CardChange.MapCard(card);
+            change.Description = "description change";
             change.Comment = "test";
             change.UserId = Guid.NewGuid();
 

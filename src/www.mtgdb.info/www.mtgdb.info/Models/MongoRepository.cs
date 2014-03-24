@@ -27,51 +27,54 @@ namespace MtgDb.Info
                 ConfigurationManager.AppSettings.Get("domain"), 
                 ConfigurationManager.AppSettings.Get("domain_key")); 
 
-            magicdb = new Db ();
-
-            Connection = connection;
-            client = new MongoClient(connection);
-            server = client.GetServer();
-            database = server.GetDatabase("mtgdb_info");
+            magicdb =       new Db (ConfigurationManager.AppSettings.Get("api"));
+            Connection =    connection;
+            client =        new MongoClient(connection);
+            server =        client.GetServer();
+            database =      server.GetDatabase("mtgdb_info");
             CreateUserCardIndexes ();
         }
 
-        public MongoRepository (string connection, SuperSimpleAuth auth)
+        public MongoRepository (string connection, Db mtgdb, SuperSimpleAuth auth)
         {
-            Connection = connection;
-            magicdb =  new Db ();
-            client = new MongoClient(connection);
-            server = client.GetServer();
-            database = server.GetDatabase("mtgdb_info");
-            ssa = auth;
+            Connection =    connection;
+            magicdb =       mtgdb;
+            //magicdb =  new Db (ConfigurationManager.AppSettings.Get("api"));
+            client =        new MongoClient(connection);
+            server =        client.GetServer();
+            database =      server.GetDatabase("mtgdb_info");
+            ssa =           auth;
             CreateUserCardIndexes ();
         }
 
 
-        public CardChange UpdateCardChangeStatus(Guid id, string status, string field = null)
+        public CardChange UpdateCardChangeStatus(Guid id, 
+            string status, string field = null)
         {
-            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
-            var query = Query<CardChange>.EQ (e => e.Id, id);
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
 
-            CardChange change = collection.FindOne(query);
+            var query =                 Query<CardChange>.EQ (e => e.Id, id);
+            CardChange change =         collection.FindOne(query);
+            change.Status =             status;
+            change.ModifiedAt =         DateTime.Now;
+            List<string> committed  =   new List<string>();
 
-            change.Status = status;
-            change.ModifiedAt = DateTime.Now;
 
-            List<string> committed  = new List<string>();
-
-
-            if(change.ChangesCommitted == null)
+            if(field != null)
             {
-                committed.Add(field);
-            }
-            else
-            {
-                committed = change.ChangesCommitted.ToList();
-                committed.Add(field);
-            }
+                if(change.ChangesCommitted == null)
+                {
+                    committed.Add(field);
+                }
+                else
+                {
+                    committed = change.ChangesCommitted.ToList();
+                    committed.Add(field);
+                }
 
-            change.ChangesCommitted = committed.ToArray();
+                change.ChangesCommitted = committed.ToArray();
+            }
 
             collection.Save(change);
 
@@ -80,7 +83,8 @@ namespace MtgDb.Info
             
         public CardChange GetCardChangeRequest(Guid id)
         {
-            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
 
             var query = Query.And(Query<CardChange>.EQ (e => e.Id, id ));
             CardChange change =  collection.FindOne(query);
@@ -111,11 +115,10 @@ namespace MtgDb.Info
             MongoCollection<CardChange> collection = 
                 database.GetCollection<CardChange> ("card_changes");
 
-            List<CardChange> changes = new List<CardChange>(); 
-           
-            Card card = magicdb.GetCard(change.Mvid);
-            var query = Query.And(Query<CardChange>.EQ (e => e.Mvid, change.Mvid ));
-            var mongoResults = collection.Find(query);
+            List<CardChange> changes =  new List<CardChange>(); 
+            Card card =                 magicdb.GetCard(change.Mvid);
+            var query =                 Query.And(Query<CardChange>.EQ (e => e.Mvid, change.Mvid ));
+            var mongoResults =          collection.Find(query);
 
             foreach(CardChange c in mongoResults)
             {
@@ -124,19 +127,19 @@ namespace MtgDb.Info
 
             if(changes.Count == 0)
             {
-                CardChange original = CardChange.MapCard(card);
-                original.Comment = "Original card info";
-                original.Id = Guid.NewGuid();
-                original.Version = 0;
-                original.CreatedAt = DateTime.Now;
+                CardChange original =   CardChange.MapCard(card);
+                original.Comment =      "Original card info";
+                original.Id =           Guid.NewGuid();
+                original.Version =      0;
+                original.CreatedAt =    DateTime.Now;
 
                 collection.Save(original);
             }
 
-            change.Id = Guid.NewGuid();
-            change.Version = changes.Count == 0 ? 1 : changes.Count;
-            change.CreatedAt = DateTime.Now;
-            change.ModifiedAt = DateTime.Now;
+            change.Id =             Guid.NewGuid();
+            change.Version =        changes.Count == 0 ? 1 : changes.Count;
+            change.CreatedAt =      DateTime.Now;
+            change.ModifiedAt =     DateTime.Now;
             change.FieldsUpdated  = CardChange.FieldsChanged(card, change);
 
             if(change.FieldsUpdated == null ||

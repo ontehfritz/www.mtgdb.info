@@ -10,10 +10,7 @@ namespace MtgDb.Info
         public string ConfirmPassword   { get; set; }
         public bool Yes                 { get; set; }
        
-        public SettingsModel () : base()
-        {
-
-        }
+        public SettingsModel () : base(){}
     }
 }
 

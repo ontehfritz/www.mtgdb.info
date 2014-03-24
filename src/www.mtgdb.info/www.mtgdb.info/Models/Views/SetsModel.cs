@@ -10,10 +10,7 @@ namespace MtgDb.Info
         public CardSet[] Sets                    { get; set; }
         public Dictionary<string, int> UserCards { get; set; }
 
-        public SetsModel () : base()
-        {
-
-        }
+        public SetsModel () : base(){}
 
         public CardSet[] GetBlock(string cardSet)
         {

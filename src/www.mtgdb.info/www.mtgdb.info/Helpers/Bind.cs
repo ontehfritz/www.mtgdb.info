@@ -9,9 +9,9 @@ namespace MtgDb.Info
     {
         public static Ruling[] Rulings(Request request)
         {
-            var dictionary = request.Form as IDictionary<string, object>;
+            var dictionary =    request.Form as IDictionary<string, object>;
             string releasedAt = "{0}.ReleasedAt";
-            string rule = "{0}.Rule";
+            string rule =       "{0}.Rule";
 
             string[] keys = dictionary.Select(x => x.Key)
                 .Where(x => x.StartsWith("Ruling"))

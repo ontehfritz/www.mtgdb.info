@@ -15,7 +15,8 @@
 <div style="width:1200px;">
     <form action="/cards/@Model.Mvid/change" method="post">
     <div id="card_@Model.Mvid" class="card">
-        <img src="@Model.Image" />
+        @{ string imageUrl = string.Format("https://api.mtgdb.info/content/card_images/{0}.jpeg", @Model.Mvid);}
+        <img src="@imageUrl" />
     </div>
 
     <div class="card_info_edit">
@@ -149,7 +150,6 @@
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     </form>
-
 </div>
 
 <script>

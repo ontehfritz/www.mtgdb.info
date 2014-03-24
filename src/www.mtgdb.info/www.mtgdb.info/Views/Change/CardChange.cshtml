@@ -6,22 +6,46 @@
 @section Top{
     <div class="t_section">
         <h1>
-        Card Change Requet <br /> 
-        <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
+            Card Change Requet <br /> 
+            <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
         </h1>
     </div>
 }
 
-<h1>Version: @Model.Version</h1>
+<h1>
+Version: @Model.Version
+@if(@Model.Status == null)
+{
+    <span class="label label-warning">Pending</span>
+}
+else if(@Model.Status == "Accepted")
+{
+    <span class="label label-success">Accepted</span>
+}
+else if(@Model.Status == "Declined")
+{
+    <span class="label label-danger">Declined</span>
+}
+else
+{
+    <span class="label label-warning">Pending</span>
+}
+</h1>
 
 <div style="width:800px;">
     <div>
         <table class="table-hover">
         @{ string changed = "";}
-        @if(@Model.IsFieldChanged("setnumber"))
+
+        @if(@Model.IsAccepted("setnumber"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("setnumber"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Set #:</b></td>
             <td>@Model.SetNumber</td>
@@ -37,10 +61,15 @@
         </tr>
 
         @{changed = "";}
-        @if(@Model.IsFieldChanged("releasedat"))
+        @if(@Model.IsAccepted("releasedat"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("releasedat"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Released:</b></td>
             <td>
@@ -55,11 +84,18 @@
                 </form>
             }
         </tr>
+
         @{changed = "";}
-        @if(@Model.IsFieldChanged("colors"))
+
+        @if(@Model.IsAccepted("colors"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("colors"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Color(s):</b></td>
             <td>
@@ -75,10 +111,16 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("manacost"))
+
+        @if(@Model.IsAccepted("manacost"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("manacost"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Mana Cost:</b></td>
             <td>@Model.ManaCost</td>
@@ -92,7 +134,12 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("convertedManaCost"))
+
+        @if(@Model.IsAccepted("convertedmanacost"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("convertedManaCost"))
         {
             changed = "changed";
         }
@@ -109,7 +156,12 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("type"))
+
+        @if(@Model.IsAccepted("type"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("type"))
         {
             changed = "changed";
         }
@@ -126,7 +178,12 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("subtype"))
+
+        @if(@Model.IsAccepted("subtype"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("subtype"))
         {
             changed = "changed";
         }
@@ -143,10 +200,16 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("flavor"))
+
+        @if(@Model.IsAccepted("flavor"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("flavor"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Flavor:</b></td>
             <td>@Model.Flavor</td>
@@ -160,12 +223,18 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("description"))
+
+        @if(@Model.IsAccepted("description"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("description"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
-            <td><b>Text:</b></td>
+            <td><b>Description:</b></td>
             <td>@Model.Description</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
@@ -177,10 +246,16 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("power"))
+
+        @if(@Model.IsAccepted("power"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("power"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Power:</b></td>
             <td>@Model.Power</td>
@@ -194,10 +269,16 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("toughness"))
+
+        @if(@Model.IsAccepted("toughness"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("toughness"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Toughness:</b></td>
             <td>@Model.Toughness</td>
@@ -211,10 +292,16 @@
             }
         </tr>
         @{changed = "";}
-        @if(@Model.IsFieldChanged("artist"))
+
+        @if(@Model.IsAccepted("artist"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("artist"))
         {
             changed = "changed";
         }
+
         <tr class="@changed">
             <td><b>Artist:</b></td>
             <td>@Model.Artist</td>
@@ -236,7 +323,12 @@
             Formats
         </h4>
         @{ changed = "";}
-        @if(@Model.IsFieldChanged("formats"))
+
+        @if(@Model.IsAccepted("formats"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("formats"))
         {
             changed = "changed";
         }
@@ -277,7 +369,12 @@
         Rulings
         </h4>
         @{ changed = "";}
-        @if(@Model.IsFieldChanged("rulings"))
+
+        @if(@Model.IsAccepted("rulings"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("rulings"))
         {
             changed = "changed";
             <form action="/change/@Model.Id/field/rulings" method="post">
@@ -296,7 +393,7 @@
                         @rule.ReleasedAt.ToShortDateString()
                     </td>
                     <td>
-                        @rule.Rule.Trim();
+                        @rule.Rule.Trim()
                     </td>
                 </tr>
             }
@@ -309,6 +406,4 @@
         }
     </div>
 </div>
-
-
 

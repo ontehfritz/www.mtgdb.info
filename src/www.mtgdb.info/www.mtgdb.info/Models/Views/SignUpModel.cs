@@ -10,10 +10,7 @@ namespace MtgDb.Info
         public string Secret        { get; set; }
         public string ConfirmSecret { get; set; }
 
-        public SignupModel () : base()
-        {
-
-        }
+        public SignupModel () : base(){}
     }
 
     public class SignupValidator : AbstractValidator<SignupModel>
