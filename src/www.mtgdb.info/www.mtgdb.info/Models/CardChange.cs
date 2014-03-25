@@ -152,37 +152,22 @@ namespace MtgDb.Info
             //if(change.CardSetName != card.CardSetName){ fields.Add("cardSetName");}
             if(IsColorChanged(change.Colors, card.Colors)){ fields.Add("colors");}
             if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
+       
+            change.Description = change.Description ?? "";
+            card.Description = card.Description ?? "";
 
-            try
-            {
-                if(change.Description.Replace("\r",string.Empty) != 
+            if(change.Description.Replace("\r",string.Empty) != 
                     card.Description.Replace("\r",string.Empty))
                 { fields.Add("description");}
-            }
-            catch(Exception e)
-            {
-                if(!(change.Description == null &&
-                    card.Description == null))
-                { 
-                    fields.Add("description");
-                }
-            }
+           
+                
+            change.Flavor = change.Flavor ?? "";
+            card.Flavor = card.Flavor ?? "";
 
-//            try
-//            {
-//                if(change.Flavor.Replace("\r",string.Empty) != 
-//                    card.Flavor.Replace("\r",string.Empty)){ fields.Add("flavor");}
-//            }
-//            catch(Exception e)
-//            {
-//                if(!(change.Flavor == null && 
-//                    card.Flavor == null))
-//                {
-//                    fields.Add("flavor");
-//                }
-            //            }s
-
-
+            if(change.Flavor.Replace("\r",string.Empty) != 
+                    card.Flavor.Replace("\r",string.Empty)){ fields.Add("flavor"); }
+           
+                
             if(IsFormatChange(card.Formats,change.Formats)){ fields.Add("formats");}
             if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
             if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
@@ -252,7 +237,7 @@ namespace MtgDb.Info
                 foreach(Ruling ruling2 in rulings2)
                 {
                     if(ruling2.Rule == ruling.Rule
-                        && ruling2.ReleasedAt == ruling.ReleasedAt)
+                        && ruling2.ReleasedAt.ToShortDateString() == ruling.ReleasedAt.ToShortDateString())
                     {
                         changed = false;
                         break;
@@ -276,12 +261,7 @@ namespace MtgDb.Info
             Format[] formats2)
         {
             bool changed = false;
-
-//            if(!(formats1 == null && formats2 == null))
-//            {
-//                return true;
-//            }
-                
+                            
             if(formats1.Length != formats2.Length)
             {
                 return true;
@@ -336,6 +316,11 @@ namespace MtgDb.Info
                 return null;
             }
            
+            if(field.ToLower() == "colors")
+            {
+                return string.Join(",",(string[])value);
+            }
+
             return value.ToString();
         }
     }

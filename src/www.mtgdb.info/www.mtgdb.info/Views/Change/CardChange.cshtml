@@ -52,7 +52,7 @@ else
 
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <form action="/change/@Model.Id/field/setnumber" method="post">
+                <form action="/change/@Model.Id/field/setNumber" method="post">
                     <td>
                         <input type="submit" value="Update" />
                     </td>
@@ -77,7 +77,7 @@ else
             </td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <form action="/change/@Model.Id/field/releasedat" method="post">
+                <form action="/change/@Model.Id/field/releasedAt" method="post">
                     <td>
                         <input type="submit" value="Update" />
                     </td>
@@ -126,7 +126,7 @@ else
             <td>@Model.ManaCost</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <form action="/change/@Model.Id/field/manacost" method="post">
+                <form action="/change/@Model.Id/field/manaCost" method="post">
                     <td>
                         <input type="submit" value="Update" />
                     </td>
@@ -148,7 +148,7 @@ else
             <td>@Model.ConvertedManaCost</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <form action="/change/@Model.Id/field/convertedmanacost" method="post">
+                <form action="/change/@Model.Id/field/convertedManaCost" method="post">
                     <td>
                         <input type="submit" value="Update" />
                     </td>
@@ -192,7 +192,7 @@ else
             <td>@Model.SubType</td>
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
-                <form action="/change/@Model.Id/field/subtype" method="post">
+                <form action="/change/@Model.Id/field/subType" method="post">
                     <td>
                         <input type="submit" value="Update" />
                     </td>

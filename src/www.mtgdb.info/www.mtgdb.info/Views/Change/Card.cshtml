@@ -23,7 +23,7 @@
         <table class="table-hover">
         <tr>
             <td><b>Set #:</b></td>
-            <td><input type="text" name="SetNumber" value="@Model.SetNumber" /></td>
+            <td><input type="number" name="SetNumber" value="@Model.SetNumber" /></td>
         </tr>
         <tr>
             <td><b>Released:</b></td>
@@ -41,7 +41,7 @@
         </tr>
         <tr>
             <td><b>Converted Cost:</b></td>
-            <td><input type="text" name="ConvertedManaCost" value="@Model.ConvertedManaCost" /></td>
+            <td><input type="number" name="ConvertedManaCost" value="@Model.ConvertedManaCost" /></td>
         </tr>
         <tr>
             <td><b>Type:</b></td>
@@ -61,11 +61,11 @@
         </tr>
         <tr>
             <td><b>Power:</b></td>
-            <td><input type="text" name="Power" value="@Model.Power" /></td>
+            <td><input type="number" name="Power" value="@Model.Power" /></td>
         </tr>
         <tr>
             <td><b>Toughness:</b></td>
-            <td><input type="text" name="Toughness" value="@Model.Toughness" /></td>
+            <td><input type="number" name="Toughness" value="@Model.Toughness" /></td>
         </tr>
         <tr>
             <td><b>Artist:</b></td>
@@ -149,6 +149,7 @@
         }
     </div>
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    <a class="btn btn-default btn-lg" href="/cards/@Model.Mvid" role="button">Cancel</a>
     </form>
 </div>
 

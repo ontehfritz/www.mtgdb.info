@@ -1,27 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/CardModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Change/Card.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Change/CardLogs.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="102" Column="35" />
-      <File FileName="www.mtgdb.info/Views/Change/CardChange.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/CardChange.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/About.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/CardChange.cs" Line="243" Column="22" />
+      <File FileName="www.mtgdb.info/Views/Change/CardChange.cshtml" Line="11" Column="14" />
+      <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="14" Column="5" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="148" Column="97" />
+      <File FileName="www.mtgdb.info/Views/Logon/Signup.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Logon/Loggedin.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Logon/Forgot.cshtml" Line="19" Column="5" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True">
-          <Node name="Test_MtgDb.Info" expanded="True">
-            <Node name="Test_MtgDb" expanded="True">
-              <Node name="Info" expanded="True">
-                <Node name="Test" expanded="True">
-                  <Node name="Make_change_to_field" selected="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
+        <State expanded="True" />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
