@@ -178,7 +178,7 @@ namespace MtgDb.Info
             };
 
             //TODO: Refactor this, to long and confusing 
-            Get ["/{planeswalker}/blocks/{block}/cards/{setId?}"] = parameters => {
+            Get ["/pw/{planeswalker}/blocks/{block}/cards/{setId?}"] = parameters => {
                 PlaneswalkerModel model =   new PlaneswalkerModel();
                 model.ActiveMenu =          "mycards";
                 string setId =              (string)parameters.setId;
@@ -314,7 +314,7 @@ namespace MtgDb.Info
                 return View["MyCards", model];
             };
 
-            Get ["/{planeswalker}/cards"] = parameters => {
+            Get ["/pw/{planeswalker}/cards"] = parameters => {
                 PageModel model =       new PageModel();
                 model.ActiveMenu =      "mycards";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
@@ -338,8 +338,8 @@ namespace MtgDb.Info
                     {
                         CardSet s = magicdb.GetSet(setId);
                       
-                        return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
-                            "/blocks/" + s.Block + "/cards");
+                        return Response.AsRedirect(string.Format("/pw/{0}/blocks/{1}/cards",
+                            model.Planeswalker.UserName, s.Block ));
                     }
 
                     model.Information.Add("You have no cards yet in your library. " +

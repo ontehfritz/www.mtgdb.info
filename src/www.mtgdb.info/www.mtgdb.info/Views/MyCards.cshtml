@@ -27,7 +27,7 @@
             string blockId = k.Key.Replace(" ",string.Empty);
 
             <li class='tab @c'>
-                <a href="~/@Model.Planeswalker.UserName/blocks/@k.Key/cards/">
+                <a href="/pw/@Model.Planeswalker.UserName/blocks/@k.Key/cards/">
                     @k.Key
                     <span id="@blockId" class="badge">@k.Value</span>
                 </a>
@@ -48,7 +48,7 @@
 
         string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
         <li class='tab @c' @style >
-            <a href="~/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
+            <a href="/pw/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
                 <img src="@imgUrl" /> @set.Name
                 <span id="@set.Id" class="badge">@Model.Counts[set.Id]</span>
             </a>

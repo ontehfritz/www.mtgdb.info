@@ -88,13 +88,16 @@ namespace MtgDb.Info
 
             var query = Query.And(Query<CardChange>.EQ (e => e.Id, id ));
             CardChange change =  collection.FindOne(query);
+            change.User = GetProfile(change.UserId);
 
             return change;
         }
 
         public CardChange[] GetCardChangeRequests(int mvid)
         {
-            MongoCollection<CardChange> collection = database.GetCollection<CardChange> ("card_changes");
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
+
             List<CardChange> changes = new List<CardChange>(); 
 
             var query = Query.And(Query<CardChange>.EQ (e => e.Mvid, mvid ));
@@ -102,12 +105,11 @@ namespace MtgDb.Info
 
             foreach(CardChange c in mongoResults)
             {
+                c.User = GetProfile(c.UserId);
                 changes.Add(c);
             }
-
-
+                
             return changes.ToArray();
-
         }
 
         public Guid AddCardChangeRequest(CardChange change)

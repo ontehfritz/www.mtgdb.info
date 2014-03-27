@@ -36,13 +36,20 @@
         <td><b>Multiverse #:</b></td>
         <td>@Model.Card.Id</td>
     </tr>
+    @if(@Model.Card.RelatedCardId > 0)
+    {
+    <tr>
+        <td><b>Related Card #:</b></td>
+        <td><a href="/cards/@Model.Card.RelatedCardId">@Model.Card.RelatedCardId</a></td>
+    </tr>
+    }
     <tr>
         <td><b>Set #:</b></td>
         <td>@Model.Card.SetNumber</td>
     </tr>
     <tr>
         <td><b>Released:</b></td>
-        <td>@Model.Card.ReleasedAt</td>
+        <td>@Model.Card.ReleasedAt.ToShortDateString()</td>
     </tr>
     <tr>
         <td><b>Color(s):</b></td>

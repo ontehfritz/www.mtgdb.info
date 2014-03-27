@@ -187,7 +187,7 @@ namespace MtgDb.Info
             };
 
           
-            Get ["/{planeswalker}"] = parameters => {
+            Get ["/pw/{planeswalker}"] = parameters => {
                 PlaneswalkerModel model = new PlaneswalkerModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 

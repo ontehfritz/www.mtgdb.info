@@ -62,11 +62,11 @@
 
                     @if(Model.Planeswalker != null && Model.ActiveMenu == "mycards")
                     {
-                        <li class="active"><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+                        <li class="active"><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
                     }
                     else if(Model.Planeswalker != null)
                     {
-                        <li><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+                        <li><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
                     }
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
@@ -76,11 +76,11 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planeswalker: @Model.Planeswalker.UserName 
                     <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+                        <li><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
                         <li class="divider"></li>
-                        <li><a href="~/@Model.Planeswalker.UserName">Profile</a></li>
-                        <li><a href="~/settings/">Settings</a></li>
-                        <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
+                        <li><a href="/pw/@Model.Planeswalker.UserName">Profile</a></li>
+                        <li><a href="/settings/">Settings</a></li>
+                        <li><a href="/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
                     </ul>
                     </li>
                 }

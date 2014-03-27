@@ -31,7 +31,7 @@ else
     <span class="label label-warning">Pending</span>
 }
 </h1>
-
+<h2><small>By: <a href="/@Model.User.Name">@Model.User.Name</a></small></h2>
 <div style="width:800px;">
     <div>
         <table class="table-hover">
@@ -54,7 +54,32 @@ else
             {
                 <form action="/change/@Model.Id/field/setNumber" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+        @{ changed = "";}
+
+        @if(@Model.IsAccepted("relatedCardId"))
+        {
+            changed = "accepted";
+        }
+        else if(@Model.IsFieldChanged("relatedCardId"))
+        {
+            changed = "changed";
+        }
+
+        <tr class="@changed">
+            <td><b>Related Card #:</b></td>
+            <td>@Model.RelatedCardId</td>
+
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            {
+                <form action="/change/@Model.Id/field/relatedCardId" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -79,7 +104,7 @@ else
             {
                 <form action="/change/@Model.Id/field/releasedAt" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -105,7 +130,7 @@ else
             {
                 <form action="/change/@Model.Id/field/colors" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -128,7 +153,7 @@ else
             {
                 <form action="/change/@Model.Id/field/manaCost" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -150,7 +175,7 @@ else
             {
                 <form action="/change/@Model.Id/field/convertedManaCost" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -172,7 +197,7 @@ else
             {
                 <form action="/change/@Model.Id/field/type" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -194,7 +219,7 @@ else
             {
                 <form action="/change/@Model.Id/field/subType" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -217,7 +242,7 @@ else
             {
                 <form action="/change/@Model.Id/field/flavor" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -240,7 +265,7 @@ else
             {
                 <form action="/change/@Model.Id/field/description" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -263,7 +288,7 @@ else
             {
                 <form action="/change/@Model.Id/field/power" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -286,7 +311,7 @@ else
             {
                 <form action="/change/@Model.Id/field/toughness" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -309,7 +334,7 @@ else
             {
                 <form action="/change/@Model.Id/field/artist" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -339,7 +364,7 @@ else
             {
                 <form action="/change/@Model.Id/field/formats" method="post">
                     <td>
-                        <input type="submit" value="Update" />
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
@@ -378,7 +403,7 @@ else
         {
             changed = "changed";
             <form action="/change/@Model.Id/field/rulings" method="post">
-                <input type="submit" value="Update" />
+                <input type="submit" class="btn btn-success btn-xs" value="Update" />
             </form>
         }
 
@@ -406,4 +431,10 @@ else
         }
     </div>
 </div>
+ 
+ @if(Model.Planeswalker.InRole("admin"))
+ {
+    <button type="submit" class="btn btn-danger">Decline</button>
+    <a class="btn btn-default" href="/cards/@Model.Mvid" role="button">Cancel</a>
+ }
 

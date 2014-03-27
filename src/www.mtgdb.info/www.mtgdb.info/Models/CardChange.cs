@@ -52,6 +52,8 @@ namespace MtgDb.Info
         [BsonElement]
         public int Mvid                     { get; set; }  
         [BsonElement]
+        public int RelatedCardId            { get; set; }  
+        [BsonElement]
         public int SetNumber                { get; set; }
         [BsonElement]
         public string Name                  { get; set; }
@@ -94,6 +96,9 @@ namespace MtgDb.Info
         public DateTime ReleasedAt      { get; set; } 
         /*end of card fields*/
 
+        [BsonIgnore]
+        public Profile User { get; set; }
+
         public CardChange() : base(){}
 
         public static CardChange MapCard(Card card)
@@ -119,6 +124,7 @@ namespace MtgDb.Info
             change.SubType =            card.SubType;
             change.Toughness =          card.Toughness;
             change.Type =               card.Type;
+            change.RelatedCardId =      card.RelatedCardId;
             //change.Image = card.CardImage;
 
             return change;
@@ -142,7 +148,13 @@ namespace MtgDb.Info
             return false; 
         }
 
-
+        /// <summary>
+        /// Field must be defined for cards object in api.mtgdb.info project
+        /// and also in Helper.cs
+        /// </summary>
+        /// <returns>The changed.</returns>
+        /// <param name="card">Card.</param>
+        /// <param name="change">Change.</param>
         public static string[] FieldsChanged(Card card, CardChange change)
         {
             List<string> fields = new List<string> ();
@@ -152,6 +164,7 @@ namespace MtgDb.Info
             //if(change.CardSetName != card.CardSetName){ fields.Add("cardSetName");}
             if(IsColorChanged(change.Colors, card.Colors)){ fields.Add("colors");}
             if(change.ConvertedManaCost != card.ConvertedManaCost){ fields.Add("convertedManaCost");}
+            if(change.RelatedCardId != card.RelatedCardId){ fields.Add("relatedCardId"); }
        
             change.Description = change.Description ?? "";
             card.Description = card.Description ?? "";
