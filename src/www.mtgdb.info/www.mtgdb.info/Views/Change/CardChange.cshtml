@@ -22,16 +22,16 @@ else if(@Model.Status == "Accepted")
 {
     <span class="label label-success">Accepted</span>
 }
-else if(@Model.Status == "Declined")
+else if(@Model.Status == "Closed")
 {
-    <span class="label label-danger">Declined</span>
+    <span class="label label-danger">Closed</span>
 }
 else
 {
     <span class="label label-warning">Pending</span>
 }
 </h1>
-<h2><small>By: <a href="/@Model.User.Name">@Model.User.Name</a></small></h2>
+By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
 <div style="width:800px;">
     <div>
         <table class="table-hover">
@@ -430,11 +430,24 @@ else
             <p>This card has no rulings.</p>
         }
     </div>
+    <h4>Comments:</h4>
+    <p>@Model.Comment</p>
 </div>
  
  @if(Model.Planeswalker.InRole("admin"))
- {
-    <button type="submit" class="btn btn-danger">Decline</button>
-    <a class="btn btn-default" href="/cards/@Model.Mvid" role="button">Cancel</a>
+ {  
+    string status = "close";
+    if(@Model.Status == "Closed"){ status = "open"; }
+    <form action='@string.Format("/change/{0}/field/{1}",@Model.Id,status)' method="post">
+        @if(@Model.Status == "Closed")
+        {
+            <button type="submit" class="btn btn-success">Re-open</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-danger">Close</button>
+        }
+        <a class="btn btn-default" href="/cards/@Model.Mvid" role="button">Cancel</a>
+    </form>
  }
 

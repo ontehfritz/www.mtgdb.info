@@ -153,6 +153,10 @@
             <p>This card has no rulings.</p>
         }
     </div>
+    <h4>Comments:</h4>
+    <textarea rows="8" cols="100" name="Comment" >@Model.Comment</textarea>
+    <br />
+    <br />
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
     <a class="btn btn-default btn-lg" href="/cards/@Model.Mvid" role="button">Cancel</a>
     </form>
@@ -160,7 +164,7 @@
 
 <script>
     $(function() {
-        $( ".rdate" ).datepicker();
+        $( ".rdate" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     });
 
     $("#add_ruling").click(function(){
@@ -170,7 +174,7 @@
         $('#rulings > tbody:last').append('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
         + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="8" cols="100" name="Rulings[' + count + 
         '].Rule" required></textarea></td> <td><a href="#" onclick="removeRuling(\'ruling_' + count + '\');"><span class="glyphicon glyphicon-minus-sign"></span></a></td></tr>');
-        $( ".rdate" ).datepicker();
+        $( ".rdate" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     }); 
 
     function removeRuling(id)

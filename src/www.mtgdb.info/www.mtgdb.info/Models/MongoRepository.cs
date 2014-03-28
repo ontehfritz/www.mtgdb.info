@@ -143,6 +143,7 @@ namespace MtgDb.Info
             change.CreatedAt =      DateTime.Now;
             change.ModifiedAt =     DateTime.Now;
             change.FieldsUpdated  = CardChange.FieldsChanged(card, change);
+            //change.ReleasedAt = change.ReleasedAt.ToShortDateString();
 
             if(change.FieldsUpdated == null ||
                 change.FieldsUpdated.Length == 0)

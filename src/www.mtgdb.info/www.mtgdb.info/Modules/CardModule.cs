@@ -75,10 +75,27 @@ namespace MtgDb.Info
                 {
                     return HttpStatusCode.Unauthorized;
                 }
-                    
+
                 try
                 {
                     change = repository.GetCardChangeRequest(changeId);
+
+                    if(field == "close")
+                    {
+                        repository.UpdateCardChangeStatus(change.Id, "Closed");
+
+                        return Response.AsRedirect(string.Format("/cards/{0}/logs/{1}",
+                            change.Mvid, change.Id));
+                    }
+
+                    if(field == "open")
+                    {
+                        repository.UpdateCardChangeStatus(change.Id, "Pending");
+
+                        return Response.AsRedirect(string.Format("/cards/{0}/logs/{1}",
+                            change.Mvid, change.Id));
+                    }
+
 
                     if(field == "formats")
                     {
