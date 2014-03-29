@@ -20,6 +20,7 @@ namespace MtgDb.Info
             RuleFor(change => change.ConvertedManaCost).GreaterThanOrEqualTo(0);
             RuleFor(change => change.Name).NotEmpty();
             RuleFor(change => change.Type).NotEmpty();
+            RuleFor(change => change.Comment).NotEmpty();
         }
     }
 
