@@ -356,11 +356,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         else if(@Model.IsFieldChanged("formats"))
         {
             changed = "changed";
-        }
-            
-        @if(Model.Formats != null && Model.Formats.Length > 0)
-        {
-            if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            if(Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/formats" method="post">
                     <td>
@@ -368,6 +364,11 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+        }
+            
+        @if(Model.Formats != null && Model.Formats.Length > 0)
+        {
+            
             <table id="formats" class="table table-condensed table-hover">
             <tbody>
             @foreach(var format in Model.Formats)
@@ -386,7 +387,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         }
         else
         {
-            <p>This card belongs to no format.</p>
+            <p class="@changed">This card belongs to no format.</p>
         }
     </div>
     <div>
@@ -402,9 +403,12 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         else if(@Model.IsFieldChanged("rulings"))
         {
             changed = "changed";
-            <form action="/change/@Model.Id/field/rulings" method="post">
-                <input type="submit" class="btn btn-success btn-xs" value="Update" />
-            </form>
+            if(Model.Planeswalker.InRole("admin"))
+            {
+                <form action="/change/@Model.Id/field/rulings" method="post">
+                    <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                </form>
+            }
         }
 
         @if(Model.Rulings != null && Model.Rulings.Length > 0)
@@ -427,7 +431,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         }
         else
         {
-            <p>This card has no rulings.</p>
+            <p class="@changed">This card has no rulings.</p>
         }
     </div>
     <h4>Comments:</h4>

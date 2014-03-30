@@ -69,7 +69,7 @@ namespace Test_MtgDb.Info
 
             string value = change.GetFieldValue("description");
 
-            admin.UpdateCardField(change.UserId, change.Mvid, "description",value);
+            admin.UpdateCardField(mtgdbUser.AuthToken, change.Mvid, "description",value);
             repository.UpdateCardChangeStatus(id, "Accepted", "description");
 
             change = repository.GetCardChangeRequest(id);
@@ -95,7 +95,7 @@ namespace Test_MtgDb.Info
 
             string value = change.GetFieldValue("description");
 
-            admin.UpdateCardField(change.UserId, change.Mvid, "description",value);
+            admin.UpdateCardField(mtgdbUser.AuthToken, change.Mvid, "description",value);
 
             card = mtgdb.GetCard(2);
 

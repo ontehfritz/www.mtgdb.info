@@ -82,16 +82,16 @@
     <br style="clear:both;" />
     <div>
         <h4>
-            Formats <a href="#" id="add_format"><span class="glyphicon glyphicon-plus-sign"></span></a>
+            Formats <span class="glyphicon glyphicon-plus-sign" style="cursor:pointer;" id="add_format"></span>
         </h4>
+        <input id="format_count" type="hidden" value="@Model.Formats.Length" />
 
+        <table id="formats" class="table table-condensed table-hover">
+        <tbody>
         @if(Model.Formats != null && Model.Formats.Length > 0)
         {
-            <input id="format_count" type="hidden" value="@Model.Formats.Length" />
             int i = 0;
-            <table id="formats" class="table table-condensed table-hover">
-            <tbody>
-            @foreach(var format in Model.Formats)
+            foreach(var format in Model.Formats)
             {
                 <tr id="format_@i">
                     <td>
@@ -103,55 +103,58 @@
                                 value="@format.Legality" />
                     </td>
                     <td>
-                        <a href="#" onclick="removeFormat('format_@i');">
-                        <span class="glyphicon glyphicon-minus-sign"></span></a>
+                        <span class="glyphicon glyphicon-minus-sign" onclick="removeFormat('format_@i');" 
+                        style="cursor:pointer;"></span>
                     </td>
                 </tr>
-                ++i;
-            }
-            </tbody>
-            </table>
+            }    ++i;
         }
         else
         {
-            <p>This card belongs to no format.</p>
+            <tr>
+                <td>This card belongs to no format</td>
+            </tr>
         }
-    </div>
-    <div>
-        <h4>
-        Rulings <a href="#" id="add_ruling"><span class="glyphicon glyphicon-plus-sign"></span></a>
-        </h4>
-
-        @if(Model.Rulings != null && Model.Rulings.Length > 0)
+        </tbody>
+        </table>
+</div>
+<div>
+    <h4>
+    Rulings <span id="add_ruling" class="glyphicon glyphicon-plus-sign" style="cursor:pointer;"></span>
+    </h4>
+    <input id="ruling_count" type="hidden" value="@Model.Rulings.Length" />
+    <table id="rulings" class="table table-condensed table-hover">
+    <tbody>
+    @if(Model.Rulings != null && Model.Rulings.Length > 0)
+    {
+        int i = 0;
+        foreach(var rule in Model.Rulings)
         {
-            <input id="ruling_count" type="hidden" value="@Model.Rulings.Length" />
-            int i = 0;
-            <table id="rulings" class="table table-condensed table-hover">
-            <tbody>
-            @foreach(var rule in Model.Rulings)
-            {
-                <tr id="ruling_@i">
-                    <td>
-                        <input type="text" class="rdate" name="Rulings[@i].ReleasedAt" 
-                                value="@rule.ReleasedAt.ToShortDateString()" required />
-                    </td>
-                    <td>
-                        <textarea rows="8" cols="100" name="Rulings[@i].Rule" required >@rule.Rule.Trim()</textarea>
-                    </td>
-                    <td>
-                        <a href="#" onclick="removeRuling('ruling_@i');">
-                        <span class="glyphicon glyphicon-minus-sign"></span></a>
-                    </td>
-                </tr>
-                ++i;
-            }
-            </tbody>
-            </table>
+            <tr id="ruling_@i">
+                <td>
+                    <input type="text" class="rdate" name="Rulings[@i].ReleasedAt" 
+                            value="@rule.ReleasedAt.ToShortDateString()" required />
+                </td>
+                <td>
+                    <textarea rows="8" cols="100" name="Rulings[@i].Rule" required >@rule.Rule.Trim()</textarea>
+                </td>
+                <td>
+                    
+                    <span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;"
+                    onclick="removeRuling('ruling_@i');"></span>
+                </td>
+            </tr>
+            ++i;
         }
-        else
-        {
-            <p>This card has no rulings.</p>
-        }
+    }
+    else
+    {
+        <tr>
+            <td>This card has no rulings.</td>
+        </tr>
+    }
+    </tbody>
+    </table>
     </div>
     <h4>*Summary of changes:</h4>
     <textarea rows="8" cols="100" name="Comment" required>@Model.Comment</textarea>
@@ -171,9 +174,9 @@
         var count = parseInt($("#ruling_count").val()) + 1;
         $("#ruling_count").val(count);
 
-        $('#rulings > tbody:last').append('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
+        $('#rulings > tbody:last').prepend('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
         + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="8" cols="100" name="Rulings[' + count + 
-        '].Rule" required></textarea></td> <td><a href="#" onclick="removeRuling(\'ruling_' + count + '\');"><span class="glyphicon glyphicon-minus-sign"></span></a></td></tr>');
+        '].Rule" required></textarea></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeRuling(\'ruling_' + count + '\');"></span></td></tr>');
         $( ".rdate" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     }); 
 
@@ -188,9 +191,9 @@
         var count = parseInt($("#format_count").val()) + 1;
         $("#format_count").val(count);
 
-        $('#formats > tbody:last').append('<tr id="format_' + count + '"><td><input type="text" name="Formats[' +  count
+        $('#formats > tbody:last').prepend('<tr id="format_' + count + '"><td><input type="text" name="Formats[' +  count
         + '].Name" value="" required /></td><td><input type="text" name="Formats[' + count + 
-        '].Legality" value="" /></td> <td><a href="#" onclick="removeFormat(\'format_' + count + '\');"><span class="glyphicon glyphicon-minus-sign"></span></a></td></tr>');
+        '].Legality" value="" /></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeFormat(\'format_' + count + '\');"></span></td></tr>');
     }); 
 
     function removeFormat(id)
