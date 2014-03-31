@@ -1,0 +1,37 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<SignupModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+@section Top
+{
+    <div class="signin">
+    <form class="form-signin" action="~/signup" method="post" role="form">
+    	<div class="form-group">
+    		<label for="UserName">Planeswalker Name</label>
+        	<input type="text" name="UserName" class="form-control" placeholder="Enter your Planeswalker name" required autofocus />
+        </div><!--/.form-group-->
+        <div class="form-group">
+    		<label for="Email">Email</label>
+        	<input type="text" name="Email" class="form-control" placeholder="Enter a valid Email address" required />
+        </div><!--/.form-group-->
+		<div class="form-group">
+    		<label for="Secret">Password</label>
+        	<input type="password" name="Secret" class="form-control" placeholder="Enter a Password" required />
+        </div><!--/.form-group-->
+		<div class="form-group">
+    		<label for="ConfirmSecret">Confirm Password</label>
+        	<input type="password"  name="ConfirmSecret" class="form-control" placeholder="Confirm Password" required />
+        </div><!--/.form-group-->
+        <button class="btn btn-lg btn-success btn-block" name="Signup" type="submit">Register</button>
+    </form>
+	<div class="row">
+		<div class="col-md-6">
+			<a class="btn btn-primary btn-block" href="~/logon">Sign In</a>
+		</div>
+		<div class="col-md-6">
+			<a class="btn btn-danger btn-block" href="~/forgot">Forgotten Password?</a>
+		</div>
+	</div>
+</div>
+}

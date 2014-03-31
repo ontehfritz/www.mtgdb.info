@@ -161,21 +161,21 @@ namespace MtgDb.Info
                     fallbackRedirectUrl: model.UrlRedirect);
             };
 
-            Get ["/signup"] = parameters => {
+			Get ["/register"] = parameters => {
                 SignupModel model = new SignupModel();
-                model.ActiveMenu = "signin";
-                return View["signup", model];
+				model.ActiveMenu = "register";
+				return View["register", model];
             };
 
-            Post ["/signup"] = parameters => {
+			Post ["/register"] = parameters => {
                 SignupModel model = this.Bind<SignupModel>();
                 var result = this.Validate(model);
-                model.ActiveMenu = "signin";
+				model.ActiveMenu = "register";
 
                 if (!result.IsValid)
                 {
                     model.Errors.AddRange(ErrorUtility.GetValidationErrors(result));
-                    return View["Signup", model];
+					return View["Register", model];
                 }
 
                 try
@@ -185,7 +185,7 @@ namespace MtgDb.Info
                 catch(Exception e)
                 {
                     model.Errors.Add(e.Message);
-                    return View["Signup", model];
+					return View["Register", model];
                 }
 
                 LogonModel logon = new LogonModel();

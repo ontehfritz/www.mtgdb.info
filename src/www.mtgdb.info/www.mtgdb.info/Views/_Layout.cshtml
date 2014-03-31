@@ -6,172 +6,214 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Search and browse Magic:the gathering database and manage your card inventory." />
     <title>Magic the gathering open database and tools - MtgDb.Info</title>
-    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-    <script src="~/content/javascript/select2.min.js"></script>
-    <script src="~/content/javascript/jquery.easytabs.js"></script>
-    <script src="~/content/javascript/mtgdb.info.js"></script>
-    <script src="~/content/javascript/spin.min.js"></script>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
     <link href="~/content/css/select2.css" rel="stylesheet"/>
     <!-- Custom styles for this template -->
     <link href="~/content/css/mtgdb.css" rel="stylesheet" />
   </head>
   <body>
-  <div class="navbar-xs">
-   <div class="navbar-primary">
-       <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-              <a class="navbar-brand" href="/"> <img src="/content/images/logo.png" style="width:17px;height:17px;"/> M:tgDb 
-              </a>
-          </div>
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
-                <ul class="nav navbar-nav">
-                    @if(Model.ActiveMenu == "sets")
-                    {
-                        <li class="active"><a href="~/sets"><span class="glyphicon glyphicon-book">
-                        </span> Set Binders</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="~/sets"><span class="glyphicon glyphicon-book">
-                        </span> Set Binders</a></li>
-                    }
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  	<div class="container">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	      <a class="navbar-brand" href="/">M:tgDb 
+	      </a>
+	  </div>
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+	        <ul class="nav navbar-nav">
+	            @if(Model.ActiveMenu == "sets")
+	            {
+	                <li class="active">
+	                	<a href="~/sets">
+	                		<i class="fa fa-book"></i>&nbsp;
+	                		Set Binders
+	                	</a>
+	                </li>
+	            }
+	            else
+	            {
+	                <li>
+	                	<a href="~/sets">
+	                		<i class="fa fa-book"></i>&nbsp;
+	                		Set Binders
+	                	</a>
+	                </li>
+	            }
 
-                    @if(Model.ActiveMenu == "search")
-                    {
-                        <li class="active"><a href="~/search"><span class="glyphicon glyphicon-search">
-                        </span> Search</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="~/search"><span class="glyphicon glyphicon-search">
-                        </span> Search</a></li>
-                    }
+	            @if(Model.ActiveMenu == "search")
+	            {
+	                <li class="active">
+	                	<a href="~/search">
+	                		<i class="fa fa-search"></i>&nbsp;
+	                		Search
+	                	</a>
+	                </li>
+	            }
+	            else
+	            {
+	                <li>
+	                	<a href="~/search">
+	                		<i class="fa fa-search"></i>&nbsp;
+	                		Search
+	                	</a>
+	                </li>
+	            }
 
-                    @if(Model.Planeswalker != null && Model.ActiveMenu == "mycards")
-                    {
-                        <li class="active"><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
-                    }
-                    else if(Model.Planeswalker != null)
-                    {
-                        <li><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
-                    }
-                </ul>
-                <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-                @if(@Model.Planeswalker != null)
-                {
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planeswalker: @Model.Planeswalker.UserName 
-                    <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
-                        <li class="divider"></li>
-                        <li><a href="~/@Model.Planeswalker.UserName">Profile</a></li>
-                        <li><a href="~/settings/">Settings</a></li>
-                        <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
-                    </ul>
-                    </li>
-                }
-                else
-                {
-                    if(Model.ActiveMenu == "signin")
-                    {
-                        <li  class="active"><a href="~/logon?url=@Html.RenderContext.Context.Request.Path">Sign In</a></li>
-                    }
-                    else
-                    {
-                        <li><a href="~/logon?url=@Html.RenderContext.Context.Request.Path">Sign In</a></li>
-                    }
-                }
+	            @if(Model.Planeswalker != null && Model.ActiveMenu == "mycards")
+	            {
+	                <li class="active"><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+	            }
+	            else if(Model.Planeswalker != null)
+	            {
+	                <li><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+	            }
+	        </ul>
+	        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
+			@if(Model.ActiveMenu == "help")
+	        {
+	            <li class="active">
+	            	<a href="~/FAQ">
+	            		FAQ
+	            	</a>
+	            </li>
+	        }
+	        else
+	        {
+	            <li>
+	            	<a href="~/FAQ">
+	            		FAQ
+	            	</a>
+	            </li>
+	        }
+	         @if(Model.ActiveMenu == "about")
+	        {
+	            <li class="active">
+	            	<a href="~/about">
+	            		About
+	            	</a>
+	            </li>
+	        }
+	        else
+	        {
+	            <li>
+	            	<a href="~/about">
+	            		About
+	            	</a>
+	            </li>
+	        }
 
-                @if(Model.ActiveMenu == "help")
-                {
-                    <li class="active"><a href="~/help"><span class="glyphicon glyphicon-question-sign"></span></a></li>
-                }
-                else
-                {
-                    <li><a href="~/help"><span class="glyphicon glyphicon-question-sign"></span></a></li>
-                }
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-    </div>
-</div>
-
-<div class="container" id="top_section">
-@if(@Model.Information != null && @Model.Information.Count > 0)
+	        @if(@Model.Planeswalker != null)
+	        {
+	            <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planeswalker: @Model.Planeswalker.UserName 
+	            <b class="caret"></b></a>
+	            <ul class="dropdown-menu">
+	                <li><a href="~/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+	                <li class="divider"></li>
+	                <li><a href="~/@Model.Planeswalker.UserName">Profile</a></li>
+	                <li><a href="~/settings/">Settings</a></li>
+	                <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
+	            </ul>
+	            </li>
+	        }
+	        else
+	        {
+	            if(Model.ActiveMenu == "signin")
+	            {
+	                <li  class="active">
+	                	<a href="~/logon?url=@Html.RenderContext.Context.Request.Path">
+	                		<i class="fa fa-user"></i>&nbsp;
+	                		Sign In
+	                	</a>
+	                </li>
+	            }
+	            else
+	            {
+	                <li>
+	                	<a href="~/logon?url=@Html.RenderContext.Context.Request.Path">
+	                		<i class="fa fa-user"></i>&nbsp;
+	                		Sign In
+	                	</a>
+	                </li>
+	            }
+	        }
+	        </ul>
+	    </div><!-- /.navbar-collapse -->
+	</div><!---/.container-->
+</nav>
+@if(IsSectionDefined("Top"))
 {
-    <div class="alert alert-info alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <ul>
-    @foreach(var info in @Model.Information){
-        <li>
-        @info
-        </li>
-    }
-    </ul>
-    </div>
-}
+	<div class="top-section">
+		<div class="container">
+		@if(@Model.Information != null && @Model.Information.Count > 0)
+		{
+		    <div class="alert alert-info alert-dismissable">
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <ul>
+			    @foreach(var info in @Model.Information)
+			    {
+			        <li>
+			        @info
+			        </li>
+			    }
+			    </ul>
+		    </div>
+		}
 
-@if(@Model.Messages != null && @Model.Messages.Count > 0)
-{
-    <div class="alert alert-success alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <ul>
-    @foreach(var message in @Model.Messages){
-        <li>
-        @message
-        </li>
-    }
-    </ul>
-    </div>
-}
+		@if(@Model.Messages != null && @Model.Messages.Count > 0)
+		{
+		    <div class="alert alert-success alert-dismissable">
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <ul>
+			    @foreach(var message in @Model.Messages){
+			        <li>
+			        @message
+			        </li>
+			    }
+			    </ul>
+		    </div>
+		}
 
-@if(@Model.Warnings != null && @Model.Warnings.Count > 0)
-{
-    <div class="alert alert-warning alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <ul>
-    @foreach(var warning in @Model.Warnings)
-    {
-        <li>
-        @warning
-        </li>
-    }
-    </ul>
-    </div>
-}
+		@if(@Model.Warnings != null && @Model.Warnings.Count > 0)
+		{
+		    <div class="alert alert-warning alert-dismissable">
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <ul>
+			    @foreach(var warning in @Model.Warnings)
+			    {
+			        <li>
+			        @warning
+			        </li>
+			    }
+			    </ul>
+		    </div>
+		}
 
-@if(@Model.Errors != null && @Model.Errors.Count > 0)
-{
-    <div class="alert alert-danger alert-dismissable">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <ul>
-    @foreach(var error in @Model.Errors){
-        <li>
-        @error
-        </li>
-    }
-    </ul>
-    </div>
+		@if(@Model.Errors != null && @Model.Errors.Count > 0)
+		{
+		    <div class="alert alert-danger alert-dismissable">
+			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+			    <ul>
+			    @foreach(var error in @Model.Errors){
+			        <li>
+			        @error
+			        </li>
+			    }
+		    </ul>
+		    </div>
+		}
+		@RenderSection("Top", required: false)
+		</div><!--/.top-section-->
+	</div><!--/.container-->
 }
-@RenderSection("Top", required: false)
-</div>
-<br />
 <div class="container">
     @RenderBody()
     <hr />
     <footer>
-        <p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/help">Help</a> | 
+        <p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/FAQ">FAQ</a> | 
         <a href="~/about">About</a>
         - Version: 0.1a
         </p>
@@ -181,11 +223,17 @@
         <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>. Thank you for creating such an awesome game!</small></p>
     </footer>
 </div><!--/.container-->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-
-    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="~/content/javascript/select2.min.js"></script>
+    <script src="~/content/javascript/jquery.easytabs.js"></script>
+    <script src="~/content/javascript/mtgdb.info.js"></script>
+    <script src="~/content/javascript/spin.min.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
   </body>
 </html>
 

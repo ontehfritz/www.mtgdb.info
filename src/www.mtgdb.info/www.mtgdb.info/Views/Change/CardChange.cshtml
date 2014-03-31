@@ -14,7 +14,8 @@
 
 <h1>Version: @Model.Version</h1>
 
-<div style="width:800px;">
+<div style="width:1200px;">
+    <form action="" method="post">
     <div>
         <table class="table-hover">
         @{ string changed = "";}
@@ -25,14 +26,9 @@
         <tr class="@changed">
             <td><b>Set #:</b></td>
             <td>@Model.SetNumber</td>
-
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if(@Model.Planeswalker.InRole("admin"))
             {
-                <form action="/change/@Model.Id/field/setnumber" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
+                <td><input type="Button" name="set" value="commit" /></td>
             }
         </tr>
 
@@ -46,14 +42,6 @@
             <td>
                 @Model.ReleasedAt.ToShortDateString()
             </td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/releasedat" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("colors"))
@@ -65,14 +53,6 @@
             <td>
                 @String.Join(",", Model.Colors)
             </td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/colors" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("manacost"))
@@ -82,14 +62,6 @@
         <tr class="@changed">
             <td><b>Mana Cost:</b></td>
             <td>@Model.ManaCost</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/manacost" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("convertedManaCost"))
@@ -99,14 +71,6 @@
         <tr class="@changed">
             <td><b>Converted Cost:</b></td>
             <td>@Model.ConvertedManaCost</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/convertedmanacost" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("type"))
@@ -116,14 +80,6 @@
         <tr class="@changed">
             <td><b>Type:</b></td>
             <td>@Model.Type</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/type" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("subtype"))
@@ -133,14 +89,6 @@
         <tr class="@changed">
             <td><b>Sub Type:</b></td>
             <td>@Model.SubType</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/subtype" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("flavor"))
@@ -150,14 +98,6 @@
         <tr class="@changed">
             <td><b>Flavor:</b></td>
             <td>@Model.Flavor</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/flavor" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("description"))
@@ -167,14 +107,6 @@
         <tr class="@changed">
             <td><b>Text:</b></td>
             <td>@Model.Description</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/description" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("power"))
@@ -184,14 +116,6 @@
         <tr class="@changed">
             <td><b>Power:</b></td>
             <td>@Model.Power</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/power" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("toughness"))
@@ -201,14 +125,6 @@
         <tr class="@changed">
             <td><b>Toughness:</b></td>
             <td>@Model.Toughness</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/toughness" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         @{changed = "";}
         @if(@Model.IsFieldChanged("artist"))
@@ -218,14 +134,6 @@
         <tr class="@changed">
             <td><b>Artist:</b></td>
             <td>@Model.Artist</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/artist" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
         </tr>
         </table>
 
@@ -235,27 +143,14 @@
         <h4>
             Formats
         </h4>
-        @{ changed = "";}
-        @if(@Model.IsFieldChanged("formats"))
-        {
-            changed = "changed";
-        }
-            
+
         @if(Model.Formats != null && Model.Formats.Length > 0)
         {
-            if (changed == "changed" && Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/formats" method="post">
-                    <td>
-                        <input type="submit" value="Update" />
-                    </td>
-                </form>
-            }
             <table id="formats" class="table table-condensed table-hover">
             <tbody>
             @foreach(var format in Model.Formats)
             {
-                <tr class="@changed">
+                <tr>
                     <td>
                          @format.Name
                     </td>
@@ -274,16 +169,8 @@
     </div>
     <div>
         <h4>
-        Rulings
+        Rulingss
         </h4>
-        @{ changed = "";}
-        @if(@Model.IsFieldChanged("rulings"))
-        {
-            changed = "changed";
-            <form action="/change/@Model.Id/field/rulings" method="post">
-                <input type="submit" value="Update" />
-            </form>
-        }
 
         @if(Model.Rulings != null && Model.Rulings.Length > 0)
         {
@@ -291,12 +178,12 @@
             <tbody>
             @foreach(var rule in Model.Rulings)
             {
-                <tr id="ruling" class="@changed">
+                <tr id="ruling">
                     <td>
                         @rule.ReleasedAt.ToShortDateString()
                     </td>
                     <td>
-                        @rule.Rule.Trim();
+                        @rule.Rule
                     </td>
                 </tr>
             }
@@ -307,7 +194,8 @@
         {
             <p>This card has no rulings.</p>
         }
-    </div>
+    </form>
+
 </div>
 
 
