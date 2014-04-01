@@ -35,48 +35,41 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Web.Razor.Unofficial">
-      <HintPath>..\packages\System.Web.Razor.Unofficial.2.0.2\lib\net40\System.Web.Razor.Unofficial.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentValidation">
-      <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="SuperSimpleAuthCSharp">
+      <HintPath>Bin\SuperSimpleAuthCSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MtgDb.Info.Driver">
+      <HintPath>..\packages\MtgDb.Info.Driver.0.1\lib\MtgDb.Info.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy">
+      <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
+    </Reference>
+    <Reference Include="Nancy.Hosting.Aspnet">
+      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.22.2\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
-    <Reference Include="SuperSimpleAuthCSharp">
-      <HintPath>bin\SuperSimpleAuthCSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Configuration" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy">
-      <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Authentication.Forms">
-      <HintPath>..\packages\Nancy.Authentication.Forms.0.22.2\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="Nancy.Hosting.Aspnet">
-      <HintPath>..\packages\Nancy.Hosting.Aspnet.0.22.2\lib\net40\Nancy.Hosting.Aspnet.dll</HintPath>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Nancy.Validation.FluentValidation">
       <HintPath>..\packages\Nancy.Validation.FluentValidation.0.22.2\lib\net40\Nancy.Validation.FluentValidation.dll</HintPath>
     </Reference>
-    <Reference Include="Nancy.ViewEngines.Razor">
-      <HintPath>..\packages\Nancy.Viewengines.Razor.0.22.2\lib\net40\Nancy.ViewEngines.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="MtgDb.Info.Driver">
-      <HintPath>..\..\..\..\CSharpMtgDb.Info\bin\Release\MtgDb.Info.Driver.dll</HintPath>
+    <Reference Include="Nancy.Authentication.Forms">
+      <HintPath>..\packages\Nancy.Authentication.Forms.0.22.2\lib\net40\Nancy.Authentication.Forms.dll</HintPath>
     </Reference>
     <Reference Include="MtgDbAdminDriver">
-      <HintPath>..\..\..\dependencies\MtgDbAdminDriver.dll</HintPath>
+      <HintPath>..\..\..\..\api.mtgdb.info\src\MtgDbAdminDriver\bin\Release\MtgDbAdminDriver.dll</HintPath>
     </Reference>
-    <Reference Include="glib-sharp, Version=2.12.0.0, Culture=neutral, PublicKeyToken=35e10195dab3c99f" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -88,7 +81,6 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <Content Include="packages.config" />
     <Content Include="web.config" />
     <Content Include="Content\css\mtgdb.css" />
     <Content Include="Content\images\wood.jpg" />
@@ -98,6 +90,11 @@
     <Content Include="Content\javascript\mtgdb.info.js" />
     <Content Include="Content\javascript\jquery.easytabs.js" />
     <Content Include="Content\javascript\spin.min.js" />
+    <Content Include="Content\javascript\angular.min.js" />
+    <Content Include="Content\javascript\bootstrap.min.js" />
+    <Content Include="Content\javascript\ui-bootstrap.min.js" />
+    <Content Include="Content\javascript\underscore.min.js" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
@@ -149,7 +146,6 @@
     <None Include="Views\Index.cshtml" />
     <None Include="Views\_Layout.cshtml" />
     <None Include="Views\Logon\Logon.cshtml" />
-    <None Include="Views\Logon\Signup.cshtml" />
     <None Include="Views\_Sets.cshtml" />
     <None Include="Views\_Cards.cshtml" />
     <None Include="Views\_SetsDropDown.cshtml" />
@@ -164,10 +160,11 @@
     <None Include="Views\Book.cshtml" />
     <None Include="Views\Terms.cshtml" />
     <None Include="Views\About.cshtml" />
-    <None Include="Views\Help.cshtml" />
     <None Include="Views\Logon\Loggedin.cshtml" />
     <None Include="Views\Change\Card.cshtml" />
     <None Include="Views\Change\CardLogs.cshtml" />
     <None Include="Views\Change\CardChange.cshtml" />
+    <None Include="Views\FAQ.cshtml" />
+    <None Include="Views\Logon\Register.cshtml" />
   </ItemGroup>
 </Project>

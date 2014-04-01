@@ -1,0 +1,51 @@
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.PageModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+@section Top
+{
+    <h1>Frequently Asked Questions</h1>
+}
+
+<div class="alert alert-info alert-dissmissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+    	<i class="fa fa-times"></i>
+    </button>
+    <p><strong>If you have questions, suggestions, or bug reports</strong>, please visit our <a href="https://github.com/planeswalkers/www.mtgdb.info">Github</a> or send us an email at <a href="mailto:planeswalker@mtgdb.info">planeswalker@mtgdb.info</a>.</p>
+    <em>NOTE: Please send a screenshot or paste the errors in your email.</em>
+</div>
+<h4>What is this ALPHA version thingy?</h4>
+<p>This is a very early release, so/and therefore we expect some hiccups and bumps. However, we want to make this tool as great as possible! We appreciate your early input. We'll make frequent small releases at this phase, and once things are stable we'll move onto BETA.</p>
+<h4>I can't sign in, sign up, or reset my password, HELPPPppp...?</h4>
+<p><a href="mailto:planeswalker@mtgdb.info">Contact us</a>!</p>
+<h4>What is the benefit of registering?</h4>
+<p>When you sign up, you get access to a growing suite of Planeswalker tools such as "MyCards", where you can keep record of your card inventory. We strive to get you the best tools out there - FOR FREE!</p>
+<h4>After I sign in, why are some cards grey?</h4>
+<p>This is to indicate that you do not have this card in your inventory. You can add cards through browsing the set binders, searching and in the My Card sections.</p>
+<h4>On My Cards, all I see is cards I own. How can I see cards I don't have?</h4>
+<p>Each set tab is a toggle button. Once a tab is active, you can click the tab again. The tab will turn green indicating the tab is showing all cards. You will now see all cards available and cards you don't own will be grey. You can then mouse over and add cards on the popover. To see only the cards you do own again, click the tab agian. It should no longer be green and only displaying cards in your library.</p>
+<h4>Why should I use M:tgDb over the many other online resouces?</h4>
+<p>If you play "Magic: The gathering" and you don't need to use M:tgDb, think it is a waste of time, or it just SUX THE BIG ONE! Please contact us and tell us why. Our goal is to be the best <strong>Magic: The Gathering</strong> resource, and we can't get there without you!</p>
+<h4>I want to help with MtgDb.info, what can I do?</h4>
+<p>Awesome! We are always looking for help. Currently, this an open source project and unfunded. So, we rely soley on the community.</p>
+<h4>What does MtgDb.info need?</h4>
+<p>As we grow we will need all the help we can get with:</p>
+<ul>
+    <li>
+    	<strong>Donations</strong> One of the many beauties of Open Source is free! Unfortunately, server costs are not. If you have the means to donate, any amount is very much appreciated!
+    </li>
+    <li>
+        <strong>Content Providers</strong> We need people to provide us with up-to-date and accurate information. Once the "Open Database" features are released, we will rely on the community to make the information as accurate and complete as possible. People who consistently contibute quality content will be recognized. 
+    </li>
+    <li>
+        <strong>Graphic Design</strong> Whether you're a full blown UX wizard or a budding icon illustrator, we're looking for talented artists!
+    </li>
+    <li>
+        <strong>Codewalkers</strong> Code help is always welcome: frontend, backend, or whatever end ;) Have a M:tg tool you are working on want to intergrate it with mtgdb.info. Get in touch with us!
+    </li>
+</ul>
+<h4>Will I get paid money for any contributions or is M:tgDb hiring?</h4>
+<p>Currently, no; but you never know what the future will bring...</p>
+<h4>What if I have more questions or I just really want to read more stuff?</h4>
+<p>Please <a href="mailto:planeswalker@mtgdb.info">contact us</a> or see our <a href="~/about">About</a> page.</p>

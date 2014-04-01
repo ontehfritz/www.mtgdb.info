@@ -1,4 +1,4 @@
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
 @{
   Layout = "_Layout.cshtml";
 }
@@ -115,6 +115,7 @@
                 <td>This card belongs to no format</td>
             </tr>
         }
+<<<<<<< HEAD
         </tbody>
         </table>
 </div>
@@ -129,6 +130,42 @@
     {
         int i = 0;
         foreach(var rule in Model.Rulings)
+=======
+    </div>
+    <div>
+        <h4>
+        Rulings <a href="#" id="add_ruling"><span class="glyphicon glyphicon-plus-sign"></span></a>
+        </h4>
+
+        @if(Model.Rulings != null && Model.Rulings.Length > 0)
+        {
+            <input id="ruling_count" type="text" value="@Model.Rulings.Length" />
+            int i = 0;
+            <table id="rulings" class="table table-condensed table-hover">
+            <tbody>
+            @foreach(var rule in Model.Rulings)
+            {
+                <tr id="ruling_@i">
+                    <td>
+                        <input type="text" name="Rulings[@i].ReleasedAt" 
+                                value="@rule.ReleasedAt.ToShortDateString()" />
+                    </td>
+                    <td>
+                        <input type="text" name="Rulings[@i].Rule" 
+                                value="@rule.Rule" />
+                    </td>
+                    <td>
+                        <a href="#" onclick="removeRuling('ruling_@i');">
+                        <span class="glyphicon glyphicon-minus-sign"></span></a>
+                    </td>
+                </tr>
+                ++i;
+            }
+            </tbody>
+            </table>
+        }
+        else
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         {
             <tr id="ruling_@i">
                 <td>
@@ -187,7 +224,7 @@
         return false;
     }
 
-    $("#add_format").click(function(){
+     $("#add_format").click(function(){
         var count = parseInt($("#format_count").val()) + 1;
         $("#format_count").val(count);
 
@@ -204,3 +241,4 @@
     }
 
 </script>
+

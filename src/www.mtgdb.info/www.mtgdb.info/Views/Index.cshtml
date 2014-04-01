@@ -3,19 +3,27 @@
   Layout = "_Layout.cshtml";
 }
 <div class="row">
-    <div id="test" class="">
-        <div class="jumbotron">
+    <div class="container">
+        <div class="jumbotron standalone">
             <div class="logo">
-                <h1>M:tgDb <small>[ALPHA]</small></h1>
+                <h1>M:tgDb <small>ALPHA</small></h1>
                 <p>
                     <b>Magic: the gathering open database project</b>
                 </p>
             </div>
         </div>
-        <div class="row" style="margin-top:-30px;">
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2><img src="/content/images/logo.png"/> Open Db</h2>
-                <b>(Coming soon)</b>
+		<div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+            	<i class="fa fa-times"></i>
+            </button>
+            <p><strong>Please note this is an ALPHA pre-release.</strong> There may be bugs and other issues. During this phase please submit 
+            any issues, bugs, and errors to: <a href="mailto:planeswalker@mtgdb.info">planeswalker@mtgdb.info</a> 
+            or create an issue on: <a href="https://github.com/planeswalkers/www.mtgdb.info/issues">GitHub</a></p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <h2><i class="fa fa-users"></i> Open Db</h2>
+                <p>(Coming soon)</p>
                 <p>
                 The database is open, meaning that the community can add and edit the information for cards and sets.
                 </p>
@@ -33,13 +41,13 @@
                     <img src="https://api.mtgdb.info/content/card_images/189213.jpeg" style="width:55px;height:77px;" />
                     </a>
                     <a href="~/cards/600">
-                    <img src="https://api.mtgdb.info/content/card_images/600.jpeg" style="width:55px;height:77px;" />
+                    <img src="https://api.mtgdb.info/content/card_images/3.jpeg" style="width:55px;height:77px;" />
                     </a>
                 </p>
             </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2><img src="/content/images/hammer.png"/> Tools</h2>
-                <p><a href="~/signup">Sign up</a> for an account and get access to great "Magic:the gathering" tools</p>
+            <div class="col-sm-6 col-md-4">
+                <h2><i class="fa fa-wrench"></i> Tools</h2>
+                <p><a href="~/register">Sign up</a> for an account and get access to great "Magic:the gathering" tools</p>
                 <h4>My Cards</h4>
                 <p>
                 My Cards allows you to keep track of your own card library. 
@@ -47,8 +55,8 @@
                 <h4>Yet another deck builder</h4>
                 <p>(Coming soon)</p>
             </div><!--/span-->
-            <div class="col-6 col-sm-6 col-lg-4">
-                <h2><img src="/content/images/gears.jpg"/> API</h2>
+            <div class="col-sm-6 col-md-4">
+                <h2><i class="fa fa-gears"></i> API</h2>
                 <p>
                     <a href="~/content/download/MtgDb.Info.Driver.zip"><span class="label label-default">C#</span></a>
                 </p>
@@ -58,16 +66,13 @@
                 API. You can use the API directly or use one our wrappers.
                 </p>
                 <p>
-                <b>Have an application that uses the api. Get your logo here ...  </b>
+                <b>Have an application that uses the api? Get your logo here ...  </b>
                 </p>
-                <p><a class="btn btn-default" href="http://api.mtgdb.info" role="button">View API &raquo;</a></p>
+                <p>
+                	<a class="btn btn-info" href="http://api.mtgdb.info" role="button">View API &raquo;</a>
+                </p>
             </div><!--/span-->
         </div><!--/row-->
-        <div class="alert alert-warning alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Please note this is an ALPHA pre-release. There may be bugs and other issues. During this phase please submit 
-            any issues, bugs, and errors to: <a href="mailto:planeswalker@mtgdb.info">planeswalker@mtgdb.info</a> 
-            or create an issue on: <a href="https://github.com/planeswalkers/www.mtgdb.info/issues">GitHub</a>
-        </div>
+
     </div><!--/span-->
 </div><!--/row-->

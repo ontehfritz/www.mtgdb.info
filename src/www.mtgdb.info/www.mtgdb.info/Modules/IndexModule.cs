@@ -26,12 +26,12 @@ namespace MtgDb.Info
                 return View["about", model];
             };
 
-            Get ["/help"] = parameters => {
+			Get ["/FAQ"] = parameters => {
                 PageModel model = new PageModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.ActiveMenu = "help";
+				model.ActiveMenu = "FAQ";
 
-                return View["help", model];
+				return View["FAQ", model];
             };
 
             Get ["/terms"] = parameters => {

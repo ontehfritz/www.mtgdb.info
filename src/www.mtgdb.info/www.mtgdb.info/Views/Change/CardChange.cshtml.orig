@@ -1,4 +1,4 @@
-@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardChange>
 @{
   Layout = "_Layout.cshtml";
 }
@@ -12,6 +12,7 @@
     </div>
 }
 
+<<<<<<< HEAD
 <h1>
 Version: @Model.Version
 @if(@Model.Status == null)
@@ -33,6 +34,12 @@ else
 </h1>
 By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
 <div style="width:800px;">
+=======
+<h1>Version: @Model.Version</h1>
+
+<div style="width:1200px;">
+    <form action="" method="post">
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
     <div>
         <table class="table-hover">
         @{ string changed = "";}
@@ -49,9 +56,9 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Set #:</b></td>
             <td>@Model.SetNumber</td>
-
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if(@Model.Planeswalker.InRole("admin"))
             {
+<<<<<<< HEAD
                 <form action="/change/@Model.Id/field/setNumber" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
@@ -82,6 +89,9 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
+=======
+                <td><input type="Button" name="set" value="commit" /></td>
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
             }
         </tr>
 
@@ -100,6 +110,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
             <td>
                 @Model.ReleasedAt.ToShortDateString()
             </td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/releasedAt" method="post">
@@ -108,6 +119,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
 
         @{changed = "";}
@@ -126,6 +139,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
             <td>
                 @String.Join(",", Model.Colors)
             </td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/colors" method="post">
@@ -134,6 +148,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -149,6 +165,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Mana Cost:</b></td>
             <td>@Model.ManaCost</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/manaCost" method="post">
@@ -157,6 +174,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -171,6 +190,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Converted Cost:</b></td>
             <td>@Model.ConvertedManaCost</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/convertedManaCost" method="post">
@@ -179,6 +199,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -193,6 +215,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Type:</b></td>
             <td>@Model.Type</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/type" method="post">
@@ -201,6 +224,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -215,6 +240,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Sub Type:</b></td>
             <td>@Model.SubType</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/subType" method="post">
@@ -223,6 +249,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -238,6 +266,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Flavor:</b></td>
             <td>@Model.Flavor</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/flavor" method="post">
@@ -246,6 +275,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -261,6 +292,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Description:</b></td>
             <td>@Model.Description</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/description" method="post">
@@ -269,6 +301,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -284,6 +318,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Power:</b></td>
             <td>@Model.Power</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/power" method="post">
@@ -292,6 +327,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -307,6 +344,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Toughness:</b></td>
             <td>@Model.Toughness</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/toughness" method="post">
@@ -315,6 +353,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         @{changed = "";}
 
@@ -330,6 +370,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <tr class="@changed">
             <td><b>Artist:</b></td>
             <td>@Model.Artist</td>
+<<<<<<< HEAD
             @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
             {
                 <form action="/change/@Model.Id/field/artist" method="post">
@@ -338,6 +379,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                     </td>
                 </form>
             }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
         </tr>
         </table>
 
@@ -347,6 +390,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <h4>
             Formats
         </h4>
+<<<<<<< HEAD
         @{ changed = "";}
 
         @if(@Model.IsAccepted("formats"))
@@ -369,11 +413,16 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         @if(Model.Formats != null && Model.Formats.Length > 0)
         {
             
+=======
+
+        @if(Model.Formats != null && Model.Formats.Length > 0)
+        {
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
             <table id="formats" class="table table-condensed table-hover">
             <tbody>
             @foreach(var format in Model.Formats)
             {
-                <tr class="@changed">
+                <tr>
                     <td>
                          @format.Name
                     </td>
@@ -392,8 +441,9 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
     </div>
     <div>
         <h4>
-        Rulings
+        Rulingss
         </h4>
+<<<<<<< HEAD
         @{ changed = "";}
 
         @if(@Model.IsAccepted("rulings"))
@@ -410,6 +460,8 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         }
+=======
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
 
         @if(Model.Rulings != null && Model.Rulings.Length > 0)
         {
@@ -417,12 +469,16 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
             <tbody>
             @foreach(var rule in Model.Rulings)
             {
-                <tr id="ruling" class="@changed">
+                <tr id="ruling">
                     <td>
                         @rule.ReleasedAt.ToShortDateString()
                     </td>
                     <td>
+<<<<<<< HEAD
                         @rule.Rule.Trim()
+=======
+                        @rule.Rule
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
                     </td>
                 </tr>
             }
@@ -433,9 +489,14 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         {
             <p class="@changed">This card has no rulings.</p>
         }
+<<<<<<< HEAD
     </div>
     <h4>Comments:</h4>
     <p>@Model.Comment</p>
+=======
+    </form>
+
+>>>>>>> 9112374ae1e75d8272f2b40c4ad66e5a866bbae7
 </div>
  
  @if(Model.Planeswalker.InRole("admin"))
@@ -454,3 +515,4 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         <a class="btn btn-default" href="/cards/@Model.Mvid" role="button">Cancel</a>
     </form>
  }
+

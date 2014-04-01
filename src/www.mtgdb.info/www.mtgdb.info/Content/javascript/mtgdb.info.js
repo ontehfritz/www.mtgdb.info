@@ -145,12 +145,14 @@ function format(set) {
                                                                 "_sym.png'/>" + " " + set.text;
 }
 
-$(document).ready(function() { $("#set_list").select2({
-    matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },
-    formatResult: format,
-    formatSelection: format,
-    escapeMarkup: function(m) { return m; }
-});});
+$(document).ready(function() { 
+	$("#set_list").select2({
+    	matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },
+    	formatResult: format,
+    	formatSelection: format,
+    	escapeMarkup: function(m) { return m; }
+	});
+});
 
 function go()
 {

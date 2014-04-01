@@ -1,22 +1,101 @@
+/* Google Font Import & Styles */
 
-/*
- * Style tweaks
- * --------------------------------------------------
- */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+ body{
+ 	font-family: 'Open Sans', sans-serif;
+ 	font-weight:400;
+ }
+ em {
+ 	font-weight:300;
+ }
+ h1,h2,h3,h4,h5,
+ strong {
+ 	font-weight:700;
+ }
+
+/* LAYOUT */
+
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
   background-image:url('../images/bg.png');
-  padding-top: 0px;
+  padding-top: 2.1em;
 }
-
+.navbar-brand{
+  font-weight:bold;
+  text-shadow:2px 2px 0 #ccc;
+}
+.top-section{
+  	color:#fff;
+	background-color:#000;
+	background-image:url('../images/dark_fish_skin.png');
+	width:100%;
+	padding:2em 1em;
+	margin-bottom:1em;
+}
 footer {
-  padding: 30px 0;
+  padding: 2em 0;
+}
+/* INDEX*/
+.jumbotron.standalone{
+  margin-top: 2em;
 }
 
+/* ABOUT */
+.profile{
+  display:inline-block;
+  position:relative;
+  margin-right:1em;
+}
+.profile img{
+  border-radius:1em;
+  box-shadow: 0 0 1px #000;
+  margin-bottom:.5em;
+ }
+.profile p{
+  font-size: 1.5em;
+  position: absolute;
+  top: 5em;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+}
+.profile ul{
+  list-style-type:none;
+  padding:0;
+  text-align:center;
+  margin:.5em 0 0;
+}
+.profile li{
+  display:inline;
+  color:#ccc;
+}
+/*ABOUT*/
+.contact-list{
+  list-style-type:none;
+  padding-left:0;
+}
+#twitter-widget-0{
+  margin: .5em 0;
+}
+/*SIGN IN*/
+.signin form{
+  margin-bottom:1em;
+}
+/*DONATE*/
+.donate{
+  position: absolute;
+  top: 3.6em;
+  right: 0;
+ }
+  /*
+   *
+   */
 .changed{
   background-color: #FFFBCC;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 10px 10px 5px #888;
 }
 .accepted {
   background-color: #81F781;
@@ -96,13 +175,6 @@ footer {
     background-image:url('../images/vertical_cloth.png');
 }
 
-#top_section {
-    background-color:black;
-    width:100%;
-    margin-top:-20px;
-    background-image:url('../images/dark_fish_skin.png');
-}
-
 .signin{
     width: 325px;
     margin-left: auto;
@@ -143,13 +215,19 @@ footer {
 .logo
 {
     border:1px solid black;
+    border-radius:3px;
     width:500px;
     padding:20px; 
-    background:rgba(255, 255, 255, .5);
+    background:rgba(255, 255, 255, .6);
+}
+.logo small{
+    color:#888;
+    font-size:.5em;
+    text-shadow: 0 -1px 0 #444;
 }
 
 /* navbar */
-.navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
+/*.navbar-primary .navbar { background:#CCCCCC; border-bottom: solid 1px; black; }
 .navbar-primary .navbar .nav > li > a {color: #666666;}
 .navbar-primary .navbar .nav > li > a {color: #666666;}
 .navbar-primary .navbar .nav > li > a:hover {color: #fff; background-color: #666666;}
@@ -163,7 +241,7 @@ footer {
 .navbar-xs .navbar-primary .navbar { min-height:28px; } 
 .navbar-xs .navbar-primary .navbar .navbar-brand{ padding: 8px 8px;font-size: 16px;line-height: 18px; } 
 .navbar-xs .navbar-primary .navbar .navbar-nav > li > a {  padding-top: 7px; padding-bottom: 8px; line-height: 20px; } 
-
+*/
 
 /* Example Styles for Demo */
 .etabs { margin: 0; padding: 0; }
@@ -178,61 +256,3 @@ footer {
 /* Styles for alternate tabActiveClass */
 .tab.selected-tab { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
 .tab a.selected-tab { font-weight: bold; }
-
-/* Styles for Tabs on Side */
-#tab-side-container { background: #fff; border: solid 1px; height: 300px; }
-#tab-side-container ul { height: 300px; list-style: none; margin: 0; padding: 0; background: #ccc; float: left; border-right: solid 1px; }
-#tab-side-container ul li { width: 100px; margin: 0; padding: 0; text-align: center; }
-#tab-side-container ul li a { display: block; padding: 15px 0; outline: none; }
-#tab-side-container ul li a:hover { text-decoration: underline; }
-#tab-side-container ul li.selected-tab { background: #fff; position: relative; left: 1px; border-style: solid; border-width: 1px 0; }
-#tab-side-container ul li:first-child.selected-tab { border-top: none; }
-#tab-side-container ul li a.selected-tab { font-weight: bold; text-decoration: none; }
-#tab-side-container .panel-container { background: #fff; padding-top: 5px; padding-left: 120px; }
-
-/* Styles for Tabs on Bottom */
-#tab-bottom-container { width: 100%; padding: 0; clear: both; }
-#tab-bottom-container ul { list-style: none; margin: 0; padding: 0; width: 100%; }
-#tab-bottom-container ul li { float: left; width: 33.33%; margin: 0; padding: 0; text-align: center; border-top: solid 1px; }
-#tab-bottom-container ul li a { display: block; padding: 15px 0; outline: none; }
-#tab-bottom-container ul li a:hover { text-decoration: underline; }
-#tab-bottom-container ul li.active { width: 33%; background: #fff; border: solid 1px; border-top: none; }
-#tab-bottom-container ul li a.active { font-weight: bold; text-decoration: none; }
-#tab-bottom-container .panel-container { background: #fff; border: solid 1px; border-bottom: none; padding: 10px; margin-bottom: 0; }
-
-/* Styles for Collapsible */
-#tab-collapsible-container { background: #fff; padding: 5px; border: solid 1px; }
-#tab-collapsible-container ul { margin: 0; padding: 5px 5px 0; background: #ccc; border: solid 1px; }
-#tab-collapsible-container ul li { display: inline-block; background: #ccc; border: solid 1px; border-bottom: none; margin: 0; }
-#tab-collapsible-container ul li a { display: block; padding: 5px; outline: none; }
-#tab-collapsible-container ul li a:hover { text-decoration: underline; }
-#tab-collapsible-container ul li.active { background: #fff; padding-top: 6px; position: relative; top: 1px; }
-#tab-collapsible-container ul li a.active { font-weight: bold; }
-#tab-collapsible-container .panel-container { background: #fff; border: none; padding: 0 10px; background: #fff; }
-
-/* Styles for Disconnected */
-#tab-disconnected-container ul { height: 52px; width: 100%; list-style: none; margin: 0; padding: 0; background: #ccc; }
-#tab-disconnected-container ul li { float: left; width: 33.3%; margin: 0; padding: 0; text-align: center; }
-#tab-disconnected-container ul li a { display: block; padding: 15px 0; line-height: 20px; outline: none; }
-#tab-disconnected-container ul li a:hover { text-decoration: underline; }
-#tab-disconnected-container ul li.active { background: #fff; position: relative; left: 1px; }
-#tab-disconnected-container ul li a.active { font-weight: bold; text-decoration: none; border: solid 1px; }
-#tab-disconnected-container .panel-container { background: #fff; padding: 10px; border: solid 1px; }
-#disconnected-tab3 { background: #fff; padding: 10px 15px; border: solid 1px #999; -moz-border-radius: 5px; -webkit-border-radius: 5px; margin: 15px 0; }
-
-/* Styles for Transition Options */
-#tab-transition-container .panel-container { padding: 5px; }
-#tab-transition-container .panel-container .active { padding: 0 5px; }
-
-/* Styles for Form Sections */
-.tab-container fieldset { background: #fff; }
-.tab-container .field-container { background: #fff; border: solid #666 1px; padding: 10px; -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; }
-
-/* Styles for Previous and Next buttons */
-.prev-tab, .next-tab { display: block; width: 100px; text-align: center; margin-top: 10px; }
-span.prev-tab, span.next-tab { background: #ccc; }
-.prev-tab { float: left; }
-.next-tab { float: right; }
-
-/* Styles for Twitter Boostrap */
-#twitter-bootstrap-container { background: #fff; padding: 10px; height: 75px; margin-bottom: 15px; }

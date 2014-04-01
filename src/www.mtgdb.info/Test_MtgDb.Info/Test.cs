@@ -88,7 +88,7 @@ namespace Test_MtgDb.Info
 
             change = CardChange.MapCard(card);
             change.Comment = "test";
-            change.Description = "lucky";
+            change.Description = Guid.NewGuid().ToString();
             change.UserId = Guid.NewGuid();
 
             Guid id = repository.AddCardChangeRequest(change);
@@ -99,7 +99,7 @@ namespace Test_MtgDb.Info
 
             card = mtgdb.GetCard(2);
 
-            Assert.AreEqual(card.Description, "lucky" );
+            Assert.AreEqual(card.Description, change.Description );
         }
 
         [Test()]
