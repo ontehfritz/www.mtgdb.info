@@ -121,7 +121,14 @@ namespace Test_MtgDb.Info
             Assert.AreEqual(value, "test" );
         }
 
+        [Test()]
+        public void Get_change_requests()
+        {
+            CardChange [] changes = repository.GetChangeRequests();
 
+            Assert.Greater(0, changes.Length);
+        }
+            
         [Test()]
         public void Get_card_change()
         {

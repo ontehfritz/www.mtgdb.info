@@ -24,6 +24,16 @@ namespace MtgDb.Info
         {
             this.RequiresAuthentication ();
 
+            Get["/cr"] = parameters => {
+                ChangeRequestModel model = new ChangeRequestModel();
+
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.Title = "M:tgDb.Info Admin";
+                model.Changes = repository.GetChangeRequests().ToList();
+
+                return View["Change/ChangeRequests", model];
+            };
+
             Get["/cards/{id}/logs"] = parameters => {
                 CardLogsModel model =   new CardLogsModel();
                 model.ActiveMenu =      "sets";

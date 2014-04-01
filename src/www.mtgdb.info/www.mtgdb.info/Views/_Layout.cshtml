@@ -17,6 +17,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
@@ -124,6 +125,11 @@
 	            <ul class="dropdown-menu">
 	                <li><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
 	                <li class="divider"></li>
+                    @if(Model.Planeswalker.InRole("admin"))
+                    {
+                        <li><a href="/cr">Change Requests</a></li>
+                        <li class="divider"></li>
+                    }
 	                <li><a href="/pw/@Model.Planeswalker.UserName">Profile</a></li>
 	                <li><a href="~/settings/">Settings</a></li>
 	                <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>

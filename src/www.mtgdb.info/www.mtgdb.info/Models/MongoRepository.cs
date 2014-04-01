@@ -47,6 +47,24 @@ namespace MtgDb.Info
             CreateUserCardIndexes ();
         }
 
+        public CardChange[] GetChangeRequests()
+        {
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
+
+            List<CardChange> changes = new List<CardChange>(); 
+
+            var mongoResults = collection.FindAll()
+                .OrderByDescending(x => x.CreatedAt);
+
+            foreach(CardChange c in mongoResults)
+            {
+                c.User = GetProfile(c.UserId);
+                changes.Add(c);
+            }
+
+            return changes.ToArray();
+        }
 
         public CardChange UpdateCardChangeStatus(Guid id, 
             string status, string field = null)

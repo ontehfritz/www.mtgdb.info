@@ -37,9 +37,6 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Configuration" />
-    <Reference Include="SuperSimpleAuthCSharp">
-      <HintPath>Bin\SuperSimpleAuthCSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -69,6 +66,9 @@
     </Reference>
     <Reference Include="MtgDbAdminDriver">
       <HintPath>..\..\..\..\api.mtgdb.info\src\MtgDbAdminDriver\bin\Release\MtgDbAdminDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperSimpleAuthCSharp">
+      <HintPath>..\..\..\dependencies\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -141,6 +141,7 @@
     <Compile Include="Models\Views\CardLogsModel.cs" />
     <Compile Include="Models\Formats.cs" />
     <Compile Include="Helpers\Html.cs" />
+    <Compile Include="Models\Views\ChangeRequestModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -166,5 +167,6 @@
     <None Include="Views\Change\CardChange.cshtml" />
     <None Include="Views\FAQ.cshtml" />
     <None Include="Views\Logon\Register.cshtml" />
+    <None Include="Views\Change\ChangeRequests.cshtml" />
   </ItemGroup>
 </Project>

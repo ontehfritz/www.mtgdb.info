@@ -1,0 +1,53 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.ChangeRequestModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+ 
+@section Top{
+    <div class="t_section">
+    <h1>
+    Change Requests
+    </h1>
+    </div>
+}
+
+<table class="table-striped table-hover table-condensed">
+<tbody>
+@foreach(var change in Model.Changes)
+{
+    <tr>
+        <td>
+            @if(@change.Status == null)
+            {
+                <span class="label label-warning">P</span>
+            }
+            else if(@change.Status == "Accepted")
+            {
+                <span class="label label-success">A</span>
+            }
+            else if(@change.Status == "Closed")
+            {
+                <span class="label label-danger">C</span>
+            }
+            else
+            {
+                <span class="label label-warning">P</span>
+            }
+        </td>
+        <td>
+            <a href="/cards/@change.Mvid/logs/@change.Id">@change.Mvid</a>
+        </td>
+        <td>
+            Version: @change.Version
+        </td>
+        <td>
+            @if(change.User != null)
+            {
+                <span>By: @change.User.Name On: @change.CreatedAt.ToString()</span>
+            }
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+

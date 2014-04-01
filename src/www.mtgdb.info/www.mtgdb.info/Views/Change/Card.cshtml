@@ -58,11 +58,11 @@
         </tr>
         <tr>
             <td><b>Flavor:</b></td>
-            <td><textarea rows="8" cols="100" name="Flavor">@Model.Flavor</textarea></td>
+            <td><textarea rows="4" cols="50" name="Flavor">@Model.Flavor</textarea></td>
         </tr>
         <tr>
             <td><b>Text:</b></td>
-            <td><textarea rows="8" cols="100" name="Description">@Model.Description</textarea></td>
+            <td><textarea rows="4" cols="50" name="Description">@Model.Description</textarea></td>
         </tr>
         <tr>
             <td><b>Power:</b></td>
@@ -136,7 +136,7 @@
                             value="@rule.ReleasedAt.ToShortDateString()" required />
                 </td>
                 <td>
-                    <textarea rows="8" cols="100" name="Rulings[@i].Rule" required >@rule.Rule.Trim()</textarea>
+                    <textarea rows="4" cols="50" name="Rulings[@i].Rule" required >@rule.Rule.Trim()</textarea>
                 </td>
                 <td>
                     
@@ -157,7 +157,7 @@
     </table>
     </div>
     <h4>*Summary of changes:</h4>
-    <textarea rows="8" cols="100" name="Comment" required>@Model.Comment</textarea>
+    <textarea rows="4" cols="50" name="Comment" required>@Model.Comment</textarea>
     <br />
     <br />
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
@@ -175,7 +175,7 @@
         $("#ruling_count").val(count);
 
         $('#rulings > tbody:last').prepend('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
-        + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="8" cols="100" name="Rulings[' + count + 
+        + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="4" cols="50" name="Rulings[' + count + 
         '].Rule" required></textarea></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeRuling(\'ruling_' + count + '\');"></span></td></tr>');
         $( ".rdate" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
     }); 
