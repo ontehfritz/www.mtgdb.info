@@ -47,15 +47,25 @@ namespace MtgDb.Info
             CreateUserCardIndexes ();
         }
 
-        public CardChange[] GetChangeRequests()
+        public CardChange[] GetChangeRequests(string status = null)
         {
             MongoCollection<CardChange> collection = 
                 database.GetCollection<CardChange> ("card_changes");
 
             List<CardChange> changes = new List<CardChange>(); 
+            IOrderedEnumerable<CardChange> mongoResults;
 
-            var mongoResults = collection.FindAll()
-                .OrderByDescending(x => x.CreatedAt);
+            if(status == null)
+            {
+                mongoResults = collection.FindAll()
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+            else
+            {
+                var query = Query<CardChange>.EQ (e => e.Status, status);
+                mongoResults = collection.Find(query)
+                    .OrderByDescending(x => x.CreatedAt);
+            }
 
             foreach(CardChange c in mongoResults)
             {
@@ -161,6 +171,7 @@ namespace MtgDb.Info
             change.CreatedAt =      DateTime.Now;
             change.ModifiedAt =     DateTime.Now;
             change.FieldsUpdated  = CardChange.FieldsChanged(card, change);
+            change.Status = "Pending";
             //change.ReleasedAt = change.ReleasedAt.ToShortDateString();
 
             if(change.FieldsUpdated == null ||

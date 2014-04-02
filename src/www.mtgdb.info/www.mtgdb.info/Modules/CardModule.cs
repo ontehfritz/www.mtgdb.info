@@ -24,12 +24,21 @@ namespace MtgDb.Info
         {
             this.RequiresAuthentication ();
 
-            Get["/cr"] = parameters => {
+            Get["/cr/{status?}"] = parameters => {
                 ChangeRequestModel model = new ChangeRequestModel();
 
+                string status = (string)parameters.status;
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Title = "M:tgDb.Info Admin";
-                model.Changes = repository.GetChangeRequests().ToList();
+
+                if(status == null)
+                {
+                    model.Changes = repository.GetChangeRequests().ToList();
+                }
+                else
+                {
+                    model.Changes = repository.GetChangeRequests(status).ToList();
+                }
 
                 return View["Change/ChangeRequests", model];
             };

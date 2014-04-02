@@ -19,7 +19,7 @@ namespace MtgDb.Info
 
         Guid AddCardChangeRequest(CardChange card);
         CardChange[] GetCardChangeRequests(int mvid);
-        CardChange[] GetChangeRequests();
+        CardChange[] GetChangeRequests(string status = null);
         CardChange GetCardChangeRequest(Guid id);
         CardChange UpdateCardChangeStatus(Guid id, string status, string field = null);
 //        void UpdatePlaneswalker(Planeswalker planeswalker);

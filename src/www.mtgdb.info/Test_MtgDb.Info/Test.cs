@@ -126,7 +126,7 @@ namespace Test_MtgDb.Info
         {
             CardChange [] changes = repository.GetChangeRequests();
 
-            Assert.Greater(0, changes.Length);
+            Assert.Greater(changes.Length, 0);
         }
             
         [Test()]

@@ -10,6 +10,10 @@
     </h1>
     </div>
 }
+Filter: 
+    <span class="label label-success"><a href="/cr/Accepted">A</a></span>
+    <span class="label label-warning"><a href="/cr/Pending">P</a></span>
+    <span class="label label-danger"><a href="/cr/Closed">C</a></span>
 
 <table class="table-striped table-hover table-condensed">
 <tbody>
@@ -17,7 +21,7 @@
 {
     <tr>
         <td>
-            @if(@change.Status == null)
+            @if(@change.Status == "Pending")
             {
                 <span class="label label-warning">P</span>
             }
@@ -29,21 +33,18 @@
             {
                 <span class="label label-danger">C</span>
             }
-            else
-            {
-                <span class="label label-warning">P</span>
-            }
         </td>
         <td>
             <a href="/cards/@change.Mvid/logs/@change.Id">@change.Mvid</a>
         </td>
         <td>
-            Version: @change.Version
+            <b>Version: @change.Version</b>
         </td>
         <td>
             @if(change.User != null)
             {
-                <span>By: @change.User.Name On: @change.CreatedAt.ToString()</span>
+                <span>By:</span> <a href="/pw/@change.User.Name">@change.User.Name</a>
+                <span>On: @change.CreatedAt.ToString()</span>
             }
         </td>
     </tr>
