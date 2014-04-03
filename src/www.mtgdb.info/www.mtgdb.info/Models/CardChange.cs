@@ -16,11 +16,21 @@ namespace MtgDb.Info
             RuleFor(change => change.CardSetId).NotEmpty();
             RuleFor(change => change.CardSetName).NotEmpty();
             RuleFor(change => change.Colors).NotEmpty();
-            RuleFor(change => change.ConvertedManaCost).NotEmpty();
-            RuleFor(change => change.ConvertedManaCost).GreaterThanOrEqualTo(0);
+
+            RuleFor(change => change.ConvertedManaCost)
+                .GreaterThanOrEqualTo(0);
+            RuleFor(change => change.Power)
+                .GreaterThanOrEqualTo(0);
+
+
+            RuleFor(change => change.Toughness)
+                .GreaterThanOrEqualTo(0);
+                
             RuleFor(change => change.Name).NotEmpty();
             RuleFor(change => change.Type).NotEmpty();
             RuleFor(change => change.Comment).NotEmpty();
+            RuleFor(change => change.RelatedCardId)
+                .GreaterThanOrEqualTo(0);
         }
     }
 
