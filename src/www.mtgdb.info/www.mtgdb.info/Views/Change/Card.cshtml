@@ -35,14 +35,19 @@
                     value="@Model.ReleasedAt.ToShortDateString()" /></td>
         </tr>
         <tr>
-            <td><b>Color(s):</b></td>
+            <td style="vertical-align:top;"><b>Color(s):</b></td>
             <td>
-                <input type="text" name="Colors" value='@String.Join(",", Model.Colors)' />
+                <input type="text" name="Colors" value='@String.Join(",", Model.Colors)' /><br />
+                <b>Key:</b> white, black, blue, green, red
             </td>
         </tr>
         <tr>
-            <td><b>Mana Cost:</b></td>
-            <td><input type="text" name="ManaCost" value="@Model.ManaCost" /></td>
+            <td style="vertical-align:top;"><b>Mana Cost:</b></td>
+            <td>
+            <input type="text" name="ManaCost" value="@Model.ManaCost" /><br />
+            <b>Key:</b> W - white, B - black, U - Blue, G - green, R - Red, {R/W},{G/R},{B/R},{U/W},{U/R},{B/G},{G/W},{WP},{UP},{BP} 
+            ,{RP},{GP},{B/U}
+            </td>
         </tr>
         <tr>
             <td><b>Converted Cost:</b></td>
@@ -61,8 +66,12 @@
             <td><textarea rows="4" cols="50" name="Flavor">@Model.Flavor</textarea></td>
         </tr>
         <tr>
-            <td><b>Text:</b></td>
-            <td><textarea rows="4" cols="50" name="Description">@Model.Description</textarea></td>
+            <td style="vertical-align:top;"><b>Text:</b></td>
+            <td><textarea rows="4" cols="50" name="Description">@Model.Description</textarea>
+            <br />
+            <b>Key:</b> {Tap},{White},{Green},{Blue},{Black},{Red},{Red or White},{Black or Green},{Blue or Black},{Green or White},
+            {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {Variable Colorless}
+            </td>
         </tr>
         <tr>
             <td><b>Power:</b></td>

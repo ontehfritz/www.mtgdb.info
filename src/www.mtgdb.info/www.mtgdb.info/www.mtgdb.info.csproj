@@ -109,6 +109,7 @@
     <Folder Include="Content\javascript\" />
     <Folder Include="Content\download\" />
     <Folder Include="Views\Change\" />
+    <Folder Include="Views\Deck\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
@@ -142,6 +143,9 @@
     <Compile Include="Models\Formats.cs" />
     <Compile Include="Helpers\Html.cs" />
     <Compile Include="Models\Views\ChangeRequestModel.cs" />
+    <Compile Include="Models\Deck.cs" />
+    <Compile Include="Modules\DeckModule.cs" />
+    <Compile Include="Models\IDeckRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
