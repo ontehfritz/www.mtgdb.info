@@ -6,6 +6,7 @@ namespace MtgDb.Info
     {
         public DeckModule ()
         {
+           
         }
     }
 }

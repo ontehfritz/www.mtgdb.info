@@ -16,13 +16,19 @@
 {
     if(change.Version == 0)
     {
-        <div>
-            <h4>Original</h4>
+        <div class="alert alert-info">
+            <h4><a href="/cards/@Model.Mvid/logs/@change.Id">Original</a></h4>
         </div> 
     }
     else
     {
-        <div class="well">
+        string newVersion = "well";
+        if(change.Version == @Model.NewVersion)
+        {
+            newVersion = "alert alert-success";
+        }
+
+        <div class="@newVersion">
             <h4>Version: <a href="/cards/@Model.Mvid/logs/@change.Id"> @change.Version </a>
             @if(@change.Status == "Accepted")
             {

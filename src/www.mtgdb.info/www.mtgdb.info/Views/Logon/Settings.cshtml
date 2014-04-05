@@ -3,8 +3,11 @@
   Layout = "_Layout.cshtml";
 }
 
+@section Top
+{
+   <h4>Settings for: @Model.Planeswalker.Profile.Name</h4>
+}
 <div>
-    <h4>Settings for: @Model.Planeswalker.Profile.Name</h4>
     <form action="/settings" method="post">
         <div>
             <label for="Name">Planeswalker:</label>

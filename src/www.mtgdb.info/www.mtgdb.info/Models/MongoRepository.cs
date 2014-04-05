@@ -62,7 +62,9 @@ namespace MtgDb.Info
             }
             else
             {
-                var query = Query<CardChange>.EQ (e => e.Status, status);
+                var query = Query.And(Query<CardChange>.EQ (e => e.Status, status),
+                    Query<CardChange>.NE (e => e.Version, 0));
+
                 mongoResults = collection.Find(query)
                     .OrderByDescending(x => x.CreatedAt);
             }
@@ -116,7 +118,10 @@ namespace MtgDb.Info
 
             var query = Query.And(Query<CardChange>.EQ (e => e.Id, id ));
             CardChange change =  collection.FindOne(query);
-            change.User = GetProfile(change.UserId);
+            if(change.Version != 0)
+            {
+                change.User = GetProfile(change.UserId);
+            }
 
             return change;
         }

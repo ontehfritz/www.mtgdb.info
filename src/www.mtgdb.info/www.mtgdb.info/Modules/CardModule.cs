@@ -26,7 +26,6 @@ namespace MtgDb.Info
 
             Get["/cr/{status?}"] = parameters => {
                 ChangeRequestModel model = new ChangeRequestModel();
-
                 string status = (string)parameters.status;
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.Title = "M:tgDb.Info Admin";
@@ -48,6 +47,15 @@ namespace MtgDb.Info
                 model.ActiveMenu =      "sets";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
                 model.Mvid =            (int)parameters.id;
+
+                if(Request.Query.v != null)
+                {
+                    int version = 0; 
+                    if(int.TryParse((string)Request.Query.v, out version))
+                    {
+                        model.NewVersion = version;
+                    }
+                }
 
                 try
                 {

@@ -2,11 +2,12 @@
 
 namespace MtgDb.Info
 {
-    public class IDeckRepository
+    public interface IDeckRepository
     {
-        public IDeckRepository ()
-        {
-        }
+        Deck AddDeck(Deck deck);
+        Deck UpdateDeck(Deck deck);
+        void DeleteDeck(Guid Id);
+        Deck[] GetUserDecks(Guid userId);
     }
 }
 

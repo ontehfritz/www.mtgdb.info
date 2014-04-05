@@ -347,5 +347,25 @@ namespace MtgDb.Info
 
             return value.ToString();
         }
+
+        public string FieldState(string field)
+        {
+            string state = "";
+
+            if(Status == "Closed")
+            {
+                state = "closed";
+            }
+            else if(this.IsAccepted(field))
+            {
+                state = "accepted";
+            }
+            else if(Version != 0 && this.IsFieldChanged(field))
+            {
+                state = "changed";
+            }
+
+            return state;
+        }
     }
 }
