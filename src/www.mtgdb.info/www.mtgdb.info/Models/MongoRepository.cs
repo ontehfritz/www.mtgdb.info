@@ -108,7 +108,51 @@ namespace MtgDb.Info
 
             collection.Save(change);
 
+            if(field != null)
+            {
+                OverwrittenField(change.Id, change.Mvid, field);
+            }
+
             return change;
+        }
+
+        private void OverwrittenField(Guid changeId, int mvid, string field)
+        {
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
+
+            CardChange[] changes = GetCardChangeRequests(mvid);
+
+            if(changes != null && changes.Length > 0)
+            {
+                changes = changes.Where(x => x.Status == "Accepted").ToArray();
+
+                foreach(CardChange change in changes)
+                {
+                    if(change.Id != changeId)
+                    {
+                        foreach(string f in change.ChangesCommitted)
+                        {
+                            if(f == field)
+                            {
+                                List<string> over = new List<string>();
+                                if(change.ChangesOverwritten != null)
+                                {
+                                    over = change.ChangesOverwritten.ToList();
+                                }
+
+                                if(!over.Exists(x => x == field))
+                                {
+                                    over.Add(field);
+                                    change.ChangesOverwritten = over.ToArray();
+                                }
+                            }
+                        }
+
+                        collection.Save(change);
+                    }
+                }
+            }
         }
             
         public CardChange GetCardChangeRequest(Guid id)

@@ -42,6 +42,10 @@
             {
                 <span class="label label-warning pull-right">Pending</span>
             }
+            <small>By: <a href="/pw/@change.User.Name">@change.User.Name</a>
+            On
+            @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
+            </small>
             </h4>
             <div style="float:left;">
             <b>Changes:</b>
@@ -49,26 +53,7 @@
             {
                 <span class="badge">@field</span>
             }
-            <br />
-            <h4><small>By: <a href="/pw/@change.User.Name">@change.User.Name</a></small></h4>
-            On
-            @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
             </div>
-            <div style="float:right;">
-            <b>Committed Changes:</b><br />
-            @if(@change.ChangesCommitted != null && @change.ChangesCommitted.Length > 0)
-            {
-                foreach(var field in @change.ChangesCommitted)
-                {
-                    <span class="label label-success">@field</span>
-                }
-            }
-            else
-            {
-                <span>No changes committed.</span>
-            }
-            </div>
-
             <br style="clear:both;"/>
         </div>   
     }

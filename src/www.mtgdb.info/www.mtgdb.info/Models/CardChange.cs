@@ -54,8 +54,11 @@ namespace MtgDb.Info
         public string[] FieldsUpdated       { get; set; }
         [BsonElement]
         public string[] ChangesCommitted    { get; set; }
-        //declined
-        //approved
+        [BsonElement]
+        public string[] ChangesOverwritten  { get; set; }
+        //Approved
+        //Pending
+        //Closed
         [BsonElement]
         public string Status                { get; set; }
 
@@ -149,6 +152,24 @@ namespace MtgDb.Info
             }
 
             foreach(string change in ChangesCommitted)
+            {
+                if(field.ToLower() == change.ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false; 
+        }
+
+        public bool IsOverwritten(string field)
+        {
+            if(ChangesOverwritten == null)
+            {
+                return false;
+            }
+
+            foreach(string change in ChangesOverwritten)
             {
                 if(field.ToLower() == change.ToLower())
                 {
@@ -352,9 +373,17 @@ namespace MtgDb.Info
         {
             string state = "";
 
-            if(Status == "Closed")
+            if(Version != 0 && !this.IsFieldChanged(field))
+            {
+                state = "nochange";
+            }
+            else if(Status == "Closed")
             {
                 state = "closed";
+            }
+            else if(this.IsOverwritten(field))
+            {
+                state = "overwritten";
             }
             else if(this.IsAccepted(field))
             {

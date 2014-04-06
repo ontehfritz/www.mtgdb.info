@@ -251,14 +251,14 @@ else if(@Model.Status == "Pending")
     </div>
     <br style="clear:both;" />
     <div>
-        <h4>
-            Formats
-        </h4>
         @{ changed = Model.FieldState("formats");}
 
         @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
         {
+            <h4>
+            Formats
+            </h4>
             <form action="/change/@Model.Id/field/formats" method="post">
             <td>
                 <input type="submit" class="btn btn-success btn-xs" value="Update" />
@@ -290,14 +290,14 @@ else if(@Model.Status == "Pending")
         }
     </div>
     <div>
-        <h4>
-        Rulings
-        </h4>
         @{ changed = Model.FieldState("rulings");}
        
         @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
         {
+            <h4>
+            Rulings
+            </h4>
             <form action="/change/@Model.Id/field/rulings" method="post">
                 <input type="submit" class="btn btn-success btn-xs" value="Update" />
             </form>
