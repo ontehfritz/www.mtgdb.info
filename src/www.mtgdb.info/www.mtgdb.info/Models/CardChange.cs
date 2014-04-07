@@ -27,6 +27,7 @@ namespace MtgDb.Info
                 .GreaterThanOrEqualTo(0);
                 
             RuleFor(change => change.Name).NotEmpty();
+            RuleFor(change => change.Rarity).NotEmpty();
             RuleFor(change => change.Type).NotEmpty();
             RuleFor(change => change.Comment).NotEmpty();
             RuleFor(change => change.RelatedCardId)
@@ -218,7 +219,7 @@ namespace MtgDb.Info
             if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
             //if(change.Name!= card.Name){ fields.Add("name");}
             if(change.Power != card.Power){ fields.Add("power");}
-            //if(change.Rarity != card.Rarity){ fields.Add("rarity");}
+            if(change.Rarity != card.Rarity){ fields.Add("rarity");}
             if(change.ReleasedAt.ToShortDateString() != 
                 card.ReleasedAt.ToShortDateString()){ fields.Add("releasedAt"); }
 

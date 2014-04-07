@@ -231,6 +231,24 @@ else if(@Model.Status == "Pending")
                 </form>
             }
         </tr>
+
+        @{changed = Model.FieldState("rarity");}
+
+        <tr class="@changed">
+            <td><b>Rarity:</b></td>
+            <td>@Model.Rarity</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/rarity" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+
         @{changed = Model.FieldState("artist");}
 
         <tr class="@changed">

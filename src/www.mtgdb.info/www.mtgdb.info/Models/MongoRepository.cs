@@ -106,7 +106,10 @@ namespace MtgDb.Info
                 change.ChangesCommitted = committed.ToArray();
             }
 
-            collection.Save(change);
+            if(change.Version > 0)
+            {
+                collection.Save(change);
+            }
 
             if(field != null)
             {

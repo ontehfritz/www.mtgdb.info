@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Web;
 
 namespace MtgDb.Info
 {
@@ -12,7 +13,7 @@ namespace MtgDb.Info
         /// <param name="text">Text.</param>
         public static string Text(string text)
         {
-            string html = text;
+            string html =  HttpUtility.HtmlEncode(text);
             html = html.Replace("{Tap}", "<img src='/content/images/mana/tap.png' style='width:20px;height:20px;'/>");
             html = html.Replace("{White}", "<img src='/content/images/mana/w.png' style='width:20px;height:20px;'/>");
             html = html.Replace("{Green}", "<img src='/content/images/mana/g.png' style='width:20px;height:20px;'/>");
@@ -62,7 +63,7 @@ namespace MtgDb.Info
             if (text == null || text == "")
                 return text;
 
-            text = text.ToLower ();
+            text = HttpUtility.HtmlEncode(text.ToLower ());
 
             StringBuilder html = new StringBuilder ();
 

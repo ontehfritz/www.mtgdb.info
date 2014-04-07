@@ -18,7 +18,6 @@
         @{ string imageUrl = string.Format("https://api.mtgdb.info/content/card_images/{0}.jpeg", @Model.Mvid);}
         <img src="@imageUrl" />
     </div>
-
     <div class="card_info_edit">
         <table class="table-hover">
         <tr>
@@ -80,6 +79,10 @@
         <tr>
             <td><b>Toughness:</b></td>
             <td><input type="number" name="Toughness" value="@Model.Toughness" /></td>
+        </tr>
+         <tr>
+            <td><b>Rarity:</b></td>
+            <td><input type="text" name="Rarity" value="@Model.Rarity" /></td>
         </tr>
         <tr>
             <td><b>Artist:</b></td>

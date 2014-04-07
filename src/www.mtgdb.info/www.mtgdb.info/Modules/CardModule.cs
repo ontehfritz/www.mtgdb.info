@@ -140,8 +140,9 @@ namespace MtgDb.Info
                         admin.UpdateCardField(planeswalker.AuthToken,
                             change.Mvid, field, (string)value);
                     }
-
+                        
                     repository.UpdateCardChangeStatus(change.Id, "Accepted", field);
+
                 }
                 catch(Exception e)
                 {
