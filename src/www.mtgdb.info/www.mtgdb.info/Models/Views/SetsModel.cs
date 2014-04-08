@@ -15,7 +15,7 @@ namespace MtgDb.Info
         public CardSet[] GetBlock(string cardSet)
         {
             return 
-                (Sets.Where (n => n.Block == cardSet)).ToArray();
+				(Sets.Where (n => n.Block == cardSet).OrderBy(n => n.ReleasedAt)).ToArray();
         }
 
         public int GetSetCount(string setId)

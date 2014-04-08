@@ -1,5 +1,5 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardSetList>
-<select id="set_list" onchange="go();" style="width:400px;">
+<select id="set_list" onchange="go();">
 @foreach(var set in Model.Sets)
 {
     if(Model.ActiveSet == set.Id)

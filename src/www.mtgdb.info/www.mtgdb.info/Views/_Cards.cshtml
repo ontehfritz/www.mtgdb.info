@@ -1,33 +1,46 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardInfo[]>
-
-<div class="well binder" id="binder">
+<div class="binder-page" id="binder">
+@{
+	int cardIdx = 0;
+}
 @foreach(var cardInfo in Model)
 {
+	cardIdx++;
     string color = cardInfo.Amount > 0 ? "" : "dontown";
     string description = cardInfo.Card.Description.Replace("\"","'");
     string name = cardInfo.Card.Name.Replace("\"","'");
+    string tooltipPlacement = "right";
     if(this.Html.CurrentUser == null)
     {
         color = "";
     }
+	if(cardIdx % 3 == 0)
+	{
+		tooltipPlacement = "left";
+	}
 
-    <div class="col-xs-4">
-        <div id="card_@cardInfo.Card.Id" style="text-align:center;">
-        <a href="~/cards/@cardInfo.Card.Id" class="thumbnail">
-            <img id="img_@cardInfo.Card.Id" class="tip @color" src="@cardInfo.Card.CardImage" 
-            data-toggle="tooltip" data-placement="left" title="<b>@name</b> #@cardInfo.Card.SetNumber<br /> @description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
-            data-html="true" />
-        </a>
-        @if(@Html.CurrentUser != null)
-        {
-            <div class="card_amount">
-                <button type="button" class="btn btn-danger" onclick="minusCard(@cardInfo.Card.Id);">-</button>
-                <input id="@cardInfo.Card.Id" type="text" style="width:30px;" onkeyup="changeAmount(@cardInfo.Card.Id);"
-                placeholder="0" value="@cardInfo.Amount"/>
-                <button type="button" class="btn btn-success" onclick="addCard(@cardInfo.Card.Id);">+</button>
-            </div>
-        }
-        </div>
+   
+    <div class="card card-@cardIdx" id="card_@cardInfo.Card.Id">
+	    <a href="~/cards/@cardInfo.Card.Id">
+	        <img id="img_@cardInfo.Card.Id" class="tip @color" src="@cardInfo.Card.CardImage" 
+	        data-toggle="tooltip" data-placement="@tooltipPlacement" title="<strong>@name</strong> #@cardInfo.Card.SetNumber<br /> @description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
+	        data-html="true" />
+	    </a>
+	    @if(@Html.CurrentUser != null)
+	    {
+	        <div class="card-amount">
+    			<div class="input-group">
+      				<span class="input-group-btn">
+        				<button class="btn btn-danger" type="button" onclick="minusCard(@cardInfo.Card.Id);"><i class="fa fa-minus"></i></button>
+      				</span>
+      				<input type="text" class="form-control" id="@cardInfo.Card.Id" type="text" onkeyup="changeAmount(@cardInfo.Card.Id);"
+	            placeholder="0" value="@cardInfo.Amount">
+      				<span class="input-group-btn">
+        				<button class="btn btn-success" type="button" onclick="addCard(@cardInfo.Card.Id);"><i class="fa fa-plus"></i></button>
+      				</span>
+    			</div><!-- /input-group -->
+	        </div>
+	    }
     </div>
 }
 <br style="clear:both;"/>
