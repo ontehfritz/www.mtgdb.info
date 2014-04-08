@@ -62,7 +62,9 @@ namespace MtgDb.Info
             }
             else
             {
-                var query = Query<CardChange>.EQ (e => e.Status, status);
+                var query = Query.And(Query<CardChange>.EQ (e => e.Status, status),
+                    Query<CardChange>.NE (e => e.Version, 0));
+
                 mongoResults = collection.Find(query)
                     .OrderByDescending(x => x.CreatedAt);
             }
@@ -104,9 +106,56 @@ namespace MtgDb.Info
                 change.ChangesCommitted = committed.ToArray();
             }
 
-            collection.Save(change);
+            if(change.Version > 0)
+            {
+                collection.Save(change);
+            }
+
+            if(field != null)
+            {
+                OverwrittenField(change.Id, change.Mvid, field);
+            }
 
             return change;
+        }
+
+        private void OverwrittenField(Guid changeId, int mvid, string field)
+        {
+            MongoCollection<CardChange> collection = 
+                database.GetCollection<CardChange> ("card_changes");
+
+            CardChange[] changes = GetCardChangeRequests(mvid);
+
+            if(changes != null && changes.Length > 0)
+            {
+                changes = changes.Where(x => x.Status == "Accepted").ToArray();
+
+                foreach(CardChange change in changes)
+                {
+                    if(change.Id != changeId)
+                    {
+                        foreach(string f in change.ChangesCommitted)
+                        {
+                            if(f == field)
+                            {
+                                List<string> over = new List<string>();
+                                if(change.ChangesOverwritten != null)
+                                {
+                                    over = change.ChangesOverwritten.ToList();
+                                }
+
+                                if(!over.Exists(x => x == field))
+                                {
+                                    over.Add(field);
+                                    change.ChangesOverwritten = over.ToArray();
+                                }
+                            }
+                        }
+
+                        collection.Save(change);
+                    }
+                }
+            }
         }
             
         public CardChange GetCardChangeRequest(Guid id)
@@ -116,7 +165,10 @@ namespace MtgDb.Info
 
             var query = Query.And(Query<CardChange>.EQ (e => e.Id, id ));
             CardChange change =  collection.FindOne(query);
-            change.User = GetProfile(change.UserId);
+            if(change.Version != 0)
+            {
+                change.User = GetProfile(change.UserId);
+            }
 
             return change;
         }

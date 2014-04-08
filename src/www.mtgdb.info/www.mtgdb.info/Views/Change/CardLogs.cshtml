@@ -16,13 +16,19 @@
 {
     if(change.Version == 0)
     {
-        <div>
-            <h4>Original</h4>
+        <div class="alert alert-info">
+            <h4><a href="/cards/@Model.Mvid/logs/@change.Id">Original</a></h4>
         </div> 
     }
     else
     {
-        <div class="well">
+        string newVersion = "well";
+        if(change.Version == @Model.NewVersion)
+        {
+            newVersion = "alert alert-success";
+        }
+
+        <div class="@newVersion">
             <h4>Version: <a href="/cards/@Model.Mvid/logs/@change.Id"> @change.Version </a>
             @if(@change.Status == "Accepted")
             {
@@ -36,6 +42,10 @@
             {
                 <span class="label label-warning pull-right">Pending</span>
             }
+            <small>By: <a href="/pw/@change.User.Name">@change.User.Name</a>
+            On
+            @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
+            </small>
             </h4>
             <div style="float:left;">
             <b>Changes:</b>
@@ -43,26 +53,7 @@
             {
                 <span class="badge">@field</span>
             }
-            <br />
-            <h4><small>By: <a href="/pw/@change.User.Name">@change.User.Name</a></small></h4>
-            On
-            @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
             </div>
-            <div style="float:right;">
-            <b>Committed Changes:</b><br />
-            @if(@change.ChangesCommitted != null && @change.ChangesCommitted.Length > 0)
-            {
-                foreach(var field in @change.ChangesCommitted)
-                {
-                    <span class="label label-success">@field</span>
-                }
-            }
-            else
-            {
-                <span>No changes committed.</span>
-            }
-            </div>
-
             <br style="clear:both;"/>
         </div>   
     }

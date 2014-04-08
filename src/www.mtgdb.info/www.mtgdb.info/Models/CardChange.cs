@@ -16,11 +16,22 @@ namespace MtgDb.Info
             RuleFor(change => change.CardSetId).NotEmpty();
             RuleFor(change => change.CardSetName).NotEmpty();
             RuleFor(change => change.Colors).NotEmpty();
-            RuleFor(change => change.ConvertedManaCost).NotEmpty();
-            RuleFor(change => change.ConvertedManaCost).GreaterThanOrEqualTo(0);
+
+            RuleFor(change => change.ConvertedManaCost)
+                .GreaterThanOrEqualTo(0);
+            RuleFor(change => change.Power)
+                .GreaterThanOrEqualTo(0);
+
+
+            RuleFor(change => change.Toughness)
+                .GreaterThanOrEqualTo(0);
+                
             RuleFor(change => change.Name).NotEmpty();
+            RuleFor(change => change.Rarity).NotEmpty();
             RuleFor(change => change.Type).NotEmpty();
             RuleFor(change => change.Comment).NotEmpty();
+            RuleFor(change => change.RelatedCardId)
+                .GreaterThanOrEqualTo(0);
         }
     }
 
@@ -44,8 +55,11 @@ namespace MtgDb.Info
         public string[] FieldsUpdated       { get; set; }
         [BsonElement]
         public string[] ChangesCommitted    { get; set; }
-        //declined
-        //approved
+        [BsonElement]
+        public string[] ChangesOverwritten  { get; set; }
+        //Approved
+        //Pending
+        //Closed
         [BsonElement]
         public string Status                { get; set; }
 
@@ -149,6 +163,24 @@ namespace MtgDb.Info
             return false; 
         }
 
+        public bool IsOverwritten(string field)
+        {
+            if(ChangesOverwritten == null)
+            {
+                return false;
+            }
+
+            foreach(string change in ChangesOverwritten)
+            {
+                if(field.ToLower() == change.ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false; 
+        }
+
         /// <summary>
         /// Field must be defined for cards object in api.mtgdb.info project
         /// and also in Helper.cs
@@ -187,7 +219,7 @@ namespace MtgDb.Info
             if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
             //if(change.Name!= card.Name){ fields.Add("name");}
             if(change.Power != card.Power){ fields.Add("power");}
-            //if(change.Rarity != card.Rarity){ fields.Add("rarity");}
+            if(change.Rarity != card.Rarity){ fields.Add("rarity");}
             if(change.ReleasedAt.ToShortDateString() != 
                 card.ReleasedAt.ToShortDateString()){ fields.Add("releasedAt"); }
 
@@ -336,6 +368,34 @@ namespace MtgDb.Info
             }
 
             return value.ToString();
+        }
+
+        public string FieldState(string field)
+        {
+            string state = "";
+
+            if(Version != 0 && !this.IsFieldChanged(field))
+            {
+                state = "nochange";
+            }
+            else if(Status == "Closed")
+            {
+                state = "closed";
+            }
+            else if(this.IsOverwritten(field))
+            {
+                state = "overwritten";
+            }
+            else if(this.IsAccepted(field))
+            {
+                state = "accepted";
+            }
+            else if(Version != 0 && this.IsFieldChanged(field))
+            {
+                state = "changed";
+            }
+
+            return state;
         }
     }
 }

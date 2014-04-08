@@ -14,9 +14,10 @@
 
 <h1>
 Version: @Model.Version
-@if(@Model.Status == null)
+
+@if(@Model.Version == 0)
 {
-    <span class="label label-warning">Pending</span>
+    <span class="label label-info">Original</span>
 }
 else if(@Model.Status == "Accepted")
 {
@@ -26,31 +27,29 @@ else if(@Model.Status == "Closed")
 {
     <span class="label label-danger">Closed</span>
 }
-else
+else if(@Model.Status == "Pending")
 {
-    <span class="label label-warning">Pending</span>
+   <span class="label label-warning">Pending</span>
+}
+
+@if(@Model.User != null)
+{
+    <small>By: <a href="/pw/@Model.User.Name">@Model.User.Name</a></small>
 }
 </h1>
-By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
 <div style="width:800px;">
     <div>
         <table class="table-hover">
-        @{ string changed = "";}
-
-        @if(@Model.IsAccepted("setnumber"))
-        {
-            changed = "accepted";
+        @{ 
+            string changed = "";
+            changed = Model.FieldState("setnumber");
         }
-        else if(@Model.IsFieldChanged("setnumber"))
-        {
-            changed = "changed";
-        }
-
         <tr class="@changed">
             <td><b>Set #:</b></td>
             <td>@Model.SetNumber</td>
 
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/setNumber" method="post">
                     <td>
@@ -60,22 +59,14 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
             }
         </tr>
 
-        @{ changed = "";}
-
-        @if(@Model.IsAccepted("relatedCardId"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("relatedCardId"))
-        {
-            changed = "changed";
-        }
+        @{ changed = Model.FieldState("relatedCardId");}
 
         <tr class="@changed">
             <td><b>Related Card #:</b></td>
             <td>@Model.RelatedCardId</td>
 
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/relatedCardId" method="post">
                     <td>
@@ -85,22 +76,15 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
             }
         </tr>
 
-        @{changed = "";}
-        @if(@Model.IsAccepted("releasedat"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("releasedat"))
-        {
-            changed = "changed";
-        }
-
+        @{changed = Model.FieldState("releasedat");}
+      
         <tr class="@changed">
             <td><b>Released:</b></td>
             <td>
                 @Model.ReleasedAt.ToShortDateString()
             </td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/releasedAt" method="post">
                     <td>
@@ -110,23 +94,15 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
             }
         </tr>
 
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("colors"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("colors"))
-        {
-            changed = "changed";
-        }
-
+        @{changed = Model.FieldState("colors");}
+       
         <tr class="@changed">
             <td><b>Color(s):</b></td>
             <td>
                 @String.Join(",", Model.Colors)
             </td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/colors" method="post">
                     <td>
@@ -135,21 +111,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("manacost"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("manacost"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("manacost");}
 
         <tr class="@changed">
             <td><b>Mana Cost:</b></td>
             <td>@Model.ManaCost</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/manaCost" method="post">
                     <td>
@@ -158,20 +126,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("convertedmanacost"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("convertedManaCost"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("convertedmanacost");}
+       
         <tr class="@changed">
             <td><b>Converted Cost:</b></td>
             <td>@Model.ConvertedManaCost</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/convertedManaCost" method="post">
                     <td>
@@ -180,20 +141,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("type"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("type"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("type");}
+       
         <tr class="@changed">
             <td><b>Type:</b></td>
             <td>@Model.Type</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/type" method="post">
                     <td>
@@ -202,20 +156,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
+        @{changed = Model.FieldState("subtype");}
 
-        @if(@Model.IsAccepted("subtype"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("subtype"))
-        {
-            changed = "changed";
-        }
         <tr class="@changed">
             <td><b>Sub Type:</b></td>
             <td>@Model.SubType</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/subType" method="post">
                     <td>
@@ -224,21 +171,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("flavor"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("flavor"))
-        {
-            changed = "changed";
-        }
-
+        @{changed = Model.FieldState("flavor");}
+       
         <tr class="@changed">
             <td><b>Flavor:</b></td>
             <td>@Model.Flavor</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/flavor" method="post">
                     <td>
@@ -247,21 +186,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("description"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("description"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("description");}
 
         <tr class="@changed">
             <td><b>Description:</b></td>
             <td>@Model.Description</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/description" method="post">
                     <td>
@@ -270,21 +201,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("power"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("power"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("power");}
 
         <tr class="@changed">
             <td><b>Power:</b></td>
             <td>@Model.Power</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/power" method="post">
                     <td>
@@ -293,21 +216,13 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
-
-        @if(@Model.IsAccepted("toughness"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("toughness"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("toughness");}
 
         <tr class="@changed">
             <td><b>Toughness:</b></td>
             <td>@Model.Toughness</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/toughness" method="post">
                     <td>
@@ -316,21 +231,31 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
                 </form>
             }
         </tr>
-        @{changed = "";}
 
-        @if(@Model.IsAccepted("artist"))
-        {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("artist"))
-        {
-            changed = "changed";
-        }
+        @{changed = Model.FieldState("rarity");}
+
+        <tr class="@changed">
+            <td><b>Rarity:</b></td>
+            <td>@Model.Rarity</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/rarity" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+
+        @{changed = Model.FieldState("artist");}
 
         <tr class="@changed">
             <td><b>Artist:</b></td>
             <td>@Model.Artist</td>
-            @if (changed == "changed" && Model.Planeswalker.InRole("admin"))
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
                 <form action="/change/@Model.Id/field/artist" method="post">
                     <td>
@@ -344,31 +269,23 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
     </div>
     <br style="clear:both;" />
     <div>
-        <h4>
-            Formats
-        </h4>
-        @{ changed = "";}
+        @{ changed = Model.FieldState("formats");}
 
-        @if(@Model.IsAccepted("formats"))
+        @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
         {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("formats"))
-        {
-            changed = "changed";
-            if(Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/formats" method="post">
-                    <td>
-                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
-                    </td>
-                </form>
-            }
+            <h4>
+            Formats
+            </h4>
+            <form action="/change/@Model.Id/field/formats" method="post">
+            <td>
+                <input type="submit" class="btn btn-success btn-xs" value="Update" />
+            </td>
+            </form>
         }
             
         @if(Model.Formats != null && Model.Formats.Length > 0)
         {
-            
             <table id="formats" class="table table-condensed table-hover">
             <tbody>
             @foreach(var format in Model.Formats)
@@ -391,24 +308,17 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         }
     </div>
     <div>
-        <h4>
-        Rulings
-        </h4>
-        @{ changed = "";}
-
-        @if(@Model.IsAccepted("rulings"))
+        @{ changed = Model.FieldState("rulings");}
+       
+        @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
         {
-            changed = "accepted";
-        }
-        else if(@Model.IsFieldChanged("rulings"))
-        {
-            changed = "changed";
-            if(Model.Planeswalker.InRole("admin"))
-            {
-                <form action="/change/@Model.Id/field/rulings" method="post">
-                    <input type="submit" class="btn btn-success btn-xs" value="Update" />
-                </form>
-            }
+            <h4>
+            Rulings
+            </h4>
+            <form action="/change/@Model.Id/field/rulings" method="post">
+                <input type="submit" class="btn btn-success btn-xs" value="Update" />
+            </form>
         }
 
         @if(Model.Rulings != null && Model.Rulings.Length > 0)
@@ -443,7 +353,9 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
     string status = "close";
     if(@Model.Status == "Closed"){ status = "open"; }
     <form action='@string.Format("/change/{0}/field/{1}",@Model.Id,status)' method="post">
-        @if(@Model.Status == "Closed")
+    @if(@Model.Version != 0)
+    {
+        if(@Model.Status == "Closed")
         {
             <button type="submit" class="btn btn-success">Re-open</button>
         }
@@ -451,6 +363,7 @@ By: <a href="/pw/@Model.User.Name">@Model.User.Name</a>
         {
             <button type="submit" class="btn btn-danger">Close</button>
         }
-        <a class="btn btn-default" href="/cards/@Model.Mvid" role="button">Cancel</a>
+    }
+    <a class="btn btn-default" href="/cards/@Model.Mvid/logs" role="button">Cancel</a>
     </form>
  }
