@@ -1,53 +1,78 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.BookModel>
 @{
   Layout = "_Layout.cshtml";
+  var isBook = "";
+
+  if(Model.Cards.Count == 0 || Model.Cards.Count == null){
+  	Model.Page = 1;
+  }
+
+ if(Model.Cards.Count > 0){
+ 	isBook = "book";
+ }
+
+}
+@section Top{
+  @Html.Partial("_SetsDropDown", Model.SetList)
 }
 
 <div class="row">
-    <div id="test" class="">
-        <div class="row">
-            <div class="panel panel-default book" style="background-color:black;">
-            <div class="panel-heading" style="height:50px;">
-            <ul class="pager" style="height:30px;margin:0px;">
-                <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
-                <li>@Html.Partial("_SetsDropDown", Model.SetList)</li>
-                @if(Model.Cards != null && Model.Cards.Count > 0)
-                {
-                    <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
-                }
-                else
-                {
-                    <li class="next"><a href="#">End</a></li>
-                }
-            </ul>
-            </div>
-            <div class="panel-body">
-            @if(Model.Cards != null && Model.Cards.Count > 0)
-            {
-                @Html.Partial("_Cards", Model.Cards.ToArray())
-            }
-            else
-            {
-                <div class="alert alert-info alert-dismissable">
-                    End of set or there are no cards available for this set.
-                </div>
-            }
-            </div>
-            <div class="panel-footer">
-            <ul class="pager">
-                <li class="previous"><a href="?Page=@Model.PrevPage">&larr; Back</a></li>
-                <li>Page @Model.Page</li>
-                @if(Model.Cards != null && Model.Cards.Count > 0)
-                {
-                    <li class="next"><a href="?Page=@Model.NextPage">Next &rarr;</a></li>
-                }
-                else
-                {
-                    <li class="next"><a href="#">End</a></li>
-                }
-            </ul>
-            </div>
-            </div>
+    <div class="panel panel-default book-panel">
+        <div class="panel-heading">
+      		<div class="row">
+	            <div class="col-md-4">
+	            	@if(Model.Page != null && Model.Page != 1){
+		            	<a class="btn btn-default btn-block" href="?Page=@Model.PrevPage">
+		            		<i class="fa fa-chevron-left pull-left"></i> Previous Page
+		            	</a>
+	            	}
+	            </div>
+				<div class="col-md-4">
+	            	<input class="form-control page-label" type="text" placeholder=" Page @Model.Page" disabled>
+	            </div>
+				<div class="col-md-4">
+	                @if(Model.Cards.Count > 8)
+	                {
+		            	<a class="btn btn-default btn-block" href="?Page=@Model.NextPage">
+		            		Next Page <i class="fa fa-chevron-right pull-right"></i>
+		            	</a>
+	                }
+	            </div>
+			</div>
         </div>
-    </div><!--/span-->
-</div><!--/row-->
+        <div class="panel-body @isBook">
+        @if(Model.Cards != null && Model.Cards.Count > 0)
+        {
+            @Html.Partial("_Cards", Model.Cards.ToArray())
+        }
+        else
+        {
+            <div class="alert alert-warning book-alert">
+                <i class="fa fa-warning"></i> <strong>Hmmm...</strong> There are no cards for this page! Try browsing the <a href="/sets">sets</a>.
+            </div>
+        }
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+	            <div class="col-md-4">
+	            	@if(Model.Page != null && Model.Page != 1){
+		            	<a class="btn btn-default btn-block" href="?Page=@Model.PrevPage">
+		            		<i class="fa fa-chevron-left"></i> Previous Page
+		            	</a>
+	            	}
+	            </div>
+				<div class="col-md-4">
+	            	<input class="form-control page-label" type="text" placeholder=" Page @Model.Page" disabled>
+	            </div>
+				<div class="col-md-4">
+	                @if(Model.Cards.Count > 8)
+	                {
+		            	<a class="btn btn-default btn-block" href="?Page=@Model.NextPage">
+		            		Next Page <i class="fa fa-chevron-right"></i>
+		            	</a>
+	                }
+	            </div>
+			</div>
+        </div><!--/.panel-footer-->
+    </div><!--/.panel.book-->
+</div><!--/.row-->

@@ -152,12 +152,19 @@ $(document).ready(function() {
     	formatSelection: format,
     	escapeMarkup: function(m) { return m; }
 	});
+
+	$('.card').hover(function(){
+		$('.card-amount').stop().fadeOut();
+		$(this).find('.card-amount').stop().fadeIn();
+	},function(){
+		$(this).find('.card-amount').stop().fadeOut();
+	});
+
+	$('.card-amount').hide();
 });
 
 function go()
 {
     window.location="/sets/" + document.getElementById("set_list").value
 }
-
-   
 

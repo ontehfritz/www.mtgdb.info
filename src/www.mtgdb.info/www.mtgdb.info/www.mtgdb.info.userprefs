@@ -1,8 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Modules/IndexModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/_Cards.cshtml">
     <Files>
-      <File FileName="Modules/IndexModule.cs" Line="3" Column="18" />
+      <File FileName="Bootstrapper.cs" Line="1" Column="1" />
+      <File FileName="Views/Book.cshtml" Line="6" Column="19" />
+      <File FileName="Content/css/mtgdb.css" Line="144" Column="17" />
+      <File FileName="Views/_Cards.cshtml" Line="40" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
