@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Change/CardChange.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/IndexModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Models/CardChange.cs" Line="223" Column="62" />
-      <File FileName="www.mtgdb.info/Views/Change/CardChange.cshtml" Line="190" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="49" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

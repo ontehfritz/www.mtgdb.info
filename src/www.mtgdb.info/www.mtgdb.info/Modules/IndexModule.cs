@@ -89,6 +89,7 @@ namespace MtgDb.Info
                     model.Card = magicdb.GetCard((int)parameters.id);
                     model.Prints = magicdb.GetCards(model.Card.Name);
                     model.Page = (model.Card.SetNumber / _pageSize) + 1;
+                    model.Set = magicdb.GetSet(model.Card.CardSetId);
                     model.ActiveMenu = "sets";
 
                     if(model.Planeswalker != null)
@@ -125,6 +126,7 @@ namespace MtgDb.Info
                 {
                     model.SetList.Sets = magicdb.GetSets();
                     model.SetList.ActiveSet = setId;
+                    model.Set = magicdb.GetSet(setId);
 
                     if(Request.Query.Page != null)
                     {
