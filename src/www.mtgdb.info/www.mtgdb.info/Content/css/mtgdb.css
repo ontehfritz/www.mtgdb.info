@@ -110,8 +110,9 @@ footer {
 	font-size:.8em
 }
 /*BOOK*/
-.panel{
+.book-panel{
 	margin:1em auto 0;
+	width:968px;
 }
 .panel-heading .btn-block{
 	position:relative;
@@ -125,9 +126,6 @@ footer {
 }
 .panel-heading .btn-block i.pull-right{
 	right:.7em
-}
-.book-panel{
-	width:968px;
 }
 .book{
   	background-image:url('../images/book.jpg');
@@ -153,12 +151,7 @@ footer {
 .select2-container .select2-choice{
 	height:32px;
 }
-.signin{
-    width: 325px;
-    margin-left: auto;
-    margin-right: auto ;
-    color:white;
-}
+
 .binder-page{
   margin-top:23px;
   margin-left:104px;
@@ -198,6 +191,55 @@ footer {
 }
 .card-amount input{
 	text-align:center;
+}
+/*CARD*/
+.card-header-nav{
+	margin-bottom:1em;
+}
+.center{
+	text-align:center;
+}
+.center .card{
+	margin-right:0;
+	margin-bottom:0;
+}
+.mana-cost{
+	font-size:1.5em;
+	position: relative;
+	top: -1px;
+}
+.mana-cost .symbol{
+	box-shadow: -1px 2px 0 #000;
+	border-radius: 3em;
+	margin-left: .1em;
+}
+.label-color{
+	background-color: rgb(105,87,72);
+	margin:.2em;
+}
+.label-legality{
+	display:inline-block;
+	margin:.2em;
+	cursor:pointer;
+}
+.rulings-wrap{
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	margin-bottom: 1em;
+}
+.rulings{
+	list-style-type: none;
+	padding-left: 0;
+}
+.rulings li{
+	padding-left:5.3em;
+	text-indent:-5.3em;
+}
+.signin{
+    width: 325px;
+    margin-left: auto;
+    margin-right: auto ;
+    color:white;
 }
 .symbol {
     width:  20px;
@@ -324,3 +366,299 @@ footer {
 /* Styles for alternate tabActiveClass */
 .tab.selected-tab { background: #fff; padding-top: 6px; position: relative; top: 1px; border-color: #666; }
 .tab a.selected-tab { font-weight: bold; }
+/*COLORS*/
+.color-n{
+	color:rgb(222,222,222);
+}
+.color-w{
+	color:rgb(249,248,196);
+}
+.color-u{
+	color:rgb(119,213,231);
+}
+.color-b{
+	color:rgb(186,177,171);
+}
+.color-r{
+	color:rgb(230,153,116);
+}
+.color-g{
+	color:rgb(161,192,146);
+}
+.color-n,
+.color-w,
+.color-u,
+.color-b,
+.color-r,
+.color-g{
+	text-shadow:1px 1px 0 rgba(0,0,0,.6);
+}
+
+/* SYMBOLS */
+.symbol{
+	display:inline-block;
+	position:relative;
+	top:.2em;
+	height:1em;
+	width:1em;
+	background-image: url('../images/symbols.png');
+	background-size: 10em 7em;
+	background-repeat: no-repeat;
+	background-position: top left;
+	text-indent: -9999px;
+}
+h3 .symbol{
+	top:.1em;
+}
+.symbol_1{
+	background-position-x:-1em;
+}
+.symbol_2{
+	background-position-x:-2em;
+}
+.symbol_3{
+	background-position-x:-3em;
+}
+.symbol_4{
+	background-position-x:-4em;	
+}
+.symbol_4{
+	background-position-x:-4em;	
+}
+.symbol_5{
+	background-position-x:-5em;	
+}
+.symbol_6{
+	background-position-x:-6em;	
+}
+.symbol_7{
+	background-position-x:-7em;	
+}
+.symbol_8{
+	background-position-x:-8em;	
+}
+.symbol_9{
+	background-position-x:-9em;	
+}
+.symbol_10{
+	background-position-y:-1em; 
+}
+.symbol_11{
+	background-position-x:-1em;
+	background-position-y:-1em; 
+}
+.symbol_12{
+	background-position-x:-2em;
+	background-position-y:-1em; 
+}
+.symbol_13{
+	background-position-x:-3em;
+	background-position-y:-1em; 
+}
+.symbol_14{
+	background-position-x:-4em;	
+	background-position-y:-1em; 
+}
+.symbol_15{
+	background-position-x:-5em;	
+	background-position-y:-1em; 
+}
+.symbol_16{
+	background-position-x:-6em;	
+	background-position-y:-1em; 
+}
+.symbol_17{
+	background-position-x:-7em;	
+	background-position-y:-1em; 
+}
+.symbol_18{
+	background-position-x:-8em;	
+	background-position-y:-1em; 
+}
+.symbol_19{
+	background-position-x:-9em;	
+	background-position-y:-1em; 
+}
+.symbol_20{
+	background-position-y:-2em; 
+}
+.symbol_X,
+.symbol_Variable_Colorless{
+	background-position-x:-1em;
+	background-position-y:-2em; 
+}
+.symbol_Y{
+	background-position-x:-2em;
+	background-position-y:-2em; 
+}
+.symbol_Z{
+	background-position-x:-3em;
+	background-position-y:-2em; 
+}
+.symbol_W,
+.symbol_White{
+	background-position-x:-4em;	
+	background-position-y:-2em; 
+}
+.symbol_U,
+.symbol_Blue{
+	background-position-x:-5em;	
+	background-position-y:-2em; 
+}
+.symbol_B,
+.symbol_Black{
+	background-position-x:-6em;	
+	background-position-y:-2em; 
+}
+.symbol_R,
+.symbol_Red{
+	background-position-x:-7em;	
+	background-position-y:-2em; 
+}
+.symbol_G,
+.symbol_Green{
+	background-position-x:-8em;	
+	background-position-y:-2em; 
+}
+.symbol_S,
+.symbol_Snow{
+	background-position-x:-9em;	
+	background-position-y:-2em; 
+}
+.symbol_WU,
+.symbol_UW,
+.symbol_White_or_Blue{
+	background-position-y:-3em; 
+}
+.symbol_WB,
+.symbol_BW,
+.symbol_White_or_Black{
+	background-position-x:-1em;
+	background-position-y:-3em; 
+}
+.symbol_UB,
+.symbol_BU,
+.symbol_Blue_or_Black{
+	background-position-x:-2em;
+	background-position-y:-3em; 
+}
+.symbol_UR,
+.symbol_RU,
+.symbol_Blue_or_Red{
+	background-position-x:-3em;
+	background-position-y:-3em; 
+}
+.symbol_BR,
+.symbol_RB,
+.symbol_Black_or_Red{
+	background-position-x:-4em;	
+	background-position-y:-3em; 
+}
+.symbol_BG,
+.symbol_GB,
+.symbol_Black_or_Green{
+	background-position-x:-5em;	
+	background-position-y:-3em; 
+}
+.symbol_RW,
+.symbol_WR,
+.symbol_Red_or_White{
+	background-position-x:-6em;	
+	background-position-y:-3em; 
+}
+.symbol_RG,
+.symbol_GR,
+.symbol_Red_or_Green{
+	background-position-x:-7em;	
+	background-position-y:-3em; 
+}
+.symbol_GW,
+.symbol_WG,
+.symbol_Green_or_White{
+	background-position-x:-8em;	
+	background-position-y:-3em; 
+}
+.symbol_GU,
+.symbol_UG,
+.symbol_Green_or_Blue{
+	background-position-x:-9em;	
+	background-position-y:-3em; 
+}
+.symbol_2W,
+.symbol_Two_or_White{
+	background-position-y:-4em; 
+}
+.symbol_2U,
+.symbol_Two_or_Blue{
+	background-position-x:-1em;
+	background-position-y:-4em; 
+}
+.symbol_2B,
+.symbol_Two_or_Black{
+	background-position-x:-2em;
+	background-position-y:-4em; 
+}
+.symbol_2R,
+.symbol_Two_or_Red{
+	background-position-x:-3em;
+	background-position-y:-4em; 
+}
+.symbol_2G,
+.symbol_Two_or_Green{
+	background-position-x:-4em;	
+	background-position-y:-4em; 
+}
+.symbol_WP,
+.symbol_Phyrexian_White{
+	background-position-x:-5em;	
+	background-position-y:-4em; 
+}
+.symbol_UP,
+.symbol_Phyrexian_Blue{
+	background-position-x:-6em;	
+	background-position-y:-4em; 
+}
+.symbol_BP,
+.symbol_Phyrexian_Black{
+	background-position-x:-7em;	
+	background-position-y:-4em; 
+}
+.symbol_RP,
+.symbol_Phyrexian_Red{
+	background-position-x:-8em;	
+	background-position-y:-4em; 
+}
+.symbol_GP,
+.symbol_Phyrexian_Green{
+	background-position-x:-9em;	
+	background-position-y:-4em; 
+}
+.symbol_T,
+.symbol_Tap{
+	background-position-y:-5em; 
+}
+.symbol_UT,
+.symbol_Untap,
+.symbol_Q{
+	background-position-x:-1em;
+	background-position-y:-5em; 
+}
+.symbol_Infinite{
+	background-position-x:-2em;
+	background-position-y:-5em; 
+}
+.symbol_Half{
+	background-position-x:-3em;
+	background-position-y:-5em; 
+}
+.symbol_1000000,
+.symbol_Million{
+	width:4.9em;
+	background-position-y:-6em; 
+}
+.symbol_100,
+.symbol_HUNDRED{
+	width:1.85em;
+	background-position-x:-4.9em;
+	background-position-y:-6em; 
+}

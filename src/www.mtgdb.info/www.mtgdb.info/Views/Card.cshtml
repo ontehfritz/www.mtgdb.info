@@ -4,155 +4,135 @@
 }
 @section Top{
     <div class="t_section">
-    <h1>@Model.Card.Name <small>(<a href="~/sets/@Model.Card.CardSetId?Page=@Model.Page">@Model.Card.CardSetName</a>)
-    </small></h1>
+    <h1>@Model.Card.Name</h1>
     @if(Model.Card.Flavor != null && Model.Card.Flavor != "")
     {
-      <blockquote><p>@Model.Card.Flavor</p></blockquote>
+      <blockquote><em>@Model.Card.Flavor</em></blockquote>
     }
     </div>
 }
- 
-<div style="width:1200px;">
-    <div id="card_@Model.Card.Id" class="card">
-        @{
-            string hiRes = string.Format("https://api.mtgdb.info/content/hi_res_card_images/{0}.jpg", @Model.Card.Id);
-            <a href="@hiRes"><img src="@Model.Card.CardImage"/></a><br /><br style="clear:both"/>
-        }
-
-        @if(@Model.Planeswalker != null)
-        {
-            
-            <button type="button" class="btn btn-danger" onclick="minusCard(@Model.Card.Id);">-</button>
-            <input id="@Model.Card.Id" type="text" style="width:30px;" placeholder="0" value="@Model.Amount" 
-                    onkeyup="changeAmount(@Model.Card.Id);" />
-            <button type="button" class="btn btn-success" onclick="addCard(@Model.Card.Id);">+</button>
-            
-        }
+@{
+    int SetCount = 500; //Needs to be actual count
+	int PrevCardId = (@Model.Card.Id - 1);
+  	int NextCardId = (@Model.Card.Id + 1);
+}
+<div class="row card-header-nav">
+    <div class="col-md-4">
+    	@if(@PrevCardId > 0){
+    		<a class="btn btn-default btn-sm btn-block disabled" href="~/cards/@PrevCardId"><i class="fa fa-chevron-left"></i> Prev Card</a>
+    	}
     </div>
-    <div class="card_info">
-    <table class="table-hover">
-    <tr style="padding:10px;">
-        <td><b>Multiverse #:</b></td>
-        <td>@Model.Card.Id</td>
-    </tr>
-    @if(@Model.Card.RelatedCardId > 0)
-    {
-    <tr>
-        <td><b>Related Card #:</b></td>
-        <td><a href="/cards/@Model.Card.RelatedCardId">@Model.Card.RelatedCardId</a></td>
-    </tr>
-    }
-    <tr>
-        <td><b>Set #:</b></td>
-        <td>@Model.Card.SetNumber</td>
-    </tr>
-    <tr>
-        <td><b>Released:</b></td>
-        <td>@Model.Card.ReleasedAt.ToShortDateString()</td>
-    </tr>
-    <tr>
-        <td><b>Color(s):</b></td>
-        <td>
-        @foreach(string color in @Model.Card.Colors){
-            @Html.Raw(RenderHtml.Color(color))
+    <div class="col-md-4 center">
+    	<a class="btn btn-default btn-sm btn-block" href="~/sets/@Model.Card.CardSetId?Page=@Model.Page"><i class="fa fa-book"></i> @Model.Card.CardSetName</a>
+    </div>
+    <div class="col-md-4">
+    	@if(NextCardId > 0){
+    		<a class="btn btn-default btn-sm btn-block disabled" href="~/cards/@NextCardId">Next Card <i class="fa fa-chevron-right"></i></a>
+    	}
+    </div>
+</div> 
+<div class="row">
+	<div class="col-md-4">
+		<h4>Card Info</h4>
+        <p><strong>Multiverse Id:</strong> @Model.Card.Id</p>
+    	@if(@Model.Card.RelatedCardId > 0)
+    	{
+    	<p><strong>Related Card:</strong> <a href="/cards/@Model.Card.RelatedCardId">@Model.Card.RelatedCardId</a></p>
+    	}
+        <p><strong>Card Number:</strong> @Model.Card.SetNumber</p>
+	    <p><strong>Released:</strong> @Model.Card.ReleasedAt.ToString("dd MMM yyyy")</p>
+	    <p><strong><span>Color</span>@(Model.Card.Colors.Length > 1 ? "s" : ""):</strong>
+	    	@{
+	    		int idx = 0;
+	    		foreach(string color in @Model.Card.Colors){
+	        		@Html.Raw(RenderHtml.Color(color))
+	    		}
+				
+			}
+        </p>
+        <p><strong>Mana Cost:</strong> <span class="mana-cost">@Html.Raw(RenderHtml.Mana(Model.Card.ManaCost))</span></p>
+        <p><strong>Converted Cost:</strong> @Model.Card.ConvertedManaCost</p>
+        <p><strong>Type:</strong> @Model.Card.Type @(@Model.Card.SubType != null ? "-" : "") @(Model.Card.SubType)</p>
+        <p><strong>Text:</strong> @Html.Raw(RenderHtml.Text(@Model.Card.Description))</p>
+        @if(@Model.Card.Type == "Creature" || @Model.Card.Type == "Legendary Creature"){
+        <p><strong>Power / Toughness:</strong> @Model.Card.Power / @Model.Card.Toughness </p>
         }
-        </td>
-    </tr>
-    <tr>
-        <td><b>Mana Cost:</b></td>
-        <td>@Html.Raw(RenderHtml.Mana(Model.Card.ManaCost))</td>
-    </tr>
-    <tr>
-        <td><b>Converted Cost:</b></td>
-        <td><span class="badge">@Model.Card.ConvertedManaCost</span></td>
-    </tr>
-    <tr>
-        <td><b>Type:</b></td>
-        <td>@Model.Card.Type - @Model.Card.SubType</td>
-    </tr>
-    <tr>
-        <td><b>Text:</b></td>
-        <td>@Html.Raw(RenderHtml.Text(@Model.Card.Description))</td>
-    </tr>
-    <tr>
-        <td><b>Power:</b></td>
-        <td><span class="label label-success">@Model.Card.Power</span></td>
-    </tr>
-    <tr>
-        <td><b>Toughness:</b></td>
-        <td><span class="label label-primary">@Model.Card.Toughness</span></td>
-    </tr>
-    <tr>
-        <td><b>Artist:</b></td>
-        <td>@Model.Card.Artist</td>
-    </tr>
-    
-     <tr>
-        <td><b>Prints:</b></td>
-        <td>
-        @if(@Model.Prints != null && @Model.Prints.Length > 0)
-        {
+        <p><strong>Artist:</strong> @Model.Card.Artist</p>
+	</div>
+	<div class="col-md-4 center">
+		<div id="card_@Model.Card.Id" class="card">
+	        @{
+	            string hiRes = string.Format("https://api.mtgdb.info/content/hi_res_card_images/{0}.jpg", @Model.Card.Id);
+	            <a href="@hiRes"><img src="@Model.Card.CardImage"/></a><br /><br style="clear:both"/>
+	        }
+
+	        @if(@Model.Planeswalker != null)
+	        {
+	            <div class="card-amount">
+	    			<div class="input-group">
+	      				<span class="input-group-btn">
+	        				<button class="btn btn-danger" type="button" onclick="minusCard(@Model.Card.Id);"><i class="fa fa-minus"></i></button>
+	      				</span>
+	      				<input type="text" class="form-control" id="@Model.Card.Id" type="text" onkeyup="changeAmount(@Model.Card.Id);"
+		            placeholder="0" value="@Model.Amount">
+	      				<span class="input-group-btn">
+	        				<button class="btn btn-success" type="button" onclick="addCard(@Model.Card.Id);"><i class="fa fa-plus"></i></button>
+	      				</span>
+	    			</div><!-- /input-group -->
+		        </div>
+	        }
+	    </div>
+	</div>
+	<div class="col-md-4">
+		<h4>Prints (@Model.Prints.Length)</h4>
+		<select class="form-control" onchange="if (this.value) window.location.href=this.value">
+        @if(@Model.Prints != null && @Model.Prints.Length > 0){
             foreach(Card card in @Model.Prints){
-                <a href="~/cards/@card.Id">@card.CardSetName</a><br />
+            	if(@Model.Card.CardSetName != @card.CardSetName){
+                	<option value="~/cards/@card.Id">@card.CardSetName</option>
+                }
+               else{
+               		<option value="~/cards/@card.Id" selected>@card.CardSetName</option>
+               }
             }
         }
-        </td>
-    </tr>
-    </table>
-    </div>
-    <br style="clear:both;" />
+		</select>
+		<h4>Format Legality</h4>
+		@if(Model.Card.Formats != null && Model.Card.Formats.Length > 0){
+	    	foreach(var format in Model.Card.Formats){
+	    		string labelType = "success";
+	    		if(@format.Legality == "Banned"){
+	    			labelType = "danger";
+	    		}
+	    		else if(@format.Legality == "Restricted"){
+	    			labelType = "warning";
+	    		}
+	            <span class="label label-@labelType label-legality" data-toggle="tooltip" data-placement="top" title="@format.Legality">@format.Name</span>
+	        }
+	    }
+	    else{
+	    	<em>This card has no format data.</em>
+	    }
+	</div>
 </div>
-<div>
-    <h4>Formats</h4>
-    @if(Model.Card.Formats != null && Model.Card.Formats.Length > 0)
-    {
-        <table class="table table-condensed table-hover">
-        @foreach(var format in Model.Card.Formats)
-        {
-            <tr>
-                <td>
-                @format.Name
-                </td>
-                <td> 
-                @format.Legality
-                </td>
-            </tr>
-        }
-        </table>
-    }
-    else
-    {
-        <p>This card has no format data.</p>
-
-    }
-</div>
-<div>
+<div class="rulings-wrap">
     <h4>Rulings</h4>
     @if(Model.Card.Rulings != null && Model.Card.Rulings.Length > 0)
     {
-        <table class="table table-condensed table-hover">
+    	<ul class="rulings">
         @foreach(var rule in Model.Card.Rulings)
         {
-            <tr>
-                <td>
-                @rule.ReleasedAt.ToShortDateString()
-                </td>
-                <td>
-                @rule.Rule
-                </td>
-            </tr>
+        	<li><span class="ruling-date">@rule.ReleasedAt.ToString("MMM yyyy")</span> - <span class="ruling-text">@rule.Rule</span></li>
         }
-        </table>
+       	</ul>
     }
     else
     {
-        <p>This card has no rulings.</p>
+        <em>This card has no rulings.</em>
     }
 </div>
-
- <p>
- <a class="btn btn-default" href="/cards/@Model.Card.Id/change" role="button">Change Request</a>
- <a class="btn btn-default" href="/cards/@Model.Card.Id/logs" role="button">Change Logs</a>
- </p>
+ <div>
+ <a class="btn btn-default btn-info" href="/cards/@Model.Card.Id/change" role="button"><i class="fa fa-comment"></i> Change Request</a>
+ <a class="btn btn-default" href="/cards/@Model.Card.Id/logs" role="button"><i class="fa fa-comments-o"></i> Change Logs</a>
+ </div>
 
