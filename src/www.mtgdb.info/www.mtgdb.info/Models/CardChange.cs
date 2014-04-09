@@ -91,6 +91,8 @@ namespace MtgDb.Info
         [BsonElement]
         public string SubType               { get; set; }       
         [BsonElement]
+        public bool Token                   { get; set; }       
+        [BsonElement]
         public int Power                    { get; set; }      
         [BsonElement]
         public int Toughness                { get; set; }  
@@ -137,6 +139,7 @@ namespace MtgDb.Info
             change.Rulings =            card.Rulings;
             change.SetNumber =          card.SetNumber;
             change.SubType =            card.SubType;
+            change.Token =              card.Token;
             change.Toughness =          card.Toughness;
             change.Type =               card.Type;
             change.RelatedCardId =      card.RelatedCardId;
@@ -217,7 +220,7 @@ namespace MtgDb.Info
             if(IsFormatChange(card.Formats,change.Formats)){ fields.Add("formats");}
             if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
             if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
-            //if(change.Name!= card.Name){ fields.Add("name");}
+            if(change.Token != card.Token){ fields.Add("token");}
             if(change.Power != card.Power){ fields.Add("power");}
             if(change.Rarity != card.Rarity){ fields.Add("rarity");}
             if(change.ReleasedAt.ToShortDateString() != 

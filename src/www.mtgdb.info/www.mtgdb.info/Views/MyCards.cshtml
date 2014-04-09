@@ -50,7 +50,7 @@
         <li class='tab @c' @style >
             <a href="/pw/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
                 <img src="@imgUrl" /> @set.Name
-                <span id="@set.Id" class="badge">@Model.Counts[set.Id]</span>
+                <span id="@set.Id" class="badge">@Model.Counts[set.Id]</span>/<span class="badge">@set.Total</span>
             </a>
         </li>
     }

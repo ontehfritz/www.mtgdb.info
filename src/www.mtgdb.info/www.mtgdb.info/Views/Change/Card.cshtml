@@ -60,6 +60,20 @@
             <td><b>Sub Type:</b></td>
             <td><input type="text" name="SubType" value="@Model.SubType" /></td>
         </tr>
+         <tr>
+            <td><b>Token:</b></td>
+            <td>
+            @if(@Model.Token)
+            {
+                <input type="checkbox" name="Token" value="true" checked />
+            }
+            else
+            {
+                <input type="checkbox" name="Token" value="true" />
+            }
+            </td>
+
+        </tr>
         <tr>
             <td><b>Flavor:</b></td>
             <td><textarea rows="4" cols="50" name="Flavor">@Model.Flavor</textarea></td>
