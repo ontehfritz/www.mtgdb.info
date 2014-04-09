@@ -62,7 +62,17 @@
         </tr>
          <tr>
             <td><b>Token:</b></td>
-            <td><input type="text" name="Token" value="@Model.Token.ToString()" /></td>
+            <td>
+            @if(@Model.Token)
+            {
+                <input type="checkbox" name="Token" value="true" checked />
+            }
+            else
+            {
+                <input type="checkbox" name="Token" value="true" />
+            }
+            </td>
+
         </tr>
         <tr>
             <td><b>Flavor:</b></td>

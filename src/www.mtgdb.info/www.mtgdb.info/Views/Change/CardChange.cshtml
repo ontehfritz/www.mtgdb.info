@@ -171,6 +171,23 @@ else if(@Model.Status == "Pending")
                 </form>
             }
         </tr>
+
+        @{changed = Model.FieldState("token");}
+       
+        <tr class="@changed">
+            <td><b>Token:</b></td>
+            <td>@Model.Token.ToString()</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/token" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
         @{changed = Model.FieldState("flavor");}
        
         <tr class="@changed">
