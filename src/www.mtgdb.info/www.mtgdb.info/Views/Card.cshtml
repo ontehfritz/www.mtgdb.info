@@ -12,34 +12,29 @@
     </div>
 }
 @{
-    int SetCount = 500; //Needs to be actual count
-	int PrevCardId = (@Model.Card.Id - 1);
-  	int NextCardId = (@Model.Card.Id + 1);
+    int SetCount = Model.Set.CardIds.Length; //Needs to be actual count 
+  	bool IsCreature = (@Model.Card.Type.Length > 7 && @Model.Card.Type.Substring(@Model.Card.Type.Length - 8,8) == "Creature");
 }
 <div class="row card-header-nav">
     <div class="col-md-4">
-    	@if(@PrevCardId > 0){
-    		<a class="btn btn-default btn-sm btn-block disabled" href="~/cards/@PrevCardId"><i class="fa fa-chevron-left"></i> Prev Card</a>
-    	}
+    	
     </div>
     <div class="col-md-4 center">
     	<a class="btn btn-default btn-sm btn-block" href="~/sets/@Model.Card.CardSetId?Page=@Model.Page"><i class="fa fa-book"></i> @Model.Card.CardSetName</a>
     </div>
     <div class="col-md-4">
-    	@if(NextCardId > 0){
-    		<a class="btn btn-default btn-sm btn-block disabled" href="~/cards/@NextCardId">Next Card <i class="fa fa-chevron-right"></i></a>
-    	}
+    	
     </div>
 </div> 
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-4 col-card-info">
 		<h4>Card Info</h4>
         <p><strong>Multiverse Id:</strong> @Model.Card.Id</p>
     	@if(@Model.Card.RelatedCardId > 0)
     	{
     	<p><strong>Related Card:</strong> <a href="/cards/@Model.Card.RelatedCardId">@Model.Card.RelatedCardId</a></p>
     	}
-        <p><strong>Card Number:</strong> @Model.Card.SetNumber</p>
+        <p><strong>Card Number:</strong> @Model.Card.SetNumber / @SetCount</p>
 	    <p><strong>Released:</strong> @Model.Card.ReleasedAt.ToString("dd MMM yyyy")</p>
 	    <p><strong><span>Color</span>@(Model.Card.Colors.Length > 1 ? "s" : ""):</strong>
 	    	@{
@@ -54,8 +49,8 @@
         <p><strong>Converted Cost:</strong> @Model.Card.ConvertedManaCost</p>
         <p><strong>Type:</strong> @Model.Card.Type @(@Model.Card.SubType != null ? "-" : "") @(Model.Card.SubType)</p>
         <p><strong>Text:</strong> @Html.Raw(RenderHtml.Text(@Model.Card.Description))</p>
-        @if(@Model.Card.Type == "Creature" || @Model.Card.Type == "Legendary Creature"){
-        <p><strong>Power / Toughness:</strong> @Model.Card.Power / @Model.Card.Toughness </p>
+        @if(IsCreature){
+        <p><strong>Power & Toughness:</strong> @Model.Card.Power / @Model.Card.Toughness </p>
         }
         <p><strong>Artist:</strong> @Model.Card.Artist</p>
 	</div>
@@ -122,7 +117,7 @@
     	<ul class="rulings">
         @foreach(var rule in Model.Card.Rulings)
         {
-        	<li><span class="ruling-date">@rule.ReleasedAt.ToString("MMM yyyy")</span> - <span class="ruling-text">@rule.Rule</span></li>
+        	<li><span class="ruling-date">@rule.ReleasedAt.ToString("MMM yyyy")</span> - <span class="ruling-text"> @Html.Raw(RenderHtml.Text(@rule.Rule))</span></li>
         }
        	</ul>
     }

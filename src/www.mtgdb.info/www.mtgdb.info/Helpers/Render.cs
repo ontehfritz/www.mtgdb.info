@@ -15,15 +15,31 @@ namespace MtgDb.Info
         {
             string html =  HttpUtility.HtmlEncode(text);
 			html = html.Replace("{Tap}", "<i class='symbol symbol_T'></i>");
+			html = html.Replace("{Untap}", "<i class='symbol symbol_UT'></i>");
 			html = html.Replace("{White}", "<i class='symbol symbol_W'></i>");
 			html = html.Replace("{Blue}", "<i class='symbol symbol_U'></i>");
 			html = html.Replace("{Black}", "<i class='symbol symbol_B'></i>");
 			html = html.Replace("{Red}", "<i class='symbol symbol_R'></i>");
 			html = html.Replace("{Green}", "<i class='symbol symbol_G'></i>");
+			html = html.Replace("{W}", "<i class='symbol symbol_W'></i>");
+			html = html.Replace("{U}", "<i class='symbol symbol_U'></i>");
+			html = html.Replace("{B}", "<i class='symbol symbol_B'></i>");
+			html = html.Replace("{R}", "<i class='symbol symbol_R'></i>");
+			html = html.Replace("{G}", "<i class='symbol symbol_G'></i>");
 			html = html.Replace("{Red or White}", "<i class='symbol symbol_RW'></i>");
 			html = html.Replace("{Black or Green}", "<i class='symbol symbol_BG'></i>");
 			html = html.Replace("{Blue or Black}", "<i class='symbol symbol_UB'></i>");
 			html = html.Replace("{Green or White}", "<i class='symbol symbol_GW'></i>");
+			html = html.Replace("{Phyrexian White}", "<i class='symbol symbol_WP'></i>");
+			html = html.Replace("{Phyrexian Blue}", "<i class='symbol symbol_UP'></i>");
+			html = html.Replace("{Phyrexian Black}", "<i class='symbol symbol_BP'></i>");
+			html = html.Replace("{Phyrexian Red}", "<i class='symbol symbol_RP'></i>");
+			html = html.Replace("{Phyrexian Green}", "<i class='symbol symbol_GP'></i>");
+			html = html.Replace("{Two or White}", "<i class='symbol symbol_2W'></i>");
+			html = html.Replace("{Two or Blue}", "<i class='symbol symbol_2U'></i>");
+			html = html.Replace("{Two or Black}", "<i class='symbol symbol_2B'></i>");
+			html = html.Replace("{Two or Red}", "<i class='symbol symbol_2R'></i>");
+			html = html.Replace("{Two or Green}", "<i class='symbol symbol_2G'></i>");
 
 
 			html = html.Replace("{1}", "<i class='symbol symbol_1'></i>");
@@ -35,7 +51,21 @@ namespace MtgDb.Info
 			html = html.Replace("{7}", "<i class='symbol symbol_7'></i>");
 			html = html.Replace("{8}", "<i class='symbol symbol_8'></i>");
 			html = html.Replace("{9}", "<i class='symbol symbol_9'></i>");
+			html = html.Replace("{10}", "<i class='symbol symbol_10'></i>");
+			html = html.Replace("{11}", "<i class='symbol symbol_11'></i>");
+			html = html.Replace("{12}", "<i class='symbol symbol_12'></i>");
+			html = html.Replace("{13}", "<i class='symbol symbol_13'></i>");
+			html = html.Replace("{14}", "<i class='symbol symbol_14'></i>");
+			html = html.Replace("{15}", "<i class='symbol symbol_15'></i>");
+			html = html.Replace("{16}", "<i class='symbol symbol_16'></i>");
+			html = html.Replace("{17}", "<i class='symbol symbol_17'></i>");
+			html = html.Replace("{18}", "<i class='symbol symbol_18'></i>");
+			html = html.Replace("{19}", "<i class='symbol symbol_19'></i>");
+			html = html.Replace("{20}", "<i class='symbol symbol_20'></i>");
 			html = html.Replace("{Variable Colorless}", "<i class='symbol symbol_X'></i>");
+
+			html = html.Replace ("(","<em>(");
+			html = html.Replace (")",")</em>");
 
             return html;
         }
@@ -70,7 +100,6 @@ namespace MtgDb.Info
 
             Dictionary<string, string> syntax = new Dictionary<string, string> ();
 			syntax.Add ("#", "<i class='symbol symbol_{0}'></i>");
-			syntax.Add ("0", "<i class='symbol symbol_0'></i>");
 			syntax.Add ("x", "<i class='symbol symbol_X'></i>");
 			syntax.Add ("w", "<i class='symbol symbol_W'></i>");
 			syntax.Add ("u", "<i class='symbol symbol_U'></i>");
@@ -84,12 +113,17 @@ namespace MtgDb.Info
 			syntax.Add ("{u/r}", "<i class='symbol symbol_UR'></i>");
 			syntax.Add ("{b/g}", "<i class='symbol symbol_BG'></i>");
 			syntax.Add ("{g/w}", "<i class='symbol symbol_GW'></i>");
+			syntax.Add("{b/u}", "<i class='symbol symbol_BU'></i>");
 			syntax.Add ("{wp}", "<i class='symbol symbol_WP'></i>");
 			syntax.Add ("{up}", "<i class='symbol symbol_UP'></i>");
 			syntax.Add ("{bp}", "<i class='symbol symbol_BP'></i>");
 			syntax.Add ("{rp}", "<i class='symbol symbol_RP'></i>");
 			syntax.Add ("{gp}", "<i class='symbol symbol_GP'></i>");
-			syntax.Add("{b/u}", "<i class='symbol symbol_BU'></i>");
+			syntax.Add ("{2/w}", "<i class='symbol symbol_2W'></i>");
+			syntax.Add ("{2/u}", "<i class='symbol symbol_2U'></i>");
+			syntax.Add ("{2/b}", "<i class='symbol symbol_2B'></i>");
+			syntax.Add ("{2/r}", "<i class='symbol symbol_2R'></i>");
+			syntax.Add ("{2/g}", "<i class='symbol symbol_2G'></i>");
 
             string key = "";
             string number = "";
@@ -146,6 +180,10 @@ namespace MtgDb.Info
                     html.Append (c.ToString());
                 }
             }
+
+			if (html.Length < 1) {
+				html.Append (string.Format("<i class='symbol symbol_{0}'></i>",text));
+			}	 
 
             html.Append (key);
             return html.ToString();

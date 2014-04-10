@@ -114,17 +114,21 @@ footer {
 	margin:1em auto 0;
 	width:968px;
 }
-.panel-heading .btn-block{
+.panel-heading .btn-block,
+.panel-footer .btn-block{
 	position:relative;
 }
-.panel-heading .btn-block i{
+.panel-heading .btn-block i,
+.panel-footer .btn-block i{
 	position:absolute;
 	top:.7em;
 }
-.panel-heading .btn-block i.pull-left{
+.panel-heading .btn-block i.pull-left,
+.panel-footer .btn-block i.pull-left{
 	left:.7em
 }
-.panel-heading .btn-block i.pull-right{
+.panel-heading .btn-block i.pull-right,
+.panel-footer .btn-block i.pull-right{
 	right:.7em
 }
 .book{
@@ -202,6 +206,10 @@ footer {
 .center .card{
 	margin-right:0;
 	margin-bottom:0;
+}
+.col-card-info p{
+	padding-left:3em;
+	text-indent:-3em;
 }
 .mana-cost{
 	font-size:1.5em;
