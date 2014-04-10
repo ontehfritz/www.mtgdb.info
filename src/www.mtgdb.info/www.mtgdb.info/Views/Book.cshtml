@@ -11,6 +11,8 @@
  	isBook = "book";
  }
 
+ double PageMax = Math.Ceiling(Model.Set.CardIds.Length/9.0);
+
 }
 @section Top{
   @Html.Partial("_SetsDropDown", Model.SetList)
@@ -28,10 +30,10 @@
 	            	}
 	            </div>
 				<div class="col-md-4">
-	            	<input class="form-control page-label" type="text" placeholder=" Page @Model.Page" disabled>
+	            	<input class="form-control page-label" type="text" placeholder="Page @Model.Page of @PageMax" disabled>
 	            </div>
 				<div class="col-md-4">
-	                @if(Model.Cards.Count > 8)
+	                @if(Model.Page != PageMax)
 	                {
 		            	<a class="btn btn-default btn-block" href="?Page=@Model.NextPage">
 		            		Next Page <i class="fa fa-chevron-right pull-right"></i>
@@ -41,7 +43,7 @@
 			</div>
         </div>
         <div class="panel-body @isBook">
-        @if(Model.Cards != null && Model.Cards.Count > 0)
+        @if(Model.Page != null && Model.Cards.Count > 0)
         {
             @Html.Partial("_Cards", Model.Cards.ToArray())
         }
@@ -57,18 +59,18 @@
 	            <div class="col-md-4">
 	            	@if(Model.Page != null && Model.Page != 1){
 		            	<a class="btn btn-default btn-block" href="?Page=@Model.PrevPage">
-		            		<i class="fa fa-chevron-left"></i> Previous Page
+		            		<i class="fa fa-chevron-left pull-left"></i> Previous Page
 		            	</a>
 	            	}
 	            </div>
 				<div class="col-md-4">
-	            	<input class="form-control page-label" type="text" placeholder=" Page @Model.Page" disabled>
+	            	<input class="form-control page-label" type="text" placeholder="Page @Model.Page of @PageMax" disabled>
 	            </div>
 				<div class="col-md-4">
-	                @if(Model.Cards.Count > 8)
+	                @if(Model.Page != PageMax)
 	                {
 		            	<a class="btn btn-default btn-block" href="?Page=@Model.NextPage">
-		            		Next Page <i class="fa fa-chevron-right"></i>
+		            		Next Page <i class="fa fa-chevron-right pull-right"></i>
 		            	</a>
 	                }
 	            </div>

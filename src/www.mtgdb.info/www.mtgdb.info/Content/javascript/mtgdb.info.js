@@ -161,6 +161,9 @@ $(document).ready(function() {
 	});
 
 	$('.card-amount').hide();
+
+	$('.label-legality').tooltip();
+
 });
 
 function go()

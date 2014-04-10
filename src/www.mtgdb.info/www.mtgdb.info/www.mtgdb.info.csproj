@@ -71,10 +71,10 @@
       <HintPath>bin\Nancy.ViewEngines.Razor.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="MtgDb.Info.Driver">
-      <HintPath>..\packages\MtgDb.Info.Driver.0.2\lib\MtgDb.Info.Driver.dll</HintPath>
+      <HintPath>packages\MtgDb.Info.Driver.0.2\lib\MtgDb.Info.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

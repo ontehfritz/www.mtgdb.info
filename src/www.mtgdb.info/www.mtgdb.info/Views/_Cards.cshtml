@@ -21,10 +21,8 @@
 
    
     <div class="card card-@cardIdx" id="card_@cardInfo.Card.Id">
-	    <a href="~/cards/@cardInfo.Card.Id">
-	        <img id="img_@cardInfo.Card.Id" class="tip @color" src="@cardInfo.Card.CardImage" 
-	        data-toggle="tooltip" data-placement="@tooltipPlacement" title="<strong>@name</strong> #@cardInfo.Card.SetNumber<br /> @description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br />" 
-	        data-html="true" />
+    	<a href="~/cards/@cardInfo.Card.Id">
+	        <img id="img_@cardInfo.Card.Id" class="tip @color" src="@cardInfo.Card.CardImage"/>
 	    </a>
 	    @if(@Html.CurrentUser != null)
 	    {
