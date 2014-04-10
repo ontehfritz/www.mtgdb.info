@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Bootstrapper.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Card.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Bootstrapper.cs" Line="2" Column="7" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="143" Column="25" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="14" Column="47" />
+      <File FileName="www.mtgdb.info/Bootstrapper.cs" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/packages.config" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="15" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
