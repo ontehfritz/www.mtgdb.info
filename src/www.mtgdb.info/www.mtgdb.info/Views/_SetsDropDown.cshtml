@@ -1,14 +1,361 @@
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.CardSetList>
 <select id="set_list" onchange="go();">
-@foreach(var set in Model.Sets)
-{
-    if(Model.ActiveSet == set.Id)
-    {
-        <option value="@set.Id" selected>@set.Name</option>
-    }
-    else
-    {
-        <option value="@set.Id">@set.Name</option>
-    }
-}
+	<optgroup label="Core Sets">
+	@foreach(var set in Model.GetBlock("Core"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	</optgroup>
+	<optgroup label="Expansions">
+	@foreach(var set in Model.GetBlock("Theros"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Return To Ravnica"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Innistrad"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Scars of Mirrodin"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Zendikar"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Shards of Alara"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Shadowmoor"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Lorwyn"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Time Spiral"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Ravnica"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Kamigawa"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Mirrodin"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Onslaught"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Odyssey"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Invasion"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Masquerade"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Artifacts"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Rath"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Mirage"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Ice Age"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	</optgroup>
+	<optgroup label="Compilations & Anthologies">
+	@foreach(var set in Model.GetBlock("Non-Block"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Duel Decks"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Duel Decks"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Duel Decks"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("From the vault"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Premium Deck Series"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Planechase"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Commander"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Portal"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Starter"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	@foreach(var set in Model.GetBlock("Un-sets"))
+	{
+		if(Model.ActiveSet == set.Id)
+	    {
+	        <option value="@set.Id" selected>@set.Name</option>
+	    }
+	    else
+	    {
+	        <option value="@set.Id">@set.Name</option>
+	    }
+	}
+	</optgroup>
 </select>

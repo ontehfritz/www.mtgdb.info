@@ -7,6 +7,14 @@ namespace MtgDb.Info
 {
     public class RenderHtml
     {
+		public static string Name(string text)
+		{
+			string html =  HttpUtility.HtmlEncode(text);
+
+			html = html.Replace ("(R)","&#174;");
+
+			return html;
+		}
         /// <summary>
         /// Text the specified text.
         /// </summary>
@@ -15,6 +23,7 @@ namespace MtgDb.Info
         {
             string html =  HttpUtility.HtmlEncode(text);
 			html = html.Replace("{Tap}", "<i class='symbol symbol_T'></i>");
+			html = html.Replace("ocT", "<i class='symbol symbol_T'></i>");
 			html = html.Replace("{Untap}", "<i class='symbol symbol_UT'></i>");
 			html = html.Replace("{White}", "<i class='symbol symbol_W'></i>");
 			html = html.Replace("{Blue}", "<i class='symbol symbol_U'></i>");
@@ -26,6 +35,11 @@ namespace MtgDb.Info
 			html = html.Replace("{B}", "<i class='symbol symbol_B'></i>");
 			html = html.Replace("{R}", "<i class='symbol symbol_R'></i>");
 			html = html.Replace("{G}", "<i class='symbol symbol_G'></i>");
+			html = html.Replace("oW", "<i class='symbol symbol_W'></i>");
+			html = html.Replace("oU", "<i class='symbol symbol_U'></i>");
+			html = html.Replace("oB", "<i class='symbol symbol_B'></i>");
+			html = html.Replace("oR", "<i class='symbol symbol_R'></i>");
+			html = html.Replace("oG", "<i class='symbol symbol_G'></i>");
 			html = html.Replace("{Red or White}", "<i class='symbol symbol_RW'></i>");
 			html = html.Replace("{Black or Green}", "<i class='symbol symbol_BG'></i>");
 			html = html.Replace("{Blue or Black}", "<i class='symbol symbol_UB'></i>");
@@ -40,7 +54,7 @@ namespace MtgDb.Info
 			html = html.Replace("{Two or Black}", "<i class='symbol symbol_2B'></i>");
 			html = html.Replace("{Two or Red}", "<i class='symbol symbol_2R'></i>");
 			html = html.Replace("{Two or Green}", "<i class='symbol symbol_2G'></i>");
-
+			html = html.Replace("{Snow}", "<i class='symbol symbol_S'></i>");
 
 			html = html.Replace("{1}", "<i class='symbol symbol_1'></i>");
 			html = html.Replace("{2}", "<i class='symbol symbol_2'></i>");
@@ -62,8 +76,21 @@ namespace MtgDb.Info
 			html = html.Replace("{18}", "<i class='symbol symbol_18'></i>");
 			html = html.Replace("{19}", "<i class='symbol symbol_19'></i>");
 			html = html.Replace("{20}", "<i class='symbol symbol_20'></i>");
+			html = html.Replace("{100}", "<i class='symbol symbol_100'></i>");
+			html = html.Replace("{Infinite}", "<i class='symbol symbol_Infinite'></i>");
+			html = html.Replace("{1/2}", "<i class='symbol symbol_Half'></i>");
+			html = html.Replace("o1", "<i class='symbol symbol_1'></i>");
+			html = html.Replace("o2", "<i class='symbol symbol_2'></i>");
+			html = html.Replace("o3", "<i class='symbol symbol_3'></i>");
+			html = html.Replace("o4", "<i class='symbol symbol_4'></i>");
+			html = html.Replace("o5", "<i class='symbol symbol_5'></i>");
 			html = html.Replace("{Variable Colorless}", "<i class='symbol symbol_X'></i>");
+			html = html.Replace("oX", "<i class='symbol symbol_X'></i>");
+			html = html.Replace("{Half a Red}", "<i class='symbol symbol_HR'></i>");
 
+			html = html.Replace ("\n","<br/>");
+			html = html.Replace ("(R)","&#174;");
+			html = html.Replace ("1/2","&#189;");
 			html = html.Replace ("(","<em>(");
 			html = html.Replace (")",")</em>");
 
@@ -101,6 +128,8 @@ namespace MtgDb.Info
             Dictionary<string, string> syntax = new Dictionary<string, string> ();
 			syntax.Add ("#", "<i class='symbol symbol_{0}'></i>");
 			syntax.Add ("x", "<i class='symbol symbol_X'></i>");
+			syntax.Add ("y", "<i class='symbol symbol_Y'></i>");
+			syntax.Add ("z", "<i class='symbol symbol_Z'></i>");
 			syntax.Add ("w", "<i class='symbol symbol_W'></i>");
 			syntax.Add ("u", "<i class='symbol symbol_U'></i>");
 			syntax.Add ("b", "<i class='symbol symbol_B'></i>");
