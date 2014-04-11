@@ -376,16 +376,16 @@ footer {
 .tab a.selected-tab { font-weight: bold; }
 /*COLORS*/
 .color-n{
-	color:rgb(222,222,222);
+	color:rgb(202,197,192);
 }
 .color-w{
-	color:rgb(249,248,196);
+	color:rgb(248,247,215);
 }
 .color-u{
-	color:rgb(119,213,231);
+	color:rgb(191,214,233);
 }
 .color-b{
-	color:rgb(186,177,171);
+	color:rgb(184,175,170);
 }
 .color-r{
 	color:rgb(230,153,116);
@@ -668,5 +668,20 @@ h3 .symbol{
 .symbol_HUNDRED{
 	width:1.85em;
 	background-position-x:-4.9em;
+	background-position-y:-6em; 
+}
+.symbol_HW,
+.symbol_500{
+	box-shadow: none !important;
+	border-radius:0 !important;
+	width: 10px;
+	background-position-x: -7.96em;
+	background-position-y: -6em;
+}
+.symbol_HR{
+	box-shadow: none !important;
+	border-radius:0 !important;
+	width: 7px;
+	background-position-x: -8.5em;
 	background-position-y:-6em; 
 }

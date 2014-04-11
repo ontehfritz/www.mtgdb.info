@@ -1,6 +1,7 @@
 using System;
 using MtgDb.Info.Driver;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MtgDb.Info
 {
@@ -20,6 +21,12 @@ namespace MtgDb.Info
     {
         public MtgDb.Info.CardSet[] Sets    { set; get; }
         public string ActiveSet             { get; set; }
+
+		public CardSet[] GetBlock(string cardSet)
+		{
+			return 
+				(Sets.Where (n => n.Block == cardSet).OrderByDescending(n => n.ReleasedAt)).ToArray();
+		}
     }
 }
 
