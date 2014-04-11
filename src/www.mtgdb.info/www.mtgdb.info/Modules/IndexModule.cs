@@ -139,8 +139,8 @@ namespace MtgDb.Info
                    
                     int end = page * _pageSize;
                     int start = page > 1 ? end - _pageSize : page;
-                    Card[] cards = magicdb.GetSetCards(setId, start, 
-                        page > 1 ? end - 1 : end);
+                    Card[] cards = magicdb.GetSetCards(setId, page > 1 ? start + 1 : start, 
+                        end);
 
                     UserCard [] walkerCards = null;
 

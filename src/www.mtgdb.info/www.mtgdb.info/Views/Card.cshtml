@@ -12,7 +12,7 @@
     </div>
 }
 @{
-    int SetCount = Model.Set.CardIds.Length; //Needs to be actual count 
+    int SetCount = Model.Set.Total; //Needs to be actual count 
   	bool IsCreature = (@Model.Card.Type.Length > 7 && @Model.Card.Type.Substring(@Model.Card.Type.Length - 8,8) == "Creature");
 }
 <div class="row card-header-nav">

@@ -182,6 +182,7 @@ namespace MtgDb.Info
                 model.Formats =         Bind.Formats(Request);
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
                 model.UserId =          model.Planeswalker.Id;
+                model.ReleasedAt =      DateTime.Parse(model.ReleasedAt.ToShortDateString());
                 CardChange card =       null;
 
                 var result = this.Validate(model);

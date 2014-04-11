@@ -28,7 +28,9 @@ namespace MtgDb.Info
                 foreach(string key in keys)
                 {
                     rulings.Add(new Ruling(){
-                        ReleasedAt =  DateTime.Parse(dictionary[string.Format(releasedAt, key)].ToString()),
+                        ReleasedAt =  DateTime.Parse(DateTime
+                            .Parse(dictionary[string.Format(releasedAt, key)].ToString())
+                            .ToShortDateString()),
                         Rule = dictionary[string.Format(rule, key)].ToString()
                     });
                 }

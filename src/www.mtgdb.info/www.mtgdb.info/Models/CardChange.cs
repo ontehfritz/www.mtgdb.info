@@ -110,7 +110,7 @@ namespace MtgDb.Info
         public Format[] Formats             { get; set; }   
         [BsonElement]
         [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime ReleasedAt      { get; set; } 
+        public DateTime ReleasedAt          { get; set; } 
         /*end of card fields*/
 
         [BsonIgnore]
