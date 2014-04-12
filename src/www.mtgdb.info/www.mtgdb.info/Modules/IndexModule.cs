@@ -91,6 +91,8 @@ namespace MtgDb.Info
                     model.Page = (model.Card.SetNumber / _pageSize) + 1;
                     model.Set = magicdb.GetSet(model.Card.CardSetId);
                     model.ActiveMenu = "sets";
+                    model.NextCard = magicdb.GetCard(model.Card.SetNumber + 1);
+                    model.PrevCard = magicdb.GetCard(model.Card.SetNumber - 1);
 
                     if(model.Planeswalker != null)
                     {

@@ -81,7 +81,7 @@ else if(@Model.Status == "Pending")
         <tr class="@changed">
             <td><b>Released:</b></td>
             <td>
-                @Model.ReleasedAt.ToShortDateString()
+                @Model.ReleasedAt
             </td>
              @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
@@ -264,8 +264,7 @@ else if(@Model.Status == "Pending")
                 </form>
             }
         </tr>
-
-
+           
         @{changed = Model.FieldState("artist");}
 
         <tr class="@changed">
@@ -346,7 +345,7 @@ else if(@Model.Status == "Pending")
             {
                 <tr id="ruling" class="@changed">
                     <td>
-                        @rule.ReleasedAt.ToShortDateString()
+                        @rule.ReleasedAt
                     </td>
                     <td>
                         @rule.Rule.Trim()

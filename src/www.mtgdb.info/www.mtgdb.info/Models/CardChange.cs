@@ -5,6 +5,7 @@ using MtgDb.Info.Driver;
 using System.Configuration;
 using System.Reflection;
 using FluentValidation;
+using MtgDbAdminDriver;
 
 namespace MtgDb.Info
 {
@@ -35,8 +36,12 @@ namespace MtgDb.Info
         }
     }
 
+
+
     public class CardChange : PageModel
     {
+        public static string DateFormat = "yyyy-MM-dd";
+
         [BsonId]
         public Guid Id                      { get; set; }
         [BsonElement]
@@ -105,12 +110,11 @@ namespace MtgDb.Info
         [BsonElement]
         public string CardSetId             { get; set; }     
         [BsonElement]
-        public Ruling[] Rulings             { get; set; }    
+        public MtgDbAdminDriver.Ruling[] Rulings       { get; set; }    
         [BsonElement]
-        public Format[] Formats             { get; set; }   
+        public MtgDbAdminDriver.Format[] Formats             { get; set; }   
         [BsonElement]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        public DateTime ReleasedAt          { get; set; } 
+        public string ReleasedAt            { get; set; } 
         /*end of card fields*/
 
         [BsonIgnore]
@@ -128,15 +132,39 @@ namespace MtgDb.Info
             change.ConvertedManaCost =  card.ConvertedManaCost;
             change.Description =        card.Description;
             change.Flavor =             card.Flavor;
-            change.Formats =            card.Formats;
+
+            List<MtgDbAdminDriver.Format> formats = new List<MtgDbAdminDriver.Format>();
+
+            foreach(Format f in card.Formats)
+            {
+                formats.Add(new MtgDbAdminDriver.Format
+                    {
+                        Name = f.Name,
+                        Legality = f.Legality
+                    });
+            }
+
+            change.Formats =            formats.ToArray();
             change.Loyalty =            card.Loyalty;
             change.ManaCost =           card.ManaCost;
             change.Mvid =               card.Id;
             change.Name =               card.Name;
             change.Power =              card.Power;
             change.Rarity =             card.Rarity;
-            change.ReleasedAt =         card.ReleasedAt;
-            change.Rulings =            card.Rulings;
+            change.ReleasedAt =         card.ReleasedAt.ToString(DateFormat);
+
+            List<MtgDbAdminDriver.Ruling> rulings = new List<MtgDbAdminDriver.Ruling>();
+
+            foreach(Ruling r in card.Rulings)
+            {
+                rulings.Add(new MtgDbAdminDriver.Ruling
+                {
+                    ReleasedAt = r.ReleasedAt.ToString(DateFormat),
+                    Rule = r.Rule
+                });
+            }
+
+            change.Rulings =            rulings.Count > 0 ? rulings.ToArray() : null;
             change.SetNumber =          card.SetNumber;
             change.SubType =            card.SubType;
             change.Token =              card.Token;
@@ -208,23 +236,19 @@ namespace MtgDb.Info
             if(change.Description.Replace("\r",string.Empty) != 
                 card.Description.Replace("\r",string.Empty))
             { fields.Add("description");}
-
-
             change.Flavor = change.Flavor ?? "";
             card.Flavor = card.Flavor ?? "";
 
             if(change.Flavor.Replace("\r",string.Empty) != 
                 card.Flavor.Replace("\r",string.Empty)){ fields.Add("flavor"); }
-
-
-            if(IsFormatChange(card.Formats,change.Formats)){ fields.Add("formats");}
+            if(IsFormatChange(card.Formats, change.Formats)){ fields.Add("formats"); }
             if(change.Loyalty != card.Loyalty){ fields.Add("loyalty");}
             if(change.ManaCost!= card.ManaCost){ fields.Add("manaCost");}
             if(change.Token != card.Token){ fields.Add("token");}
             if(change.Power != card.Power){ fields.Add("power");}
             if(change.Rarity != card.Rarity){ fields.Add("rarity");}
-            if(change.ReleasedAt.ToShortDateString() != 
-                card.ReleasedAt.ToShortDateString()){ fields.Add("releasedAt"); }
+            if(change.ReleasedAt != 
+                card.ReleasedAt.ToString(DateFormat)){ fields.Add("releasedAt"); }
 
             if(IsRuleChange(card.Rulings, change.Rulings)){ fields.Add("rulings"); }
 
@@ -272,7 +296,7 @@ namespace MtgDb.Info
 
 
         private static bool IsRuleChange(Ruling[] rulings1, 
-            Ruling[] rulings2)
+            MtgDbAdminDriver.Ruling[] rulings2)
         {
             bool changed = false;
 
@@ -283,10 +307,10 @@ namespace MtgDb.Info
 
             foreach(Ruling ruling in rulings1)
             {
-                foreach(Ruling ruling2 in rulings2)
+                foreach(MtgDbAdminDriver.Ruling ruling2 in rulings2)
                 {
                     if(ruling2.Rule == ruling.Rule
-                        && ruling2.ReleasedAt.ToShortDateString() == ruling.ReleasedAt.ToShortDateString())
+                        && ruling2.ReleasedAt == ruling.ReleasedAt.ToString("yyyy-MM-dd"))
                     {
                         changed = false;
                         break;
@@ -307,7 +331,7 @@ namespace MtgDb.Info
         }
 
         private static bool IsFormatChange(Format[] formats1, 
-            Format[] formats2)
+            MtgDbAdminDriver.Format[] formats2)
         {
             bool changed = false;
 
@@ -318,7 +342,7 @@ namespace MtgDb.Info
 
             foreach(Format format in formats1)
             {
-                foreach(Format format2 in formats2)
+                foreach(MtgDbAdminDriver.Format format2 in formats2)
                 {
                     if(format2.Name == format.Name
                         && format2.Legality == format.Legality)

@@ -10,6 +10,9 @@ namespace MtgDb.Info
         public int Page         { get; set; }
         public Card[] Prints    { get; set; }
 
+        public Card NextCard    { get; set; }
+        public Card PrevCard    { get; set; }
+
         public CardModel (){}
     }
 }

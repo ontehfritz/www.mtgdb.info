@@ -31,7 +31,7 @@
         <tr>
             <td><b>Released:</b></td>
             <td><input type="text" class="rdate" name="ReleasedAt" 
-                    value="@Model.ReleasedAt.ToShortDateString()" /></td>
+                    value="@Model.ReleasedAt" /></td>
         </tr>
         <tr>
             <td style="vertical-align:top;"><b>Color(s):</b></td>
@@ -160,7 +160,7 @@
             <tr id="ruling_@i">
                 <td>
                     <input type="text" class="rdate" name="Rulings[@i].ReleasedAt" 
-                            value="@rule.ReleasedAt.ToShortDateString()" required />
+                            value="@rule.ReleasedAt" required />
                 </td>
                 <td>
                     <textarea rows="4" cols="50" name="Rulings[@i].Rule" required >@rule.Rule.Trim()</textarea>
@@ -194,7 +194,7 @@
 
 <script>
     $(function() {
-        $( ".rdate" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+        $( ".rdate" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
     });
 
     $("#add_ruling").click(function(){
@@ -204,7 +204,7 @@
         $('#rulings > tbody:last').prepend('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
         + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="4" cols="50" name="Rulings[' + count + 
         '].Rule" required></textarea></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeRuling(\'ruling_' + count + '\');"></span></td></tr>');
-        $( ".rdate" ).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+        $( ".rdate" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
     }); 
 
     function removeRuling(id)

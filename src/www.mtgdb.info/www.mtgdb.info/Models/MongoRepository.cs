@@ -224,7 +224,6 @@ namespace MtgDb.Info
             change.ModifiedAt =     DateTime.Now;
             change.FieldsUpdated  = CardChange.FieldsChanged(card, change);
             change.Status = "Pending";
-            //change.ReleasedAt = change.ReleasedAt.ToShortDateString();
 
             if(change.FieldsUpdated == null ||
                 change.FieldsUpdated.Length == 0)
