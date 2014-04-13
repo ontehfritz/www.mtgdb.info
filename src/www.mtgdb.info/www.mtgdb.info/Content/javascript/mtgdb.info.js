@@ -1,3 +1,25 @@
+$(document).ready(function() { 
+	$("#set_list").select2({
+    	matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },
+    	formatResult: format,
+    	formatSelection: format,
+    	escapeMarkup: function(m) { return m; }
+	});
+
+	$('.card').hover(function(){
+		$('.card-amount').stop().fadeOut();
+		$(this).find('.card-amount').stop().fadeIn();
+	},function(){
+		$(this).find('.card-amount').stop().fadeOut();
+	});
+
+	$('.card-amount').hide();
+
+	$('.label-legality').tooltip();
+
+	$('.search-result').popover({trigger:'hover',html:true});
+});
+
 function updateTotal(n)
 {
     var amount = parseInt($('#total').text());
@@ -144,27 +166,6 @@ function format(set) {
     return "<img class='flag' src='https://api.mtgdb.info/content/set_images/symbols/" + set.id.toLowerCase() + 
                                                                 "_sym.png'/>" + " " + set.text;
 }
-
-$(document).ready(function() { 
-	$("#set_list").select2({
-    	matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },
-    	formatResult: format,
-    	formatSelection: format,
-    	escapeMarkup: function(m) { return m; }
-	});
-
-	$('.card').hover(function(){
-		$('.card-amount').stop().fadeOut();
-		$(this).find('.card-amount').stop().fadeIn();
-	},function(){
-		$(this).find('.card-amount').stop().fadeOut();
-	});
-
-	$('.card-amount').hide();
-
-	$('.label-legality').tooltip();
-
-});
 
 function go()
 {

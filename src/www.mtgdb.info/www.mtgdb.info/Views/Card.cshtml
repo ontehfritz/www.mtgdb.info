@@ -13,17 +13,26 @@
 }
 @{
     int SetCount = Model.Set.Total; //Needs to be actual count 
-  	bool IsCreature = (@Model.Card.Type.Length > 7 && @Model.Card.Type.Substring(@Model.Card.Type.Length - 8,8) == "Creature");
 }
 <div class="row card-header-nav">
     <div class="col-md-4">
-    	
+    	@if(Model.PrevCard != null)
+    	{
+    		<a class="btn btn-default btn-sm btn-block block-left" href="~/cards/@Model.PrevCard.Id">
+    			<i class="fa fa-chevron-left"></i> Prev Card: @Model.PrevCard.Name
+    		</a>
+    	}
     </div>
     <div class="col-md-4 center">
     	<a class="btn btn-default btn-sm btn-block" href="~/sets/@Model.Card.CardSetId?Page=@Model.Page"><i class="fa fa-book"></i> @Model.Card.CardSetName</a>
     </div>
     <div class="col-md-4">
-    	
+    	@if(Model.NextCard != null)
+    	{
+    		<a class="btn btn-default btn-sm btn-block block-right" href="~/cards/@Model.NextCard.Id">
+    			Next Card: @Model.NextCard.Name <i class="fa fa-chevron-right"></i>
+    		</a>
+    	}
     </div>
 </div> 
 <div class="row">
@@ -49,7 +58,7 @@
         <p><strong>Converted Cost:</strong> @Model.Card.ConvertedManaCost</p>
         <p><strong>Type:</strong> @Model.Card.Type @(@Model.Card.SubType != null ? "-" : "") @(Model.Card.SubType)</p>
         <p><strong>Text:</strong> @Html.Raw(RenderHtml.Text(@Model.Card.Description))</p>
-        @if(IsCreature){
+        @if(Model.Card.Type.Contains("creature")){
         <p><strong>Power & Toughness:</strong> @Model.Card.Power / @Model.Card.Toughness </p>
         }
         <p><strong>Artist:</strong> @Model.Card.Artist</p>

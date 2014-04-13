@@ -11,11 +11,13 @@
  	isBook = "book";
  }
 
- double PageMax = Math.Ceiling(Model.Set.Total/9.0);
+ int PageMax = Convert.ToInt32(Math.Ceiling(Model.Set.Total/9.0));
 
 }
 @section Top{
-  @Html.Partial("_SetsDropDown", Model.SetList)
+	<div class="col-md-6 col-md-offset-3">
+  		@Html.Partial("_SetsDropDown", Model.SetList)
+  	</div>
 }
 
 <div class="row">
@@ -24,7 +26,7 @@
       		<div class="row">
 	            <div class="col-md-4">
 	            	@if(Model.Page != null && Model.Page != 1){
-		            	<a class="btn btn-default btn-block" href="?Page=@Model.PrevPage">
+		            	<a class="btn btn-default btn-block block-left" href="?Page=@Model.PrevPage">
 		            		<i class="fa fa-chevron-left pull-left"></i> Previous Page
 		            	</a>
 	            	}
@@ -35,7 +37,7 @@
 				<div class="col-md-4">
 	                @if(Model.Page != PageMax)
 	                {
-		            	<a class="btn btn-default btn-block" href="?Page=@Model.NextPage">
+		            	<a class="btn btn-default btn-block block-right" href="?Page=@Model.NextPage">
 		            		Next Page <i class="fa fa-chevron-right pull-right"></i>
 		            	</a>
 	                }
@@ -56,23 +58,60 @@
         </div>
         <div class="panel-footer">
             <div class="row">
-	            <div class="col-md-4">
-	            	@if(Model.Page != null && Model.Page != 1){
-		            	<a class="btn btn-default btn-block" href="?Page=@Model.PrevPage">
-		            		<i class="fa fa-chevron-left pull-left"></i> Previous Page
-		            	</a>
-	            	}
-	            </div>
-				<div class="col-md-4">
-	            	<input class="form-control page-label" type="text" placeholder="Page @Model.Page of @PageMax" disabled>
-	            </div>
-				<div class="col-md-4">
-	                @if(Model.Page != PageMax)
-	                {
-		            	<a class="btn btn-default btn-block" href="?Page=@Model.NextPage">
-		            		Next Page <i class="fa fa-chevron-right pull-right"></i>
-		            	</a>
-	                }
+	            <div class="col-md-12">
+	            	<div class="center">
+		            	<ul class="pagination pagination-sm">
+		            	@if(Model.Page > 1)
+		            	{
+		            		<li><a href="?Page=@Model.PrevPage"><i class="fa fa-chevron-left"></i></a></li>
+		            	}
+		            	else
+		            	{
+		            		<li class="disabled"><a href=""><i class="fa fa-chevron-left"></i></a></li>
+		            	}
+		            	@for(int idx = 1; idx <= PageMax; idx++)
+		            	{
+		            		if(PageMax > 26 && idx == 14 && (Model.Page <= 12 || Model.Page >= PageMax - 12)) // beginning or end of large set
+		            		{
+		            			<li class="disabled"><a href="">...</a></li>
+		            			idx = PageMax - 13;
+		            		}
+		            		else if(PageMax > 26 && idx == 11 && (Model.Page >= 13 && Model.Page <= PageMax - 12)) //middle of large set
+		            		{
+		            			if(Model.Page != 13)
+		            			{
+		            				<li class="disabled"><a href="">...</a></li>
+		            			}
+		            			<li><a href="?Page=@(Model.Page - 2)">@(Model.Page - 2)</a></li>
+		            			<li><a href="?Page=@(Model.Page - 1)">@(Model.Page - 1)</a></li>
+		            			<li class="active"><a href="?Page=@Model.Page">@Model.Page<span class="sr-only">(current)</span></a></li>
+		            			<li><a href="?Page=@(Model.Page + 1)">@(Model.Page + 1)</a></li>
+		            			<li><a href="?Page=@(Model.Page + 2)">@(Model.Page + 2)</a></li>
+		            			if(Model.Page != PageMax - 12)
+		            			{
+		            				<li class="disabled"><a href="">...</a></li>
+		            			}
+		            			idx = PageMax - 10;
+		            		}
+		            		else if(idx == Model.Page) //active page
+		            		{
+		            			<li class="active"><a href="?Page=@idx">@idx<span class="sr-only">(current)</span></a></li>
+		            		}
+		            		else //page
+		            		{
+		            			<li><a href="?Page=@idx">@idx</a></li>
+		            		}
+		            	}
+		            	@if(Model.Page != PageMax)
+		            	{
+		            		<li><a href="?Page=@Model.NextPage"><i class="fa fa-chevron-right"></i></a></li>
+		            	}
+		            	else
+		            	{
+		            		<li class="disabled"><a href=""><i class="fa fa-chevron-right"></i></a></li>
+		            	}
+		            	</ul>
+		            </div>
 	            </div>
 			</div>
         </div><!--/.panel-footer-->

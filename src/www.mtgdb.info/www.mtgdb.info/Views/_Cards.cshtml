@@ -6,7 +6,7 @@
 @foreach(var cardInfo in Model)
 {
 	cardIdx++;
-    string color = cardInfo.Amount > 0 ? "" : "dontown";
+    string color = cardInfo.Amount > 0 ? "" : "dont-own";
     string description = cardInfo.Card.Description.Replace("\"","'");
     string name = cardInfo.Card.Name.Replace("\"","'");
     string tooltipPlacement = "right";
@@ -31,8 +31,7 @@
       				<span class="input-group-btn">
         				<button class="btn btn-danger" type="button" onclick="minusCard(@cardInfo.Card.Id);"><i class="fa fa-minus"></i></button>
       				</span>
-      				<input type="text" class="form-control" id="@cardInfo.Card.Id" type="text" onkeyup="changeAmount(@cardInfo.Card.Id);"
-	            placeholder="0" value="@cardInfo.Amount">
+      				<input type="text" class="form-control" id="@cardInfo.Card.Id" type="text" onkeyup="changeAmount(@cardInfo.Card.Id);" placeholder="0" value="@cardInfo.Amount">
       				<span class="input-group-btn">
         				<button class="btn btn-success" type="button" onclick="addCard(@cardInfo.Card.Id);"><i class="fa fa-plus"></i></button>
       				</span>
