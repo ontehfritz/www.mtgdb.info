@@ -1,3 +1,40 @@
+$(function() {
+        $( ".rdate" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+});
+
+$("#add_ruling").click(function(){
+    var count = parseInt($("#ruling_count").val()) + 1;
+    $("#ruling_count").val(count);
+
+    $('#rulings > tbody:last').prepend('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
+    + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="4" cols="50" name="Rulings[' + count + 
+    '].Rule" required></textarea></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeRuling(\'ruling_' + count + '\');"></span></td></tr>');
+    $( ".rdate" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+}); 
+
+function removeRuling(id)
+{
+    //alert(id);
+    $('#' + id).remove();
+    return false;
+}
+
+$("#add_format").click(function(){
+    var count = parseInt($("#format_count").val()) + 1;
+    $("#format_count").val(count);
+
+    $('#formats > tbody:last').prepend('<tr id="format_' + count + '"><td><input type="text" name="Formats[' +  count
+    + '].Name" value="" required /></td><td><input type="text" name="Formats[' + count + 
+    '].Legality" value="" /></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeFormat(\'format_' + count + '\');"></span></td></tr>');
+}); 
+
+function removeFormat(id)
+{
+    //alert(id);
+    $('#' + id).remove();
+    return false;
+}
+
 $(document).ready(function() { 
 	$("#set_list").select2({
     	matcher: function(term, text) { return text.toUpperCase().indexOf(term.toUpperCase())==0; },

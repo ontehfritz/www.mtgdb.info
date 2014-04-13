@@ -6,15 +6,15 @@
 @section Top{
     <div class="t_section">
     <h1>
-    Submit a card update <br /> 
-    <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
+        Submit a card update <br /> 
+        <small>Multiverse Id: <a href="/cards/@Model.Mvid">@Model.Mvid</a></small>
     </h1>
     </div>
 }
 
 <div style="width:1200px;">
     <form action="/cards/@Model.Mvid/change" method="post">
-    <div id="card_@Model.Mvid" class="card">
+    <div id="card_@Model.Mvid" class="card" style="margin-left:300px;">
         @{ string imageUrl = string.Format("https://api.mtgdb.info/content/card_images/{0}.jpeg", @Model.Mvid);}
         <img src="@imageUrl" />
     </div>
@@ -166,7 +166,6 @@
                     <textarea rows="4" cols="50" name="Rulings[@i].Rule" required >@rule.Rule.Trim()</textarea>
                 </td>
                 <td>
-                    
                     <span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;"
                     onclick="removeRuling('ruling_@i');"></span>
                 </td>
@@ -192,42 +191,4 @@
     </form>
 </div>
 
-<script>
-    $(function() {
-        $( ".rdate" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
-    });
 
-    $("#add_ruling").click(function(){
-        var count = parseInt($("#ruling_count").val()) + 1;
-        $("#ruling_count").val(count);
-
-        $('#rulings > tbody:last').prepend('<tr id="ruling_' + count + '"><td><input type="text" class="rdate" name="Rulings[' +  count
-        + '].ReleasedAt" value="" placeholder="Enter date" required /></td><td><textarea rows="4" cols="50" name="Rulings[' + count + 
-        '].Rule" required></textarea></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeRuling(\'ruling_' + count + '\');"></span></td></tr>');
-        $( ".rdate" ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
-    }); 
-
-    function removeRuling(id)
-    {
-        //alert(id);
-        $('#' + id).remove();
-        return false;
-    }
-
-    $("#add_format").click(function(){
-        var count = parseInt($("#format_count").val()) + 1;
-        $("#format_count").val(count);
-
-        $('#formats > tbody:last').prepend('<tr id="format_' + count + '"><td><input type="text" name="Formats[' +  count
-        + '].Name" value="" required /></td><td><input type="text" name="Formats[' + count + 
-        '].Legality" value="" /></td> <td><span class="glyphicon glyphicon-minus-sign" style="cursor:pointer;" onclick="removeFormat(\'format_' + count + '\');"></span></td></tr>');
-    }); 
-
-    function removeFormat(id)
-    {
-        //alert(id);
-        $('#' + id).remove();
-        return false;
-    }
-
-</script>
