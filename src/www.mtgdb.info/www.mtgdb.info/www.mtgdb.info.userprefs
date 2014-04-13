@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/_SetsDropDown.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bootstrapper.cs">
     <Files>
-      <File FileName="Bootstrapper.cs" Line="1" Column="1" />
-      <File FileName="Views/Card.cshtml" Line="12" Column="11" />
-      <File FileName="Content/css/mtgdb.css" Line="379" Column="22" />
-      <File FileName="Helpers/Render.cs" Line="59" Column="66" />
+      <File FileName="Bootstrapper.cs" Line="2" Column="7" />
+      <File FileName="Views/Card.cshtml" Line="1" Column="1" />
+      <File FileName="Content/css/mtgdb.css" Line="1" Column="1" />
+      <File FileName="Helpers/Render.cs" Line="1" Column="1" />
       <File FileName="Views/_SetsDropDown.cshtml" Line="249" Column="3" />
-      <File FileName="Views/Sets.cshtml" Line="419" Column="50" />
+      <File FileName="Views/Sets.cshtml" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
