@@ -17,12 +17,14 @@ namespace MtgDb.Info
             RuleFor(change => change.CardSetId).NotEmpty();
             RuleFor(change => change.CardSetName).NotEmpty();
             RuleFor(change => change.Colors).NotEmpty();
+            RuleFor(change => change.ReleasedAt)
+                .Matches("^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$")
+                .WithMessage("Card release date must be in yyyy-mm-dd fomat");
 
             RuleFor(change => change.ConvertedManaCost)
                 .GreaterThanOrEqualTo(0);
             RuleFor(change => change.Power)
                 .GreaterThanOrEqualTo(0);
-
 
             RuleFor(change => change.Toughness)
                 .GreaterThanOrEqualTo(0);
@@ -33,11 +35,36 @@ namespace MtgDb.Info
             RuleFor(change => change.Comment).NotEmpty();
             RuleFor(change => change.RelatedCardId)
                 .GreaterThanOrEqualTo(0);
+
+            RuleFor(change => change.Rulings)
+                .SetCollectionValidator(new RulingValidator());
+
+            RuleFor(change => change.Formats)
+                .SetCollectionValidator(new FormatValidator());
         }
     }
 
+    public class RulingValidator : AbstractValidator<MtgDbAdminDriver.Ruling>
+    {
+        public RulingValidator()
+        {
+            RuleFor(rule => rule.ReleasedAt)
+                .Matches("^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$")
+                .WithMessage("Ruling release date must be in yyyy-mm-dd fomat");
 
+            RuleFor(rule => rule.Rule).NotEmpty();
+        }
+    }
 
+    public class FormatValidator : AbstractValidator<MtgDbAdminDriver.Format>
+    {
+        public FormatValidator()
+        {
+            RuleFor(format => format.Legality).NotEmpty();
+            RuleFor(format => format.Name).NotEmpty();
+        }
+    }
+        
     public class CardChange : PageModel
     {
         public static string DateFormat = "yyyy-MM-dd";
