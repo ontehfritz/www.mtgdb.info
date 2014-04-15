@@ -5,13 +5,13 @@
 
 @if(Model.Profile != null)
 {
-  <div>
-    <h1>@Model.Profile.Name <small>Joined: @Model.Profile.CreatedAt.ToShortDateString()</small></h1>
-  </div>
+  <h1>@Model.Profile.Name</h1>
+
+  <p><strong>Joined:</strong> @Model.Profile.CreatedAt.ToShortDateString()</p>
 
   if(@Model.UserCards != null && @Model.UserCards.Length > 0)
   {
-    <h3>Card Catalog: @Model.UserCards.Length</h3>
+  <p><strong>Unique Cards Owned:</strong> @Model.UserCards.Length</p>
   }
 }
 

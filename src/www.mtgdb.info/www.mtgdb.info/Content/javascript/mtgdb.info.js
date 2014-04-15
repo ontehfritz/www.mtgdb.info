@@ -54,7 +54,20 @@ $(document).ready(function() {
 
 	$('.label-legality').tooltip();
 
-	$('.search-result').popover({trigger:'hover',html:true});
+	$('.search-result, .binder-card').popover({trigger:'hover',html:true});
+
+	$('#check-yes').change(function(){
+		$chk = $(this).is(':checked');
+		$del = $('#delete-acct');
+
+		if($chk){
+			$del.removeClass('disabled');
+		}
+		else
+		{
+			$del.addClass('disabled');
+		}
+	});
 });
 
 function updateTotal(n)

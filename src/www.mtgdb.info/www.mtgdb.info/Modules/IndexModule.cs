@@ -22,16 +22,17 @@ namespace MtgDb.Info
             Get ["/about"] = parameters => {
                 PageModel model = new PageModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+				model.ActiveMenu = "about";
 
                 return View["about", model];
             };
 
-			Get ["/FAQ"] = parameters => {
+			Get ["/faq"] = parameters => {
                 PageModel model = new PageModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-				model.ActiveMenu = "FAQ";
+				model.ActiveMenu = "faq";
 
-				return View["FAQ", model];
+				return View["faq", model];
             };
 
             Get ["/terms"] = parameters => {
@@ -198,6 +199,7 @@ namespace MtgDb.Info
             Get ["/pw/{planeswalker}"] = parameters => {
                 PlaneswalkerModel model = new PlaneswalkerModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+				model.ActiveMenu = "planeswalker";
 
                 string planeswalker = ((string)parameters.planeswalker).ToLower();
 
