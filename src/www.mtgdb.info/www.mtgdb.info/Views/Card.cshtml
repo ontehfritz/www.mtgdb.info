@@ -57,8 +57,9 @@
         <p><strong>Mana Cost:</strong> <span class="mana-cost">@Html.Raw(RenderHtml.Mana(Model.Card.ManaCost))</span></p>
         <p><strong>Converted Cost:</strong> @Model.Card.ConvertedManaCost</p>
         <p><strong>Type:</strong> @Model.Card.Type @(@Model.Card.SubType != null ? "-" : "") @(Model.Card.SubType)</p>
+        <p><strong>Rarity:</strong> @Model.Card.Rarity</p>
         <p><strong>Text:</strong> @Html.Raw(RenderHtml.Text(@Model.Card.Description))</p>
-        @if(Model.Card.Type.Contains("creature")){
+        @if(Model.Card.Type.ToLower().Contains("creature")){
         <p><strong>Power & Toughness:</strong> @Model.Card.Power / @Model.Card.Toughness </p>
         }
         <p><strong>Artist:</strong> @Model.Card.Artist</p>
@@ -132,7 +133,7 @@
     }
     else
     {
-        <em>This card has no rulings.</em>
+        <em class="no-rulings">This card has no rulings.</em>
     }
 </div>
  <div>

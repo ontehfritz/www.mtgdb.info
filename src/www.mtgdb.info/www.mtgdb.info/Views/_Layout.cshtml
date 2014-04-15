@@ -30,127 +30,76 @@
 	  <!-- Collect the nav links, forms, and other content for toggling -->
 	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
 	        <ul class="nav navbar-nav">
-	            @if(Model.ActiveMenu == "sets")
+                <li @(Model.ActiveMenu == "sets" ? "class='active'":"")>
+                	<a href="~/sets">
+                		<i class="fa fa-book"></i>&nbsp;
+                		Set Binders
+                	</a>
+                </li>
+                <li @(Model.ActiveMenu == "search" ? "class='active'":"")>
+                	<a href="~/search">
+                		<i class="fa fa-search"></i>&nbsp;
+                		Search
+                	</a>
+                </li>
+	            @if(Model.Planeswalker != null)
 	            {
-	                <li class="active">
-	                	<a href="~/sets">
-	                		<i class="fa fa-book"></i>&nbsp;
-	                		Set Binders
-	                	</a>
-	                </li>
-	            }
-	            else
-	            {
-	                <li>
-	                	<a href="~/sets">
-	                		<i class="fa fa-book"></i>&nbsp;
-	                		Set Binders
-	                	</a>
-	                </li>
-	            }
-
-	            @if(Model.ActiveMenu == "search")
-	            {
-	                <li class="active">
-	                	<a href="~/search">
-	                		<i class="fa fa-search"></i>&nbsp;
-	                		Search
-	                	</a>
-	                </li>
-	            }
-	            else
-	            {
-	                <li>
-	                	<a href="~/search">
-	                		<i class="fa fa-search"></i>&nbsp;
-	                		Search
-	                	</a>
-	                </li>
-	            }
-
-	            @if(Model.Planeswalker != null && Model.ActiveMenu == "mycards")
-	            {
-	                <li class="active"><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
-	            }
-	            else if(Model.Planeswalker != null)
-	            {
-	                <li><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
+	           	<li @(Model.ActiveMenu == "mycards" ? "class='active'":"")>
+                	<a href="/pw/@Model.Planeswalker.UserName/cards">
+                		<i class="fa fa-archive"></i>&nbsp;
+                		My Cards
+                	</a>
+                </li>
+				<li class="@(Model.ActiveMenu == "mydecks" ? "active":"") disabled">
+                	<a href="/pw/@Model.Planeswalker.UserName/cards">
+                		<i class="fa fa-briefcase"></i>&nbsp;
+                		My Decks
+                	</a>
+                </li>
 	            }
 	        </ul>
 	        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
-			@if(Model.ActiveMenu == "help")
-	        {
-	            <li class="active">
-	            	<a href="~/FAQ">
-	            		FAQ
-	            	</a>
-	            </li>
-	        }
-	        else
-	        {
-	            <li>
-	            	<a href="~/FAQ">
-	            		FAQ
-	            	</a>
-	            </li>
-	        }
-	         @if(Model.ActiveMenu == "about")
-	        {
-	            <li class="active">
+				<li @(Model.ActiveMenu == "faq" ? "class='active'":"")>
+                	<a href="~/faq">
+                		FAQ
+                	</a>
+                </li>
+	            <li @(Model.ActiveMenu == "about" ? "class='active'":"")>
 	            	<a href="~/about">
 	            		About
 	            	</a>
 	            </li>
-	        }
-	        else
-	        {
-	            <li>
-	            	<a href="~/about">
-	            		About
-	            	</a>
-	            </li>
-	        }
-
-	        @if(@Model.Planeswalker != null)
-	        {
-	            <li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Planeswalker: @Model.Planeswalker.UserName 
-	            <b class="caret"></b></a>
-	            <ul class="dropdown-menu">
-	                <li><a href="/pw/@Model.Planeswalker.UserName/cards">My Cards</a></li>
-	                <li class="divider"></li>
-                    @if(Model.Planeswalker.InRole("admin"))
-                    {
-                        <li><a href="/cr">Change Requests</a></li>
-                        <li class="divider"></li>
-                    }
-	                <li><a href="/pw/@Model.Planeswalker.UserName">Profile</a></li>
-	                <li><a href="~/settings/">Settings</a></li>
-	                <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path">Sign Out</a></li>
-	            </ul>
-	            </li>
-	        }
-	        else
-	        {
-	            if(Model.ActiveMenu == "signin")
-	            {
-	                <li  class="active">
-	                	<a href="~/logon?url=@Html.RenderContext.Context.Request.Path">
-	                		<i class="fa fa-user"></i>&nbsp;
-	                		Sign In
-	                	</a>
-	                </li>
-	            }
-	            else
-	            {
-	                <li>
-	                	<a href="~/logon?url=@Html.RenderContext.Context.Request.Path">
-	                		<i class="fa fa-user"></i>&nbsp;
-	                		Sign In
-	                	</a>
-	                </li>
-	            }
-	        }
+		        @if(@Model.Planeswalker != null)
+		        {
+		            <li class="dropdown @(Model.ActiveMenu == "planeswalker" || Model.ActiveMenu == "settings" ? "active":"")">
+			            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+			            	Planeswalker: @Model.Planeswalker.Profile.Name
+			            	&nbsp;<i class="fa fa-caret-down"></i>
+			            </a>
+			            <ul class="dropdown-menu">
+			                <li><a href="/pw/@Model.Planeswalker.UserName/cards"><i class="fa fa-archive"></i> My Cards</a></li>
+			                <li class="disabled"><a href="/pw/@Model.Planeswalker.UserName/decks"><i class="fa fa-briefcase"></i> My Decks</a></li>
+			                <li class="divider"></li>
+		                    @if(Model.Planeswalker.InRole("admin"))
+		                    {
+		                        <li><a href="/cr">Change Requests</a></li>
+		                        <li class="divider"></li>
+		                    }
+			                <li><a href="/pw/@Model.Planeswalker.UserName"><i class="fa fa-user"></i> Profile</a></li>
+			                <li><a href="~/settings/"><i class="fa fa-gear"></i> Settings</a></li>
+			                <li><a href="~/logout/?url=@Html.RenderContext.Context.Request.Path"><i class="fa fa-power-off"></i> Sign Out</a></li>
+			            </ul>
+		            </li>
+		        }
+		        else
+		        {
+                <li @(Model.ActiveMenu == "signin" ? "class='active'":"")>
+                	<a href="~/logon?url=@Html.RenderContext.Context.Request.Path">
+                		<i class="fa fa-user"></i>&nbsp;
+                		Sign In
+                	</a>
+                </li>
+				}
 	        </ul>
 	    </div><!-- /.navbar-collapse -->
 	</div><!---/.container-->

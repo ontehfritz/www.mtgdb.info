@@ -7,29 +7,40 @@
 {
    <h4>Settings for: @Model.Planeswalker.Profile.Name</h4>
 }
-<div>
-    <form action="/settings" method="post">
-        <div>
-            <label for="Name">Planeswalker:</label>
-            <p><input type="text" name="Name" value="@Model.Planeswalker.Profile.Name"/></p>
-            <label for="Name">Email:</label>
-            <p><input type="text" name="Email" value="@Model.Planeswalker.Profile.Email" /></p>
-            <button class="btn btn-primary" name="Save" value="Save" type="submit">Save</button>
-        </div>
-        <hr />
-        <h4>Change password:</h4>
-        <div>
-            <p><input type="password" name="Password" placeholder="New Password" /></p>
-            <p><input type="password" name="ConfirmPassword" placeholder="Confirm Password" /></p>
-            <button class="btn btn-primary" name="ChangePassword" type="submit">New Password</button>
-        </div>
-        <hr />
-        <h4>Delete account:</h4>
-        <p>This is permanent and all data will be lost!</p>
-        <p><input type="checkbox" name="Yes" value="true" /> Yes, I know </p>
-        <div>
-            <button class="btn btn-danger" name="Delete" type="submit">Delete Account</button>
-        </div>
-    </form>
+<div class="row">
+	<div class="col-md-4">
+	    <form action="/settings" method="post">
+	    	<h4>Update Username/Email:</h4>
+	        <div class="form-group">
+	            <label for="Name">Display Name:</label>
+	            <input type="text" class="form-control" name="Name" value="@Model.Planeswalker.Profile.Name"/>
+	       	</div>
+			<div class="form-group">
+	            <label for="Name">Email:</label>
+	            <input type="text" class="form-control" name="Email" value="@Model.Planeswalker.Profile.Email" />
+	        </div>
+	        <button class="btn btn-primary" name="Save" value="Save" type="submit">Save Changes</button>
+	        <hr />
+	        <h4>Change password:</h4>
+	        <div class="form-group">
+	        	<label for="Password">New Password:</label>
+	            <input type="password" class="form-control" name="Password" placeholder="Enter new password" />
+	       	</div>
+			<div class="form-group">
+	            <label for="ConfirmPassword">Confirm Password:</label>
+	            <input type="password" class="form-control" name="ConfirmPassword" placeholder="Confirm new password" />
+	       	</div>
+	        <button class="btn btn-primary" name="ChangePassword" type="submit">Change Password</button>
+	        <hr />
+	        <h4>Delete account:</h4>
+	        <p>This is permanent and all data will be lost!</p>
+	        <div class="checkbox">
+	        	<label>
+	        		<input id="check-yes" type="checkbox" name="Yes" value="true" />
+	        		<span class="text-danger"><strong>Yes, I know.</strong> Activate the Delete Account button!</span>
+	        	</label>
+	        </div>
+	        <button id="delete-acct" class="btn btn-danger disabled" name="Delete" type="submit">Delete Account</button>
+	    </form>
+	</div>
 </div>
-

@@ -169,6 +169,17 @@ footer {
     border-radius:16px;
     height:310px;
     width:223px;
+    box-shadow:1px 1px 2px #000;
+    background-color: rgba(0,0,0,.4);
+}
+.card img:hover{
+    position:relative;
+    top: -2px;
+    left: -2px;
+    border-radius:16px;
+    height:310px;
+    width:223px;
+    box-shadow:2px 2px 4px rgba(0,0,0,.8);
 }
 .card_info{
     float:left;
@@ -190,7 +201,7 @@ footer {
 	text-align:center;
 }
 
-/*CARD*/
+/*SINGLE CARD*/
 
 .card-header-nav{
 	margin-bottom:1em;
@@ -238,6 +249,10 @@ footer {
 	padding-left:5.3em;
 	text-indent:-5.3em;
 }
+.no-rulings{
+	display:block;
+	margin-bottom:1em;
+}
 
 /*SEARCH*/
 
@@ -245,8 +260,17 @@ footer {
   float:left;
   width:8em;
   height:11em;
-  padding:.2em;
-  margin:0;
+  padding:0;
+  margin:.2em;
+  border-radius:10px;
+  box-shadow:1px 1px 1px #000;
+  background-color: rgba(0,0,0,.4);
+}
+.search-result:hover{
+  position:relative;
+  top:-2px;
+  left:-2px;
+  box-shadow:2px 2px 2px rgba(0,0,0,.8);
 }
 .search-result>a>img{
 	width:100%
@@ -680,15 +704,13 @@ h3 .symbol{
 }
 .symbol_HW,
 .symbol_500{
-	box-shadow: none !important;
-	border-radius:0 !important;
+	border-radius: 0 3em 3em 0 !important;
 	width: 10px;
 	background-position-x: -7.96em;
 	background-position-y: -6em;
 }
 .symbol_HR{
-	box-shadow: none !important;
-	border-radius:0 !important;
+	border-radius: 0 3em 3em 0 !important;
 	width: 7px;
 	background-position-x: -8.5em;
 	background-position-y:-6em; 

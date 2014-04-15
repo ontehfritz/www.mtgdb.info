@@ -18,11 +18,22 @@
 	Open source tools for managing and optimizing your <strong>Magic: the gathering</strong> collection, decks, and skills.  
 </p>
 <p class="lead">
-	<strong>MtgDb.info</strong> relies on the community to fund and help build great tools. We are always looking for help both technical and monetary. 100% of donations furthers the quality of <strong>MtgDb.info</strong>. Currently, our goal is to raise $1500 to add three more servers to the environment.
-  All money donated is used to further the quality of mtgdb.info. 
-  We are looking to raise <b>$1500 CAD</b> <small><b><i>(Status: $100/$1500)</i></b></small> to add three more servers 
-  to the environment. 
+	<strong>MtgDb.info</strong> relies on the community to fund and help build great tools. We are always looking for help both technical and monetary. 100% of donations furthers the quality of <strong>MtgDb.info</strong>. Currently, our goal is to raise $1,500 CAD to add three more servers to the environment.
 </p>
+<p class="lead">Fundraising progress:</p>
+@{
+	int Raised = 100;
+	int Goal = 1500;
+	string RaisedFormat = string.Format("${0:n0}",Raised);
+	string GoalFormat = string.Format("${0:n0}",Goal);
+	string Percent = (((decimal)Raised/Goal) * 100).ToString("#.##");
+}
+<div class="progress">
+  	<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@Percent" aria-valuemin="0" aria-valuemax="100" style="width:@Percent%;">
+    	@Percent %
+  	</div>
+</div>
+<p class="center"><strong>@RaisedFormat / @GoalFormat CAD</strong></p>
 <h1>Contributors</h1>
 <div class="row">
 	<div class="col-md-12">
@@ -208,7 +219,7 @@
 		<h3><a href="mailto:planeswalker@mtgdb.info"><i class="fa fa-envelope"></i> planeswalker@mtgdb.info</a></h3>
 	</li>
 	<li>
-		<h3><a href="https://github.com/planeswalkers"><i class="fa fa-github"></i> GITHUB</a></h3>
+		<h3><a href="https://github.com/planeswalkers"><i class="fa fa-github"></i> GitHub</a></h3>
 	</li>
 	<li>
 		<a href="https://twitter.com/mtgdb" class="twitter-follow-button" data-show-count="false">Follow</a>

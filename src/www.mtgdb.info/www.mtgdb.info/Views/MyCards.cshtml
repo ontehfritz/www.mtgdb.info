@@ -9,11 +9,9 @@
 
 @section Top
 {
-    <div style="color:white;margin-left:50px;">
-    <h4>Your Library</h4>
-    Unique cards owned <b><span id="unique">@Model.TotalCards</span></b> of 22200. 
-    Total number of cards (including duplicates) owned: <b><span id="total">@Model.TotalAmount</span></b>
-    </div>
+	<h4>Your Library</h4>
+	<span id="unique">Unique cards in collection: <strong>@Model.TotalCards</strong></span> 
+	<span id="total">Total Cards in collection: <strong>@Model.TotalAmount</strong></span>
 }
 
 <input type="hidden" id="active_set" value="@Model.SetId" />
