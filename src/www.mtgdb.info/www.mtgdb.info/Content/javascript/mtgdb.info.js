@@ -97,7 +97,7 @@ $(document).ready(function() {
     	escapeMarkup: function(m) { return m; }
 	});
 
-	$('.card').hover(function(){
+	$('.card, .my-card').hover(function(){
 		$('.card-amount').stop().fadeOut();
 		$(this).find('.card-amount').stop().fadeIn();
 	},function(){
@@ -106,9 +106,9 @@ $(document).ready(function() {
 
 	$('.card-amount').hide();
 
-	$('.label-legality').tooltip();
+	$('.label-legality, .set-tab a').tooltip();
 
-	$('.search-result, .binder-card').popover({trigger:'hover',html:true});
+	$('.search-result, .binder-card, .my-card').popover({trigger:'hover',html:true});
 
 	$('#check-yes').change(function(){
 		$chk = $(this).is(':checked');
@@ -249,7 +249,7 @@ function set_amount(cardId, amount)
         }
         else
         {
-            $('#img_' + cardId).attr('class', 'dontown');
+            $('#img_' + cardId).attr('class', 'dont-own');
         }
             
         if($('#value_' + cardId).length != 0)
