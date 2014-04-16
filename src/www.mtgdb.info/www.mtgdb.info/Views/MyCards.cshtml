@@ -16,6 +16,7 @@
 	<h4>@PossessiveName Library</h4>
 	<span>Unique cards in collection: <strong id="unique">@Model.TotalCards</strong>, Total Cards in collection: <strong id="total">@Model.TotalAmount</strong></span>
 }
+
 <input type="hidden" id="active_set" value="@Model.SetId" />
 <input type="hidden" id="active_block" value="@Model.Block.Replace(" ",string.Empty)" />
 <ul class="nav nav-tabs heading-tabs">
@@ -34,67 +35,68 @@
     <div class="panel-heading">
 
     </div><!--/.panel-heading-->
-	<div class="panel-body">
-		<ul class="nav nav-tabs heading-tabs">
-		@foreach(CardSet set in Model.Sets.OrderBy(n => n.ReleasedAt))
-		{
-	        string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-  			<li class="set-tab @(set.Id == Model.SetId ? "active" : "")">
-            	<a href="/pw/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/" data-toggle="tooltip" data-placement="top" title="@set.Name">
-                	<img src="@imgUrl"/>
-            	</a>
-        	</li>
-		}
-		</ul><!--/.nav-tabs-->
-		<div class="panel panel-default tab-panel">
-			<div class="panel-heading">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="pull-right">
-							<span>Show Cards: </span>
-							<div class="btn-group">
-							  <a href="?" type="button" class="btn btn-default @(Model.Show ? "":"active")">Owned</a>
-							  <a href="?show=true" type="button" class="btn btn-default @(Model.Show ? "active":"")">Full Set</a>
-							</div>
-						</div>	
-					</div>
-				</div>
-    		</div><!--/.panel-heading-->
-			<div class="panel-body">
-			@foreach(var cardInfo in Model.Cards)
-	        {
-	            string id = string.Format("card_{0}", cardInfo.Card.Id);
-	            string valueId = string.Format("value_{0}", cardInfo.Card.Id);
-	            string blockId = Model.Block.Replace(" ", string.Empty);
-	            string description = @cardInfo.Card.Description.Replace("\"","'");
-	            string name = @cardInfo.Card.Name.Replace("\"","'");
-	            string color = (cardInfo.Amount > 0 ? "" : "dont-own");
+    <div class="panel-body">
+        <ul class="nav nav-tabs heading-tabs">
+        @foreach(CardSet set in Model.Sets.OrderBy(n => n.ReleasedAt))
+        {
+            string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
+            <li class="set-tab @(set.Id == Model.SetId ? "active" : "")">
+                @{ set.Block = set.Block ?? set.Type; }
+                <a href="/pw/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/" data-toggle="tooltip" data-placement="top" title="@set.Name">
+                    <img src="@imgUrl"/>
+                </a>
+            </li>
+        }
+        </ul><!--/.nav-tabs-->
+        <div class="panel panel-default tab-panel">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pull-right">
+                            <span>Show Cards: </span>
+                            <div class="btn-group">
+                              <a href="?" type="button" class="btn btn-default @(Model.Show ? "":"active")">Owned</a>
+                              <a href="?show=true" type="button" class="btn btn-default @(Model.Show ? "active":"")">Full Set</a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div><!--/.panel-heading-->
+            <div class="panel-body">
+            @foreach(var cardInfo in Model.Cards)
+            {
+                string id = string.Format("card_{0}", cardInfo.Card.Id);
+                string valueId = string.Format("value_{0}", cardInfo.Card.Id);
+                string blockId = Model.Block.Replace(" ", string.Empty);
+                string description = @cardInfo.Card.Description.Replace("\"","'");
+                string name = @cardInfo.Card.Name.Replace("\"","'");
+                string color = (cardInfo.Amount > 0 ? "" : "dont-own");
 
-	            <!--input type="hidden" id="@cardInfo.Card.Id" value="@cardInfo.Amount" /-->
-		    	string popoverContent = string.Format("<strong>{0}</strong> - {1} ({2})<br/><em>{3} - {4}</em><br/>{5} - {6}",@cardInfo.Card.Name,@cardInfo.Card.ManaCost,@cardInfo.Card.ConvertedManaCost,@cardInfo.Card.Type,@cardInfo.Card.SubType,@cardInfo.Card.CardSetName,@cardInfo.Card.Rarity);
-		       	<div id="@id" class="my-card" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">
-		        	<a href="~/cards/@cardInfo.Card.Id">
-		            	<img id="img_@cardInfo.Card.Id" class="@color" src="@cardInfo.Card.CardImage" />
-		        	</a>
-		        	<div class="card-amount">
-		    			<div class="input-group">
-		      				<span class="input-group-btn">
-		        				<a class="btn btn-danger" type="button" onclick="minusCard(@cardInfo.Card.Id);"><i class="fa fa-minus"></i></a>
-		      				</span>
-		      				<input type="text" class="form-control" id="@cardInfo.Card.Id" type="text" onkeyup="changeAmount(@cardInfo.Card.Id);" placeholder="0" value="@cardInfo.Amount"/>
-		      				<span class="input-group-btn">
-		        				<a class="btn btn-success" type="button" onclick="addCard(@cardInfo.Card.Id);"><i class="fa fa-plus"></i></a>
-		      				</span>
-		    			</div><!-- /input-group -->
-					</div><!--/.card-amount-->
-		    	</div><!--/.my-card -->
-	        }
-			</div><!--/.panel-body-->
-		</div><!--/.tab-panel-->
-	</div><!--/.panel-body-->
-	<div class="panel-footer">
+                <!--input type="hidden" id="@cardInfo.Card.Id" value="@cardInfo.Amount" /-->
+                string popoverContent = string.Format("<strong>{0}</strong> - {1} ({2})<br/><em>{3} - {4}</em><br/>{5} - {6}",@cardInfo.Card.Name,@cardInfo.Card.ManaCost,@cardInfo.Card.ConvertedManaCost,@cardInfo.Card.Type,@cardInfo.Card.SubType,@cardInfo.Card.CardSetName,@cardInfo.Card.Rarity);
+                <div id="@id" class="my-card" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">
+                    <a href="~/cards/@cardInfo.Card.Id">
+                        <img id="img_@cardInfo.Card.Id" class="@color" src="@cardInfo.Card.CardImage" />
+                    </a>
+                    <div class="card-amount">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <a class="btn btn-danger" type="button" onclick="minusCard(@cardInfo.Card.Id);"><i class="fa fa-minus"></i></a>
+                            </span>
+                            <input type="text" class="form-control" id="@cardInfo.Card.Id" type="text" onkeyup="changeAmount(@cardInfo.Card.Id);" placeholder="0" value="@cardInfo.Amount"/>
+                            <span class="input-group-btn">
+                                <a class="btn btn-success" type="button" onclick="addCard(@cardInfo.Card.Id);"><i class="fa fa-plus"></i></a>
+                            </span>
+                        </div><!-- /input-group -->
+                    </div><!--/.card-amount-->
+                </div><!--/.my-card -->
+            }
+            </div><!--/.panel-body-->
+        </div><!--/.tab-panel-->
+    </div><!--/.panel-body-->
+    <div class="panel-footer">
 
-	</div>
+    </div>
 </div>
 <!--
 <div class="tab-container" id="outer-container">

@@ -255,7 +255,7 @@ namespace MtgDb.Info
                     model.TotalCards = model.Counts.Sum(x => x.Value);
                     model.TotalAmount = repository.GetUserCards(model.Planeswalker.Id).Sum(x => x.Amount);
                     
-                    string[] blocks;
+                    List<string> blocks;
 
                     if(model.Counts.Count > 0)
                     {
@@ -263,23 +263,39 @@ namespace MtgDb.Info
                             .AsEnumerable().Select(x => x.Key)
                             .ToArray());
 
-                        blocks = model.Sets.Select(x => x.Block).Distinct().OrderBy(x => x).ToArray();
+                        blocks = model.Sets
+                            .Select(x => x.Block)
+                            .Where(x => x != null)
+                            .Distinct()
+                            .OrderBy(x => x).ToList();
+
+                        blocks.AddRange(model.Sets
+                            .Where(x => x.Block == null)
+                            .Select(x => x.Type)
+                            .Distinct()
+                            .OrderBy(x => x).ToList());
+
+                        blocks = blocks.Distinct().ToList();
 
                         foreach(string block in blocks)
                         {
-                            CardSet[] sets = model.Sets.Where(x => x.Block == block).ToArray();
+                            List<CardSet> sets = new List<CardSet>();
+                            sets = model.Sets.Where(x => x.Block == block).ToList();
+                            sets.AddRange(model.Sets.Where(x => x.Type == block && x.Block == null).ToList());
                         
                             int total = 0; 
                             foreach(CardSet set in sets)
                             {
                                 total += model.Counts[set.Id];
                             }
-
-                            model.Blocks.Add(block,total);
+                            if(block != null)
+                            {
+                                model.Blocks.Add(block,total);
+                            }
                         }
 
                         model.Sets = model.Sets
-                            .Where(x => x.Block == model.Block)
+                            .Where(x => x.Block == model.Block || x.Type == model.Block)
                             .OrderBy(x => x.Name).ToArray();
 
                         if(model.Sets == null || model.Sets.Length == 0)
@@ -287,24 +303,23 @@ namespace MtgDb.Info
                             return Response.AsRedirect(string.Format("~/{0}/cards", 
                                 model.Planeswalker.UserName));
                         }
-                       
 
                         if(setId == null)
                         {
                             setId = model.Sets.FirstOrDefault().Id;
                         }
-
+//
                         model.SetId = setId;
                         model.UserCards = repository.GetUserCards(model.Planeswalker.Id, setId);
-
+//
                         if(model.UserCards == null || 
                             model.UserCards.Length  == 0)
                         {
                             return Response.AsRedirect(string.Format("~/{0}/cards", 
                                 model.Planeswalker.UserName));
                         }
-
-
+//
+//
                         Card[] dbcards = null;
                         if(Request.Query.Show != null)
                         {
@@ -321,14 +336,14 @@ namespace MtgDb.Info
 
                             model.Show = false;
                         }
-
+//
                         if(dbcards == null || 
                             dbcards.Length == 0)
                         {
                             return Response.AsRedirect(string.Format("~/{0}/cards", 
                                 model.Planeswalker.UserName));
                         }
-
+//
                         List<CardInfo> cards = new List<CardInfo>();
 
                         CardInfo card = null;
@@ -345,8 +360,8 @@ namespace MtgDb.Info
                         
                             cards.Add(card);
                         }
-
-                        model.Cards = cards.OrderBy(x => x.Card.SetNumber).ToArray();
+//
+                       model.Cards = cards.OrderBy(x => x.Card.SetNumber).ToArray();
                     }
                     else
                     {
@@ -386,7 +401,7 @@ namespace MtgDb.Info
                         CardSet s = magicdb.GetSet(setId);
                       
                         return Response.AsRedirect(string.Format("/pw/{0}/blocks/{1}/cards",
-                            model.Planeswalker.UserName, s.Block ));
+                            model.Planeswalker.UserName, s.Block ?? s.Type ));
                     }
 
                     model.Information.Add("You have no cards yet in your library. " +

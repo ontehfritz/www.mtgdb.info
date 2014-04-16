@@ -1,18 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Content/javascript/mtgdb.info.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/DeckModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Models/Views/CardModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Change/CardChange.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/IDeckRepository.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/MongoDeckRepository.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Models/CardChange.cs" Line="1" Column="1" />
+      <File FileName="Test_MtgDb.Info/Test.cs" Line="1" Column="1" />
+      <File FileName="Test_MtgDb.Info/DeckTest.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="20" Column="12" />
       <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Content/javascript/mtgdb.info.js" Line="38" Column="5" />
-      <File FileName="www.mtgdb.info/Content/javascript/angular.min.js" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Content/javascript/bootstrap.min.js" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
