@@ -34,13 +34,13 @@
 		<div class="col-md-12 center">
 		    @foreach(CardInfo card in Model.Cards)
 		    {
-		    	string color = (Model.Planeswalker == null || card.Amount > 0) ? "" : "dont-own";
-		    	string popoverContent = string.Format("<strong>{0}</strong> - {1} ({2})<br/><em>{3} - {4}</em><br/>{5} - {6}",@card.Card.Name,@card.Card.ManaCost,@card.Card.ConvertedManaCost,@card.Card.Type,@card.Card.SubType,@card.Card.CardSetName,@card.Card.Rarity);
-		       	<div class="search-result" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">
-		        	<a href="~cards/@card.Card.Id" class="@color">
-		            	<img src="@card.Card.CardImage"/>
-		        	</a>
-		    	</div>
+	    	string color = (Model.Planeswalker == null || card.Amount > 0) ? "" : "dont-own";
+	    	string popoverContent = string.Format("<strong>{0}</strong> - {1} ({2})<br/><em>{3} - {4}</em><br/>{5} - {6}",@card.Card.Name,@card.Card.ManaCost,@card.Card.ConvertedManaCost,@card.Card.Type,@card.Card.SubType,@card.Card.CardSetName,@card.Card.Rarity);
+	       	<div class="search-result" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">
+	        	<a href="~cards/@card.Card.Id" class="@color">
+	            	<img src="@card.Card.CardImage"/>
+	        	</a>
+	    	</div>
 		    }
 	    </div>
 	</div>
