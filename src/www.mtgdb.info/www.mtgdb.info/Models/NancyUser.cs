@@ -37,12 +37,10 @@ namespace MtgDb.Info
 
                 return user;
             }
-            catch(Exception e)
-            {
-                return null;
-            }
-                
-            return null;
+			catch(Exception e)
+			{
+				return null;
+			}
         }
     }
 

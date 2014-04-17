@@ -1,13 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bootstrapper.cs">
-    <Files>
-      <File FileName="Content/css/mtgdb.css" Line="1" Column="1" />
-      <File FileName="Views/Search.cshtml" Line="1" Column="1" />
-      <File FileName="Content/javascript/mtgdb.info.js" Line="1" Column="1" />
-      <File FileName="Bootstrapper.cs" Line="2" Column="7" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

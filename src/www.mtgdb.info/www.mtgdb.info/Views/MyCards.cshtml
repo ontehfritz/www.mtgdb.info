@@ -16,7 +16,6 @@
 	<h4>@PossessiveName Library</h4>
 	<span>Unique cards in collection: <strong id="unique">@Model.TotalCards</strong>, Total Cards in collection: <strong id="total">@Model.TotalAmount</strong></span>
 }
-
 <input type="hidden" id="active_set" value="@Model.SetId" />
 <input type="hidden" id="active_block" value="@Model.Block.Replace(" ",string.Empty)" />
 <ul class="nav nav-tabs heading-tabs">
@@ -78,14 +77,14 @@
                     <a href="~/cards/@cardInfo.Card.Id">
                         <img id="img_@cardInfo.Card.Id" class="@color" src="@cardInfo.Card.CardImage" />
                     </a>
-                    <div class="card-amount">
+                    <div class="card-amount card-amount-xs">
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <a class="btn btn-danger" type="button" onclick="minusCard(@cardInfo.Card.Id);"><i class="fa fa-minus"></i></a>
+                                <a class="btn btn-danger btn-xs" type="button" onclick="minusCard(@cardInfo.Card.Id);"><i class="fa fa-minus"></i></a>
                             </span>
                             <input type="text" class="form-control" id="@cardInfo.Card.Id" type="text" onkeyup="changeAmount(@cardInfo.Card.Id);" placeholder="0" value="@cardInfo.Amount"/>
                             <span class="input-group-btn">
-                                <a class="btn btn-success" type="button" onclick="addCard(@cardInfo.Card.Id);"><i class="fa fa-plus"></i></a>
+                                <a class="btn btn-success btn-xs" type="button" onclick="addCard(@cardInfo.Card.Id);"><i class="fa fa-plus"></i></a>
                             </span>
                         </div><!-- /input-group -->
                     </div><!--/.card-amount-->
