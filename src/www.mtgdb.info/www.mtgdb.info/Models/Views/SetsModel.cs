@@ -12,12 +12,24 @@ namespace MtgDb.Info
 
         public SetsModel () : base(){}
 
-        public CardSet[] GetBlock(string cardSet)
+		public String[] GetSetTypes()
+		{
+			return 
+				(Sets.Where(n => n.Type != null).OrderBy(n => n.ReleasedAt).Select(n => n.Type)).Distinct().ToArray();
+		}
+
+		public String[] GetBlocksInSetType(string typeName)
+		{
+			return 
+				(Sets.Where(n => n.Type == typeName).Where(n => n.Block != null).OrderByDescending(n => n.ReleasedAt).Select(n => n.Block)).Distinct().ToArray();
+		}
+			
+		public CardSet[] GetSetsInTypeAndBlock(string typeName,string blockName)
         {
             return 
-				(Sets.Where (n => n.Block == cardSet).OrderByDescending(n => n.ReleasedAt)).ToArray();
+				(Sets.Where(n => n.Type == typeName).Where (n => n.Block == blockName).OrderByDescending(n => n.ReleasedAt)).ToArray();
         }
-
+			
         public int GetSetCount(string setId)
         {
             if(UserCards != null && UserCards.Count > 0)

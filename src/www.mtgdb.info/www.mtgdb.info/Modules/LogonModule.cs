@@ -198,7 +198,7 @@ namespace MtgDb.Info
                 }
                 catch(Exception e)
                 {
-                    //swallow this for now
+					return null;
                 }
 
                 return View["Logon", logon];

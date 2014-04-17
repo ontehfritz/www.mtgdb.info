@@ -15,13 +15,12 @@ namespace MtgDb.Info
         public Profile Profile                  { get; set; }
         public string SetId                     { get; set; }
         public Dictionary<string,int> Blocks    { get; set; }
-        public string Block                     { get; set; }
+		public string Block                     { get; set; }
 
         public PlaneswalkerModel () : base ()
         {
             Counts = new Dictionary<string, int>();
             Blocks = new Dictionary<string, int>();
-            //this.Planeswalker
         }
     }
 }

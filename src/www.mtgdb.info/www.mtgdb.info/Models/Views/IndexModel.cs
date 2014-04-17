@@ -22,10 +22,16 @@ namespace MtgDb.Info
         public MtgDb.Info.CardSet[] Sets    { set; get; }
         public string ActiveSet             { get; set; }
 
-		public CardSet[] GetBlock(string cardSet)
+		public String[] GetSetTypes()
 		{
 			return 
-				(Sets.Where (n => n.Block == cardSet).OrderByDescending(n => n.ReleasedAt)).ToArray();
+				(Sets.Where(n => n.Type != null).OrderBy(n => n.ReleasedAt).Select(n => n.Type)).Distinct().ToArray();
+		}
+
+		public CardSet[] GetSetsInType(string typeName)
+		{
+			return 
+				(Sets.Where(n => n.Type == typeName).OrderByDescending(n => n.ReleasedAt)).ToArray();
 		}
     }
 }
