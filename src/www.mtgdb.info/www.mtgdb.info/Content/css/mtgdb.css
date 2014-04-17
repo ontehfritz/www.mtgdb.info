@@ -202,6 +202,14 @@ footer {
 	text-align:center;
 	padding:0;
 }
+.card-amount-xs{
+	width:5em !important;
+	top: 4em !important;
+	left:1.5em !important;
+}
+.card-amount-xs input{
+	height:22px;
+}
 
 /*SINGLE CARD*/
 
