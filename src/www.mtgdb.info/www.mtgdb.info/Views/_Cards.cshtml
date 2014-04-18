@@ -20,9 +20,10 @@
 	}
 
    	@{
-   		string popoverContent = string.Format("<strong>{0}</strong> - {1} ({2})<br/><em>{3} - {4}</em><br/>{5} - {6}",@cardInfo.Card.Name,@cardInfo.Card.ManaCost,@cardInfo.Card.ConvertedManaCost,@cardInfo.Card.Type,@cardInfo.Card.SubType,@cardInfo.Card.CardSetName,@cardInfo.Card.Rarity);
+   		string popoverTitle = string.Format("<strong>{0}</strong> - {1} ({2})",@cardInfo.Card.Name,@cardInfo.Card.ManaCost,@cardInfo.Card.ConvertedManaCost);
+   		string popoverContent = string.Format("<em>{0} - {1}</em><br/>{2} - {3}",@cardInfo.Card.Type,@cardInfo.Card.SubType,@cardInfo.Card.CardSetName,@cardInfo.Card.Rarity);
    	}
-    <div class="card binder-card card-@cardIdx" id="card_@cardInfo.Card.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">
+    <div class="card binder-card card-@cardIdx" id="card_@cardInfo.Card.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent" data-title="@popoverTitle">
     	<a href="~/cards/@cardInfo.Card.Id">
 	        <img id="img_@cardInfo.Card.Id" class="tip @color" src="@cardInfo.Card.CardImage"/>
 	    </a>
