@@ -38,6 +38,51 @@ namespace MtgDb.Info
             SideBar =   new List<DeckCard>();
         }
 
+        public void SetCards(int [] mvids)
+        {
+            Dictionary<int, int> deckCard = new Dictionary<int, int>();
+
+            foreach(int mvid in  mvids)
+            {
+                if(deckCard.ContainsKey(mvid))
+                {
+                    deckCard[mvid] = deckCard[mvid]++;
+                }
+                else
+                {
+                    deckCard.Add(mvid,1);
+                }
+            }
+
+
+            Cards = deckCard.Select(c => new DeckCard { 
+                MultiverseId = c.Key, Amount = c.Value 
+            }).ToList();
+        }
+
+
+        public void SetSideBar(int [] mvids)
+        {
+            Dictionary<int, int> deckCard = new Dictionary<int, int>();
+
+            foreach(int mvid in  mvids)
+            {
+                if(deckCard.ContainsKey(mvid))
+                {
+                    deckCard[mvid] = deckCard[mvid]++;
+                }
+                else
+                {
+                    deckCard.Add(mvid,1);
+                }
+            }
+
+
+            SideBar = deckCard.Select(c => new DeckCard { 
+                MultiverseId = c.Key, Amount = c.Value 
+            }).ToList();
+        }
+
         public Card[] GetCards()
         {
             if(Cards != null)
