@@ -4,8 +4,11 @@ namespace MtgDb.Info
 {
     public class DeckModel : PageModel
     {
-        public DeckModel ()
+        Deck Deck { get; set; }
+
+        public DeckModel () : base()
         {
+
         }
     }
 }

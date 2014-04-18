@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization.Attributes;
+using MtgDb.Info.Driver;
+using System.Configuration;
+using System.Linq;
 
 namespace MtgDb.Info
 {
@@ -25,10 +28,43 @@ namespace MtgDb.Info
         [BsonElement]
         public DateTime ModifiedAt      { get; set; }
 
+        [BsonIgnore]
+        private Db mtgDb; 
+
         public Deck ()
         {
+            mtgDb =     new Db (ConfigurationManager.AppSettings.Get("api"));
             Cards =     new List<DeckCard>();
             SideBar =   new List<DeckCard>();
+        }
+
+        public Card[] GetCards()
+        {
+            if(Cards != null)
+            {
+                int [] multiverseIds = Cards
+                    .Select(x => x.MultiverseId)
+                    .ToArray();
+
+                return mtgDb.GetCards(multiverseIds).ToArray();
+            }
+
+            return null;
+             
+        }
+
+        public Card[] GetSideBarCards()
+        {
+            if(Cards != null)
+            {
+                int [] multiverseIds = SideBar
+                    .Select(x => x.MultiverseId)
+                    .ToArray();
+
+                return mtgDb.GetCards(multiverseIds).ToArray();
+            }
+
+            return null;
         }
     }
 
