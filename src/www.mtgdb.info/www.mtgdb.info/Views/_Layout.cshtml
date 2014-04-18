@@ -173,14 +173,21 @@
     @RenderBody()
     <hr />
     <footer>
-        <p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/FAQ">FAQ</a> | 
-        <a href="~/about">About</a>
-        - Version: 0.1a
-        </p>
-        <p><small>All card text and images provided are copyrighted by  
-        <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>. 
-        The api and/or web applications on this domain are not in anyway affiliated with 
-        <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>. Thank you for creating such an awesome game!</small></p>
+    	<div class="row">
+	    	<div class="col-md-8">
+	        	<p>&copy; 3xS-Rad @DateTime.Now.Year.ToString() | <a href="~/terms">Terms</a> | <a href="~/FAQ">FAQ</a> | <a href="~/about">About</a>- Version: 0.1a</p>
+	        </div>
+        	<div class="col-md-4">
+		        <a href="https://twitter.com/mtgdb" class="twitter-follow-button" data-show-count="false">Follow</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			</div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12">
+        		<small>All card text and images provided are copyrighted by <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>.</small><br/>
+        		<small>The api and/or web applications on this domain are not in anyway affiliated with <a href="http://www.wizards.com/Magic/">Wizards of the Coast</a>. Thank you for creating such an awesome game!</small>
+        	</div>
+		</div>
     </footer>
 </div><!--/.container-->
 <script src="//code.jquery.com/jquery-2.0.3.min.js"></script>

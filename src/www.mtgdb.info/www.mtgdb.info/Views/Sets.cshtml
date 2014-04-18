@@ -22,10 +22,11 @@
 			@foreach(var set in Model.GetSetsInTypeAndBlock(type,block))
 			{
 				string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-				string popoverContent = string.Format("<strong><img src=\"{0}\"/> {1}</strong> ({2})<br/><small>Released: {3}</small><br/>{4}",@imgUrl,@set.Name,@set.Id,@set.ReleasedAt.ToLongDateString(),@set.Description);
+				string popoverTitle = string.Format("<strong><img src=\"{0}\"> {1}</strong>",@imgUrl,@set.Name);
+				string popoverContent = string.Format("<small><em>Released: {0}</em></small><br/>{1}",@set.ReleasedAt.ToLongDateString(),@set.Description);
 			<li>
 				<span class="seticon"><img src="@imgUrl" /></span>
-    			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">@set.Name</a>
+    			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent" data-title="@popoverTitle">@set.Name</a>
     			@if(Model.Planeswalker != null){<strong>@Model.GetSetCount(@set.Id).ToString()</strong>}
     			<span class="released">Released  @set.ReleasedAt.ToShortDateString()</span>
     		</li>
@@ -40,10 +41,11 @@
 			@foreach(var set in Model.GetSetsInTypeAndBlock(type,null))
 			{
 				string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-				string popoverContent = string.Format("<strong><img src=\"{0}\"/> {1}</strong> ({2})<br/><small>Released: {3}</small><br/>{4}",@imgUrl,@set.Name,@set.Id,@set.ReleasedAt.ToLongDateString(),@set.Description);
+				string popoverTitle = string.Format("<strong><img src=\"{0}\"> {1}</strong>",@imgUrl,@set.Name);
+				string popoverContent = string.Format("<small><em>Released: {0}</em></small><br/>{1}",@set.ReleasedAt.ToLongDateString(),@set.Description);
 			<li>
 				<span class="seticon"><img src="@imgUrl" /></span>
-    			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">@set.Name</a>
+    			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent" data-title="@popoverTitle">@set.Name</a>
     			@if(Model.Planeswalker != null){<strong>@Model.GetSetCount(@set.Id).ToString()</strong>}
     			<span class="released">Released  @set.ReleasedAt.ToShortDateString()</span>
     		</li>
@@ -61,10 +63,11 @@
 				@foreach(var set in Model.GetSetsInTypeAndBlock("Expansion",block))
 				{
 					string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-					string popoverContent = string.Format("<strong><img src=\"{0}\"/> {1}</strong> ({2})<br/><small>Released: {3}</small><br/>{4}",@imgUrl,@set.Name,@set.Id,@set.ReleasedAt.ToLongDateString(),@set.Description);
+					string popoverTitle = string.Format("<strong><img src=\"{0}\"> {1}</strong>",@imgUrl,@set.Name);
+					string popoverContent = string.Format("<small><em>Released: {0}</em></small><br/>{1}",@set.ReleasedAt.ToLongDateString(),@set.Description);
 				<li>
 					<span class="seticon"><img src="@imgUrl" /></span>
-        			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">@set.Name</a>
+        			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent" data-title="@popoverTitle">@set.Name</a>
         			@if(Model.Planeswalker != null){<strong>@Model.GetSetCount(@set.Id).ToString()</strong>}
         			<span class="released">Released  @set.ReleasedAt.ToShortDateString()</span>
         		</li>
@@ -76,10 +79,11 @@
 			@foreach(var set in Model.GetSetsInTypeAndBlock("Expansion",null))
 			{
 				string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-				string popoverContent = string.Format("<strong><img src=\"{0}\"/> {1}</strong> ({2})<br/><small>Released: {3}</small><br/>{4}",@imgUrl,@set.Name,@set.Id,@set.ReleasedAt.ToLongDateString(),@set.Description);
+				string popoverTitle = string.Format("<strong><img src=\"{0}\"> {1}</strong>",@imgUrl,@set.Name);
+				string popoverContent = string.Format("<small><em>Released: {0}</em></small><br/>{1}",@set.ReleasedAt.ToLongDateString(),@set.Description);
 			<li>
 				<span class="seticon"><img src="@imgUrl" /></span>
-    			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent">@set.Name</a>
+    			<a class="set-link" href="~/sets/@set.Id" data-container="body" data-toggle="popover" data-placement="auto top" data-content="@popoverContent" data-title="@popoverTitle">@set.Name</a>
     			@if(Model.Planeswalker != null){<strong>@Model.GetSetCount(@set.Id).ToString()</strong>}
     			<span class="released">Released  @set.ReleasedAt.ToShortDateString()</span>
     		</li>

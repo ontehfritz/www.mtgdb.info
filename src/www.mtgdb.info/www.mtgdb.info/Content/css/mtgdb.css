@@ -323,6 +323,13 @@ footer {
 	z-index:5;
 }
 
+/* FOOTER */
+#twitter-widget-0{
+	position: relative;
+	top: -7px;
+	float: right;
+}
+
 /* TO CLEAN*/
 
 .signin{

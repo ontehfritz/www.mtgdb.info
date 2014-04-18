@@ -101,6 +101,7 @@
     <Content Include="Content\javascript\ui-bootstrap.min.js" />
     <Content Include="Content\javascript\underscore.min.js" />
     <Content Include="packages.config" />
+    <Content Include="Content\images\you.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\" />
