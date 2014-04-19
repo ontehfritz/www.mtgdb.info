@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MtgDb.Info
 {
@@ -11,6 +12,7 @@ namespace MtgDb.Info
         public int TotalAmount                  { get; set; }
         public int TotalCards                   { get; set; }
         public CardSet[]  Sets                  { get; set; }
+        public CardSet[]  AllSets               { get; set; }
         public Dictionary<string, int> Counts   { get; set; }
         public Profile Profile                  { get; set; }
         public string SetId                     { get; set; }
@@ -21,6 +23,25 @@ namespace MtgDb.Info
         {
             Counts = new Dictionary<string, int>();
             Blocks = new Dictionary<string, int>();
+        }
+
+        //return default setid for block or type
+        public string DefaultSet(string blockOrType)
+        {
+            string setId = AllSets
+                .Where(x => x.Block == blockOrType)
+                .OrderByDescending(x => x.ReleasedAt)
+                .Select(x => x.Id).FirstOrDefault();
+
+            if(setId == null)
+            {
+                setId = AllSets
+                    .Where(x => x.Type == blockOrType)
+                    .OrderByDescending(x => x.ReleasedAt)
+                    .Select(x => x.Id).FirstOrDefault();
+            }
+
+            return setId;
         }
     }
 }

@@ -225,31 +225,48 @@ namespace MtgDb.Info
             };
 
             //TODO: Refactor this, to long and confusing 
-            Get ["/pw/{planeswalker}/blocks/{block}/cards/{setId?}"] = parameters => {
+            Get ["/mycards/{setId?}"] = parameters => {
                 PlaneswalkerModel model =   new PlaneswalkerModel();
                 model.ActiveMenu =          "mycards";
                 string setId =              (string)parameters.setId;
-                model.Block =               (string)parameters.block;
                 model.Planeswalker =        (Planeswalker)this.Context.CurrentUser;
 
-                if(model.Planeswalker.UserName.ToLower() != 
-                    ((string)parameters.planeswalker).ToLower())
+                if(setId == null)
                 {
-                    model.Errors.Add(string.Format("Tsk Tsk! {0}, this profile is not yours.",
-                        model.Planeswalker.UserName));
+                    //try to get an setId if no value was provided in the url
+                    setId = repository.GetSetCardCounts(model.Planeswalker.Id)
+                        .Select(x => x.Key)
+                        .OrderBy(x => x).FirstOrDefault();
 
-                    return View["Page", model];
+                    //if still no setId then user has no cards
+                    if(setId == null)
+                    {
+                        PageModel pm = new PageModel();
+                        pm.ActiveMenu =      "mycards";
+                        pm.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+
+                        pm.Errors.Add("You have no cards in this set or no cards in your collection");
+                        return View["Page", pm];
+                    }
                 }
-
+                    
+                CardSet current = magicdb.GetSet(setId);
+                //force type into block if block is null
+                model.Block = current.Block ?? current.Type;
+               
                 try
                 {
                     model.Counts = repository.GetSetCardCounts(model.Planeswalker.Id);
-
+                    //if no counts then no cards again
                     if(model.Counts == null || 
                         model.Counts.Count == 0)
                     {
-                        return Response.AsRedirect("~/" + model.Planeswalker.UserName + 
-                            "/cards");
+                        PageModel pm = new PageModel();
+                        pm.ActiveMenu =      "mycards";
+                        pm.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+
+                        pm.Errors.Add("You have no cards in this set or no cards in your collection");
+                        return View["Page", pm];
                     }
 
                     model.TotalCards = model.Counts.Sum(x => x.Value);
@@ -263,18 +280,24 @@ namespace MtgDb.Info
                             .AsEnumerable().Select(x => x.Key)
                             .ToArray());
 
+                        //keep a list of all sets user has cards in
+                        //this is to get the default set for each block or type
+                        model.AllSets = model.Sets;
+
+                        //get all blocks
                         blocks = model.Sets
                             .Select(x => x.Block)
                             .Where(x => x != null)
                             .Distinct()
                             .OrderBy(x => x).ToList();
-
+                        //force types into blocks
                         blocks.AddRange(model.Sets
                             .Where(x => x.Block == null)
                             .Select(x => x.Type)
                             .Distinct()
                             .OrderBy(x => x).ToList());
 
+                        //macke dure no dupes
                         blocks = blocks.Distinct().ToList();
 
                         foreach(string block in blocks)
@@ -294,32 +317,43 @@ namespace MtgDb.Info
                             }
                         }
 
+                        //filter sets for current block or type
                         model.Sets = model.Sets
                             .Where(x => x.Block == model.Block || x.Type == model.Block)
                             .OrderBy(x => x.Name).ToArray();
 
+                        //nothing in the set
                         if(model.Sets == null || model.Sets.Length == 0)
                         {
-                            return Response.AsRedirect(string.Format("~/{0}/cards", 
-                                model.Planeswalker.UserName));
+                            PageModel pm = new PageModel();
+                            pm.ActiveMenu =      "mycards";
+                            pm.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+
+                            pm.Errors.Add("You have no cards in this set or no cards in your collection");
+                            return View["Page", pm];
+                 
                         }
 
                         if(setId == null)
                         {
                             setId = model.Sets.FirstOrDefault().Id;
                         }
-//
+
                         model.SetId = setId;
                         model.UserCards = repository.GetUserCards(model.Planeswalker.Id, setId);
-//
+
+                        //man same here no cards
                         if(model.UserCards == null || 
                             model.UserCards.Length  == 0)
                         {
-                            return Response.AsRedirect(string.Format("~/{0}/cards", 
-                                model.Planeswalker.UserName));
+                            PageModel pm = new PageModel();
+                            pm.ActiveMenu =      "mycards";
+                            pm.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+
+                            pm.Errors.Add("You have no cards in this set or no cards in your collection");
+                            return View["Page", pm];
                         }
-//
-//
+
                         Card[] dbcards = null;
                         if(Request.Query.Show != null)
                         {
@@ -336,14 +370,19 @@ namespace MtgDb.Info
 
                             model.Show = false;
                         }
-//
+
+                        //same here no cards, this is getting old 
                         if(dbcards == null || 
                             dbcards.Length == 0)
                         {
-                            return Response.AsRedirect(string.Format("~/{0}/cards", 
-                                model.Planeswalker.UserName));
+                            PageModel pm = new PageModel();
+                            pm.ActiveMenu =      "mycards";
+                            pm.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+
+                            pm.Errors.Add("You have no cards in this set or no cards in your collection");
+                            return View["Page", pm];
                         }
-//
+
                         List<CardInfo> cards = new List<CardInfo>();
 
                         CardInfo card = null;
@@ -360,7 +399,7 @@ namespace MtgDb.Info
                         
                             cards.Add(card);
                         }
-//
+
                        model.Cards = cards.OrderBy(x => x.Card.SetNumber).ToArray();
                     }
                     else
@@ -376,41 +415,11 @@ namespace MtgDb.Info
                 return View["MyCards", model];
             };
 
+            //can use this for public profile stuff
             Get ["/pw/{planeswalker}/cards"] = parameters => {
                 PageModel model =       new PageModel();
                 model.ActiveMenu =      "mycards";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
-
-                if(model.Planeswalker.UserName.ToLower() != 
-                    ((string)parameters.planeswalker).ToLower())
-                {
-                    model.Errors.Add(string.Format("Tsk Tsk! {0}, this profile is not yours.",
-                        model.Planeswalker.UserName));
-
-                    return View["Page", model];
-                }
-
-                try
-                {
-                    string setId = repository.GetSetCardCounts(model.Planeswalker.Id)
-                        .Select(x => x.Key)
-                        .OrderBy(x => x).FirstOrDefault();
-
-                    if(setId != null)
-                    {
-                        CardSet s = magicdb.GetSet(setId);
-                      
-                        return Response.AsRedirect(string.Format("/pw/{0}/blocks/{1}/cards",
-                            model.Planeswalker.UserName, s.Block ?? s.Type ));
-                    }
-
-                    model.Information.Add("You have no cards yet in your library. " +
-                        "Browse the sets and start adding cards Planeswalker!");
-                }
-                catch(Exception e)
-                {
-                    model.Errors.Add(e.Message);
-                }
 
                 return View["Page", model];
             };

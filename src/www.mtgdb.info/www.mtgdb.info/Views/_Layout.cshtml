@@ -45,7 +45,7 @@
 	            @if(Model.Planeswalker != null)
 	            {
 	           	<li @(Model.ActiveMenu == "mycards" ? "class='active'":"")>
-                	<a href="/pw/@Model.Planeswalker.UserName/cards">
+                	<a href="/mycards">
                 		<i class="fa fa-archive"></i>&nbsp;
                 		My Cards
                 	</a>
@@ -77,7 +77,7 @@
 			            	&nbsp;<i class="fa fa-caret-down"></i>
 			            </a>
 			            <ul class="dropdown-menu">
-			                <li><a href="/pw/@Model.Planeswalker.UserName/cards"><i class="fa fa-archive"></i> My Cards</a></li>
+			                <li><a href="/mycards"><i class="fa fa-archive"></i> My Cards</a></li>
 			                <li class="disabled"><a href="/pw/@Model.Planeswalker.UserName/decks"><i class="fa fa-briefcase"></i> My Decks</a></li>
 			                <li class="divider"></li>
 		                    @if(Model.Planeswalker.InRole("admin"))

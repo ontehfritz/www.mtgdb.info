@@ -22,8 +22,9 @@
 @foreach(KeyValuePair<string, int> key in Model.Blocks)
 {
     string blockId = key.Key.Replace(" ",string.Empty);
+    string defaultSetId = @Model.DefaultSet(key.Key);
     <li class="@(key.Key == Model.Block ? "active" : "")">
-        <a href="/pw/@Model.Planeswalker.UserName/blocks/@key.Key/cards/">
+        <a href="/mycards/@defaultSetId">
             @key.Key
             <span id="@blockId" class="badge">@key.Value</span>
         </a>
@@ -41,7 +42,7 @@
             string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
             <li class="set-tab @(set.Id == Model.SetId ? "active" : "")">
                 @{ set.Block = set.Block ?? set.Type; }
-                <a href="/pw/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/" data-toggle="tooltip" data-placement="top" title="@set.Name">
+                <a href="/mycards/@set.Id/" data-toggle="tooltip" data-placement="top" title="@set.Name">
                     <img src="@imgUrl"/>
                 </a>
             </li>

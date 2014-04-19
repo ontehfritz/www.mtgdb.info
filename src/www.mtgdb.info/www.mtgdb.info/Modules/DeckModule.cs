@@ -50,13 +50,18 @@ namespace MtgDb.Info
             Post["/decks"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
 
-
                 int [] cards = null;
+                int [] sideBar = null;
+
                 try
                 {
                     cards = ((string)Request.Form.Cards).Split(',')
-                    .Select(n => Convert.ToInt32(n))
-                    .ToArray();
+                        .Select(n => Convert.ToInt32(n))
+                        .ToArray();
+
+                    sideBar = ((string)Request.Form.SideBar).Split(',')
+                        .Select(n => Convert.ToInt32(n))
+                        .ToArray();
 
                 }
                 catch(Exception e)
@@ -71,7 +76,10 @@ namespace MtgDb.Info
                 deck.Name = name; 
                 deck.Description = description;
                 deck.SetCards(cards);
+                deck.SetSideBar(sideBar);
                 deck.UserId = planeswalker.Id;
+
+                deck = deckbuilder.AddDeck(deck);
 
                 return Response.AsJson(deck);
             };
