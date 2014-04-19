@@ -68,23 +68,18 @@ footer {
 .profile ul{
   list-style-type:none;
   padding:0;
-  text-align:center;
   margin:.5em 0 0;
 }
 .profile li{
-  display:inline;
-  color:#ccc;
+  display: inline-block;
+  color: #ccc;
+  width: 2.1em;
 }
-
-/*ABOUT*/
-
 .contact-list{
   list-style-type:none;
   padding-left:0;
 }
-#twitter-widget-0{
-  margin: .5em 0;
-}
+
 /*SIGN IN*/
 .signin form{
   margin-bottom:1em;
