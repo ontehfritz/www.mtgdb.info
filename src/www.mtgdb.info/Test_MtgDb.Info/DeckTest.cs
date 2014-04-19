@@ -10,13 +10,13 @@ namespace Test_MtgDb.Info
     {
         IDeckRepository deckRepo; 
         Guid DeckId;
-        Guid UserId = Guid.NewGuid();
+        Guid UserId; 
 
         [SetUp()]
         public void Init()
         {
             deckRepo = new MongoDeckRepository("mongodb://localhost");
-
+            UserId = Guid.NewGuid();
             Deck deck = new Deck();
             List<DeckCard> cards = new List<DeckCard>();
             cards.Add(new DeckCard()
@@ -31,7 +31,7 @@ namespace Test_MtgDb.Info
                     MultiverseId = 34,
                     Amount = 3
                 });
-
+                     
             deck.Cards = cards;
             deck.SideBar = sideBoard;
             deck.Description = "This is a test deck.";
@@ -78,27 +78,27 @@ namespace Test_MtgDb.Info
         [Test()]
         public void Get_deck()
         {
-            Deck deck = deckRepo.GetDeck(DeckId);
+            Deck deck = deckRepo.GetDeck(UserId, "Test Deck");;
             Assert.IsNotNull(deck);
         }
 
         [Test()]
         public void Update_deck()
         {
-            Deck deck = deckRepo.GetDeck(DeckId);
+            Deck deck = deckRepo.GetDeck(UserId, "Test Deck");
             deck.Description = "Changed the description";
             deckRepo.UpdateDeck(deck);
 
-            deck = deckRepo.GetDeck(DeckId);
+            deck = deckRepo.GetDeck(UserId, "Test Deck");
 
-            Assert.AreEqual("Changed the description",deck.Description);
+            Assert.AreEqual("Changed the description", deck.Description);
         }
 
         [Test()]
         public void Delete_deck()
         {
             deckRepo.DeleteDeck(DeckId);
-            Deck deck = deckRepo.GetDeck(DeckId);
+            Deck deck = deckRepo.GetDeck(UserId, "Test Deck");
             Assert.IsNull(deck);
         }
     }

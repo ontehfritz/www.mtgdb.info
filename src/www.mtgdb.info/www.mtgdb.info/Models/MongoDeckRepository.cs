@@ -76,12 +76,14 @@ namespace MtgDb.Info
             collection.Remove(new QueryDocument(query));
         }
 
-        public Deck GetDeck(Guid id)
+        public Deck GetDeck(Guid userId, string name)
         {
             MongoCollection<Deck> collection = 
                 database.GetCollection<Deck> ("decks");
 
-            var query = Query.And(Query<Deck>.EQ (e => e.Id, id ));
+            var query = Query.And(Query<Deck>.EQ (e => e.UserId, userId),
+                Query<Deck>.EQ(e => e.Name, name));
+
             Deck deck =  collection.FindOne(query);
 
             return deck;

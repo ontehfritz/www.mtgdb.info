@@ -5,7 +5,7 @@ namespace MtgDb.Info
 {
     public class DecksModel : PageModel
     {
-        List<Deck> Decks { get; set; }
+        public List<Deck> Decks { get; set; }
 
         public DecksModel () : base()
         {
