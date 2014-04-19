@@ -110,8 +110,8 @@
         <h4>
             Formats <span class="glyphicon glyphicon-plus-sign" style="cursor:pointer;" id="add_format"></span>
         </h4>
-        <input id="format_count" type="hidden" value="@Model.Formats.Length" />
-
+        @{ int formatCount = Model.Formats == null ? 0 : Model.Formats.Length; }
+        <input id="format_count" type="hidden" value="@formatCount" />
         <table id="formats" class="table table-condensed table-hover">
         <tbody>
         @if(Model.Formats != null && Model.Formats.Length > 0)
@@ -149,7 +149,8 @@
     <h4>
     Rulings <span id="add_ruling" class="glyphicon glyphicon-plus-sign" style="cursor:pointer;"></span>
     </h4>
-    <input id="ruling_count" type="hidden" value="@Model.Rulings.Length" />
+    @{ int ruleCount = @Model.Rulings == null ? 0 : @Model.Rulings.Length; }
+    <input id="ruling_count" type="hidden" value="@ruleCount" />
     <table id="rulings" class="table table-condensed table-hover">
     <tbody>
     @if(Model.Rulings != null && Model.Rulings.Length > 0)
