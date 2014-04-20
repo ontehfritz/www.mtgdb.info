@@ -46,9 +46,17 @@ namespace MtgDb.Info
                 return View["Deck/Deck", model];
             };
 
+            Get["/decks"] = parameters => {
+                Planeswalker planeswalker = (Planeswalker)this.Context.CurrentUser;
+                Deck [] decks = deckbuilder.GetUserDecks(planeswalker.Id);
+
+                return View["Deck/Decks", decks.ToArray()];
+            };
+
             //create a deck SPA
             Post["/decks"] = parameters => {
-                Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
+                Planeswalker planeswalker =  
+                    (Planeswalker)this.Context.CurrentUser;
 
                 int [] cards = null;
                 int [] sideBar = null;
@@ -85,17 +93,46 @@ namespace MtgDb.Info
             };
 
             //update a deck SPA
-            Put["/decks/"] = parameters => {
-                Deck deck =                     this.Bind<Deck>();
+            Post["/decks/{name}"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
-                deck.UserId =                   planeswalker.Id;
-                deck =                          deckbuilder.UpdateDeck(deck);
+                string deckName = (string)parameters.name;
+
+                int [] cards = null;
+                int [] sideBar = null;
+
+                try
+                {
+                    cards = ((string)Request.Form.Cards).Split(',')
+                        .Select(n => Convert.ToInt32(n))
+                        .ToArray();
+
+                    sideBar = ((string)Request.Form.SideBar).Split(',')
+                        .Select(n => Convert.ToInt32(n))
+                        .ToArray();
+
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+
+                string name = (string)this.Request.Form.Name; 
+                string description = (string)this.Request.Form.Description; 
+
+                Deck deck = deckbuilder.GetDeck(planeswalker.Id, deckName);
+                deck.Name = name; 
+                deck.Description = description;
+                deck.SetCards(cards);
+                deck.SetSideBar(sideBar);
+                deck.UserId = planeswalker.Id;
+
+                deck = deckbuilder.UpdateDeck(deck);
 
                 return Response.AsJson(deck);
             };
 
             //Delete a deck SPA
-            Delete["/decks/{name}"] = parameters => {
+            Post["/decks/delete/{name}"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
                 Deck deck = deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
 

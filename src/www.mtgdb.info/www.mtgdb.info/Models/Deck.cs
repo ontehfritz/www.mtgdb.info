@@ -46,7 +46,7 @@ namespace MtgDb.Info
             {
                 if(deckCard.ContainsKey(mvid))
                 {
-                    deckCard[mvid] = deckCard[mvid]++;
+                    deckCard[mvid] = deckCard[mvid] + 1;
                 }
                 else
                 {
@@ -69,7 +69,7 @@ namespace MtgDb.Info
             {
                 if(deckCard.ContainsKey(mvid))
                 {
-                    deckCard[mvid] = deckCard[mvid]++;
+                    deckCard[mvid] = deckCard[mvid] + 1;
                 }
                 else
                 {

@@ -7,7 +7,7 @@ using MtgDb.Info;
 using System.Configuration;
 using SuperSimple.Auth;
 
-namespace mtgdb.info
+namespace MtgDb.Info
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
@@ -26,7 +26,6 @@ namespace mtgdb.info
             SuperSimpleAuth ssa = 
                 new SuperSimpleAuth (ConfigurationManager.AppSettings.Get("domain"), 
                     ConfigurationManager.AppSettings.Get("domain_key"));
-
 
             container.Register<SuperSimpleAuth>(ssa);
         }
