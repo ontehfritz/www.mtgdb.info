@@ -13,13 +13,12 @@
   	string Possessive = (Model.Planeswalker.Profile.Name.EndsWith("s") ? "'" : "'s");
   	string PossessiveName = string.Format("{0}{1}",@Model.Planeswalker.Profile.Name,@Possessive);
   	}
-	<h4>@PossessiveName Library</h4>
-	<span>Unique cards in collection: <strong id="unique">@Model.TotalCards</strong>, Total Cards in collection: <strong id="total">@Model.TotalAmount</strong></span>
+	<h1><i class="fa fa-archive"></i> @PossessiveName Cards</h1>
 }
 <input type="hidden" id="active_set" value="@Model.SetId" />
 <input type="hidden" id="active_block" value="@Model.Block.Replace(" ",string.Empty)" />
 <ul class="nav nav-tabs heading-tabs">
-@foreach(KeyValuePair<string, int> key in Model.Blocks)
+@foreach(KeyValuePair<string, int> key in Model.Blocks.Reverse())
 {
     string blockId = key.Key.Replace(" ",string.Empty);
     string defaultSetId = @Model.DefaultSet(key.Key);
@@ -99,78 +98,12 @@
 
     </div>
 </div>
-<!--
-<div class="tab-container" id="outer-container">
-    <ul class='etabs'>
-        @foreach(KeyValuePair<string, int> k in Model.Blocks)
-        {
-            string c = k.Key == Model.Block ? "active" : "";
-            string blockId = k.Key.Replace(" ",string.Empty);
-
-            <li class='tab @c'>
-                <a href="/pw/@Model.Planeswalker.UserName/blocks/@k.Key/cards/">
-                    @k.Key
-                    <span id="@blockId" class="badge">@k.Value</span>
-                </a>
-            </li>
-        }
-    </ul>
-     <div class="panel-container">
-        <div id="nested-tab-1">
-            <div class="tab-container" id="outer-container">
-    <ul class='etabs'>
-    @foreach(CardSet set in Model.Sets)
-    {
-        string c = set.Id == Model.SetId ? "active" : "";
-        string show = Model.Show && set.Id == Model.SetId ? "" : 
-        !Model.Show && set.Id == Model.SetId ? "?show=true" : "";
-
-        string style = Model.Show && set.Id == Model.SetId ? "style='background-color:#E5FAE3;'" : "";
-
-        string imgUrl = string.Format("https://api.mtgdb.info/content/set_images/symbols/{0}_sym.png",set.Id.ToLower());
-        <li class='tab @c' @style >
-            <a href="/pw/@Model.Planeswalker.UserName/blocks/@set.Block/cards/@set.Id/@show">
-                <img src="@imgUrl" /> @set.Name
-                <span id="@set.Id" class="badge">@Model.Counts[set.Id]</span>/<span class="badge">@set.Total</span>
-            </a>
-        </li>
-    }
-    </ul>
-    <div class="panel-container">
-        <div id="nested-tab-1">
-        @foreach(var cardInfo in Model.Cards)
-        {
-            string id = string.Format("card_{0}", cardInfo.Card.Id);
-            string valueId = string.Format("value_{0}", cardInfo.Card.Id);
-            string blockId = Model.Block.Replace(" ", string.Empty);
-            string description = @cardInfo.Card.Description.Replace("\"","'");
-            string name = @cardInfo.Card.Name.Replace("\"","'");
-
-            <input type="hidden" id="@cardInfo.Card.Id" value="@cardInfo.Amount" />
-            <div class="popit" id="@id" title="<b>@name</b> #@cardInfo.Card.SetNumber <br />You have: <span id='@valueId' class='badge'><script>$('#@valueId').html($('#@cardInfo.Card.Id').val());</script></span>" data-container="#@id" 
-            data-content=
-             "@description <br /><span class='label label-primary'>@cardInfo.Card.Power &#47; @cardInfo.Card.Toughness</span><br /><br /><button type='button' class='btn btn-danger btn-xs' onclick='minusCard(@cardInfo.Card.Id);'>-</button><button type='button' class='btn btn-success btn-xs' onclick='addCard(@cardInfo.Card.Id);'>+</button>" 
-             style="float:left;">
-                
-                <a  rel="popover" href="~/cards/@cardInfo.Card.Id" class="thumbnail">
-                    @if(cardInfo.Amount > 0)
-                    {
-                        <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" style="width:111px;height:155px;" />
-                    }
-                    else
-                    {
-                        <img id="img_@cardInfo.Card.Id" src="@cardInfo.Card.CardImage" class="dont-own" 
-                                            style="width:111px;height:155px;" />
-                    }
-                </a>
-           
-            </div>
-        }
-        </div>
-    <br style="clear:both;" />
-    </div>
-</div> 
-        </div>
-     </div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+    	<h3 class="panel-title">Collection Stats</h3>
+    </div><!--/.panel-heading-->
+	<div class="panel-body">
+    	<p><strong>Unique cards:</strong> <span id="unique">@Model.TotalCards</span></p>
+    	<p><strong>Total cards:</strong> <span id="total">@Model.TotalAmount</span></p>
+  	</div>
 </div>
-<br style="clear:both;" />-->

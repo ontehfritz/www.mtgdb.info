@@ -2,16 +2,28 @@
 @{
   Layout = "_Layout.cshtml";
 }
-
+@section Top
+{
+  	@{
+  		string Possessive = (Model.Planeswalker.Profile.Name.EndsWith("s") ? "'" : "'s");
+  		string PossessiveName = string.Format("{0}{1}",@Model.Planeswalker.Profile.Name,@Possessive);
+  	}
+  	@if(Model.Profile != null)
+  	{
+   	<h1><i class="fa fa-user"></i> @PossessiveName Profile</h1>
+   	}
+}
 @if(Model.Profile != null)
 {
-  <h1>@Model.Profile.Name</h1>
-
   <p><strong>Joined:</strong> @Model.Profile.CreatedAt.ToShortDateString()</p>
 
   if(@Model.UserCards != null && @Model.UserCards.Length > 0)
   {
   <p><strong>Unique Cards Owned:</strong> @Model.UserCards.Length</p>
+  }
+  else
+  {
+  <p><em>@Model.Planeswalker.Profile.Name has not added any cards to their collection.</em></p>
   }
 }
 
