@@ -73,6 +73,7 @@ namespace MtgDb.Info
 
             Get["/cards/{id}/logs/{logid}"] = parameters => {
                 CardChange model = new CardChange();
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
             
                 try
                 {
@@ -131,8 +132,6 @@ namespace MtgDb.Info
                     }
                     else if(field == "rulings")
                     {
-
-
                         admin.UpdateCardRulings(planeswalker.AuthToken,
                             change.Mvid, change.Rulings);
                     }
@@ -163,13 +162,13 @@ namespace MtgDb.Info
                 {
                     card = magicdb.GetCard((int)parameters.id);
                     model = CardChange.MapCard(card);
+                    model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 }
                 catch(Exception e)
                 {
                     throw e;
                 }
-
-
+                    
                 return View["Change/Card", model];
             };
 
