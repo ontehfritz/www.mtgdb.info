@@ -115,13 +115,13 @@ footer {
 
 .book-panel{
 	margin:1em auto 0;
-	width:968px;
 }
 .panel-footer .pagination{
 	margin:10px 0;
 }
 .book{
   	background-image:url('../images/book.jpg');
+  	background-size:100%;
 }
 .book-alert{
   	margin-bottom:0;
@@ -145,35 +145,31 @@ footer {
 	height:32px;
 }
 .binder-page{
-  margin-top:23px;
-  margin-left:104px;
-  height:1007px;
+  	margin-top: 2%;
+	margin-left: 11%;
 }
 .card{
-    display:inline-block;
-    position:relative;
-    margin-right:23px;
-    margin-bottom:30px;
+    display: inline-block;
+	width: 27%;
+	position: relative;
+	margin-right: 2.5%;
+	margin-bottom: 3.3%;
 }
 .card-7,
 .card-8,
 .card-9{
-    margin-bottom:17px;
+    margin-bottom: 2.8%;
 }
 .card img{
-    border-radius:16px;
-    height:310px;
-    width:223px;
-    box-shadow:1px 1px 2px #000;
-    background-color: rgba(0,0,0,.4);
+    border-radius: 16px;
+	width: 100%;
+	box-shadow: 1px 1px 2px #000;
+	background-color: rgba(0,0,0,.4);
 }
 .card img:hover{
     position:relative;
     top: -2px;
     left: -2px;
-    border-radius:16px;
-    height:310px;
-    width:223px;
     box-shadow:2px 2px 4px rgba(0,0,0,.8);
 }
 .card_info{
@@ -217,6 +213,7 @@ footer {
 .center .card{
 	margin-right:0;
 	margin-bottom:0;
+	width:90%;
 }
 .col-card-info p{
 	padding-left:2.7em;
