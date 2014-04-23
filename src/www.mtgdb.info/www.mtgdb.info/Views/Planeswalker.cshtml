@@ -4,13 +4,13 @@
 }
 @section Top
 {
-  	@{
-  		string Possessive = (Model.Planeswalker.Profile.Name.EndsWith("s") ? "'" : "'s");
-  		string PossessiveName = string.Format("{0}{1}",@Model.Planeswalker.Profile.Name,@Possessive);
-  	}
-  	@if(Model.Profile != null)
-  	{
-   	<h1><i class="fa fa-user"></i> @PossessiveName Profile</h1>
+    @if(Model.Profile != null)
+    {
+  	    string Possessive = (Model.Profile.Name.EndsWith("s") ? "'" : "'s");
+  	    string PossessiveName = string.Format("{0}{1}",@Model.Profile.Name,@Possessive);
+  	
+
+   	    <h1><i class="fa fa-user"></i> @PossessiveName Profile</h1>
    	}
 }
 @if(Model.Profile != null)
@@ -23,7 +23,7 @@
   }
   else
   {
-  <p><em>@Model.Planeswalker.Profile.Name has not added any cards to their collection.</em></p>
+  <p><em>@Model.Profile.Name has not added any cards to their collection.</em></p>
   }
 }
 

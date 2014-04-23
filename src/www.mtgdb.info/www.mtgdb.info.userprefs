@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/web.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/IndexModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Sets.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/About.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="70" Column="20" />
-      <File FileName="www.mtgdb.info/web.config" Line="28" Column="18" />
+      <File FileName="www.mtgdb.info/Views/Planeswalker.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="234" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
