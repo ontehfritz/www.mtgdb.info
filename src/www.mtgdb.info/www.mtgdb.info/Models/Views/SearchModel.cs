@@ -8,6 +8,7 @@ namespace MtgDb.Info
     {
         public string Term          { get; set; }
         public List<CardInfo> Cards { get; set; }
+        public bool Advanced        { get; set; }
 
         public SearchModel()
         {

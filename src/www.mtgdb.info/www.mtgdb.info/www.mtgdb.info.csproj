@@ -40,9 +40,6 @@
     <Reference Include="SuperSimpleAuthCSharp">
       <HintPath>..\..\..\dependencies\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
-    <Reference Include="MtgDb.Info.Driver">
-      <HintPath>..\..\..\dependencies\MtgDb.Info.Driver.dll</HintPath>
-    </Reference>
     <Reference Include="MtgDbAdminDriver">
       <HintPath>..\..\..\dependencies\MtgDbAdminDriver.dll</HintPath>
     </Reference>
@@ -75,6 +72,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="MtgDb.Info.Driver">
+      <HintPath>..\..\..\dependencies\MtgDb.Info.Driver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

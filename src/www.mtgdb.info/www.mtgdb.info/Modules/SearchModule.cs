@@ -22,6 +22,7 @@ namespace MtgDb.Info
                 model.Planeswalker = ((Planeswalker)this.Context.CurrentUser);
                 model.ActiveMenu = "search";
 
+                //color eq blue and type m 'Creature' and description m 'flying' and convertedmanacost lt 3 and name m 'Cloud'
                 return View["Search", model];
             };
 
@@ -32,7 +33,7 @@ namespace MtgDb.Info
 
                 try
                 {
-                    Card[] cards = magicdb.Search(model.Term);
+                    Card[] cards = magicdb.Search(model.Term, model.Advanced);
                     model.ActiveMenu = "search";
 
                     cards = cards
