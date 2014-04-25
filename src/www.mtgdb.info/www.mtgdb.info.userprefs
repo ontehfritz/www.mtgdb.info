@@ -1,19 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/SearchModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/DeckModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Planeswalker.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/IndexModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/SearchModule.cs" Line="25" Column="19" />
-      <File FileName="www.mtgdb.info/Views/Search.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/SearchModel.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="174" Column="15" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State expanded="True" selected="True" />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

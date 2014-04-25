@@ -7,10 +7,10 @@ namespace MtgDb.Info
     {
         public List<Deck> Decks { get; set; }
 
+
         public DecksModel () : base()
         {
             Decks = new List<Deck>();
         }
     }
 }
-

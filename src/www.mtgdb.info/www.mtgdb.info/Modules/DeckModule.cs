@@ -157,7 +157,21 @@ namespace MtgDb.Info
                 return Response.AsJson(deck);
             };
 
+            //Get cards for a deck SPA
+            Get["/decks/{name}/cards"] = parameters => {
+                Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
+                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
 
+                return Response.AsJson(deck.GetCards());
+            };
+
+            //Get cards for a deck SPA
+            Get["/decks/{name}/sidebar"] = parameters => {
+                Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
+                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
+
+                return Response.AsJson(deck.GetSideBarCards());
+            };
         }
     }
 }
