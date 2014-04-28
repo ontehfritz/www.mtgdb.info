@@ -156,6 +156,7 @@
     <Compile Include="Models\Views\DeckModel.cs" />
     <Compile Include="Models\MongoDeckRepository.cs" />
     <Compile Include="Models\Views\DecksModel.cs" />
+    <Compile Include="Helpers\MtgFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

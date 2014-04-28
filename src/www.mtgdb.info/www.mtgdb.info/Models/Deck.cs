@@ -4,6 +4,8 @@ using MongoDB.Bson.Serialization.Attributes;
 using MtgDb.Info.Driver;
 using System.Configuration;
 using System.Linq;
+using Nancy;
+using System.IO;
 
 namespace MtgDb.Info
 {
@@ -112,7 +114,7 @@ namespace MtgDb.Info
             return null;
         }
     }
-
+        
     public class DeckCard
     {
         [BsonElement]

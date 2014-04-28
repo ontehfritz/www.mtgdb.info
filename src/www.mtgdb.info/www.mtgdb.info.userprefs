@@ -2,8 +2,21 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/DeckModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="174" Column="15" />
+      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="45" Column="25" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True">
+          <Node name="Test_MtgDb.Info" expanded="True">
+            <Node name="Test_MtgDb" expanded="True">
+              <Node name="Info" expanded="True" selected="True">
+                <Node name="Test" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

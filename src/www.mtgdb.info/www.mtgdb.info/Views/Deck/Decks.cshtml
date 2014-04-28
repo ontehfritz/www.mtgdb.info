@@ -47,6 +47,23 @@
     <button class="btn btn-lg btn-primary btn-block" name="Logon" type="submit">Delete Test</button>
 </form>
 
+<h1>Import .DEC test</h1>
+<form class="form-signin" action="/decks/import" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" name="Name" class="form-control" required  />
+    </div><!--/.form-group-->
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <input type="text" name="Description" class="form-control" required />
+    </div><!--/.form-group-->
+    <div class="form-group">
+     <label for="upload">.DEC File</label>
+     <input name="upload" type="file" size="40" required />
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" name="Import" type="submit">Import</button>
+</form>
+
 <ul>
 @foreach(Deck d in @Model)
 {

@@ -41,7 +41,8 @@ namespace MtgDb.Info
                 model.ActiveMenu =      "mydecks";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
                 model.Deck =            
-                    deckbuilder.GetDeck(model.Planeswalker.Id, (string)parameters.name);
+                    deckbuilder.GetDeck(model.Planeswalker.Id, 
+                        (string)parameters.name);
 
                 return View["Deck/Deck", model];
             };
@@ -95,7 +96,7 @@ namespace MtgDb.Info
             //update a deck SPA
             Post["/decks/{name}"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
-                string deckName = (string)parameters.name;
+                string deckName =               (string)parameters.name;
 
                 int [] cards = null;
                 int [] sideBar = null;
@@ -134,7 +135,8 @@ namespace MtgDb.Info
             //Delete a deck SPA
             Post["/decks/delete/{name}"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
-                Deck deck = deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
+                Deck deck = deckbuilder.GetDeck(planeswalker.Id, 
+                    (string)parameters.name);
 
                 try
                 {
@@ -152,7 +154,8 @@ namespace MtgDb.Info
             //Get a deck SPA
             Get["/decks/{name}"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
-                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
+                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, 
+                    (string)parameters.name);
 
                 return Response.AsJson(deck);
             };
@@ -160,7 +163,8 @@ namespace MtgDb.Info
             //Get cards for a deck SPA
             Get["/decks/{name}/cards"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
-                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
+                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, 
+                    (string)parameters.name);
 
                 return Response.AsJson(deck.GetCards());
             };
@@ -168,9 +172,28 @@ namespace MtgDb.Info
             //Get cards for a deck SPA
             Get["/decks/{name}/sidebar"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
-                Deck deck =   deckbuilder.GetDeck(planeswalker.Id, (string)parameters.name);
+                Deck deck =  deckbuilder.GetDeck(planeswalker.Id, 
+                    (string)parameters.name);
 
                 return Response.AsJson(deck.GetSideBarCards());
+            };
+
+            Post["/decks/import"] = parameters => {
+                Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
+                string deckName =               (string)this.Request.Form.Name;
+                string description =            (string)this.Request.Form.Description;
+                var file =                      this.Request.Files.FirstOrDefault();
+                Deck deck =                     null;
+
+                if(file != null)
+                {
+                    deck = MtgFile.ImportDec(file);
+                    deck.Name = deckName;
+                    deck.Description = description;
+                    deck.UserId = planeswalker.Id;
+                }
+                    
+                return Response.AsJson(deck);
             };
         }
     }
