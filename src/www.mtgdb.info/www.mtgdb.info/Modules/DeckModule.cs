@@ -178,6 +178,7 @@ namespace MtgDb.Info
                 return Response.AsJson(deck.GetSideBarCards());
             };
 
+            //gets the latest version of card at the time of import
             Post["/decks/import"] = parameters => {
                 Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
                 string deckName =               (string)this.Request.Form.Name;
@@ -187,13 +188,28 @@ namespace MtgDb.Info
 
                 if(file != null)
                 {
-                    deck = MtgFile.ImportDec(file);
+                    deck = MtgFile.ImportDec(file.Value);
                     deck.Name = deckName;
                     deck.Description = description;
                     deck.UserId = planeswalker.Id;
                 }
                     
                 return Response.AsJson(deck);
+            };
+
+            //testing method
+            Post["/col/import"] = parameters => {
+                Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
+                var file =                      this.Request.Files.FirstOrDefault();
+               
+                MtgDb.Info.MtgFile.Item[] items = null;
+
+                if(file != null)
+                {
+                    items = MtgFile.ImportColl2(file.Value);
+                }
+
+                return Response.AsJson(items);
             };
         }
     }

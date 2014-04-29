@@ -64,6 +64,15 @@
     <button class="btn btn-lg btn-primary btn-block" name="Import" type="submit">Import</button>
 </form>
 
+<h1>Import .coll2 test</h1>
+<form class="form-signin" action="/col/import" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+     <label for="upload">.coll2 File</label>
+     <input name="upload" type="file" size="40" required />
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" name="Import" type="submit">Import</button>
+</form>
+
 <ul>
 @foreach(Deck d in @Model)
 {

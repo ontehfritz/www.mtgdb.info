@@ -4,6 +4,8 @@ using System.IO;
 using MtgDb.Info.Driver;
 using System.Linq;
 using System.Configuration;
+using System.Text;
+using System.Collections.Generic;
 
 namespace MtgDb.Info
 {
@@ -16,10 +18,9 @@ namespace MtgDb.Info
         // 4 Giant Growth
         //SB: amount cardname
         //SB: 4 Murder 
-        public static Deck ImportDec(HttpFile file)
+        public static Deck ImportDec(Stream stream)
         {
             Deck deck = new Deck();
-            Stream stream = file.Value;
             StreamReader sr = new StreamReader(stream);
 
             string line = null;
@@ -36,7 +37,6 @@ namespace MtgDb.Info
                             int first = line.IndexOf(' ');
                             string number = line.Substring(0,first);
                             string cardName = line.Substring(first);
-
 
                             int amount = int.Parse(number.Trim());
                             Card card = magicdb.GetCards(cardName.Trim())
@@ -84,6 +84,54 @@ namespace MtgDb.Info
             return deck;
         }
 
+        //convert coll2(Decked builder collection file to mtgdb.info collection)
+        //YAML BS, No need for the overhead and dependencies for yaml! Parse this 
+        //out our way. This will assit in the import of decked builder collections 
+        //into "My Cards"
+        public static Item [] ImportColl2(Stream stream)
+        {
+            StreamReader sr =   new StreamReader(stream);
+            string line =       null;
+            Item card =         null;
+            List<Item> items =  new List<Item>();
+
+            while ((line = sr.ReadLine()) != null) 
+            {
+                line = line.Replace("-","").Trim();
+                if(line.Contains("r:"))
+                {
+                    int amount = int.Parse(line.Substring(line.IndexOf(":") + 1).Trim());
+                    card.R = amount;
+                }
+                if(line.Contains("f:"))
+                {
+                    int amount = int.Parse(line.Substring(line.IndexOf(":") + 1).Trim());
+                    card.F = amount;
+                }
+                else if(line.Contains("id:"))
+                {
+                    int mvid = int.Parse(line.Substring(line.IndexOf(":") + 1).Trim());
+                    card = new Item();
+                    card.mvid = mvid;
+                    card.R = 0;
+                    card.F = 0;
+                }
+
+                if(card != null)
+                {
+                    items.Add(card);
+                }
+            }
+           
+            return items.ToArray();
+        }
+
+        public class Item 
+        {
+            public int mvid { get; set; }
+            public int R { get; set; }
+            public int F { get; set; }
+        }
     }
 }
 
