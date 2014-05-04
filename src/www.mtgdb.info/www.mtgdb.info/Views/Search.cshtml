@@ -5,19 +5,49 @@
 @section Top{
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
-      <form action="/search" method="post">
-        <h3>
-        	<i class="fa fa-search"></i>
-        	Card Search
-        </h3>
-        Advanced<input type="checkbox" name="Advanced" value="true" />
-        <div class="input-group">
-          <input type="text" name="Term" class="form-control" placeholder="Enter full or partial card name" required autofocus/>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Search</button>
-          </span>
-        </div><!-- /input-group -->
-      </form>
+	      	<h3 class="search-title">
+	        	<i class="fa fa-search"></i>
+	        	Card Search &nbsp;
+	        	<div class="btn-group pull-right">
+	        		<button type="button" id="basic-search" class="btn btn-primary active">Basic</button>
+	        		<button type="button" id="advanced-search" class="btn btn-default">Advanced</button>
+	        	</div>
+	        </h3>
+	        <form id="basic-search-form" action="/search" method="post">
+		        <div class="input-group">
+		          <input type="text" name="Term" class="form-control" placeholder="Enter full or partial card name" required autofocus/>
+		          <span class="input-group-btn">
+		            <button class="btn btn-default" type="submit">Search</button>
+		          </span>
+		        </div><!-- /input-group -->
+		  	</form><!-- /#basic-search-form -->
+			<form id="advanced-search-form" action="/search" method="post" style="display:none;">
+				<input id="is-advanced" class="hidden" type="checkbox" name="Advanced" value="true" />
+				<div class="form-group">
+    				<label for="name">Name</label>
+					<input id="name" class="form-control" type="text" placeholder="Name contains..." />
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+		    				<label for="type">Type</label>
+							<input id="type" class="form-control" type="text" placeholder="Type contains..." />
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+		    				<label for="subtype">Subtype</label>
+							<input id="subtype" class="form-control" type="text" placeholder="Subtype contains..." />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+    				<label for="description">Text</label>
+					<input id="description" class="form-control" type="text" placeholder="Card text contains..." />
+				</div>
+				<input id="advanced-search-term" class="form-control" type="hidden" name="Term"/>
+				<button class="btn btn-default pull-right" type="submit">Search</button>
+	      	</form>
       </div><!-- /.col-md-6 -->
     </div><!-- /.row -->
 }

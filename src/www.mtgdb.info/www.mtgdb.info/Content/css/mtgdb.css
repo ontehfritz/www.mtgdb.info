@@ -215,6 +215,9 @@ footer {
 	margin-bottom:0;
 	width:90%;
 }
+.single-card img{
+	margin-bottom:1em;
+}
 .col-card-info p{
 	padding-left:2.7em;
 	text-indent:-2.7em;
@@ -255,9 +258,35 @@ footer {
 	display:block;
 	margin-bottom:1em;
 }
+.border{
+	border-width:9px;
+	border-style: solid;
+	border-color:#000
+}
+.border-2ED,
+.border-3ED,
+.border-4ED,
+.border-5ED,
+.border-6ED,
+.border-7ED,
+.border-8ED,
+.border-9ED,
+.border-CHR,
+.border-S99,
+.border-S00,
+.border-PTK{
+	border-color:#fff;
+}
+.border-UGL,
+.border-UNH{
+	border-color:#7d7d7d;
+}
 
 /*SEARCH*/
 
+.search-title{
+	margin-bottom:1em;
+}
 .search-result{
   float:left;
   width:8em;
@@ -323,7 +352,9 @@ footer {
 }
 
 /* TO CLEAN*/
-
+.hidden{
+	display:none;
+}
 .signin{
     width: 325px;
     margin-left: auto;

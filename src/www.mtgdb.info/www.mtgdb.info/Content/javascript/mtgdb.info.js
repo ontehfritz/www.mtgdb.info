@@ -122,7 +122,49 @@ $(document).ready(function() {
 			$del.addClass('disabled');
 		}
 	});
+
+	$('#basic-search').click(function(){
+		if(!$(this).hasClass('active')){
+			$(this).removeClass('btn-default').addClass('active btn-primary');
+			$('#advanced-search').removeClass('active btn-primary').addClass('btn-default');
+			$('#basic-search-form').slideDown();
+			$('#advanced-search-form').slideUp();
+			$('#is-advanced').prop('checked',false);
+		}
+	});
+
+	$('#advanced-search').click(function(){
+		if(!$(this).hasClass('active')){
+			$(this).removeClass('btn-default').addClass('active btn-primary');
+			$('#basic-search').removeClass('active btn-primary').addClass('btn-default');
+			$('#basic-search-form').slideUp();
+			$('#advanced-search-form').slideDown();
+			$('#is-advanced').prop('checked',true);
+			initAdvancedForm();
+		}
+	});
 });
+
+function initAdvancedForm(){
+	$('#advanced-search-form input[type=text]').keyup(function(){
+		var $termFields = [];
+		console.log($termFields);
+		$('#advanced-search-form input[type=text]').not('#advanced-search-term').each(function(i,e){
+			if($(e).val() != ''){
+				$termFields.push($(e))
+			}
+		});
+		console.log($termFields);
+		var $aTerm = "";
+		console.log($aTerm);
+		$($termFields).each(function(i,e){
+			$aTerm += $(e).prop('id') + " m '" + $(e).val() + "'" + (($($termFields).length > i+1) ? ' and ' : '');
+
+		});
+		console.log($aTerm);
+		$('#advanced-search-term').val($aTerm);
+	});
+}
 
 function updateTotal(n)
 {
