@@ -65,10 +65,10 @@
         <p><strong>Artist:</strong> @Model.Card.Artist</p>
 	</div>
 	<div class="col-md-4 center">
-		<div id="card_@Model.Card.Id" class="card">
+		<div id="card-@Model.Card.Id" class="card single-card">
 	        @{
 	            string hiRes = string.Format("https://api.mtgdb.info/content/hi_res_card_images/{0}.jpg", @Model.Card.Id);
-	            <a href="@hiRes"><img src="@Model.Card.CardImage"/></a><br /><br style="clear:both"/>
+	            <a href="@hiRes"><img class="border border-@Model.Card.CardSetId" src="@hiRes"/></a>
 	        }
 
 	        @if(@Model.Planeswalker != null)
