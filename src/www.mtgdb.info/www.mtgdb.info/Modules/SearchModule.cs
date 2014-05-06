@@ -33,7 +33,7 @@ namespace MtgDb.Info
 
                 try
                 {
-                    Card[] cards = magicdb.Search(model.Term, model.Advanced);
+                    Card[] cards = magicdb.Search(model.Term, isComplex: model.Advanced);
                     model.ActiveMenu = "search";
 
                     cards = cards

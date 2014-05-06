@@ -1,14 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Helpers/MtgFile.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/web.config">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="210" Column="18" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/MtgFile.cs" Line="106" Column="40" />
-      <File FileName="www.mtgdb.info/Views/Deck/Decks.cshtml" Line="60" Column="29" />
-      <File FileName="www.mtgdb.info/Models/UserCard.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/CardInfo.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/web.config" Line="32" Column="11" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
