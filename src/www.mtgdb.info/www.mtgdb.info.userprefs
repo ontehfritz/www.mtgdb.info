@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/web.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Test_MtgDb.Info/DeckTest.cs">
     <Files>
-      <File FileName="www.mtgdb.info/web.config" Line="32" Column="11" />
+      <File FileName="Test_MtgDb.Info/DeckTest.cs" Line="64" Column="13" />
     </Files>
     <Pads>
       <Pad Id="MonoDevelop.NUnit.TestPad">
