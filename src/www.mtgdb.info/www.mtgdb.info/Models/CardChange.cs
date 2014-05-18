@@ -139,9 +139,9 @@ namespace MtgDb.Info
         [BsonElement]
         public MtgDbAdminDriver.Ruling[] Rulings       { get; set; }    
         [BsonElement]
-        public MtgDbAdminDriver.Format[] Formats             { get; set; }   
+        public MtgDbAdminDriver.Format[] Formats       { get; set; }   
         [BsonElement]
-        public string ReleasedAt            { get; set; } 
+        public string ReleasedAt                       { get; set; } 
         /*end of card fields*/
 
         [BsonIgnore]

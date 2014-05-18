@@ -47,6 +47,32 @@ namespace MtgDb.Info
             CreateUserCardIndexes ();
         }
 
+        public Guid AddCard(NewCard card)
+        {
+            MongoCollection<NewCard> collection = 
+                database.GetCollection<NewCard> ("new_cards");
+
+            card.Id = Guid.NewGuid();
+            card.Status = "Pending";
+            card.CreatedAt = DateTime.Now;
+
+            collection.Save(card);
+
+            return card.Id;
+        }
+
+        public NewCard GetCard(Guid id)
+        {
+            MongoCollection<NewCard> collection = 
+                database.GetCollection<NewCard> ("new_cards");
+
+            var query = Query.And(Query<NewCard>.EQ (e => e.Id, id ));
+            NewCard card =  collection.FindOne(query);
+
+            return card;
+        }
+
+
         public CardChange[] GetChangeRequests(string status = null)
         {
             MongoCollection<CardChange> collection = 

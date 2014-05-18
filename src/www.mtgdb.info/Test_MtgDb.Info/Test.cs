@@ -52,6 +52,41 @@ namespace Test_MtgDb.Info
             };
         }
 
+        [Test()]
+        public void Add_new_card()
+        {
+            NewCard card = new NewCard()
+            {
+                UserId = Guid.NewGuid(),
+                Name = "Test card",
+                Description = "Test card",
+                Flavor = "",
+                Type = "Creature",
+                SubType = "Test"
+            };
+
+            Guid id = repository.AddCard(card);
+            Assert.NotNull(id);
+        }
+
+        [Test()]
+        public void Get_new_card()
+        {
+            NewCard card = new NewCard()
+            {
+                UserId = Guid.NewGuid(),
+                Name = "Test card 1",
+                Description = "Test card",
+                Flavor = "",
+                Type = "Creature",
+                SubType = "Test"
+            };
+
+            Guid id = repository.AddCard(card);
+
+            card = repository.GetCard(id);
+            Assert.AreEqual(card.Id, id);
+        }
 
         [Test()]
         public void Update_change_status()

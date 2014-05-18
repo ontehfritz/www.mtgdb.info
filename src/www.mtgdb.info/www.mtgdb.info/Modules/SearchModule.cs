@@ -17,7 +17,7 @@ namespace MtgDb.Info
 
         public SearchModule () 
         {
-            Get ["/search"] = parameters => {
+            Get ["/search", true] = async (parameters, ct) => {
                 SearchModel model = new SearchModel();
                 model.Planeswalker = ((Planeswalker)this.Context.CurrentUser);
                 model.ActiveMenu = "search";
@@ -26,7 +26,7 @@ namespace MtgDb.Info
                 return View["Search", model];
             };
 
-            Post ["/search"] = parameters => {
+            Post ["/search", true] = async (parameters, ct) => {
                 SearchModel model = this.Bind<SearchModel>();
                 model.Planeswalker = ((Planeswalker)this.Context.CurrentUser);
                 UserCard [] walkerCards = null;

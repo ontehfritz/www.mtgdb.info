@@ -1,0 +1,106 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.NewCard>
+@{
+  Layout = "_Layout.cshtml";
+}
+ 
+@section Top{
+    <div class="t_section">
+    <h1>
+        Submit a new card <br /> 
+    </h1>
+    </div>
+}
+
+<div style="width:1200px;">
+    <form action="/cards" method="post">
+    <div class="card_info_edit">
+        <table class="table-hover">
+        <tr>
+            <td><b>Set #:</b></td>
+            <td><input type="number" name="SetNumber" value="@Model.SetNumber" /></td>
+        </tr>
+        <tr>
+            <td><b>Related Card #:</b></td>
+            <td><input type="number" name="RelatedCardId" value="@Model.RelatedCardId" /></td>
+        </tr>
+        <tr>
+            <td><b>Released:</b></td>
+            <td><input type="text" class="rdate" name="ReleasedAt" 
+                    value="@Model.ReleasedAt" /></td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;"><b>Color(s):</b></td>
+            <td>
+                <input type="text" name="Colors" value="" /><br />
+                <b>Key:</b> white, black, blue, green, red
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;"><b>Mana Cost:</b></td>
+            <td>
+            <input type="text" name="ManaCost" value="@Model.ManaCost" /><br />
+            <b>Key:</b> W - white, B - black, U - Blue, G - green, R - Red, {R/W},{G/R},{B/R},{U/W},{U/R},{B/G},{G/W},{WP},{UP},{BP} 
+            ,{RP},{GP},{B/U}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Converted Cost:</b></td>
+            <td><input type="number" name="ConvertedManaCost" value="@Model.ConvertedManaCost" /></td>
+        </tr>
+        <tr>
+            <td><b>Type:</b></td>
+            <td><input type="text" name="Type" value="@Model.Type" /></td>
+        </tr>
+        <tr>
+            <td><b>Sub Type:</b></td>
+            <td><input type="text" name="SubType" value="@Model.SubType" /></td>
+        </tr>
+         <tr>
+            <td><b>Token:</b></td>
+            <td>
+            @if(@Model.Token)
+            {
+                <input type="checkbox" name="Token" value="true" checked />
+            }
+            else
+            {
+                <input type="checkbox" name="Token" value="true" />
+            }
+            </td>
+
+        </tr>
+        <tr>
+            <td><b>Flavor:</b></td>
+            <td><textarea rows="4" cols="50" name="Flavor">@Model.Flavor</textarea></td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;"><b>Text:</b></td>
+            <td><textarea rows="4" cols="50" name="Description">@Model.Description</textarea>
+            <br />
+            <b>Key:</b> {Tap},{White},{Green},{Blue},{Black},{Red},{Red or White},{Black or Green},{Blue or Black},{Green or White},
+            {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {Variable Colorless}
+            </td>
+        </tr>
+        <tr>
+            <td><b>Power:</b></td>
+            <td><input type="number" name="Power" value="@Model.Power" /></td>
+        </tr>
+        <tr>
+            <td><b>Toughness:</b></td>
+            <td><input type="number" name="Toughness" value="@Model.Toughness" /></td>
+        </tr>
+         <tr>
+            <td><b>Rarity:</b></td>
+            <td><input type="text" name="Rarity" value="@Model.Rarity" /></td>
+        </tr>
+        <tr>
+            <td><b>Artist:</b></td>
+            <td><input type="text" name="Artist" value="@Model.Artist" /></td>
+        </tr>
+        </table>
+    </div>
+    <br style="clear:both;" />
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    <a class="btn btn-default btn-lg" href="/cards/@Model.Mvid" role="button">Cancel</a>
+    </form>
+</div>
