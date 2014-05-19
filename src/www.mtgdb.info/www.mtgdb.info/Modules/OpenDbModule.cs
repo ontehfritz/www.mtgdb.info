@@ -40,14 +40,28 @@ namespace MtgDb.Info
                 return View["Change/ChangeRequests", model];
             };
 
-            Get["/cards", true] = async (parameters, ct) => {
+            Get["/sets/new", true] = async (parameters, ct) => {
+                NewSet model = new NewSet();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+
+                return View["Change/NewSet", model];
+            };
+
+            Post["/sets/new", true] = async (parameters, ct) => {
+                NewSet model = new NewSet();
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+
+                return View["Change/NewSet", model];
+            };
+
+            Get["/cards/new", true] = async (parameters, ct) => {
                 NewCard model = new NewCard();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
                 return View["Change/NewCard", model];
             };
 
-            Post["/cards", true] = async (parameters, ct) => {
+            Post["/cards/new", true] = async (parameters, ct) => {
                 NewCard model = this.Bind<NewCard>();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.UserId = model.Planeswalker.Id;

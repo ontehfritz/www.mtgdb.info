@@ -3,11 +3,13 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/OpenDbModule.cs">
     <Files>
       <File FileName="www.mtgdb.info/Views/Change/NewCard.cshtml" Line="69" Column="18" />
-      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="42" Column="9" />
-      <File FileName="www.mtgdb.info/Modules/OpenDbModule.cs" Line="56" Column="77" />
+      <File FileName="www.mtgdb.info/Modules/CardModule.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/OpenDbModule.cs" Line="39" Column="17" />
       <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Models/Views/PageModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/NewCard.cs" Line="28" Column="22" />
+      <File FileName="www.mtgdb.info/Models/NewCard.cs" Line="24" Column="58" />
+      <File FileName="www.mtgdb.info/Views/Change/NewSet.cshtml" Line="46" Column="10" />
+      <File FileName="www.mtgdb.info/Models/NewSet.cs" Line="46" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
