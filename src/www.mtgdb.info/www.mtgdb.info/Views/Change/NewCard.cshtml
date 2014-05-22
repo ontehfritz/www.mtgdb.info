@@ -24,11 +24,6 @@
             <td><input type="number" name="RelatedCardId" value="@Model.RelatedCardId" /></td>
         </tr>
         <tr>
-            <td><b>Released:</b></td>
-            <td><input type="text" class="rdate" name="ReleasedAt" 
-                    value="@Model.ReleasedAt" /></td>
-        </tr>
-        <tr>
             <td style="vertical-align:top;"><b>Color(s):</b></td>
             <td>
                 <input type="text" name="Colors" value="" /><br />
@@ -95,6 +90,10 @@
         <tr>
             <td><b>Artist:</b></td>
             <td><input type="text" name="Artist" value="@Model.Artist" /></td>
+        </tr>
+        <tr>
+            <td><b>Comments:</b></td>
+            <td><textarea rows="4" cols="50" name="Comment" required>@Model.Comment</textarea></td>
         </tr>
         </table>
     </div>

@@ -48,8 +48,10 @@ namespace MtgDb.Info
             };
 
             Post["/sets/new", true] = async (parameters, ct) => {
-                NewSet model = new NewSet();
+                NewSet model = this.Bind<NewSet>();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.UserId = model.Planeswalker.Id;
+                repository.AddSet(model);
 
                 return View["Change/NewSet", model];
             };

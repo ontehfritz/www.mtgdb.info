@@ -71,8 +71,7 @@ namespace MtgDb.Info
 
             return card;
         }
-
-
+            
         public CardChange[] GetChangeRequests(string status = null)
         {
             MongoCollection<CardChange> collection = 
@@ -102,6 +101,32 @@ namespace MtgDb.Info
             }
 
             return changes.ToArray();
+        }
+
+        public Guid AddSet(NewSet set)
+        {
+            MongoCollection<NewSet> collection = 
+                database.GetCollection<NewSet> ("new_sets");
+
+            set.Id = Guid.NewGuid();
+            set.Status = "Pending";
+            set.CreatedAt = DateTime.Now;
+
+            collection.Save(set);
+
+            return set.Id;
+
+        }
+
+        public NewSet GetSet(Guid id)
+        {
+            MongoCollection<NewSet> collection = 
+                database.GetCollection<NewSet> ("new_sets");
+
+            var query = Query.And(Query<NewSet>.EQ (e => e.Id, id ));
+            NewSet set =  collection.FindOne(query);
+        
+            return set;
         }
 
         public CardChange UpdateCardChangeStatus(Guid id, 

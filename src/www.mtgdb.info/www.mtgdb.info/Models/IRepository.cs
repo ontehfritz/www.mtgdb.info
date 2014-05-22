@@ -26,6 +26,9 @@ namespace MtgDb.Info
         Guid AddCard(NewCard card);
         NewCard GetCard(Guid id);
 
+        Guid AddSet(NewSet set);
+        NewSet GetSet(Guid id);
+
 
 //        void UpdatePlaneswalker(Planeswalker planeswalker);
 //

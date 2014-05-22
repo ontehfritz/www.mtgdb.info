@@ -89,6 +89,49 @@ namespace Test_MtgDb.Info
         }
 
         [Test()]
+        public void Add_new_set()
+        {
+            NewSet set = new NewSet()
+            {
+                UserId = Guid.NewGuid(),
+                Name = "Test set",
+                Description = "Test set",
+                Block = "Test",
+                Type = "Test",
+                BasicLand = 0, 
+                Rare = 0,
+                MythicRare = 0, 
+                Uncommon = 0, 
+                Common = 0
+            };
+
+            Guid id = repository.AddSet(set);
+            Assert.NotNull(id);
+        }
+
+        public void Get_new_set()
+        {
+            NewSet set = new NewSet()
+            {
+                UserId = Guid.NewGuid(),
+                Name = "Test set",
+                Description = "Test set",
+                Block = "Test",
+                Type = "Test",
+                BasicLand = 0, 
+                Rare = 0,
+                MythicRare = 0, 
+                Uncommon = 0, 
+                Common = 0
+            };
+
+            Guid id = repository.AddSet(set);
+            set = repository.GetSet(id);
+
+            Assert.AreEqual(set.Id, id);
+        }
+
+        [Test()]
         public void Update_change_status()
         {
             CardChange change = new CardChange();
