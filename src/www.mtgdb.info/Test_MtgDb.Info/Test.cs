@@ -70,6 +70,26 @@ namespace Test_MtgDb.Info
         }
 
         [Test()]
+        public void Get_new_cards()
+        {
+            NewCard card = new NewCard()
+            {
+                UserId = Guid.NewGuid(),
+                Name = "Test card 2",
+                Description = "Test card",
+                Flavor = "",
+                Type = "Creature",
+                SubType = "Test"
+            };
+
+            repository.AddCard(card);
+
+            NewCard [] cards = repository.GetNewCards();
+            Assert.Greater(cards.Length, 0);
+        }
+
+
+        [Test()]
         public void Get_new_card()
         {
             NewCard card = new NewCard()

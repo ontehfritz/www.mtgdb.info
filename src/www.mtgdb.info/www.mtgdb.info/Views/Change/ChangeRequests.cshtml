@@ -16,6 +16,8 @@ Filter:
     <span class="label label-danger"><a href="/cr/Closed">C</a></span>
     <span class="label label-info"><a href="/cr/">ALL</a></span>
 <br />
+<div id="cardchange" style="float:left;">
+<h4>Card Changes</h4>
 <table class="table-striped table-hover table-condensed">
 <tbody>
 @foreach(var change in Model.Changes)
@@ -52,4 +54,43 @@ Filter:
 }
 </tbody>
 </table>
+</div>
+
+<div id="cards" style="float:left;">
+<h4>New Cards</h4>
+<table class="table-striped table-hover table-condensed">
+<tbody>
+@foreach(var card in Model.NewCards)
+{
+    <tr>
+        <td>
+            @if(@card.Status == "Pending")
+            {
+                <span class="label label-warning">P</span>
+            }
+            else if(@card.Status == "Accepted")
+            {
+                <span class="label label-success">A</span>
+            }
+            else if(@card.Status == "Closed")
+            {
+                <span class="label label-danger">C</span>
+            }
+        </td>
+        <td>
+        <a href="/cards/new/@card.Id">@card.Name</a>
+        </td>
+        <td>
+            @if(card.User != null)
+            {
+                <span>By:</span> <a href="/pw/@card.User.Name">@card.User.Name</a>
+                <span>On: @card.CreatedAt.ToString()</span>
+            }
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<br style="clear:both;" />
 

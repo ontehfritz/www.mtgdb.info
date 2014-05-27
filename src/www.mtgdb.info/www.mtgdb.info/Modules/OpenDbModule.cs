@@ -31,10 +31,12 @@ namespace MtgDb.Info
                 if(status == null)
                 {
                     model.Changes = repository.GetChangeRequests().ToList();
+                    model.NewCards = repository.GetNewCards().ToList();
                 }
                 else
                 {
                     model.Changes = repository.GetChangeRequests(status).ToList();
+                    model.NewCards = repository.GetNewCards(status).ToList();
                 }
 
                 return View["Change/ChangeRequests", model];
@@ -56,8 +58,23 @@ namespace MtgDb.Info
                 return View["Change/NewSet", model];
             };
 
+
+            Get["/cards/new/{id}", true] = async (parameters, ct) => {
+                NewCard model = repository.GetCard((Guid)parameters.id);
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+
+                return View["Change/NewCard", model];
+            };
+
+
             Get["/cards/new", true] = async (parameters, ct) => {
                 NewCard model = new NewCard();
+
+                if(Request.Query.SetId != null)
+                {
+                    model.CardSetId = (string)Request.Query.SetId;
+                }
+
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
                 return View["Change/NewCard", model];
@@ -67,11 +84,21 @@ namespace MtgDb.Info
                 NewCard model = this.Bind<NewCard>();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.UserId = model.Planeswalker.Id;
+
+                var result = this.Validate(model);
+
+                if (!result.IsValid)
+                {
+                    model.Errors = ErrorUtility.GetValidationErrors(result);
+                    return View["Change/NewCard", model];
+                }
+                    
                 Guid id = repository.AddCard(model);
                 model = repository.GetCard(id);
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
-                return View["Change/NewCard", model];
+                return Response.AsRedirect(string.Format("/cards/new/{0}",
+                    model.Id));
             };
 
 

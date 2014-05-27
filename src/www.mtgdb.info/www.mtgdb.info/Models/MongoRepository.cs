@@ -71,6 +71,37 @@ namespace MtgDb.Info
 
             return card;
         }
+
+        public NewCard [] GetNewCards(string status = null)
+        {
+            MongoCollection<NewCard> collection = 
+                database.GetCollection<NewCard> ("new_cards");
+
+            IOrderedEnumerable<NewCard> mongoResults;
+            List<NewCard> cards = new List<NewCard>(); 
+
+            if(status == null)
+            {
+                mongoResults = collection.FindAll()
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+            else
+            {
+                var query = Query.And(Query<NewCard>.EQ (e => e.Status, status ));
+
+                mongoResults = collection.Find(query)
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+
+            foreach(NewCard c in mongoResults)
+            {
+                c.User = GetProfile(c.UserId);
+                cards.Add(c);
+            }
+
+            return cards.ToArray();
+
+        }
             
         public CardChange[] GetChangeRequests(string status = null)
         {

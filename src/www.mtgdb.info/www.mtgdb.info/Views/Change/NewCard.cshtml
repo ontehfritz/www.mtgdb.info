@@ -15,8 +15,20 @@
     <form action="/cards/new" method="post">
     <div class="card_info_edit">
         <table class="table-hover">
+         <tr>
+            <td><b>Set Id:</b></td>
+            <td><input type="text" name="CardSetId" value="@Model.CardSetId" /></td>
+        </tr>
         <tr>
-            <td><b>Set #:</b></td>
+            <td><b>Multiverse Id:</b></td>
+            <td><input type="number" name="Mvid" value="@Model.Mvid" /></td>
+        </tr>
+        <tr>
+            <td><b>Name:</b></td>
+            <td><input type="text" name="Name" value="@Model.Name" /></td>
+        </tr>
+        <tr>
+            <td><b>Set Card #:</b></td>
             <td><input type="number" name="SetNumber" value="@Model.SetNumber" /></td>
         </tr>
         <tr>
@@ -92,13 +104,13 @@
             <td><input type="text" name="Artist" value="@Model.Artist" /></td>
         </tr>
         <tr>
-            <td><b>Comments:</b></td>
+            <td><b>*Comments:</b></td>
             <td><textarea rows="4" cols="50" name="Comment" required>@Model.Comment</textarea></td>
         </tr>
         </table>
     </div>
     <br style="clear:both;" />
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-    <a class="btn btn-default btn-lg" href="/cards/@Model.Mvid" role="button">Cancel</a>
+    <a class="btn btn-default btn-lg" href="/sets" role="button">Cancel</a>
     </form>
 </div>
