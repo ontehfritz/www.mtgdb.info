@@ -45,10 +45,16 @@ namespace MtgDb.Info
             Get ["/"] = parameters => {
                 IndexModel model = new IndexModel();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                Card card = new Card();
 
                 try
                 {
                     model.SetList.Sets = magicdb.GetSets();
+                    model.RandomCards.Add(magicdb.GetRandomCard());
+                    model.RandomCards.Add(magicdb.GetRandomCard());
+                    model.RandomCards.Add(magicdb.GetRandomCard());
+                    model.RandomCards.Add(magicdb.GetRandomCard());
+                    model.RandomCards.Add(magicdb.GetRandomCard());
                 }
                 catch(Exception e)
                 {

@@ -26,6 +26,7 @@ namespace MtgDb.Info
         Guid AddCard(NewCard card);
         NewCard GetCard(Guid id);
         NewCard [] GetNewCards(string status = null);
+        NewCard UpdateNewCardStatus(Guid id, string status);
 
         Guid AddSet(NewSet set);
         NewSet GetSet(Guid id);

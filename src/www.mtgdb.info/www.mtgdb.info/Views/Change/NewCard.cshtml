@@ -17,7 +17,7 @@
         <table class="table-hover">
          <tr>
             <td><b>Set Id:</b></td>
-            <td><input type="text" name="CardSetId" value="@Model.CardSetId" /></td>
+            <td><input type="text" name="CardSetId" value="@Model.CardSetId" readonly /></td>
         </tr>
         <tr>
             <td><b>Multiverse Id:</b></td>
@@ -56,11 +56,33 @@
         </tr>
         <tr>
             <td><b>Type:</b></td>
-            <td><input type="text" name="Type" value="@Model.Type" /></td>
+            <td>
+            <select name="Type">
+            <option></option>
+            @if(@Model.Types != null && @Model.Types.Length > 0)
+            {
+                foreach(string type in @Model.Types)
+                {
+                    <option>@type</option>
+                }
+            }
+            </select>
+            </td>
         </tr>
         <tr>
             <td><b>Sub Type:</b></td>
-            <td><input type="text" name="SubType" value="@Model.SubType" /></td>
+            <td>
+            <select name="SubType">
+            <option></option>
+            @if(@Model.SubTypes != null && @Model.SubTypes.Length > 0)
+            {
+                foreach(string type in @Model.SubTypes)
+                {
+                    <option>@type</option>
+                }
+            }
+            </select>
+            </td>
         </tr>
          <tr>
             <td><b>Token:</b></td>
@@ -97,7 +119,18 @@
         </tr>
          <tr>
             <td><b>Rarity:</b></td>
-            <td><input type="text" name="Rarity" value="@Model.Rarity" /></td>
+            <td>
+            <select name="Rarity">
+            <option></option>
+            @if(@Model.Rarities != null && @Model.Rarities.Length > 0)
+            {
+                foreach(string type in @Model.Rarities)
+                {
+                    <option>@type</option>
+                }
+            }
+            </select>
+            </td>
         </tr>
         <tr>
             <td><b>Artist:</b></td>
@@ -110,7 +143,8 @@
         </table>
     </div>
     <br style="clear:both;" />
+    <br />
     <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-    <a class="btn btn-default btn-lg" href="/sets" role="button">Cancel</a>
+    <a class="btn btn-default btn-lg" href="/sets/@Model.CardSetId" role="button">Cancel</a>
     </form>
 </div>

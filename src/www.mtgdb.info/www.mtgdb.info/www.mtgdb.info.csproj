@@ -188,5 +188,6 @@
     <None Include="Views\Deck\Decks.cshtml" />
     <None Include="Views\Change\NewCard.cshtml" />
     <None Include="Views\Change\NewSet.cshtml" />
+    <None Include="Views\Change\NewCardsRead.cshtml" />
   </ItemGroup>
 </Project>

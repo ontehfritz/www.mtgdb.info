@@ -7,13 +7,15 @@ namespace MtgDb.Info
 {
     public class IndexModel : PageModel
     {
-        public CardSetList SetList  { get; set; }
-        public List<CardInfo> Cards { set; get; }
+        public CardSetList SetList      { get; set; }
+        public List<CardInfo> Cards     { set; get; }
+        public List<Card> RandomCards   { get; set; }
        
         public IndexModel () : base()
         {
-            SetList =   new CardSetList ();
-            Cards =     new List<CardInfo> ();
+            SetList =       new CardSetList ();
+            Cards =         new List<CardInfo> ();
+            RandomCards =   new List<Card>();
         }
     }
 

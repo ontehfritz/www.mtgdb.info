@@ -24,27 +24,18 @@
             <div class="col-sm-6 col-md-4">
                 <h2><i class="fa fa-users"></i> Open Db</h2>
                 <p>
-                	<strong>In development:</strong> <em>add/edit sets, add new cards</em>
+                	<strong>In development:</strong><em>add/edit sets</em>
                 </p>
                 <p>
                 	The database is open, meaning that the community can add and edit the information for the cards.
                 </p>
                 <p>
-                    <a href="~/cards/289213">
-                    <img src="https://api.mtgdb.info/content/card_images/289213.jpeg" style="width:55px;height:77px;" />
-                    </a>
-                    <a href="~/cards/1">
-                    <img src="https://api.mtgdb.info/content/card_images/1.jpeg" style="width:55px;height:77px;" />
-                    </a>
-                    <a href="~/cards/36119">
-                    <img src="https://api.mtgdb.info/content/card_images/36119.jpeg" style="width:55px;height:77px;" />
-                    </a>
-                    <a href="~/cards/189213">
-                    <img src="https://api.mtgdb.info/content/card_images/189213.jpeg" style="width:55px;height:77px;" />
-                    </a>
-                    <a href="~/cards/3">
-                    <img src="https://api.mtgdb.info/content/card_images/3.jpeg" style="width:55px;height:77px;" />
-                    </a>
+                    @foreach(var card in Model.RandomCards)
+                    {
+                        <a href="~/cards/@card.Id">
+                        <img src="@card.CardImage" style="width:55px;height:77px;" />
+                        </a>
+                    }
                 </p>
             </div><!--/span-->
             <div class="col-sm-6 col-md-4">

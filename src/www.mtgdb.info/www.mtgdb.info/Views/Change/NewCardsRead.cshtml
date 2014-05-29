@@ -1,0 +1,135 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.NewCard>
+@{
+  Layout = "_Layout.cshtml";
+}
+ 
+@section Top{
+    <div class="t_section">
+    <h1>
+        New card submission  
+        @if(@Model.Status == "Pending")
+        {
+            <span class="label label-warning">Pending</span>
+        }
+        else if(@Model.Status == "Accepted")
+        {
+            <span class="label label-success">Accepted</span>
+        }
+        else if(@Model.Status == "Closed")
+        {
+            <span class="label label-danger">Closed</span>
+        }
+    </h1>
+    Id: @Model.Id
+    </div>
+}
+<div style="width:1200px;">
+    <form action="/cards/new/@Model.Id" method="post">
+    <div class="card_info_edit">
+        <table class="table-hover">
+         <tr>
+            <td><b>Set Id:</b></td>
+            <td><input type="text" name="CardSetId" value="@Model.CardSetId" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>Multiverse Id:</b></td>
+            <td><input type="number" name="Mvid" value="@Model.Mvid" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>Name:</b></td>
+            <td><input type="text" name="Name" value="@Model.Name" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>Set Card #:</b></td>
+            <td><input type="number" name="SetNumber" value="@Model.SetNumber" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>Related Card #:</b></td>
+            <td><input type="number" name="RelatedCardId" value="@Model.RelatedCardId" readonly /></td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;"><b>Color(s):</b></td>
+            <td>
+                <input type="text" name="Colors" value="" readonly /><br />
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;"><b>Mana Cost:</b></td>
+            <td>
+            <input type="text" name="ManaCost" value="@Model.ManaCost" readonly /><br />
+            </td>
+        </tr>
+        <tr>
+            <td><b>Converted Cost:</b></td>
+            <td><input type="number" name="ConvertedManaCost" value="@Model.ConvertedManaCost" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>Type:</b></td>
+            <td>
+            <input type="text" name="Type" value="@Model.Type" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td><b>Sub Type:</b></td>
+            <td>
+            <input type="text" name="SubType" value="@Model.SubType" readonly />
+            </td>
+        </tr>
+         <tr>
+            <td><b>Token:</b></td>
+            <td>
+            @if(@Model.Token)
+            {
+                <input type="checkbox" name="Token" value="true" checked readonly />
+            }
+            else
+            {
+                <input type="checkbox" name="Token" value="true" readonly />
+            }
+            </td>
+        </tr>
+        <tr>
+            <td><b>Flavor:</b></td>
+            <td><textarea rows="4" cols="50" name="Flavor" readonly >@Model.Flavor</textarea></td>
+        </tr>
+        <tr>
+            <td style="vertical-align:top;"><b>Text:</b></td>
+            <td>
+            <textarea rows="4" cols="50" name="Description" readonly >@Model.Description</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td><b>Power:</b></td>
+            <td><input type="number" name="Power" value="@Model.Power" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>Toughness:</b></td>
+            <td><input type="number" name="Toughness" value="@Model.Toughness" readonly /></td>
+        </tr>
+         <tr>
+            <td><b>Rarity:</b></td>
+            <td>
+            <input type="text" name="Rarity" value="@Model.Rarity" readonly />
+            </td>
+        </tr>
+        <tr>
+            <td><b>Artist:</b></td>
+            <td><input type="text" name="Artist" value="@Model.Artist" readonly /></td>
+        </tr>
+        <tr>
+            <td><b>*Comments:</b></td>
+            <td><textarea rows="4" cols="50" name="Comment" required readonly>@Model.Comment</textarea></td>
+        </tr>
+        </table>
+    </div>
+    <br style="clear:both;" />
+    <br />
+
+    @if(!(@Model.Status.ToLower() == "accepted"))
+    {
+        <button type="submit" class="btn btn-primary btn-lg">Commit</button>
+    }
+
+    <a class="btn btn-default btn-lg" href="/cards" role="button">Cancel</a>
+    </form>
+</div>

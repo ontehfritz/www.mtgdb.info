@@ -57,16 +57,61 @@ namespace MtgDb.Info
 
                 return View["Change/NewSet", model];
             };
-
-
+                
             Get["/cards/new/{id}", true] = async (parameters, ct) => {
                 NewCard model = repository.GetCard((Guid)parameters.id);
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
-                return View["Change/NewCard", model];
+                return View["Change/NewCardsRead", model];
             };
 
+            Post["/cards/new/{id}", true] = async (parameters, ct) => {
+                NewCard model = repository.GetCard((Guid)parameters.id);
+                Admin admin = new Admin(ConfigurationManager.AppSettings.Get("api"));
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
 
+                if(!model.Planeswalker.InRole("admin"))
+                {
+                    return HttpStatusCode.Unauthorized;
+                }
+
+                MtgDbAdminDriver.Card newCard = 
+                    new MtgDbAdminDriver.Card()
+                {
+                    Id = model.Mvid,
+                    Name = model.Name,
+                    Description = model.Description,
+                    Flavor = model.Flavor,
+                    Power = model.Power,
+                    Toughness = model.Toughness,
+                    Loyalty = model.Loyalty,
+                    Artist = model.Artist,
+                    Type = model.Type,
+                    SubType = model.SubType,
+                    Token = model.Token,
+                    Colors = model.Colors,
+                    CardSetId = model.CardSetId,
+                    ManaCost = model.ManaCost,
+                    ConvertedManaCost = model.ConvertedManaCost,
+                    RelatedCardId = model.RelatedCardId,
+                    Rarity = model.Rarity,
+                    SetNumber = model.SetNumber
+                };
+
+                try
+                {
+                    admin.AddCard(model.Planeswalker.AuthToken,newCard);
+                    repository.UpdateNewCardStatus(model.Id, "Accepted");
+                    model.Messages.Add("Card has been sucessfully added.");
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
+                    
+                return View["Change/NewCardsRead", model];
+            };
+                
             Get["/cards/new", true] = async (parameters, ct) => {
                 NewCard model = new NewCard();
 
@@ -76,6 +121,9 @@ namespace MtgDb.Info
                 }
 
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                model.Types = magicdb.GetCardTypes();
+                model.SubTypes = magicdb.GetCardSubTypes();
+                model.Rarities = magicdb.GetCardRarityTypes();
 
                 return View["Change/NewCard", model];
             };
@@ -84,6 +132,10 @@ namespace MtgDb.Info
                 NewCard model = this.Bind<NewCard>();
                 model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
                 model.UserId = model.Planeswalker.Id;
+
+                model.Types = magicdb.GetCardTypes();
+                model.SubTypes = magicdb.GetCardSubTypes();
+                model.Rarities = magicdb.GetCardRarityTypes();
 
                 var result = this.Validate(model);
 
@@ -95,8 +147,7 @@ namespace MtgDb.Info
                     
                 Guid id = repository.AddCard(model);
                 model = repository.GetCard(id);
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-
+               
                 return Response.AsRedirect(string.Format("/cards/new/{0}",
                     model.Id));
             };

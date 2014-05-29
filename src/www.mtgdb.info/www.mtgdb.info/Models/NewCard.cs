@@ -9,9 +9,9 @@ namespace MtgDb.Info
     {
         public NewCardValidator()
         {
-            RuleFor(card => card.Artist).NotEmpty();
+
             RuleFor(card => card.CardSetId).NotEmpty();
-            RuleFor(card => card.Colors).NotEmpty();
+           
 //            RuleFor(change => change.ReleasedAt)
 //                .Matches("^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$")
 //                .WithMessage("Card release date must be in yyyy-mm-dd fomat");
@@ -20,10 +20,8 @@ namespace MtgDb.Info
                 .GreaterThanOrEqualTo(0);
             RuleFor(card => card.Power)
                 .GreaterThanOrEqualTo(0);
-
             RuleFor(card => card.Toughness)
                 .GreaterThanOrEqualTo(0);
-
             RuleFor(card => card.Name).NotEmpty();
             RuleFor(card => card.Rarity).NotEmpty();
             RuleFor(card => card.Type).NotEmpty();
@@ -96,7 +94,13 @@ namespace MtgDb.Info
 
 
         [BsonIgnore]
-        public Profile User { get; set; }
+        public Profile User                 { get; set; }
+        [BsonIgnore]
+        public string[] Types               { get; set; }
+        [BsonIgnore]
+        public string[] SubTypes            { get; set; }
+        [BsonIgnore]
+        public string[] Rarities             { get; set; }
     }
 }
 

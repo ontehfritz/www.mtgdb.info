@@ -61,6 +61,21 @@ namespace MtgDb.Info
             return card.Id;
         }
 
+        public NewCard UpdateNewCardStatus(Guid id, string status)
+        {
+            MongoCollection<NewCard> collection = 
+                database.GetCollection<NewCard> ("new_cards");
+
+            var query =         Query<NewCard>.EQ (e => e.Id, id);
+            NewCard card =      collection.FindOne(query);
+            card.Status =       status;
+            card.ModifiedAt =   DateTime.Now;
+
+            collection.Save(card);
+
+            return card;
+        }
+            
         public NewCard GetCard(Guid id)
         {
             MongoCollection<NewCard> collection = 
