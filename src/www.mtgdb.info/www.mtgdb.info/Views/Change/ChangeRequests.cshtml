@@ -93,4 +93,42 @@ Filter:
 </table>
 </div>
 <br style="clear:both;" />
+<div id="sets" style="float:left;">
+<h4>New Sets</h4>
+<table class="table-striped table-hover table-condensed">
+<tbody>
+@foreach(var set in Model.NewSets)
+{
+    <tr>
+        <td>
+            @if(@set.Status == "Pending")
+            {
+                <span class="label label-warning">P</span>
+            }
+            else if(@set.Status == "Accepted")
+            {
+                <span class="label label-success">A</span>
+            }
+            else if(@set.Status == "Closed")
+            {
+                <span class="label label-danger">C</span>
+            }
+        </td>
+        <td>
+        <a href="/sets/new/@set.Id">@set.Name</a>
+        </td>
+        <td>
+            @if(set.User != null)
+            {
+                <span>By:</span> <a href="/pw/@set.User.Name">@set.User.Name</a>
+                <span>On: @set.CreatedAt.ToString()</span>
+            }
+        </td>
+    </tr>
+}
+</tbody>
+</table>
+</div>
+<br style="clear:both;" />
+
 

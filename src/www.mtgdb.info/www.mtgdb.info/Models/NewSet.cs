@@ -1,8 +1,38 @@
 ﻿using System;
 using MongoDB.Bson.Serialization.Attributes;
+using FluentValidation;
 
 namespace MtgDb.Info
 {
+    public class NewSetValidator : AbstractValidator<NewSet>
+    {
+        public NewSetValidator()
+        {
+            RuleFor(set => set.SetId).NotEmpty();
+            RuleFor(set => set.ReleasedAt).NotEmpty();
+
+            RuleFor(set => set.ReleasedAt)
+                .Matches("^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$")
+                .WithMessage("Set release date must be in yyyy-mm-dd fomat");
+
+            RuleFor(set => set.BasicLand)
+                .GreaterThanOrEqualTo(0);
+            RuleFor(set => set.Rare)
+                .GreaterThanOrEqualTo(0);
+            RuleFor(set => set.Uncommon)
+                .GreaterThanOrEqualTo(0);
+            RuleFor(set => set.Common)
+                .GreaterThanOrEqualTo(0);
+            RuleFor(set => set.MythicRare)
+                .GreaterThanOrEqualTo(0);
+
+            RuleFor(set => set.Name).NotEmpty();
+            RuleFor(set => set.Description).NotEmpty();
+            RuleFor(set => set.Type).NotEmpty();
+            RuleFor(set => set.Comment).NotEmpty();
+        }
+    }
+
     public class NewSet : PageModel
     {
         [BsonId]
@@ -44,6 +74,9 @@ namespace MtgDb.Info
         public int BasicLand                { get; set; }
         [BsonElement]
         public string ReleasedAt            { get; set; }
+
+        [BsonIgnore]
+        public Profile User                 { get; set; }
     }
 }
 

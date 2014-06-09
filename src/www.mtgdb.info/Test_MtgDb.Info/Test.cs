@@ -129,11 +129,13 @@ namespace Test_MtgDb.Info
             Assert.NotNull(id);
         }
 
+        [Test()]
         public void Get_new_set()
         {
             NewSet set = new NewSet()
             {
                 UserId = Guid.NewGuid(),
+                SetId = "TST",
                 Name = "Test set",
                 Description = "Test set",
                 Block = "Test",
@@ -152,6 +154,51 @@ namespace Test_MtgDb.Info
         }
 
         [Test()]
+        public void Get_new_sets()
+        {
+            NewSet set = new NewSet()
+            {
+                UserId = Guid.NewGuid(),
+                SetId = "TST2",
+                Name = "Test set",
+                Description = "Test set",
+                Block = "Test",
+                Type = "Test",
+                BasicLand = 0, 
+                Rare = 0,
+                MythicRare = 0, 
+                Uncommon = 0, 
+                Common = 0
+            };
+
+            NewSet [] sets = repository.GetNewSets();
+            Assert.Greater(sets.Length, 0);
+        }
+
+        [Test()]
+        public void Update_new_set_staus()
+        {
+            NewSet set = new NewSet()
+            {
+                UserId = Guid.NewGuid(),
+                SetId = "TST3",
+                Name = "Test set",
+                Description = "Test set",
+                Block = "Test",
+                Type = "Test",
+                BasicLand = 0, 
+                Rare = 0,
+                MythicRare = 0, 
+                Uncommon = 0, 
+                Common = 0
+            };
+
+            Guid id = repository.AddSet(set);
+            set = repository.UpdateNewSetStatus(id,"Declined");
+            Assert.AreEqual(set.Status, "Declined");
+        }
+            
+        [Test()]
         public void Update_change_status()
         {
             CardChange change = new CardChange();
@@ -167,7 +214,7 @@ namespace Test_MtgDb.Info
 
             string value = change.GetFieldValue("description");
 
-            admin.UpdateCardField(mtgdbUser.AuthToken, change.Mvid, "description",value);
+            admin.UpdateCardField(mtgdbUser.AuthToken, change.Mvid, "description", value);
             repository.UpdateCardChangeStatus(id, "Accepted", "description");
 
             change = repository.GetCardChangeRequest(id);

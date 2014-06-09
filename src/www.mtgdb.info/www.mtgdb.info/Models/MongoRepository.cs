@@ -175,6 +175,52 @@ namespace MtgDb.Info
             return set;
         }
 
+        public NewSet [] GetNewSets(string status = null)
+        {
+            MongoCollection<NewSet> collection = 
+                database.GetCollection<NewSet> ("new_sets");
+
+            IOrderedEnumerable<NewSet> mongoResults;
+            List<NewSet> sets = new List<NewSet>(); 
+
+            if(status == null)
+            {
+                mongoResults = collection.FindAll()
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+            else
+            {
+                var query = Query.And(Query<NewSet>.EQ (e => e.Status, status ));
+
+                mongoResults = collection.Find(query)
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+
+            foreach(NewSet s in mongoResults)
+            {
+                s.User = GetProfile(s.UserId);
+                sets.Add(s);
+            }
+
+            return sets.ToArray();
+
+        }
+
+        public NewSet UpdateNewSetStatus(Guid id, string status)
+        {
+            MongoCollection<NewSet> collection = 
+                database.GetCollection<NewSet> ("new_sets");
+
+            var query =        Query<NewSet>.EQ (e => e.Id, id);
+            NewSet set =       collection.FindOne(query);
+            set.Status =       status;
+            set.ModifiedAt =   DateTime.Now;
+
+            collection.Save(set);
+
+            return set;
+        }
+
         public CardChange UpdateCardChangeStatus(Guid id, 
             string status, string field = null)
         {

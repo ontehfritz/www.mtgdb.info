@@ -23,20 +23,22 @@ namespace MtgDb.Info
             this.RequiresAuthentication ();
 
             Get["/cr/{status?}"] = parameters => {
-                ChangeRequestModel model = new ChangeRequestModel();
-                string status = (string)parameters.status;
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.Title = "M:tgDb.Info Admin";
+                ChangeRequestModel model =  new ChangeRequestModel();
+                string status =             (string)parameters.status;
+                model.Planeswalker =        (Planeswalker)this.Context.CurrentUser;
+                model.Title =               "M:tgDb.Info Admin";
 
                 if(status == null)
                 {
-                    model.Changes = repository.GetChangeRequests().ToList();
-                    model.NewCards = repository.GetNewCards().ToList();
+                    model.Changes =     repository.GetChangeRequests().ToList();
+                    model.NewCards =    repository.GetNewCards().ToList();
+                    model.NewSets =     repository.GetNewSets().ToList();
                 }
                 else
                 {
-                    model.Changes = repository.GetChangeRequests(status).ToList();
-                    model.NewCards = repository.GetNewCards(status).ToList();
+                    model.Changes =     repository.GetChangeRequests(status).ToList();
+                    model.NewCards =    repository.GetNewCards(status).ToList();
+                    model.NewSets =     repository.GetNewSets(status).ToList();
                 }
 
                 return View["Change/ChangeRequests", model];
@@ -50,12 +52,64 @@ namespace MtgDb.Info
             };
 
             Post["/sets/new", true] = async (parameters, ct) => {
-                NewSet model = this.Bind<NewSet>();
-                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
-                model.UserId = model.Planeswalker.Id;
+                NewSet model =          this.Bind<NewSet>();
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.UserId =          model.Planeswalker.Id;
+
+                var result = this.Validate(model);
+
+                if (!result.IsValid)
+                {
+                    model.Errors = ErrorUtility.GetValidationErrors(result);
+                    return View["Change/NewSet", model];
+                }
+
                 repository.AddSet(model);
 
-                return View["Change/NewSet", model];
+                return Response.AsRedirect(string.Format("/sets/new/{0}",
+                    model.Id));
+            };
+
+            Get["/sets/new/{id}", true] = async (parameters, ct) => {
+                NewSet model = repository.GetSet((Guid)parameters.id);
+
+                model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+
+                return View["Change/NewSetRead", model];
+            };
+
+            Post["/sets/new/{id}", true] = async (parameters, ct) => {
+                NewSet model = repository.GetSet((Guid)parameters.id);
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                Admin admin = new Admin(ConfigurationManager.AppSettings.Get("api"));
+
+                if(!model.Planeswalker.InRole("admin"))
+                {
+                    return HttpStatusCode.Unauthorized;
+                }
+                    
+                MtgDbAdminDriver.CardSet newSet = 
+                    new MtgDbAdminDriver.CardSet()
+                {
+                    Id = model.SetId,
+                    Name = model.Name,
+                    Description = model.Description,
+                    ReleasedAt = model.ReleasedAt,
+                    Type = model.Type,
+                    Block = model.Block,
+                    Common = model.Common,
+                    Uncommon = model.Uncommon,
+                    Rare = model.Rare,
+                    MythicRare = model.MythicRare,
+                    BasicLand = model.BasicLand
+                };
+
+                admin.AddSet(model.Planeswalker.AuthToken, newSet);
+                model = repository.UpdateNewSetStatus(model.Id, "Accepted");
+
+                model.Messages.Add("Set has been sucessfully added.");
+
+                return View["Change/NewSetRead", model];
             };
                 
             Get["/cards/new/{id}", true] = async (parameters, ct) => {
@@ -75,6 +129,20 @@ namespace MtgDb.Info
                     return HttpStatusCode.Unauthorized;
                 }
 
+
+                string [] colors = null;
+
+                if(model.Colors == null || 
+                    model.Colors.Length == 0)
+                {
+                    colors = new string[1];
+                    colors[0] = "None";
+                }
+                else
+                {
+                    colors = model.Colors.Split(',');
+                }
+                    
                 MtgDbAdminDriver.Card newCard = 
                     new MtgDbAdminDriver.Card()
                 {
@@ -89,7 +157,7 @@ namespace MtgDb.Info
                     Type = model.Type,
                     SubType = model.SubType,
                     Token = model.Token,
-                    Colors = model.Colors,
+                    Colors = colors,
                     CardSetId = model.CardSetId,
                     ManaCost = model.ManaCost,
                     ConvertedManaCost = model.ConvertedManaCost,
@@ -102,6 +170,7 @@ namespace MtgDb.Info
                 {
                     admin.AddCard(model.Planeswalker.AuthToken,newCard);
                     repository.UpdateNewCardStatus(model.Id, "Accepted");
+                    model = repository.GetCard((Guid)parameters.id);
                     model.Messages.Add("Card has been sucessfully added.");
                 }
                 catch(Exception e)

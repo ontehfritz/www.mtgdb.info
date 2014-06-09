@@ -38,9 +38,6 @@
     <Reference Include="SuperSimpleAuthCSharp">
       <HintPath>..\..\..\dependencies\SuperSimpleAuthCSharp.dll</HintPath>
     </Reference>
-    <Reference Include="MtgDbAdminDriver">
-      <HintPath>..\..\..\dependencies\MtgDbAdminDriver.dll</HintPath>
-    </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.22.2\lib\net40\Nancy.dll</HintPath>
     </Reference>
@@ -73,6 +70,9 @@
     </Reference>
     <Reference Include="MtgDb.Info.Driver">
       <HintPath>..\..\..\dependencies\MtgDb.Info.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MtgDbAdminDriver">
+      <HintPath>..\..\..\dependencies\MtgDbAdminDriver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -189,5 +189,6 @@
     <None Include="Views\Change\NewCard.cshtml" />
     <None Include="Views\Change\NewSet.cshtml" />
     <None Include="Views\Change\NewCardsRead.cshtml" />
+    <None Include="Views\Change\NewSetRead.cshtml" />
   </ItemGroup>
 </Project>

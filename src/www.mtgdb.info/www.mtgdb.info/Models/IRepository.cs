@@ -30,6 +30,8 @@ namespace MtgDb.Info
 
         Guid AddSet(NewSet set);
         NewSet GetSet(Guid id);
+        NewSet [] GetNewSets(string status = null);
+        NewSet UpdateNewSetStatus(Guid id, string status);
 
 
 //        void UpdatePlaneswalker(Planeswalker planeswalker);

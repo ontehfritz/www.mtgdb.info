@@ -65,7 +65,7 @@ namespace MtgDb.Info
         [BsonElement]
         public string Flavor                { get; set; }   
         [BsonElement]
-        public string[] Colors              { get; set; }   
+        public string Colors                { get; set; }   
         [BsonElement]
         public string ManaCost              { get; set; }    
         [BsonElement]

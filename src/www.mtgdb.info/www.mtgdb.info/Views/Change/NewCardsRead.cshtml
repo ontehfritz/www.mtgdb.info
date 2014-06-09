@@ -50,7 +50,7 @@
         <tr>
             <td style="vertical-align:top;"><b>Color(s):</b></td>
             <td>
-                <input type="text" name="Colors" value="" readonly /><br />
+                <input type="text" name="Colors" value="@Model.Colors" readonly /><br />
             </td>
         </tr>
         <tr>
@@ -118,18 +118,19 @@
         </tr>
         <tr>
             <td><b>*Comments:</b></td>
-            <td><textarea rows="4" cols="50" name="Comment" required readonly>@Model.Comment</textarea></td>
+            <td><textarea rows="4" cols="50" name="Comment" readonly>@Model.Comment</textarea></td>
         </tr>
         </table>
     </div>
     <br style="clear:both;" />
     <br />
 
-    @if(!(@Model.Status.ToLower() == "accepted"))
+    @if(!(@Model.Status.ToLower() == "accepted") && 
+                                    Model.Planeswalker.InRole("admin"))
     {
         <button type="submit" class="btn btn-primary btn-lg">Commit</button>
     }
 
-    <a class="btn btn-default btn-lg" href="/cards" role="button">Cancel</a>
+    <a class="btn btn-default btn-lg" href="/cr" role="button">Cancel</a>
     </form>
 </div>

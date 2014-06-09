@@ -1,11 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/OpenDbModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Index.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/OpenDbModule.cs" Line="126" Column="17" />
-      <File FileName="www.mtgdb.info/Views/Change/NewCardsRead.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Change/NewCard.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="73" Column="53" />
+      <File FileName="www.mtgdb.info/web.config" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_Layout.cshtml" Line="190" Column="113" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
