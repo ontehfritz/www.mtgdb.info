@@ -158,6 +158,8 @@
     <Compile Include="Modules\OpenDbModule.cs" />
     <Compile Include="Models\NewCard.cs" />
     <Compile Include="Models\NewSet.cs" />
+    <Compile Include="Models\SetChange.cs" />
+    <Compile Include="Models\Views\SetLogsModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />
@@ -190,5 +192,8 @@
     <None Include="Views\Change\NewSet.cshtml" />
     <None Include="Views\Change\NewCardsRead.cshtml" />
     <None Include="Views\Change\NewSetRead.cshtml" />
+    <None Include="Views\Change\CardSet.cshtml" />
+    <None Include="Views\Change\SetChange.cshtml" />
+    <None Include="Views\Change\SetLogs.cshtml" />
   </ItemGroup>
 </Project>

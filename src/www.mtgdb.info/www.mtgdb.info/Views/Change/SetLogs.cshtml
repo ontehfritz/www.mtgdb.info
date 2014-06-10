@@ -1,0 +1,60 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.SetLogsModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+ 
+@section Top{
+    <div class="t_section">
+        <h1>
+            Change Request History <br /> 
+            <small>Set Id: <a href="/sets/@Model.SetId">@Model.SetId</a></small>
+        </h1>
+    </div>
+}
+   
+@foreach(var change in Model.Changes)
+{
+    if(change.Version == 0)
+    {
+        <div class="alert alert-info">
+            <h4><a href="/sets/@Model.SetId/logs/@change.Id">Original</a></h4>
+        </div> 
+    }
+    else
+    {
+        string newVersion = "well";
+        if(change.Version == @Model.NewVersion)
+        {
+            newVersion = "alert alert-success";
+        }
+
+        <div class="@newVersion">
+            <h4>Version: <a href="/sets/@Model.SetId/logs/@change.Id"> @change.Version </a>
+            @if(@change.Status == "Accepted")
+            {
+                <span class="label label-success pull-right">Accepted</span>
+            }
+            else if(@change.Status == "Closed")
+            {
+                <span class="label label-danger pull-right">Closed</span>
+            }
+            else
+            {
+                <span class="label label-warning pull-right">Pending</span>
+            }
+            <small>By: <a href="/pw/@change.User.Name">@change.User.Name</a>
+            On
+            @change.CreatedAt.ToShortDateString() @change.CreatedAt.ToShortTimeString()
+            </small>
+            </h4>
+            <div style="float:left;">
+            <b>Changes:</b>
+            @foreach(var field in @change.FieldsUpdated)
+            {
+                <span class="badge">@field</span>
+            }
+            </div>
+            <br style="clear:both;"/>
+        </div>   
+    }
+}

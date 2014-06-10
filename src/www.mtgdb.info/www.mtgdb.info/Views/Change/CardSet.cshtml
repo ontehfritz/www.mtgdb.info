@@ -1,0 +1,69 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.SetChange>
+@{
+  Layout = "_Layout.cshtml";
+}
+ 
+@section Top{
+    <div class="t_section">
+    <h1>
+        Submit a card set update <br /> 
+        <small>Set Id: <a href="/sets/@Model.SetId">@Model.SetId</a></small>
+    </h1>
+    </div>
+}
+
+<div style="width:1200px;">
+    <form action="/sets/@Model.SetId/change" method="post">
+    <div class="cardset_info_edit">
+        <table class="table-hover">
+        <tr>
+            <td><b>Set Name:</b></td>
+            <td><input type="text" name="Name" value="@Model.Name" /></td>
+        </tr>
+        <tr>
+            <td><b>Type:</b></td>
+            <td><input type="text" name="Type" value="@Model.Type" /></td>
+        </tr>
+        <tr>
+            <td><b>Block:</b></td>
+            <td><input type="text" name="Block" value="@Model.Block" /></td>
+        </tr>
+        <tr>
+            <td><b>Released Date:</b></td>
+            <td><input type="text" class="rdate" name="ReleasedAt" 
+                    value="@Model.ReleasedAt" /></td>
+        </tr>
+        <tr>
+            <td><b>Description:</b></td>
+            <td><textarea rows="4" cols="50" name="Description">@Model.Description</textarea></td>
+        </tr>
+        <tr>
+            <td><b>Uncommon:</b></td>
+            <td><input type="number" name="Uncommon" value="@Model.Uncommon" /></td>
+        </tr>
+        <tr>
+            <td><b>Common:</b></td>
+            <td><input type="number" name="Common" value="@Model.Common" /></td>
+        </tr>
+        <tr>
+            <td><b>Rare:</b></td>
+            <td><input type="number" name="Rare" value="@Model.Rare" /></td>
+        </tr>
+        <tr>
+            <td><b>Mythic Rare:</b></td>
+            <td><input type="number" name="MythicRare" value="@Model.MythicRare" /></td>
+        </tr>
+        </table>
+
+    </div>
+    <br style="clear:both;" />
+    <h4>*Summary of changes:</h4>
+    <textarea rows="4" cols="50" name="Comment" required>@Model.Comment</textarea>
+    <br />
+    <br />
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+    <a class="btn btn-default btn-lg" href="/sets/@Model.SetId" role="button">Cancel</a>
+    </form>
+</div>
+
+

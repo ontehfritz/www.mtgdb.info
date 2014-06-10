@@ -329,6 +329,68 @@ namespace Test_MtgDb.Info
 
             Assert.AreNotEqual(Guid.Empty,newId);
         }
+
+        [Test()]
+        public void Add_set_change()
+        {
+            SetChange change = new SetChange();
+
+            CardSet set = mtgdb.GetSet("THS");
+
+            change = SetChange.MapSet(set);
+            change.Description = "description change";
+            change.Comment = "test";
+            change.UserId = Guid.NewGuid();
+
+            Guid newId = repository.AddCardSetChangeRequest(change);
+
+            Assert.AreNotEqual(Guid.Empty,newId);
+        }
+
+        [Test()]
+        public void Get_set_change()
+        {
+            SetChange change = new SetChange();
+
+            CardSet set = mtgdb.GetSet("THS");
+
+            change = SetChange.MapSet(set);
+            change.Description = "1";
+            change.Comment = "test";
+            change.UserId = Guid.NewGuid();
+
+            Guid id = repository.AddCardSetChangeRequest(change);
+
+            change = repository.GetCardSetChangeRequest(id);
+
+            Assert.AreEqual(id, change.Id );
+        }
+
+        [Test()]
+        public void Get_cardset_changes()
+        {
+            SetChange change = new SetChange();
+
+            CardSet set = mtgdb.GetSet("THS");
+
+            change = SetChange.MapSet(set);
+            change.Comment = "test";
+            change.Description = "1";
+
+            repository.AddCardSetChangeRequest(change);
+
+            SetChange[] changes = repository.GetCardSetChangeRequests("THS");
+
+            Assert.Greater(changes.Length, 0);
+        }
+
+        [Test()]
+        public void Get_set_change_requests()
+        {
+            SetChange [] changes = repository.GetSetChangeRequests();
+
+            Assert.Greater(changes.Length, 0);
+        }
             
         [Test ()]
         public void Get_UserCards_by_setId ()

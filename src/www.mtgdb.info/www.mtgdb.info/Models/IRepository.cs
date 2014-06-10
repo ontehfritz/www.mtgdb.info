@@ -33,6 +33,12 @@ namespace MtgDb.Info
         NewSet [] GetNewSets(string status = null);
         NewSet UpdateNewSetStatus(Guid id, string status);
 
+        Guid AddCardSetChangeRequest(SetChange change);
+        SetChange GetCardSetChangeRequest(Guid id);
+        SetChange[] GetCardSetChangeRequests(string setId);
+        SetChange[] GetSetChangeRequests(string status = null);
+        SetChange UpdateCardSetChangeStatus(Guid id, string status, string field = null);
+
 
 //        void UpdatePlaneswalker(Planeswalker planeswalker);
 //

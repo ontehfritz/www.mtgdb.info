@@ -221,6 +221,166 @@ namespace MtgDb.Info
             return set;
         }
 
+        public Guid AddCardSetChangeRequest(SetChange change)
+        {
+            MongoCollection<SetChange> collection = 
+                database.GetCollection<SetChange> ("set_changes");
+
+            List<SetChange> changes =   new List<SetChange>(); 
+            CardSet set =               magicdb.GetSet(change.SetId);
+            var query =                 Query.And(Query<SetChange>.EQ (e => e.SetId, change.SetId ));
+            var mongoResults =          collection.Find(query);
+
+            foreach(SetChange c in mongoResults)
+            {
+                changes.Add(c);
+            }
+
+            if(changes.Count == 0)
+            {
+                SetChange original =   SetChange.MapSet(set);
+                original.Comment =      "Original set info";
+                original.Id =           Guid.NewGuid();
+                original.Version =      0;
+                original.CreatedAt =    DateTime.Now;
+
+                collection.Save(original);
+            }
+
+            change.Id =             Guid.NewGuid();
+            change.Version =        changes.Count == 0 ? 1 : changes.Count;
+            change.CreatedAt =      DateTime.Now;
+            change.ModifiedAt =     DateTime.Now;
+            change.FieldsUpdated  = SetChange.FieldsChanged(set, change);
+            change.Status = "Pending";
+
+            if(change.FieldsUpdated == null ||
+                change.FieldsUpdated.Length == 0)
+            {
+                throw new ArgumentException("No fields have been updated.");
+            }
+
+            try
+            {
+                collection.Save(change);
+            }
+            catch(Exception e)
+            {
+                change.Id = Guid.Empty;
+                throw e; 
+            }
+
+            return change.Id;
+        }
+
+        public SetChange GetCardSetChangeRequest(Guid id)
+        {
+
+            MongoCollection<SetChange> collection = 
+                database.GetCollection<SetChange> ("set_changes");
+
+            var query = Query.And(Query<SetChange>.EQ (e => e.Id, id ));
+            SetChange change =  collection.FindOne(query);
+            if(change.Version != 0)
+            {
+                change.User = GetProfile(change.UserId);
+            }
+
+            return change;
+        }
+
+        public SetChange[] GetCardSetChangeRequests(string setId)
+        {
+            MongoCollection<SetChange> collection = 
+                database.GetCollection<SetChange> ("set_changes");
+
+            List<SetChange> changes = new List<SetChange>(); 
+
+            var query = Query.And(Query<SetChange>.EQ (e => e.SetId, setId.ToUpper()));
+            var mongoResults = collection.Find(query);
+
+            foreach(SetChange c in mongoResults)
+            {
+                c.User = GetProfile(c.UserId);
+                changes.Add(c);
+            }
+
+            return changes.ToArray();
+        }
+
+        public SetChange[] GetSetChangeRequests(string status = null)
+        {
+            MongoCollection<SetChange> collection = 
+                database.GetCollection<SetChange> ("set_changes");
+
+            List<SetChange> changes = new List<SetChange>(); 
+            IOrderedEnumerable<SetChange> mongoResults;
+
+            if(status == null)
+            {
+                mongoResults = collection.FindAll()
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+            else
+            {
+                var query = Query.And(Query<SetChange>.EQ (e => e.Status, status),
+                    Query<SetChange>.NE (e => e.Version, 0));
+
+                mongoResults = collection.Find(query)
+                    .OrderByDescending(x => x.CreatedAt);
+            }
+
+            foreach(SetChange c in mongoResults)
+            {
+                c.User = GetProfile(c.UserId);
+                changes.Add(c);
+            }
+
+            return changes.ToArray();
+        }
+
+        public SetChange UpdateCardSetChangeStatus(Guid id, 
+            string status, string field = null)
+        {
+            MongoCollection<SetChange> collection = 
+                database.GetCollection<SetChange> ("set_changes");
+
+            var query =                 Query<SetChange>.EQ (e => e.Id, id);
+            SetChange change =          collection.FindOne(query);
+            change.Status =             status;
+            change.ModifiedAt =         DateTime.Now;
+            List<string> committed  =   new List<string>();
+
+
+            if(field != null)
+            {
+                if(change.ChangesCommitted == null)
+                {
+                    committed.Add(field);
+                }
+                else
+                {
+                    committed = change.ChangesCommitted.ToList();
+                    committed.Add(field);
+                }
+
+                change.ChangesCommitted = committed.ToArray();
+            }
+
+            if(change.Version > 0)
+            {
+                collection.Save(change);
+            }
+
+            if(field != null)
+            {
+                OverwrittenSetField(change.Id, change.SetId, field);
+            }
+
+            return change;
+        }
+
+
         public CardChange UpdateCardChangeStatus(Guid id, 
             string status, string field = null)
         {
@@ -274,6 +434,45 @@ namespace MtgDb.Info
                 changes = changes.Where(x => x.Status == "Accepted").ToArray();
 
                 foreach(CardChange change in changes)
+                {
+                    if(change.Id != changeId)
+                    {
+                        foreach(string f in change.ChangesCommitted)
+                        {
+                            if(f == field)
+                            {
+                                List<string> over = new List<string>();
+                                if(change.ChangesOverwritten != null)
+                                {
+                                    over = change.ChangesOverwritten.ToList();
+                                }
+
+                                if(!over.Exists(x => x == field))
+                                {
+                                    over.Add(field);
+                                    change.ChangesOverwritten = over.ToArray();
+                                }
+                            }
+                        }
+
+                        collection.Save(change);
+                    }
+                }
+            }
+        }
+
+        private void OverwrittenSetField(Guid changeId, string setId, string field)
+        {
+            MongoCollection<SetChange> collection = 
+                database.GetCollection<SetChange> ("set_changes");
+
+            SetChange[] changes = GetCardSetChangeRequests(setId);
+
+            if(changes != null && changes.Length > 0)
+            {
+                changes = changes.Where(x => x.Status == "Accepted").ToArray();
+
+                foreach(SetChange change in changes)
                 {
                     if(change.Id != changeId)
                     {

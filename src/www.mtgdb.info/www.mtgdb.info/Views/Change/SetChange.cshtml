@@ -1,0 +1,217 @@
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.SetChange>
+@{
+  Layout = "_Layout.cshtml";
+}
+
+@section Top{
+    <div class="t_section">
+        <h1>
+            Card Set Change Request <br /> 
+            <small>Set Id: <a href="/sets/@Model.SetId">@Model.SetId</a></small>
+        </h1>
+    </div>
+}
+
+<h1>
+Version: @Model.Version
+
+@if(@Model.Version == 0)
+{
+    <span class="label label-info">Original</span>
+}
+else if(@Model.Status == "Accepted")
+{
+    <span class="label label-success">Accepted</span>
+}
+else if(@Model.Status == "Closed")
+{
+    <span class="label label-danger">Closed</span>
+}
+else if(@Model.Status == "Pending")
+{
+   <span class="label label-warning">Pending</span>
+}
+
+@if(@Model.User != null)
+{
+    <small>By: <a href="/pw/@Model.User.Name">@Model.User.Name</a></small>
+}
+</h1>
+<div style="width:800px;">
+    <div>
+        <table class="table-hover">
+        @{ 
+            string changed = "";
+            changed = Model.FieldState("name");
+        }
+        <tr class="@changed">
+            <td><b>Name</b></td>
+            <td>@Model.Name</td>
+
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/setNumber" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+        @{ changed = Model.FieldState("description");}
+
+        <tr class="@changed">
+            <td><b>Description:</b></td>
+            <td>@Model.Description</td>
+
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/relatedCardId" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+        @{changed = Model.FieldState("releasedat");}
+      
+        <tr class="@changed">
+            <td><b>Released:</b></td>
+            <td>
+                @Model.ReleasedAt
+            </td>
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/releasedAt" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+
+        @{changed = Model.FieldState("type");}
+
+        <tr class="@changed">
+            <td><b>Type:</b></td>
+            <td>@Model.Type</td>
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/manaCost" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+        @{changed = Model.FieldState("block");}
+       
+        <tr class="@changed">
+            <td><b>Block:</b></td>
+            <td>@Model.Block</td>
+             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/convertedManaCost" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+        @{changed = Model.FieldState("common");}
+       
+        <tr class="@changed">
+            <td><b>Common:</b></td>
+            <td>@Model.Common</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/type" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+        @{changed = Model.FieldState("uncommon");}
+
+        <tr class="@changed">
+            <td><b>Uncommon:</b></td>
+            <td>@Model.Uncommon</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/subType" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+        @{changed = Model.FieldState("rare");}
+       
+        <tr class="@changed">
+            <td><b>Rare:</b></td>
+            <td>@Model.Rare</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/token" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+
+        @{changed = Model.FieldState("mythicrare");}
+       
+        <tr class="@changed">
+            <td><b>Mythic Rare:</b></td>
+            <td>@Model.MythicRare</td>
+            @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
+            (Model.Planeswalker.InRole("admin") && Model.Version == 0))
+            {
+                <form action="/change/@Model.Id/field/flavor" method="post">
+                    <td>
+                        <input type="submit" class="btn btn-success btn-xs" value="Update" />
+                    </td>
+                </form>
+            }
+        </tr>
+        </table>
+
+    </div>
+    <br style="clear:both;" />
+   
+    <h4>Comments:</h4>
+    <p>@Model.Comment</p>
+</div>
+
+ @if(Model.Planeswalker.InRole("admin"))
+ {  
+    string status = "close";
+    if(@Model.Status == "Closed"){ status = "open"; }
+    <form action='@string.Format("/change/{0}/field/{1}",@Model.Id,status)' method="post">
+    @if(@Model.Version != 0)
+    {
+        if(@Model.Status == "Closed")
+        {
+            <button type="submit" class="btn btn-success">Re-open</button>
+        }
+        else
+        {
+            <button type="submit" class="btn btn-danger">Close</button>
+        }
+    }
+    <a class="btn btn-default" href="/sets/@Model.SetId/logs" role="button">Cancel</a>
+    </form>
+ }

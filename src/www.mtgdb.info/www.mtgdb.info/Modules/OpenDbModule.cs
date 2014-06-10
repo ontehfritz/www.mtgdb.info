@@ -33,12 +33,14 @@ namespace MtgDb.Info
                     model.Changes =     repository.GetChangeRequests().ToList();
                     model.NewCards =    repository.GetNewCards().ToList();
                     model.NewSets =     repository.GetNewSets().ToList();
+                    model.SetChanges =  repository.GetSetChangeRequests().ToList();
                 }
                 else
                 {
                     model.Changes =     repository.GetChangeRequests(status).ToList();
                     model.NewCards =    repository.GetNewCards(status).ToList();
                     model.NewSets =     repository.GetNewSets(status).ToList();
+                    model.SetChanges =  repository.GetSetChangeRequests(status).ToList();
                 }
 
                 return View["Change/ChangeRequests", model];
@@ -334,6 +336,54 @@ namespace MtgDb.Info
                     change.Mvid, change.Id));
             };
 
+            Post["/setchange/{id}/field/{field}"] = parameters => {
+                Admin admin =               new Admin(ConfigurationManager.AppSettings.Get("api"));
+                Planeswalker planeswalker = (Planeswalker)this.Context.CurrentUser;
+                Guid changeId  =            Guid.Parse((string)parameters.id);
+                string field =              (string)parameters.field;
+                SetChange change =          null;
+
+                if(!planeswalker.InRole("admin"))
+                {
+                    return HttpStatusCode.Unauthorized;
+                }
+
+                try
+                {
+                    change = repository.GetCardSetChangeRequest(changeId);
+
+                    if(field == "close")
+                    {
+                        repository.UpdateCardSetChangeStatus(change.Id, "Closed");
+
+                        return Response.AsRedirect(string.Format("/sets/{0}/logs/{1}",
+                            change.SetId, change.Id));
+                    }
+
+                    if(field == "open")
+                    {
+                        repository.UpdateCardSetChangeStatus(change.Id, "Pending");
+
+                        return Response.AsRedirect(string.Format("/sets/{0}/logs/{1}",
+                            change.SetId, change.Id));
+                    }
+                        
+                    string value = change.GetFieldValue(field);
+                    admin.UpdateCardSetField(planeswalker.AuthToken,
+                        change.SetId, field, (string)value);
+                        
+                    repository.UpdateCardChangeStatus(change.Id, "Accepted", field);
+
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+
+                return Response.AsRedirect(string.Format("/sets/{0}/logs/{1}",
+                    change.SetId, change.Id));
+            };
+
             Get ["/cards/{id}/change"] = parameters => {
                 CardChange model = new CardChange();
                 Card card; 
@@ -392,6 +442,112 @@ namespace MtgDb.Info
                 //return View["Change/Card", model];
 
             };
+
+            Get ["/sets/{id}/change"] = parameters => {
+                SetChange model = new SetChange();
+                CardSet set; 
+
+                try
+                {
+                    set = magicdb.GetSet((string)parameters.id);
+                    model = SetChange.MapSet(set);
+                    model.Planeswalker = (Planeswalker)this.Context.CurrentUser;
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+
+                return View["Change/CardSet", model];
+            };
+
+            Post ["/sets/{id}/change"] = parameters => {
+                SetChange model =       this.Bind<SetChange>();
+                CardSet current =       magicdb.GetSet((string)parameters.id);
+                model.SetId =           current.Id;
+               
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.UserId =          model.Planeswalker.Id;
+                SetChange set =       null;
+
+                var result = this.Validate(model);
+
+                if (!result.IsValid)
+                {
+                    model.Errors = ErrorUtility.GetValidationErrors(result);
+                    return View["Change/CardSet", model];
+                }
+
+                try
+                {
+                    set = repository.GetCardSetChangeRequest(
+                        repository.AddCardSetChangeRequest(model)
+                    );
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                    return View["Change/CardSet", model];
+                }
+
+                return Response.AsRedirect(string.Format("/sets/{0}/logs?v={1}", 
+                    set.SetId, set.Version));
+
+                //return model.Description;
+                //return View["Change/Card", model];
+
+            };
+
+            Get["/sets/{id}/logs"] = parameters => {
+                SetLogsModel model =   new SetLogsModel();
+                model.ActiveMenu =      "sets";
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.SetId =            (string)parameters.id;
+
+                if(Request.Query.v != null)
+                {
+                    int version = 0; 
+                    if(int.TryParse((string)Request.Query.v, out version))
+                    {
+                        model.NewVersion = version;
+                    }
+                }
+
+                try
+                {
+                    model.Changes = repository.GetCardSetChangeRequests((string)parameters.id)
+                        .OrderByDescending(x => x.Version) 
+                        .ToList();
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
+
+                return View["Change/SetLogs", model];
+            };
+
+            Get["/sets/{id}/logs/{logid}"] = parameters => {
+                SetChange model = new SetChange();
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+
+                try
+                {
+                    model = repository.GetCardSetChangeRequest((Guid)parameters.logid);
+                }
+                catch(Exception e)
+                {
+                    model.Errors.Add(e.Message);
+                }
+
+                model.ActiveMenu =      "sets";
+                model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
+                model.SetId =            (string)parameters.id;
+
+
+                return View["Change/SetChange", model];
+            };
+
         }
     }
 }
