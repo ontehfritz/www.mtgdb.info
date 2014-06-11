@@ -115,7 +115,6 @@ namespace MtgDb.Info
             }
 
             return cards.ToArray();
-
         }
             
         public CardChange[] GetChangeRequests(string status = null)
@@ -161,7 +160,6 @@ namespace MtgDb.Info
             collection.Save(set);
 
             return set.Id;
-
         }
 
         public NewSet GetSet(Guid id)
@@ -203,7 +201,6 @@ namespace MtgDb.Info
             }
 
             return sets.ToArray();
-
         }
 
         public NewSet UpdateNewSetStatus(Guid id, string status)
@@ -275,7 +272,6 @@ namespace MtgDb.Info
 
         public SetChange GetCardSetChangeRequest(Guid id)
         {
-
             MongoCollection<SetChange> collection = 
                 database.GetCollection<SetChange> ("set_changes");
 
@@ -351,7 +347,6 @@ namespace MtgDb.Info
             change.ModifiedAt =         DateTime.Now;
             List<string> committed  =   new List<string>();
 
-
             if(field != null)
             {
                 if(change.ChangesCommitted == null)
@@ -379,8 +374,7 @@ namespace MtgDb.Info
 
             return change;
         }
-
-
+            
         public CardChange UpdateCardChangeStatus(Guid id, 
             string status, string field = null)
         {

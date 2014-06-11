@@ -51,7 +51,7 @@ else if(@Model.Status == "Pending")
             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/setNumber" method="post">
+                <form action="/setchange/@Model.Id/field/name" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -68,7 +68,7 @@ else if(@Model.Status == "Pending")
             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/relatedCardId" method="post">
+                <form action="/setchange/@Model.Id/field/description" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -86,15 +86,14 @@ else if(@Model.Status == "Pending")
              @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/releasedAt" method="post">
+                <form action="/setchange/@Model.Id/field/releasedAt" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
                 </form>
             }
         </tr>
-
-
+            
         @{changed = Model.FieldState("type");}
 
         <tr class="@changed">
@@ -103,7 +102,7 @@ else if(@Model.Status == "Pending")
              @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/manaCost" method="post">
+                <form action="/setchange/@Model.Id/field/type" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -118,7 +117,7 @@ else if(@Model.Status == "Pending")
              @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/convertedManaCost" method="post">
+                <form action="/setchange/@Model.Id/field/block" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -133,7 +132,7 @@ else if(@Model.Status == "Pending")
             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/type" method="post">
+                <form action="/setchange/@Model.Id/field/common" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -148,7 +147,7 @@ else if(@Model.Status == "Pending")
             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/subType" method="post">
+                <form action="/setchange/@Model.Id/field/uncommon" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -164,7 +163,7 @@ else if(@Model.Status == "Pending")
             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/token" method="post">
+                <form action="/setchange/@Model.Id/field/rare" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -180,7 +179,7 @@ else if(@Model.Status == "Pending")
             @if (changed == "changed" && Model.Planeswalker.InRole("admin") ||
             (Model.Planeswalker.InRole("admin") && Model.Version == 0))
             {
-                <form action="/change/@Model.Id/field/flavor" method="post">
+                <form action="/setchange/@Model.Id/field/mythicRare" method="post">
                     <td>
                         <input type="submit" class="btn btn-success btn-xs" value="Update" />
                     </td>
@@ -200,7 +199,7 @@ else if(@Model.Status == "Pending")
  {  
     string status = "close";
     if(@Model.Status == "Closed"){ status = "open"; }
-    <form action='@string.Format("/change/{0}/field/{1}",@Model.Id,status)' method="post">
+    <form action='@string.Format("/setchange/{0}/field/{1}", @Model.Id, status)' method="post">
     @if(@Model.Version != 0)
     {
         if(@Model.Status == "Closed")

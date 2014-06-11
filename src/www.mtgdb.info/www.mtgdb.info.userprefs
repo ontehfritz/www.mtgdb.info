@@ -1,8 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/OpenDbModule.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Change/ChangeRequests.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/OpenDbModule.cs" Line="349" Column="18" />
+      <File FileName="www.mtgdb.info/Modules/OpenDbModule.cs" Line="343" Column="10" />
+      <File FileName="www.mtgdb.info/Views/Change/SetChange.cshtml" Line="208" Column="10" />
+      <File FileName="www.mtgdb.info/Models/SetChange.cs" Line="142" Column="14" />
+      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="353" Column="18" />
+      <File FileName="Test_MtgDb.Info/Test.cs" Line="102" Column="25" />
+      <File FileName="www.mtgdb.info/Views/Change/CardSet.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Change/ChangeRequests.cshtml" Line="116" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

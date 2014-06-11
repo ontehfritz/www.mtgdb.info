@@ -6,7 +6,7 @@
 @section Top{
     <div class="t_section">
     <h1>
-    Change Requests
+    Change requests
     </h1>
     </div>
 }
@@ -94,7 +94,7 @@ Filter:
 </div>
 <br style="clear:both;" />
 <div id="setchanges" style="float:left;">
-<h4>New Sets</h4>
+<h4>Set Changes</h4>
 <table class="table-striped table-hover table-condensed">
 <tbody>
 @foreach(var set in Model.SetChanges)
@@ -115,7 +115,10 @@ Filter:
             }
         </td>
         <td>
-        <a href="/sets/@set.SetId/logs/@set.Id">@set.Name</a>
+        <a href="/sets/@set.SetId/logs/@set.Id">@set.SetId</a>
+        </td>
+        <td>
+            <b>Version: @set.Version</b>
         </td>
         <td>
             @if(set.User != null)

@@ -223,6 +223,31 @@ namespace Test_MtgDb.Info
             Assert.Greater(change.ChangesCommitted.Length, 0);
         }
 
+        [Test()]
+        public void Update_setchange_status()
+        {
+            CardChange change = new CardChange();
+
+            Card card = mtgdb.GetCard(2);
+
+            change = CardChange.MapCard(card);
+            change.Comment = "test";
+            change.Description = "lucky";
+            change.UserId = Guid.NewGuid();
+
+            Guid id = repository.AddCardChangeRequest(change);
+
+            string value = change.GetFieldValue("description");
+
+            admin.UpdateCardField(mtgdbUser.AuthToken, change.Mvid, "description", value);
+            repository.UpdateCardChangeStatus(id, "Accepted", "description");
+
+            change = repository.GetCardChangeRequest(id);
+
+            Assert.AreEqual(change.Status, "Accepted" );
+            Assert.Greater(change.ChangesCommitted.Length, 0);
+        }
+
             
         [Test()]
         public void Make_change_to_field()

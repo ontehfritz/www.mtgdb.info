@@ -372,7 +372,7 @@ namespace MtgDb.Info
                     admin.UpdateCardSetField(planeswalker.AuthToken,
                         change.SetId, field, (string)value);
                         
-                    repository.UpdateCardChangeStatus(change.Id, "Accepted", field);
+                    repository.UpdateCardSetChangeStatus(change.Id, "Accepted", field);
 
                 }
                 catch(Exception e)
