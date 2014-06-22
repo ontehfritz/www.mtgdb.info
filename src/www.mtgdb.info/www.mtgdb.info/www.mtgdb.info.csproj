@@ -160,6 +160,7 @@
     <Compile Include="Models\NewSet.cs" />
     <Compile Include="Models\SetChange.cs" />
     <Compile Include="Models\Views\SetLogsModel.cs" />
+    <Compile Include="Modules\DeckViewerModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

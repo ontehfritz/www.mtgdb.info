@@ -1,14 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Change/ChangeRequests.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Deck/Deck.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/OpenDbModule.cs" Line="343" Column="10" />
-      <File FileName="www.mtgdb.info/Views/Change/SetChange.cshtml" Line="208" Column="10" />
-      <File FileName="www.mtgdb.info/Models/SetChange.cs" Line="142" Column="14" />
-      <File FileName="www.mtgdb.info/Models/MongoRepository.cs" Line="353" Column="18" />
-      <File FileName="Test_MtgDb.Info/Test.cs" Line="102" Column="25" />
-      <File FileName="www.mtgdb.info/Views/Change/CardSet.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Change/ChangeRequests.cshtml" Line="116" Column="14" />
+      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="33" Column="16" />
+      <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="19" Column="73" />
+      <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="16" Column="59" />
+      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="47" Column="49" />
+      <File FileName="www.mtgdb.info/Helpers/MtgFile.cs" Line="36" Column="26" />
+      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="34" Column="83" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

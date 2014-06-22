@@ -1,1 +1,40 @@
-﻿
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.DeckModel>
+@{
+  Layout = "_Layout.cshtml";
+}
+@section Top
+{
+    <h1>Simple Deck Viewer <span class="label label-warning">In-Development</span></h1>
+}
+<div>
+<div style="float:left;">
+    <form action="/decks/viewer" method="post" >
+        <input type="text" name="Name" value="@Model.Name" placeholder="Deck name"/><br /><br />
+        <textarea rows="20" cols="30" name="DeckFile" placeholder="Paste .dec file here">@Model.DeckFile</textarea>
+        <br />
+        <button type="submit" class="btn btn-primary btn-lg">Render</button>
+        <button type="submit" class="btn btn-primary btn-lg">Save</button>
+    </form>
+</div>
+<div style="float:left;border: 1px solid black;margin-left: 20px;width:800px;" id="deck">
+    <div id="creatures">
+    @if(@Model.Deck != null && @Model.Deck.Cards.Count > 0)
+    {
+        foreach(var card in Model.Deck.GetCards())
+        {
+            <image src="@card.CardImage" style="width:65px;height:87px;" />
+        }
+    }
+    </div>
+    <div id="spells">
+    </div>
+    <div id="artifacts">
+    </div>
+    <div id="other">
+    </div>
+    <div id="lands">
+    </div>
+</div>
+</div>
+<br style="clear:both;" />
+
