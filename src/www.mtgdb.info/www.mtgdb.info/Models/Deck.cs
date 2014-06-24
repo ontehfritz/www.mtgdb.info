@@ -100,6 +100,22 @@ namespace MtgDb.Info
              
         }
 
+        public Card[] GetCards(string type)
+        {
+            if(Cards != null)
+            {
+                int [] multiverseIds = Cards
+                    .Select(x => x.MultiverseId)
+                    .ToArray();
+
+                return mtgDb.GetCards(multiverseIds)
+                    .Where(x => x.Type.ToLower() == type.ToLower())
+                    .ToArray();
+            }
+
+            return null;
+        }
+            
         public Card[] GetSideBarCards()
         {
             if(Cards != null)
@@ -112,6 +128,19 @@ namespace MtgDb.Info
             }
 
             return null;
+        }
+
+        public int CardCount(int multiverseId)
+        {
+            DeckCard card = 
+                this.Cards.Find(x => x.MultiverseId == multiverseId);
+
+            if(card != null)
+            {
+                return card.Amount;
+            }
+
+            return 0;
         }
     }
         

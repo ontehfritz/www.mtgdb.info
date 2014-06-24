@@ -13,7 +13,6 @@
         <textarea rows="20" cols="30" name="DeckFile" placeholder="Paste .dec file here">@Model.DeckFile</textarea>
         <br />
         <button type="submit" class="btn btn-primary btn-lg">Render</button>
-        <button type="submit" class="btn btn-primary btn-lg">Save</button>
     </form>
 </div>
 <div style="float:left;border: 1px solid black;margin-left: 20px;width:800px;" id="deck">
@@ -22,9 +21,29 @@
     {
         foreach(var card in Model.Deck.GetCards())
         {
-            <image src="@card.CardImage" style="width:65px;height:87px;" />
+            int repeat = (int)System.Math.Ceiling(@Model.Deck.CardCount(card.Id) / 4.0);
+            for(int times = 0; times < repeat; times++)
+            {
+                int top = 0;
+                string topStyle = string.Format("{0}px;", top);
+                int max = @Model.Deck.CardCount(card.Id) - (times * 4);
+                <div style="float:left;margin-left:10px;">
+                    <div style="position:relative;height:140px;">
+                        <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;"/>
+                        @for(int i = 1; (i < max && i < 4); i++ )
+                        {
+                            top = i * -70;
+                            topStyle = string.Format("{0}px;", top);
+                            <image src="@card.CardImage" 
+                            style="position:relative;width:65px;height:87px; z-index: @i; display: block;top:@topStyle" />
+                        }
+                    </div>
+                </div>
+            }
         }
     }
+
+    <br style="clear:both;" />
     </div>
     <div id="spells">
     </div>

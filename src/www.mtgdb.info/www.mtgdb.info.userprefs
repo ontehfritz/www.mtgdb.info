@@ -2,15 +2,16 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Deck/Deck.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="33" Column="16" />
-      <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="19" Column="73" />
-      <File FileName="www.mtgdb.info/Views/Change/Card.cshtml" Line="16" Column="59" />
-      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="47" Column="49" />
-      <File FileName="www.mtgdb.info/Helpers/MtgFile.cs" Line="36" Column="26" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="34" Column="83" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="24" Column="6" />
+      <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="28" Column="18" />
+      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/Views/DeckModel.cs" Line="7" Column="46" />
+      <File FileName="www.mtgdb.info/Models/Views/DecksModel.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="114" Column="14" />
+      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="76" />
+      <File FileName="www.mtgdb.info/Views/Deck/_Cards.cshtml" Line="2" Column="1" />
+      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="50" Column="59" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

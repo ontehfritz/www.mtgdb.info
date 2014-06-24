@@ -196,5 +196,6 @@
     <None Include="Views\Change\CardSet.cshtml" />
     <None Include="Views\Change\SetChange.cshtml" />
     <None Include="Views\Change\SetLogs.cshtml" />
+    <None Include="Views\Deck\_Cards.cshtml" />
   </ItemGroup>
 </Project>
