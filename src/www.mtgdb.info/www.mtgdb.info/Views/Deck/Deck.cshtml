@@ -15,11 +15,14 @@
         <button type="submit" class="btn btn-primary btn-lg">Render</button>
     </form>
 </div>
-<div style="float:left;border: 1px solid black;margin-left: 20px;width:800px;" id="deck">
-    <div id="creatures">
-    @if(@Model.Deck != null && @Model.Deck.Cards.Count > 0)
+<div style="float:left;margin-left: 20px;width:800px;" id="deck">
+@foreach(string type in new string[]{"creature", "instant", "sorcery", "enchantment", "artifact", "land", "other"})
+{
+    if(@Model.Deck != null && Model.Deck.GetCards(type).Length > 0)
     {
-        foreach(var card in Model.Deck.GetCards())
+        <div id="@type">
+        <h4>@type</h4>
+        @foreach(var card in Model.Deck.GetCards(type))
         {
             int repeat = (int)System.Math.Ceiling(@Model.Deck.CardCount(card.Id) / 4.0);
             for(int times = 0; times < repeat; times++)
@@ -27,6 +30,38 @@
                 int top = 0;
                 string topStyle = string.Format("{0}px;", top);
                 int max = @Model.Deck.CardCount(card.Id) - (times * 4);
+                <div style="float:left;margin-left:10px;">
+                    <div style="position:relative;height:140px;" class="deck-card" data-container="body" data-toggle="popover" data-placement="right" 
+                            data-content="<image src='@card.CardImage' />" data-title="@card.Name">
+                        
+                        <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;" />
+                        @for(int i = 1; (i < max && i < 4); i++ )
+                        {
+                            top = i * -70;
+                            topStyle = string.Format("{0}px;", top);
+                            <image src="@card.CardImage"
+                            style="position:relative;width:65px;height:87px; z-index: @i; display: block;top:@topStyle" />
+                        }
+                    </div>
+                </div>
+            }
+        }
+        <br style="clear:both;" />
+        </div>
+    }
+}
+<div id="sidebar">
+    @if(@Model.Deck != null && @Model.Deck.SideBar.Count > 0)
+    {
+        <h1>Side Bar</h1>
+        foreach(var card in Model.Deck.GetSideBarCards())
+        {
+            int repeat = (int)System.Math.Ceiling(@Model.Deck.SideBarCardCount(card.Id) / 4.0);
+            for(int times = 0; times < repeat; times++)
+            {
+                int top = 0;
+                string topStyle = string.Format("{0}px;", top);
+                int max = @Model.Deck.SideBarCardCount(card.Id) - (times * 4);
                 <div style="float:left;margin-left:10px;">
                     <div style="position:relative;height:140px;">
                         <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;"/>
@@ -42,17 +77,8 @@
             }
         }
     }
-
     <br style="clear:both;" />
-    </div>
-    <div id="spells">
-    </div>
-    <div id="artifacts">
-    </div>
-    <div id="other">
-    </div>
-    <div id="lands">
-    </div>
+</div>
 </div>
 </div>
 <br style="clear:both;" />

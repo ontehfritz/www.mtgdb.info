@@ -54,16 +54,7 @@ namespace MtgDb.Info
                 "Planeswalker"
             });
 
-            Types.Add("land", new List<string>(){
-                "Artifact Land",
-                "Basic Land",
-                "Basic Snow Land",
-                "Land",
-                "Legendary Land",
-                "Legendary Snow Land",
-                "Snow Land"
-            });
-
+           
             Types.Add("instant", new List<string>(){
                 "Instant",
                 "Interrupt",
@@ -80,10 +71,35 @@ namespace MtgDb.Info
                 "Enchant Creature",
                 "Enchant Player",
                 "Enchantment",
-                "Legendary Enchantment"
+                "Legendary Enchantment",
+                "Legendary Enchantment Artifact",
+                "Snow Enchantment",
+                "Tribal Enchantment",
+                "World Enchantment"
             });
 
+            Types.Add("artifact", new List<string>(){
+                "Artifact",
+                "Legendary Artifact",
+                "Snow Artifact",
+                "Tribal Artifact"
+            });
 
+            Types.Add("land", new List<string>(){
+                "Artifact Land",
+                "Basic Land",
+                "Basic Snow Land",
+                "Land",
+                "Legendary Land",
+                "Legendary Snow Land",
+                "Snow Land"
+            });
+
+            Types.Add("other", new List<string>(){
+                "Conspiracy",
+                "Eaturecray",
+                "Scariest Creature You'll Ever See"
+            });
         }
 
         public void SetCards(int [] mvids)
@@ -101,7 +117,6 @@ namespace MtgDb.Info
                     deckCard.Add(mvid,1);
                 }
             }
-
 
             Cards = deckCard.Select(c => new DeckCard { 
                 MultiverseId = c.Key, Amount = c.Value 
@@ -124,8 +139,7 @@ namespace MtgDb.Info
                     deckCard.Add(mvid,1);
                 }
             }
-
-
+                
             SideBar = deckCard.Select(c => new DeckCard { 
                 MultiverseId = c.Key, Amount = c.Value 
             }).ToList();
@@ -148,23 +162,30 @@ namespace MtgDb.Info
 
         public Card[] GetCards(string type)
         {
+            List<Card> cards = new List<Card>();
+
             if(Cards != null)
             {
                 int [] multiverseIds = Cards
                     .Select(x => x.MultiverseId)
                     .ToArray();
 
-                return mtgDb.GetCards(multiverseIds)
-                    .Where(x => x.Type.ToLower() == type.ToLower())
+                Card [] all = mtgDb.GetCards(multiverseIds)
                     .ToArray();
+
+                foreach(string t in this.Types[type.ToLower()])
+                {
+                    cards.AddRange(all
+                        .Where(x => x.Type.ToLower() == t.ToLower()));
+                }
             }
 
-            return null;
+            return cards.ToArray();
         }
             
         public Card[] GetSideBarCards()
         {
-            if(Cards != null)
+            if(SideBar != null)
             {
                 int [] multiverseIds = SideBar
                     .Select(x => x.MultiverseId)
@@ -180,6 +201,19 @@ namespace MtgDb.Info
         {
             DeckCard card = 
                 this.Cards.Find(x => x.MultiverseId == multiverseId);
+              
+            if(card != null)
+            {
+                return card.Amount;
+            }
+
+            return 0;
+        }
+
+        public int SideBarCardCount(int multiverseId)
+        {
+            DeckCard card = 
+                this.SideBar.Find(x => x.MultiverseId == multiverseId);
 
             if(card != null)
             {

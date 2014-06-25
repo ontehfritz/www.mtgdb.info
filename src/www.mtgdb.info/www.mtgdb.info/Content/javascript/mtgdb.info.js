@@ -108,7 +108,7 @@ $(document).ready(function() {
 
 	$('.label-legality, .set-tab a').tooltip();
 
-	$('.search-result, .binder-card, .my-card, .set-link').popover({trigger:'hover',html:true});
+	$('.search-result, .binder-card, .my-card, .set-link, .deck-card').popover({trigger:'hover',html:true});
 
 	$('#check-yes').change(function(){
 		$chk = $(this).is(':checked');

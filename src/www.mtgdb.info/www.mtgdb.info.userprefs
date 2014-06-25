@@ -1,17 +1,24 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Deck/Deck.cshtml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Helpers/Render.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="24" Column="6" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="28" Column="18" />
       <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/DeckModel.cs" Line="7" Column="46" />
+      <File FileName="www.mtgdb.info/Models/Views/DeckModel.cs" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Models/Views/DecksModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="114" Column="14" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="76" />
-      <File FileName="www.mtgdb.info/Views/Deck/_Cards.cshtml" Line="2" Column="1" />
+      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="67" Column="53" />
+      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Deck/_Cards.cshtml" Line="1" Column="1" />
       <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="50" Column="59" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/MtgFile.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/Html.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/ErrorUtility.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/Email.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/Bind.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Helpers/Render.cs" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="735" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
