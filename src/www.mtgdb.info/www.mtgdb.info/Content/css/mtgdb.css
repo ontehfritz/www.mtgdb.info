@@ -528,267 +528,225 @@ h3 .symbol{
 	top:.1em;
 }
 .symbol_1{
-	background-position-x:-1em;
+	background-position:-1em 0em;
 }
 .symbol_2{
-	background-position-x:-2em;
+	background-position:-2em 0em;
 }
 .symbol_3{
-	background-position-x:-3em;
+	background-position:-3em 0em;
 }
 .symbol_4{
-	background-position-x:-4em;	
+	background-position:-4em 0em;	
 }
 .symbol_4{
-	background-position-x:-4em;	
+	background-position:-4em 0em;	
 }
 .symbol_5{
-	background-position-x:-5em;	
+	background-position:-5em 0em;	
 }
 .symbol_6{
-	background-position-x:-6em;	
+	background-position:-6em 0em;	
 }
 .symbol_7{
-	background-position-x:-7em;	
+	background-position:-7em 0em;	
 }
 .symbol_8{
-	background-position-x:-8em;	
+	background-position:-8em 0em;	
 }
 .symbol_9{
-	background-position-x:-9em;	
+	background-position:-9em 0em;	
 }
 .symbol_10{
-	background-position-y:-1em; 
+	background-position:0em -1em; 
 }
 .symbol_11{
-	background-position-x:-1em;
-	background-position-y:-1em; 
+	background-position:-1em -1em;
 }
 .symbol_12{
-	background-position-x:-2em;
-	background-position-y:-1em; 
+	background-position:-2em -1em;
 }
 .symbol_13{
-	background-position-x:-3em;
-	background-position-y:-1em; 
+	background-position:-3em -1em;
 }
 .symbol_14{
-	background-position-x:-4em;	
-	background-position-y:-1em; 
+	background-position:-4em -1em;	
 }
 .symbol_15{
-	background-position-x:-5em;	
-	background-position-y:-1em; 
+	background-position:-5em -1em;	
 }
 .symbol_16{
-	background-position-x:-6em;	
-	background-position-y:-1em; 
+	background-position:-6em -1em;	
 }
 .symbol_17{
-	background-position-x:-7em;	
-	background-position-y:-1em; 
+	background-position:-7em -1em;	 
 }
 .symbol_18{
-	background-position-x:-8em;	
-	background-position-y:-1em; 
+	background-position:-8em -1em;	
 }
 .symbol_19{
-	background-position-x:-9em;	
-	background-position-y:-1em; 
+	background-position:-9em -1em;	
 }
 .symbol_20{
-	background-position-y:-2em; 
+	background-position:0em -2em; 
 }
 .symbol_X,
 .symbol_Variable_Colorless{
-	background-position-x:-1em;
-	background-position-y:-2em; 
+	background-position:-1em -2em; 
 }
 .symbol_Y{
-	background-position-x:-2em;
-	background-position-y:-2em; 
+	background-position:-2em -2em;
 }
 .symbol_Z{
-	background-position-x:-3em;
-	background-position-y:-2em; 
+	background-position:-3em -2em;
 }
 .symbol_W,
 .symbol_White{
-	background-position-x:-4em;	
-	background-position-y:-2em; 
+	background-position:-4em -2em;	
 }
 .symbol_U,
 .symbol_Blue{
-	background-position-x:-5em;	
-	background-position-y:-2em; 
+	background-position:-5em -2em;	
 }
 .symbol_B,
 .symbol_Black{
-	background-position-x:-6em;	
-	background-position-y:-2em; 
+	background-position:-6em -2em;	
 }
 .symbol_R,
 .symbol_Red{
-	background-position-x:-7em;	
-	background-position-y:-2em; 
+	background-position:-7em -2em;	
 }
 .symbol_G,
 .symbol_Green{
-	background-position-x:-8em;	
-	background-position-y:-2em; 
+	background-position:-8em -2em;	
 }
 .symbol_S,
 .symbol_Snow{
-	background-position-x:-9em;	
-	background-position-y:-2em; 
+	background-position:-9em -2em;	
 }
 .symbol_WU,
 .symbol_UW,
 .symbol_White_or_Blue{
-	background-position-y:-3em; 
+	background-position:0em -3em; 
 }
 .symbol_WB,
 .symbol_BW,
 .symbol_White_or_Black{
-	background-position-x:-1em;
-	background-position-y:-3em; 
+	background-position:-1em -3em;
 }
 .symbol_UB,
 .symbol_BU,
 .symbol_Blue_or_Black{
-	background-position-x:-2em;
-	background-position-y:-3em; 
+	background-position:-2em -3em;
 }
 .symbol_UR,
 .symbol_RU,
 .symbol_Blue_or_Red{
-	background-position-x:-3em;
-	background-position-y:-3em; 
+	background-position:-3em -3em;
 }
 .symbol_BR,
 .symbol_RB,
 .symbol_Black_or_Red{
-	background-position-x:-4em;	
-	background-position-y:-3em; 
+	background-position:-4em -3em;	 
 }
 .symbol_BG,
 .symbol_GB,
 .symbol_Black_or_Green{
-	background-position-x:-5em;	
-	background-position-y:-3em; 
+	background-position:-5em -3em;	
 }
 .symbol_RW,
 .symbol_WR,
 .symbol_Red_or_White{
-	background-position-x:-6em;	
-	background-position-y:-3em; 
+	background-position:-6em -3em;	
 }
 .symbol_RG,
 .symbol_GR,
 .symbol_Red_or_Green{
-	background-position-x:-7em;	
-	background-position-y:-3em; 
+	background-position:-7em -3em;	
 }
 .symbol_GW,
 .symbol_WG,
 .symbol_Green_or_White{
-	background-position-x:-8em;	
-	background-position-y:-3em; 
+	background-position:-8em -3em;	
 }
 .symbol_GU,
 .symbol_UG,
 .symbol_Green_or_Blue{
-	background-position-x:-9em;	
-	background-position-y:-3em; 
+	background-position:-9em -3em; 
 }
 .symbol_2W,
 .symbol_Two_or_White{
-	background-position-y:-4em; 
+	background-position:0em -4em; 
 }
 .symbol_2U,
 .symbol_Two_or_Blue{
-	background-position-x:-1em;
-	background-position-y:-4em; 
+	background-position:-1em -4em;;
 }
 .symbol_2B,
 .symbol_Two_or_Black{
-	background-position-x:-2em;
-	background-position-y:-4em; 
+	background-position:-2em -4em;
 }
 .symbol_2R,
 .symbol_Two_or_Red{
-	background-position-x:-3em;
-	background-position-y:-4em; 
+	background-position:-3em -4em;
 }
 .symbol_2G,
 .symbol_Two_or_Green{
-	background-position-x:-4em;	
-	background-position-y:-4em; 
+	background-position:-4em -4em;	
 }
 .symbol_WP,
 .symbol_Phyrexian_White{
-	background-position-x:-5em;	
-	background-position-y:-4em; 
+	background-position:-5em -4em;	
 }
 .symbol_UP,
 .symbol_Phyrexian_Blue{
-	background-position-x:-6em;	
-	background-position-y:-4em; 
+	background-position:-6em -4em;	
 }
 .symbol_BP,
 .symbol_Phyrexian_Black{
-	background-position-x:-7em;	
-	background-position-y:-4em; 
+	background-position:-7em -4em;	
 }
 .symbol_RP,
 .symbol_Phyrexian_Red{
-	background-position-x:-8em;	
-	background-position-y:-4em; 
+	background-position:-8em -4em;	
 }
 .symbol_GP,
 .symbol_Phyrexian_Green{
-	background-position-x:-9em;	
-	background-position-y:-4em; 
+	background-position:-9em -4em;	
 }
 .symbol_T,
 .symbol_Tap{
-	background-position-y:-5em; 
+	background-position:0em -5em; 
 }
 .symbol_UT,
 .symbol_Untap,
 .symbol_Q{
-	background-position-x:-1em;
-	background-position-y:-5em; 
+	background-position:-1em -5em;
 }
 .symbol_Infinite{
-	background-position-x:-2em;
-	background-position-y:-5em; 
+	background-position:-2em -5em; 
 }
 .symbol_Half{
-	background-position-x:-3em;
-	background-position-y:-5em; 
+	background-position:-3em -5em;
 }
 .symbol_1000000,
 .symbol_Million{
 	width:4.9em;
-	background-position-y:-6em; 
+	background-position:0em -6em; 
 }
 .symbol_100,
 .symbol_HUNDRED{
 	width:1.85em;
-	background-position-x:-4.9em;
-	background-position-y:-6em; 
+	background-position:-4.9em -6em;
 }
 .symbol_HW,
 .symbol_500{
 	border-radius: 0 3em 3em 0 !important;
 	width: 10px;
-	background-position-x: -7.96em;
-	background-position-y: -6em;
+	background-position: -7.96em -6em;
 }
 .symbol_HR{
 	border-radius: 0 3em 3em 0 !important;
 	width: 7px;
-	background-position-x: -8.5em;
-	background-position-y:-6em; 
+	background-position: -8.5em -6em;
 }
