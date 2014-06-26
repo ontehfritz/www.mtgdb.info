@@ -13,6 +13,31 @@ namespace MtgDb.Info
     {
         public static Db magicdb = 
             new Db (ConfigurationManager.AppSettings.Get("api"));
+
+
+        public static string ExportDec(Deck deck)
+        {
+            StringBuilder dec = new StringBuilder();
+            dec.AppendFormat("//Name: {0}\n", deck.Name);
+            dec.AppendFormat("//Description: {0}\n", deck.Description);
+
+            //deck
+            foreach(var card in deck.GetCards())
+            {
+                dec.AppendFormat("{0} {1}\n", deck.CardCount(card.Id), 
+                    card.Name.Replace("//", "/"));
+            }
+
+            //sidebar
+            foreach(var card in deck.GetSideBarCards())
+            {
+                dec.AppendFormat("SB: {0} {1}\n",deck.SideBarCardCount(card.Id), 
+                    card.Name.Replace("//", "/"));
+            }
+          
+            return dec.ToString();
+        }
+
         //Format: ignore "//"
         // amount cardname
         // 4 Giant Growth

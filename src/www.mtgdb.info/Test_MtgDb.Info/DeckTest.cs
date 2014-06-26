@@ -78,7 +78,14 @@ namespace Test_MtgDb.Info
         [Test()]
         public void Get_deck()
         {
-            Deck deck = deckRepo.GetDeck(UserId, "Test Deck");;
+            Deck deck = deckRepo.GetDeck(UserId, "Test Deck");
+            Assert.IsNotNull(deck);
+        }
+
+        [Test()]
+        public void Get_deck_by_id()
+        {
+            Deck deck = deckRepo.GetDeck(DeckId);
             Assert.IsNotNull(deck);
         }
 

@@ -89,6 +89,18 @@ namespace MtgDb.Info
             return deck;
         }
 
+        public Deck GetDeck(Guid deckId)
+        {
+            MongoCollection<Deck> collection = 
+                database.GetCollection<Deck> ("decks");
+
+            var query = Query.And(Query<Deck>.EQ (e => e.Id, deckId));
+
+            Deck deck =  collection.FindOne(query);
+
+            return deck;
+        }
+
         public Deck[] GetUserDecks(Guid userId)
         {
             List<Deck> decks = new List<Deck>();

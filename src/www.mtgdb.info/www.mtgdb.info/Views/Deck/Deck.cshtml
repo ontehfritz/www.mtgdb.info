@@ -12,8 +12,12 @@
         <input type="text" name="Name" value="@Model.Name" placeholder="Deck name"/><br /><br />
         <textarea rows="20" cols="30" name="DeckFile" placeholder="Paste .dec file here">@Model.DeckFile</textarea>
         <br />
-        <button type="submit" class="btn btn-primary btn-lg">Render</button>
-    </form>
+        <button type="submit" class="btn btn-primary btn-lg" name="Render">Render</button>
+        @if(@Model.Planeswalker != null)
+        {
+            <button type="submit" class="btn btn-primary btn-lg" name="Save">Save</button>
+        }
+    </form>s
 </div>
 <div style="float:left;margin-left: 20px;width:800px;" id="deck">
 @foreach(string type in new string[]{"creature", "instant", "sorcery", "enchantment", "artifact", "land", "other"})
@@ -31,7 +35,7 @@
                 string topStyle = string.Format("{0}px;", top);
                 int max = @Model.Deck.CardCount(card.Id) - (times * 4);
                 <div style="float:left;margin-left:10px;">
-                    <div style="position:relative;height:140px;" class="deck-card" data-container="body" data-toggle="popover" data-placement="right" 
+                    <div style="position:relative;max-height:140px;" class="deck-card" data-container="body" data-toggle="popover" data-placement="right" 
                             data-content="<image src='@card.CardImage' />" data-title="@card.Name">
                         
                         <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;" />

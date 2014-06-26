@@ -1,25 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Helpers/Render.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Modules/DeckViewerModule.cs">
     <Files>
-      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="28" Column="18" />
-      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/DeckModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Views/DecksModel.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="67" Column="53" />
-      <File FileName="www.mtgdb.info/Views/_Cards.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Deck/_Cards.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/_Sets.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/MtgFile.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/Html.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/ErrorUtility.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/Email.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/Bind.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Helpers/Render.cs" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="735" Column="21" />
+      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="43" Column="17" />
+      <File FileName="www.mtgdb.info/Helpers/MtgFile.cs" Line="30" Column="13" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True">
+          <Node name="Test_MtgDb.Info" expanded="True">
+            <Node name="Test_MtgDb" expanded="True">
+              <Node name="Info" expanded="True">
+                <Node name="DeckTest" expanded="True" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
