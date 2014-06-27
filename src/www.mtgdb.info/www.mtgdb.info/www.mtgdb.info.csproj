@@ -198,5 +198,6 @@
     <None Include="Views\Change\SetChange.cshtml" />
     <None Include="Views\Change\SetLogs.cshtml" />
     <None Include="Views\Deck\_Cards.cshtml" />
+    <None Include="Views\Deck\MyDecks.cshtml" />
   </ItemGroup>
 </Project>

@@ -44,7 +44,8 @@ namespace MtgDb.Info
                 return View["Deck/Deck", model];
             };
 
-            Post["/decks/viewer/"] = parameters => {
+            Post["/decks/viewer/{deckId?}"] = parameters => {
+
                 DeckModel model = this.Bind<DeckModel>();
 
                 model.ActiveMenu =      "mydecks";
@@ -56,11 +57,36 @@ namespace MtgDb.Info
 
                 model.Deck = MtgFile.ImportDec(stream);
 
+                if(parameters.deckId != null)
+                {
+                    Guid id; 
+
+                    if(Guid.TryParse((string)parameters.deckId, out id))
+                    {
+                        Deck deck = deckbuilder.GetDeck(id);
+
+                        if(deck != null)
+                        {
+                            model.Deck.Id = deck.Id;
+                            model.Deck.CreatedAt = deck.CreatedAt;
+                        }
+                    }
+                }
+
                 if(Request.Form.Save != null)
                 {
-                    model.Deck.UserId = model.Planeswalker.Id;
-                    model.Deck.Name = model.Name;
-                    deckbuilder.AddDeck(model.Deck);
+                    if(model.Deck.Id != null && model.Deck.Id != Guid.Empty)
+                    {
+                        model.Deck.Name = model.Name;
+                        model.Deck = deckbuilder.UpdateDeck(model.Deck);
+                    }
+                    else
+                    {
+                        model.Deck.UserId = model.Planeswalker.Id;
+                        model.Deck.Name = model.Name;
+                        model.Deck = deckbuilder.AddDeck(model.Deck);
+                    }
+                        
                     return Response.AsRedirect(string.Format("/decks/viewer/{0}", 
                         model.Deck.Id.ToString()));
                 }

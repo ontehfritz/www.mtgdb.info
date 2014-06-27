@@ -8,7 +8,12 @@
 }
 <div>
 <div style="float:left;">
-    <form action="/decks/viewer" method="post" >
+    @{string path = "/decks/viewer";}
+    @if(@Model.Deck != null && @Model.Deck.Id != null && @Model.Deck.Id != Guid.Empty)
+    {
+        path = string.Format("/decks/viewer/{0}", @Model.Deck.Id);
+    }
+    <form action="@path" method="post" >
         <input type="text" name="Name" value="@Model.Name" placeholder="Deck name"/><br /><br />
         <textarea rows="20" cols="30" name="DeckFile" placeholder="Paste .dec file here">@Model.DeckFile</textarea>
         <br />
@@ -17,7 +22,7 @@
         {
             <button type="submit" class="btn btn-primary btn-lg" name="Save">Save</button>
         }
-    </form>s
+    </form>
 </div>
 <div style="float:left;margin-left: 20px;width:800px;" id="deck">
 @foreach(string type in new string[]{"creature", "instant", "sorcery", "enchantment", "artifact", "land", "other"})
