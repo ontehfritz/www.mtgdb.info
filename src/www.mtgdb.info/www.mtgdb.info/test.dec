@@ -1,24 +1,45 @@
 // A sample .dec file
-4 Arid Mesa
-4 Marsh Flats
-5 Mountain
-5 Plains
-4 Scalding Tarn
-3 Teetering Peaks
-4 Goblin Guide
-4 Kor Skyfisher
-4 Plated Geopede
-3 Spikeshot Elder
-4 Steppe Lynx
-3 Stoneforge Mystic
+///mvid:178135 qty:3 name:Adventuring Gear loc:Deck
 3 Adventuring Gear
+///mvid:177584 qty:4 name:Arid Mesa loc:Deck
+4 Arid Mesa
+///mvid:193512 qty:4 name:Forked Bolt loc:Deck
 4 Forked Bolt
+///mvid:170987 qty:4 name:Goblin Guide loc:Deck
+4 Goblin Guide
+///mvid:177505 qty:3 name:Journey to Nowhere loc:Deck
 3 Journey to Nowhere
+///mvid:178145 qty:4 name:Kor Skyfisher loc:Deck
+4 Kor Skyfisher
+///mvid:212238 qty:2 name:Koth of the Hammer loc:Deck
 2 Koth of the Hammer
+///mvid:191371 qty:4 name:Marsh Flats loc:Deck
+4 Marsh Flats
+///mvid:373746 qty:5 name:Mountain loc:Deck
+5 Mountain
+///mvid:373533 qty:5 name:Plains loc:Deck
+5 Plains
+///mvid:170977 qty:4 name:Plated Geopede loc:Deck
+4 Plated Geopede
+///mvid:190393 qty:4 name:Scalding Tarn loc:Deck
+4 Scalding Tarn
+///mvid:209404 qty:3 name:Spikeshot Elder loc:Deck
+3 Spikeshot Elder
+///mvid:171012 qty:4 name:Steppe Lynx loc:Deck
+4 Steppe Lynx
+///mvid:198383 qty:4 name:Stoneforge Mystic loc:Deck
+4 Stoneforge Mystic
+///mvid:209280 qty:1 name:Sword of Body and Mind loc:Deck
 1 Sword of Body and Mind
-
+///mvid:177549 qty:3 name:Teetering Peaks loc:Deck
+3 Teetering Peaks
+///mvid:198356 qty:1 name:Basilisk Collar loc:SB
 SB: 1 Basilisk Collar
+///mvid:201563 qty:4 name:Cunning Sparkmage loc:SB
 SB: 4 Cunning Sparkmage
+///mvid:282537 qty:3 name:Mark of Mutiny loc:SB
 SB: 3 Mark of Mutiny
+///mvid:189163 qty:4 name:Refraction Trap loc:SB
 SB: 4 Refraction Trap
+///mvid:378397 qty:3 name:Revoke Existence loc:SB
 SB: 3 Revoke Existence

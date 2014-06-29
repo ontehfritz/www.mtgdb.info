@@ -46,18 +46,18 @@
                 </li>
 	            @if(Model.Planeswalker != null)
 	            {
-	           	<li @(Model.ActiveMenu == "mycards" ? "class='active'":"")>
-                	<a href="/mycards">
-                		<i class="fa fa-archive"></i>&nbsp;
-                		My Cards
-                	</a>
-                </li>
-				<li class="@(Model.ActiveMenu == "mydecks" ? "active":"") disabled">
-                	<a href="/pw/@Model.Planeswalker.UserName/cards">
-                		<i class="fa fa-briefcase"></i>&nbsp;
-                		My Decks
-                	</a>
-                </li>
+    	           	<li @(Model.ActiveMenu == "mycards" ? "class='active'":"")>
+                    	<a href="/mycards">
+                    		<i class="fa fa-archive"></i>&nbsp;
+                    		My Cards
+                    	</a>
+                    </li>
+    				<li class="@(Model.ActiveMenu == "mydecks" ? "active":"")">
+                    	<a href="/mydecks">
+                    		<i class="fa fa-briefcase"></i>&nbsp;
+                    		My Decks
+                    	</a>
+                    </li>
 	            }
 	        </ul>
 	        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
@@ -80,7 +80,7 @@
 			            </a>
 			            <ul class="dropdown-menu">
 			                <li><a href="/mycards"><i class="fa fa-archive"></i> My Cards</a></li>
-			                <li class="disabled"><a href="/pw/@Model.Planeswalker.UserName/decks"><i class="fa fa-briefcase"></i> My Decks</a></li>
+			                <li><a href="/mydecks"><i class="fa fa-briefcase"></i> My Decks</a></li>
 			                <li class="divider"></li>
 		                    @if(Model.Planeswalker.InRole("admin"))
 		                    {

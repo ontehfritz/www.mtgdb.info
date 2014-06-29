@@ -118,8 +118,8 @@ namespace MtgDb.Info
             }
 
             return decks
-                    .OrderBy(x => x.CreatedAt)
-                    .ToArray();
+                   .OrderBy(x => x.CreatedAt)
+                   .ToArray();
         }
     }
 }

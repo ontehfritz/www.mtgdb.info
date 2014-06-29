@@ -1,8 +1,24 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.DeckModel>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.DecksModel>
 @{
   Layout = "_Layout.cshtml";
 }
+
 @section Top
 {
     <h1>My Decks <span class="label label-warning">In-Development</span></h1>
 }
+
+<div>
+    @foreach(var deck in @Model.Decks)
+    {
+        <div style="float: left;">
+            <h4><a href="/decks/viewer/@deck.Id">@deck.Name</a></h4>
+            <p>
+                @deck.Description
+            </p>
+        </div>
+    }
+</div>
+<br style="clear:both;" />
+
+

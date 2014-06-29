@@ -2,10 +2,12 @@
 @{
   Layout = "_Layout.cshtml";
 }
+
 @section Top
 {
     <h1>Simple Deck Viewer <span class="label label-warning">In-Development</span></h1>
 }
+
 <div>
 <div style="float:left;">
     @{string path = "/decks/viewer";}
@@ -15,6 +17,7 @@
     }
     <form action="@path" method="post" >
         <input type="text" name="Name" value="@Model.Name" placeholder="Deck name"/><br /><br />
+        <textarea rows="5" cols="30" name="Description" placeholder="Description here" >@Model.Description</textarea><br /><br />
         <textarea rows="20" cols="30" name="DeckFile" placeholder="Paste .dec file here">@Model.DeckFile</textarea>
         <br />
         <button type="submit" class="btn btn-primary btn-lg" name="Render">Render</button>
@@ -24,23 +27,30 @@
         }
     </form>
 </div>
-<div style="float:left;margin-left: 20px;width:800px;" id="deck">
+<div class="well" style="float:left;margin-left: 20px;width:800px;" id="deck">
+@if(@Model.Deck == null ||  Model.Deck.Cards == null || Model.Deck.Cards.Count == 0)
+{
+    <h3>No cards to render. Paste .dec file and render.</h3>
+}
+
 @foreach(string type in new string[]{"creature", "instant", "sorcery", "enchantment", "artifact", "land", "other"})
 {
     if(@Model.Deck != null && Model.Deck.GetCards(type).Length > 0)
     {
         <div id="@type">
-        <h4>@type</h4>
+        <h4>@type (@Model.Deck.GetCards(type).Length) unique, (@Model.Deck.CardCount(type)) Total</h4>
         @foreach(var card in Model.Deck.GetCards(type))
         {
             int repeat = (int)System.Math.Ceiling(@Model.Deck.CardCount(card.Id) / 4.0);
+
             for(int times = 0; times < repeat; times++)
             {
                 int top = 0;
                 string topStyle = string.Format("{0}px;", top);
                 int max = @Model.Deck.CardCount(card.Id) - (times * 4);
                 <div style="float:left;margin-left:10px;">
-                    <div style="position:relative;max-height:140px;" class="deck-card" data-container="body" data-toggle="popover" data-placement="right" 
+                    <div style="position:relative;max-height:140px;" class="deck-card" data-container="body" 
+                            data-toggle="popover" data-placement="right" 
                             data-content="<image src='@card.CardImage' />" data-title="@card.Name">
                         
                         <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;" />

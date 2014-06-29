@@ -20,7 +20,8 @@ namespace MtgDb.Info
         public DeckViewerModule () 
         {
             Get["/decks/viewer/{deckId?}"] = parameters => {
-                DeckModel model =      new DeckModel();
+
+                DeckModel model =       new DeckModel();
                 model.ActiveMenu =      "mydecks";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
                 model.Title =           "M:tgDb - Simple Deck Viewer";
@@ -36,18 +37,19 @@ namespace MtgDb.Info
                         if(model.Deck != null)
                         {
                             model.Name = model.Deck.Name;
+                            model.Description = model.Description;
                             model.DeckFile = MtgFile.ExportDec(model.Deck);
                         }
                     }
                 }
 
                 return View["Deck/Deck", model];
+
             };
 
             Post["/decks/viewer/{deckId?}"] = parameters => {
 
-                DeckModel model = this.Bind<DeckModel>();
-
+                DeckModel model =       this.Bind<DeckModel>();
                 model.ActiveMenu =      "mydecks";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
                 model.Title =           "M:tgDb - Simple Deck Viewer";
@@ -75,15 +77,18 @@ namespace MtgDb.Info
 
                 if(Request.Form.Save != null)
                 {
-                    if(model.Deck.Id != null && model.Deck.Id != Guid.Empty)
+                    if(model.Deck.Id != Guid.Empty)
                     {
                         model.Deck.Name = model.Name;
+                        model.Deck.Description = model.Description;
                         model.Deck = deckbuilder.UpdateDeck(model.Deck);
                     }
                     else
                     {
+        
                         model.Deck.UserId = model.Planeswalker.Id;
                         model.Deck.Name = model.Name;
+                        model.Deck.Description = model.Description;
                         model.Deck = deckbuilder.AddDeck(model.Deck);
                     }
                         
@@ -92,6 +97,7 @@ namespace MtgDb.Info
                 }
 
                 return View["Deck/Deck", model];
+
             };
         }
     }

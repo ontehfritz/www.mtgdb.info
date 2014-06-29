@@ -25,14 +25,14 @@ namespace MtgDb.Info
             this.RequiresAuthentication ();
            
             //viewing public decks of a planeswalker
-            Get["/pw/{planeswalker}/decks"] = parameters => {
+            Get["/mydecks"] = parameters => {
                 DecksModel model =      new DecksModel();
                 model.ActiveMenu =      "mydecks";
                 model.Planeswalker =    (Planeswalker)this.Context.CurrentUser;
                 model.Decks =           deckbuilder.GetUserDecks(model.Planeswalker.Id).ToList();
                 model.Title =           "My Decks";
              
-                return "decks";
+                return View["Deck/MyDecks", model];
             };
 
             //for deck link sharing and viewing single deck

@@ -210,6 +210,36 @@ namespace MtgDb.Info
             return 0;
         }
 
+        public int CardCount(string type)
+        {
+            List<Card> cards = new List<Card>();
+
+            if(Cards != null)
+            {
+                int [] multiverseIds = Cards
+                    .Select(x => x.MultiverseId)
+                    .ToArray();
+
+                Card [] all = mtgDb.GetCards(multiverseIds)
+                    .ToArray();
+
+                foreach(string t in this.Types[type.ToLower()])
+                {
+                    cards.AddRange(all
+                        .Where(x => x.Type.ToLower() == t.ToLower()));
+                }
+            }
+            int amount = 0; 
+            foreach(var c in cards)
+            {
+                amount += Cards
+                            .Where(x => x.MultiverseId == c.Id)
+                            .FirstOrDefault().Amount;
+            }
+
+            return amount;
+        }
+
         public int SideBarCardCount(int multiverseId)
         {
             DeckCard card = 
