@@ -8,26 +8,40 @@
     <h1>Simple Deck Viewer <span class="label label-warning">In-Development</span></h1>
 }
 
-<div>
-<div style="float:left;">
+<div style="width:1200px;">
+<div style="float:left;width:300px;">
     @{string path = "/decks/viewer";}
-    @if(@Model.Deck != null && @Model.Deck.Id != null && @Model.Deck.Id != Guid.Empty)
+    @if(@Model.Deck != null && @Model.Deck.Id != Guid.Empty)
     {
         path = string.Format("/decks/viewer/{0}", @Model.Deck.Id);
+        <div id="text_view">
+        @Html.Partial("Deck/_Cards", @Model.Deck)
+        <button class="btn btn-primary" name="Edit">Edit</button>
+        <br />
+        </div>
     }
+    <div id="edit">
     <form action="@path" method="post" >
         <input type="text" name="Name" value="@Model.Name" placeholder="Deck name"/><br /><br />
         <textarea rows="5" cols="30" name="Description" placeholder="Description here" >@Model.Description</textarea><br /><br />
         <textarea rows="20" cols="30" name="DeckFile" placeholder="Paste .dec file here">@Model.DeckFile</textarea>
+        @if(@Model.Planeswalker == null)
+        {
+            <input type="text" name="Email" value="@Model.Email" placeholder="Email me the link" />
+        }
+        <br />
         <br />
         <button type="submit" class="btn btn-primary btn-lg" name="Render">Render</button>
-        @if(@Model.Planeswalker != null)
-        {
-            <button type="submit" class="btn btn-primary btn-lg" name="Save">Save</button>
-        }
+        <button type="submit" class="btn btn-primary btn-lg" name="Save">Save</button>
+        
     </form>
+    </div>
 </div>
 <div class="well" style="float:left;margin-left: 20px;width:800px;" id="deck">
+@if(@Model.Deck != null)
+{
+<h2 style="padding:0px;margin: 0px;">Deck: @Model.Deck.Name</h2>
+}
 @if(@Model.Deck == null ||  Model.Deck.Cards == null || Model.Deck.Cards.Count == 0)
 {
     <h3>No cards to render. Paste .dec file and render.</h3>
@@ -35,7 +49,7 @@
 
 @foreach(string type in new string[]{"creature", "instant", "sorcery", "enchantment", "artifact", "land", "other"})
 {
-    if(@Model.Deck != null && Model.Deck.GetCards(type).Length > 0)
+    if(@Model.Deck != null  && @Model.Deck.Cards.Count > 0 && @Model.Deck.GetCards(type).Length > 0)
     {
         <div id="@type">
         <h4>@type (@Model.Deck.GetCards(type).Length) unique, (@Model.Deck.CardCount(type)) Total</h4>
@@ -70,33 +84,40 @@
     }
 }
 <div id="sidebar">
-    @if(@Model.Deck != null && @Model.Deck.SideBar.Count > 0)
+@if(@Model.Deck != null && @Model.Deck.SideBar.Count > 0)
+{
+    <h2>Side Bar</h2>
+    foreach(var card in Model.Deck.GetSideBarCards())
     {
-        <h1>Side Bar</h1>
-        foreach(var card in Model.Deck.GetSideBarCards())
+        int repeat = (int)System.Math.Ceiling(@Model.Deck.SideBarCardCount(card.Id) / 4.0);
+        for(int times = 0; times < repeat; times++)
         {
-            int repeat = (int)System.Math.Ceiling(@Model.Deck.SideBarCardCount(card.Id) / 4.0);
-            for(int times = 0; times < repeat; times++)
-            {
-                int top = 0;
-                string topStyle = string.Format("{0}px;", top);
-                int max = @Model.Deck.SideBarCardCount(card.Id) - (times * 4);
-                <div style="float:left;margin-left:10px;">
-                    <div style="position:relative;height:140px;">
-                        <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;"/>
-                        @for(int i = 1; (i < max && i < 4); i++ )
-                        {
-                            top = i * -70;
-                            topStyle = string.Format("{0}px;", top);
-                            <image src="@card.CardImage" 
-                            style="position:relative;width:65px;height:87px; z-index: @i; display: block;top:@topStyle" />
-                        }
-                    </div>
+            int top = 0;
+            string topStyle = string.Format("{0}px;", top);
+            int max = @Model.Deck.SideBarCardCount(card.Id) - (times * 4);
+            <div style="float:left;margin-left:10px;">
+                <div style="position:relative;height:140px;">
+                    <image src="@card.CardImage" style="position:relative;width:65px;height:87px; z-index: 0;display:block;"/>
+                    @for(int i = 1; (i < max && i < 4); i++ )
+                    {
+                        top = i * -70;
+                        topStyle = string.Format("{0}px;", top);
+                        <image src="@card.CardImage" 
+                        style="position:relative;width:65px;height:87px; z-index: @i; display: block;top:@topStyle" />
+                    }
                 </div>
-            }
+            </div>
         }
     }
-    <br style="clear:both;" />
+}
+<br style="clear:both;" />
+</div>
+<div>
+@if(@Model.Deck != null)
+{
+    <h4>Description:</h4>
+    <p>@Model.Deck.Description</p>
+}
 </div>
 </div>
 </div>

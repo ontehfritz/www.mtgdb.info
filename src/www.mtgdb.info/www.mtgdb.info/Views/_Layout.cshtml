@@ -59,6 +59,15 @@
                     	</a>
                     </li>
 	            }
+                else
+                {
+                    <li class="@(Model.ActiveMenu == "mydecks" ? "active":"")">
+                        <a href="/decks/viewer">
+                            <i class="fa fa-eye"></i>&nbsp;
+                            Deck Viewer
+                        </a>
+                    </li>
+                }
 	        </ul>
 	        <ul class="nav navbar-nav navbar-right" style="margin-right:10px;">
 				<li @(Model.ActiveMenu == "faq" ? "class='active'":"")>

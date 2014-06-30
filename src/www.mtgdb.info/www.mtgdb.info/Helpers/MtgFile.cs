@@ -72,7 +72,6 @@ namespace MtgDb.Info
                                 Amount = amount,
                                 MultiverseId = card.Id
                             });
-
                         }
                         catch(Exception exc)
                         {
@@ -81,16 +80,17 @@ namespace MtgDb.Info
                     }
                     else
                     {
+                        string cardName = "";
                         try
                         {
                             int first = line.IndexOf(' ');
                             string number = line.Substring(0,first);
-                            string cardName = line.Substring(first);
+                            cardName = line.Substring(first);
 
 
                             int amount = int.Parse(number.Trim());
                             Card card = magicdb.GetCards(cardName.Trim()).FirstOrDefault();
-
+                         
                             deck.Cards.Add(new DeckCard(){
                                 Amount = amount,
                                 MultiverseId = card.Id
@@ -99,7 +99,7 @@ namespace MtgDb.Info
                         }
                         catch(Exception exc)
                         {
-                            //throw exc;
+                            throw new Exception(string.Format("Cannot find card: {0}", cardName));
                         }
                     }
                 }

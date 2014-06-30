@@ -7,17 +7,17 @@
 {
     <h1>My Decks <span class="label label-warning">In-Development</span></h1>
 }
-
+<a href="/decks/viewer" class="btn btn-primary">Create Deck</a>
 <div>
-    @foreach(var deck in @Model.Decks)
-    {
-        <div style="float: left;">
-            <h4><a href="/decks/viewer/@deck.Id">@deck.Name</a></h4>
-            <p>
-                @deck.Description
-            </p>
-        </div>
-    }
+@foreach(var deck in @Model.Decks)
+{
+    <div style="float: left;">
+        <h4><a href="/decks/viewer/@deck.Id">@deck.Name</a></h4>
+        <p>
+            @deck.Description
+        </p>
+    </div>
+}
 </div>
 <br style="clear:both;" />
 

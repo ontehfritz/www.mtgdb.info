@@ -1,1 +1,25 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.Card[]>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<MtgDb.Info.Deck>
+<div>
+<h4>@Model.Name</h4>
+<ul style="list-style-type: none;margin-left:0px;padding: 0">
+@foreach(var card in @Model.GetCards())
+{
+    <li>
+    @Model.CardCount(card.Id) <a href='@string.Format("https://www.mtgdb.info/cards/{0}", @card.Id)'>@card.Name</a>
+    </li>
+}
+@foreach(var card in @Model.GetSideBarCards())
+{
+    <li>
+    SB: @Model.SideBarCardCount(card.Id) <a href='@string.Format("https://www.mtgdb.info/cards/{0}", @card.Id)'>@card.Name</a>
+    </li>
+}
+</ul>
+@if(!string.IsNullOrEmpty(Model.Description))
+{
+    <h4>Description:</h4>
+    <p>
+        @Model.Description
+    </p>
+}
+</div>

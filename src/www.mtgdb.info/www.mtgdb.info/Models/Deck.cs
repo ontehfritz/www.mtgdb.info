@@ -153,7 +153,8 @@ namespace MtgDb.Info
                     .Select(x => x.MultiverseId)
                     .ToArray();
 
-                return mtgDb.GetCards(multiverseIds).ToArray();
+                return mtgDb.GetCards(multiverseIds)
+                    .OrderBy(x => x.Name).ToArray();
             }
 
             return null;
@@ -180,7 +181,7 @@ namespace MtgDb.Info
                 }
             }
 
-            return cards.ToArray();
+            return cards.OrderBy(x => x.Name).ToArray();
         }
             
         public Card[] GetSideBarCards()
@@ -191,7 +192,8 @@ namespace MtgDb.Info
                     .Select(x => x.MultiverseId)
                     .ToArray();
 
-                return mtgDb.GetCards(multiverseIds).ToArray();
+                return mtgDb.GetCards(multiverseIds)
+                    .OrderBy(x => x.Name).ToArray();
             }
 
             return null;
@@ -251,6 +253,16 @@ namespace MtgDb.Info
             }
 
             return 0;
+        }
+
+        public bool IsOwner(Planeswalker pw)
+        {
+            if(this.UserId == pw.Id)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
         
