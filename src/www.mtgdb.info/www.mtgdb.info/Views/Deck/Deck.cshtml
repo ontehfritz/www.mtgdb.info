@@ -16,10 +16,11 @@
         path = string.Format("/decks/viewer/{0}", @Model.Deck.Id);
         <div id="text_view">
         @Html.Partial("Deck/_Cards", @Model.Deck)
-        <button class="btn btn-primary" name="Edit">Edit</button>
-        <br />
         </div>
     }
+
+    @if(@Model.Deck == null || (@Model.Planeswalker != null && @Model.Deck.UserId == @Model.Planeswalker.Id))
+    {
     <div id="edit">
     <form action="@path" method="post" >
         <input type="text" name="Name" value="@Model.Name" placeholder="Deck name"/><br /><br />
@@ -33,9 +34,20 @@
         <br />
         <button type="submit" class="btn btn-primary btn-lg" name="Render">Render</button>
         <button type="submit" class="btn btn-primary btn-lg" name="Save">Save</button>
+
+        @if(@Model.Planeswalker == null)
+        {
+            <br /><br />
+            <div class="alert alert-warning alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                You are saving this as a anonymous deck. 
+                <br />Please login to save in "My Decks"
+            </div>
+        }
         
     </form>
     </div>
+    }
 </div>
 <div class="well" style="float:left;margin-left: 20px;width:800px;" id="deck">
 @if(@Model.Deck != null)

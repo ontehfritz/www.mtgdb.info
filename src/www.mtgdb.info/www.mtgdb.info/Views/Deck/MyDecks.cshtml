@@ -11,12 +11,17 @@
 <div>
 @foreach(var deck in @Model.Decks)
 {
-    <div style="float: left;">
-        <h4><a href="/decks/viewer/@deck.Id">@deck.Name</a></h4>
-        <p>
-            @deck.Description
-        </p>
+    <a href='@string.Format("/decks/viewer/{0}",@deck.Id)' style="display:block">
+    <div 
+    style="float: left;width:112px;height:156px;background-image: url(https://api.mtgdb.info/content/card_images/back.jpeg);background-size: 112px 156px;" class="my-card">
+    <div style="background:rgba(255, 255, 255, .6);width: 100px;height:140px;margin: 5px;z-index: 1;color:black;padding:5px;">
+        <b>@deck.Name</b>
+        <div>@deck.Description</div>
+        <div>Cards: @deck.Cards.Count</div>
+        <div>Side Bar: @deck.SideBar.Count</div>
     </div>
+    </div>
+    </a>
 }
 </div>
 <br style="clear:both;" />

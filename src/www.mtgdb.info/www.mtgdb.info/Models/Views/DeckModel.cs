@@ -1,7 +1,17 @@
 ﻿using System;
+using FluentValidation;
 
 namespace MtgDb.Info
 {
+    public class DeckModelValidator : AbstractValidator<DeckModel>
+    {
+        public DeckModelValidator()
+        {
+            RuleFor(deck => deck.DeckFile).NotEmpty()
+                .WithMessage("No .dec file to render or save.");
+        }
+    }
+
     public class DeckModel : PageModel
     {
         public Deck Deck            { get; set; }

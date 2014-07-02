@@ -14,7 +14,7 @@ namespace MtgDb.Info
         private static string _smtp =        ConfigurationManager.AppSettings.Get("smtp:Server");
         private static string _port =        ConfigurationManager.AppSettings.Get("smtp:Port");
        
-        public static void send(string to, string subject, string body){
+        public static void Send(string to, string subject, string body){
             var smtp = new SmtpClient
             {
                 Host = _smtp,

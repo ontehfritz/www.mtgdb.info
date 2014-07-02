@@ -6,9 +6,18 @@ using System.Configuration;
 using System.Linq;
 using Nancy;
 using System.IO;
+using FluentValidation;
 
 namespace MtgDb.Info
 {
+    public class DeckValidator : AbstractValidator<Deck>
+    {
+        public DeckValidator()
+        {
+            RuleFor(deck => deck.Name).NotEmpty();
+        }
+    }
+
     public class Deck
     {
         [BsonId]

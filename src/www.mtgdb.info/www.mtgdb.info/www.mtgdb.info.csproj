@@ -146,7 +146,6 @@
     <Compile Include="Models\CardChange.cs" />
     <Compile Include="Helpers\Bind.cs" />
     <Compile Include="Models\Views\CardLogsModel.cs" />
-    <Compile Include="Models\Formats.cs" />
     <Compile Include="Helpers\Html.cs" />
     <Compile Include="Models\Views\ChangeRequestModel.cs" />
     <Compile Include="Models\Deck.cs" />
@@ -162,6 +161,7 @@
     <Compile Include="Models\SetChange.cs" />
     <Compile Include="Models\Views\SetLogsModel.cs" />
     <Compile Include="Modules\DeckViewerModule.cs" />
+    <Compile Include="Models\zzFormats.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\Index.cshtml" />

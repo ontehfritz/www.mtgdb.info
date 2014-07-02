@@ -193,7 +193,7 @@ namespace MtgDb.Info
 
                 try
                 {
-                    Email.send("planeswalker@mtgdb.info", 
+                    Email.Send("planeswalker@mtgdb.info", 
                         "New Planeswalker alert", model.UserName);
                 }
                 catch(Exception e)
@@ -228,7 +228,7 @@ namespace MtgDb.Info
                 try
                 {
                     string newPass = ssa.Forgot(model.Email);
-                    Email.send(model.Email, subject,string.Format(body,newPass));
+                    Email.Send(model.Email, subject,string.Format(body,newPass));
                     model.Messages.Add("Your new password has been successfully sent to your email.");
                 }
                 catch(Exception e)
