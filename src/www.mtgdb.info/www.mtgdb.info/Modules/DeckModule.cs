@@ -35,6 +35,24 @@ namespace MtgDb.Info
                 return View["Deck/MyDecks", model];
             };
 
+            Post["/decks/delete/{id}"] = parameters => {
+                Planeswalker planeswalker =     (Planeswalker)this.Context.CurrentUser;
+                Guid id = Guid.Empty;
+                Deck deck = new Deck();
+                if(Guid.TryParse((string)parameters.id, out id))
+                {
+                    deck = deckbuilder.GetDeck(id);
+
+                    if(deck != null && deck.IsOwner(planeswalker))
+                    {
+                        deckbuilder.DeleteDeck(deck.Id);
+                    }
+                }
+                    
+                return Response.AsRedirect("/mydecks");
+            };
+
+
 //            //for deck link sharing and viewing single deck
 //            Get["/pw/{planeswalker}/decks/{name}"] = parameters => {
 //                DeckModel model =       new DeckModel();

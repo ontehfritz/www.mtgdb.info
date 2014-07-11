@@ -4,7 +4,7 @@
 }
 @section Top{
     <div class="t_section">
-    <h1>@Html.Raw(RenderHtml.Name(@Model.Card.Name))</h1>
+    <h4>@Html.Raw(RenderHtml.Name(@Model.Card.Name))</h4>
     @if(Model.Card.Flavor != null && Model.Card.Flavor != "")
     {
       <blockquote><em>@Model.Card.Flavor</em></blockquote>

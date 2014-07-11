@@ -33,7 +33,7 @@ namespace MtgDb.Info
         [BsonElement]
         public List<DeckCard> Cards     { get; set; }
         [BsonElement]
-        public List<DeckCard> SideBar   { get; set; }
+        public List<DeckCard> SideBoard   { get; set; }
         [BsonElement]
         public DateTime CreatedAt       { get; set; }
         [BsonElement]
@@ -48,7 +48,7 @@ namespace MtgDb.Info
         {
             mtgDb =     new Db (ConfigurationManager.AppSettings.Get("api"));
             Cards =     new List<DeckCard>();
-            SideBar =   new List<DeckCard>();
+            SideBoard =   new List<DeckCard>();
             Types = new Dictionary<string, List<string>>();
             Types.Add("creature", new List<string>(){
                 "Creature",
@@ -133,7 +133,7 @@ namespace MtgDb.Info
         }
 
 
-        public void SetSideBar(int [] mvids)
+        public void SetSideBoard(int [] mvids)
         {
             Dictionary<int, int> deckCard = new Dictionary<int, int>();
 
@@ -149,7 +149,7 @@ namespace MtgDb.Info
                 }
             }
                 
-            SideBar = deckCard.Select(c => new DeckCard { 
+            SideBoard = deckCard.Select(c => new DeckCard { 
                 MultiverseId = c.Key, Amount = c.Value 
             }).ToList();
         }
@@ -193,11 +193,11 @@ namespace MtgDb.Info
             return cards.OrderBy(x => x.Name).ToArray();
         }
             
-        public Card[] GetSideBarCards()
+        public Card[] GetSideBoardCards()
         {
-            if(SideBar != null)
+            if(SideBoard != null)
             {
-                int [] multiverseIds = SideBar
+                int [] multiverseIds = SideBoard
                     .Select(x => x.MultiverseId)
                     .ToArray();
 
@@ -251,10 +251,10 @@ namespace MtgDb.Info
             return amount;
         }
 
-        public int SideBarCardCount(int multiverseId)
+        public int SideBoardCardCount(int multiverseId)
         {
             DeckCard card = 
-                this.SideBar.Find(x => x.MultiverseId == multiverseId);
+                this.SideBoard.Find(x => x.MultiverseId == multiverseId);
 
             if(card != null)
             {

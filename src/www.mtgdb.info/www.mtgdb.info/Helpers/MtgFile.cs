@@ -29,9 +29,9 @@ namespace MtgDb.Info
             }
 
             //sidebar
-            foreach(var card in deck.GetSideBarCards())
+            foreach(var card in deck.GetSideBoardCards())
             {
-                dec.AppendFormat("SB: {0} {1}\n",deck.SideBarCardCount(card.Id), 
+                dec.AppendFormat("SB: {0} {1}\n",deck.SideBoardCardCount(card.Id), 
                     card.Name.Replace("//", "/"));
             }
           
@@ -68,7 +68,7 @@ namespace MtgDb.Info
                                 .OrderByDescending(x => x.Id)
                                 .FirstOrDefault();
 
-                            deck.SideBar.Add(new DeckCard(){
+                            deck.SideBoard.Add(new DeckCard(){
                                 Amount = amount,
                                 MultiverseId = card.Id
                             });
@@ -89,12 +89,18 @@ namespace MtgDb.Info
 
 
                             int amount = int.Parse(number.Trim());
-                            Card card = magicdb.GetCards(cardName.Trim()).FirstOrDefault();
-                         
-                            deck.Cards.Add(new DeckCard(){
-                                Amount = amount,
-                                MultiverseId = card.Id
-                            });
+
+                            Card card = magicdb.GetCards(cardName.Trim())
+                                .OrderByDescending(x => x.Id).FirstOrDefault();
+
+
+                            if(amount > 0)
+                            {
+                                deck.Cards.Add(new DeckCard(){
+                                    Amount = amount,
+                                    MultiverseId = card.Id
+                                });
+                            }
 
                         }
                         catch(Exception exc)

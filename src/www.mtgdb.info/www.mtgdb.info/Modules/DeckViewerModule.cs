@@ -65,7 +65,21 @@ namespace MtgDb.Info
                 byte[] byteArray = Encoding.ASCII.GetBytes(model.DeckFile);
                 MemoryStream stream = new MemoryStream(byteArray);
 
-                model.Deck = MtgFile.ImportDec(stream);
+                try
+                {
+                    model.Deck = MtgFile.ImportDec(stream);
+
+                    if(model.Deck.Cards.Count == 0)
+                    {
+                        model.Errors.Add("Deck file contains no valid cards.");
+                        return View["Deck/Deck", model];
+                    }
+                }
+                catch(Exception exc)
+                {
+                    model.Errors.Add(exc.Message);
+                    return View["Deck/Deck", model];
+                }
 
                 if(parameters.deckId != null)
                 {

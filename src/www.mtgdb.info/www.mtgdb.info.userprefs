@@ -1,18 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Models/Deck.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="www.mtgdb.info/Views/Logon/Settings.cshtml">
     <Files>
-      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="77" Column="18" />
-      <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="32" Column="10" />
-      <File FileName="www.mtgdb.info/Helpers/Email.cs" Line="17" Column="29" />
-      <File FileName="www.mtgdb.info/Modules/LogonModule.cs" Line="236" Column="49" />
-      <File FileName="www.mtgdb.info/web.config" Line="15" Column="30" />
-      <File FileName="www.mtgdb.info/Modules/DeckModule.cs" Line="189" Column="33" />
-      <File FileName="www.mtgdb.info/Views/Deck/MyDecks.cshtml" Line="23" Column="11" />
-      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="81" Column="61" />
-      <File FileName="www.mtgdb.info/Views/Index.cshtml" Line="1" Column="1" />
-      <File FileName="www.mtgdb.info/Content/css/mtgdb.css" Line="384" Column="40" />
-      <File FileName="www.mtgdb.info/Models/Deck.cs" Line="20" Column="1" />
+      <File FileName="www.mtgdb.info/Models/Views/DeckModel.cs" Line="20" Column="22" />
+      <File FileName="www.mtgdb.info/Views/Deck/Deck.cshtml" Line="13" Column="38" />
+      <File FileName="www.mtgdb.info/Modules/DeckViewerModule.cs" Line="77" Column="22" />
+      <File FileName="www.mtgdb.info/Views/About.cshtml" Line="7" Column="21" />
+      <File FileName="www.mtgdb.info/Views/Book.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Card.cshtml" Line="18" Column="27" />
+      <File FileName="www.mtgdb.info/Views/Sets.cshtml" Line="10" Column="2" />
+      <File FileName="www.mtgdb.info/Views/FAQ.cshtml" Line="10" Column="5" />
+      <File FileName="www.mtgdb.info/Views/MyCards.cshtml" Line="15" Column="5" />
+      <File FileName="www.mtgdb.info/Views/Planeswalker.cshtml" Line="15" Column="2" />
+      <File FileName="www.mtgdb.info/Views/Search.cshtml" Line="16" Column="24" />
+      <File FileName="www.mtgdb.info/Views/Logon/Forgot.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Logon/Loggedin.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Logon/Logon.cshtml" Line="1" Column="1" />
+      <File FileName="www.mtgdb.info/Views/Logon/Settings.cshtml" Line="16" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

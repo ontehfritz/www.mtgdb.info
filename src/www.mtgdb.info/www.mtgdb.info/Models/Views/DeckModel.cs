@@ -9,6 +9,9 @@ namespace MtgDb.Info
         {
             RuleFor(deck => deck.DeckFile).NotEmpty()
                 .WithMessage("No .dec file to render or save.");
+
+            RuleFor(deck => deck.Name).NotEmpty()
+                .WithMessage("Name cannot be blank. Yes, even for rendering.");
         }
     }
 
@@ -20,7 +23,10 @@ namespace MtgDb.Info
         public string Name          { get; set; }
         public string Email         { get; set; }
       
-        public DeckModel () : base(){}
+        public DeckModel () : base()
+        {
+            Deck = new Deck();
+        }
     }
 }
 

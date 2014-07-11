@@ -55,7 +55,7 @@ namespace MtgDb.Info
                 .Set(d => d.Cards, deck.Cards)
                 .Set(d => d.Description, deck.Description)
                 .Set(d => d.IsPublic, deck.IsPublic)
-                .Set(d => d.SideBar,  deck.SideBar)
+                .Set(d => d.SideBoard,  deck.SideBoard)
                 .Set(d => d.ModifiedAt, deck.ModifiedAt),
                 new MongoUpdateOptions
                 {

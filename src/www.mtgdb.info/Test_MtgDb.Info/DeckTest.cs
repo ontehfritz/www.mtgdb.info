@@ -33,7 +33,7 @@ namespace Test_MtgDb.Info
                 });
                      
             deck.Cards = cards;
-            deck.SideBar = sideBoard;
+            deck.SideBoard = sideBoard;
             deck.Description = "This is a test deck.";
             deck.IsPublic = true;
             deck.Name = "Test Deck";
@@ -63,7 +63,7 @@ namespace Test_MtgDb.Info
                 });
 
             deck.Cards = cards;
-            deck.SideBar = sideBoard;
+            deck.SideBoard = sideBoard;
             deck.Description = "This is a test deck 2";
             deck.IsPublic = true;
             deck.Name = "Test Deck 2";

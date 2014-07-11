@@ -13,7 +13,7 @@
   	string Possessive = (Model.Planeswalker.Profile.Name.EndsWith("s") ? "'" : "'s");
   	string PossessiveName = string.Format("{0}{1}",@Model.Planeswalker.Profile.Name,@Possessive);
   	}
-	<h1><i class="fa fa-archive"></i> @PossessiveName Cards</h1>
+	<h4><i class="fa fa-archive"></i> @PossessiveName Cards</h4>
 }
 <input type="hidden" id="active_set" value="@Model.SetId" />
 <input type="hidden" id="active_block" value="@Model.Block.Replace(" ",string.Empty)" />
